@@ -22,7 +22,6 @@ public class CreatePlayer : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && numPlayers < maxPlayers)
         {
             PlayerInput.Instantiate(playerPrefab, controlScheme: numPlayers == 0 ? "KeyboardLeft" : "KeyboardRight", pairWithDevice: Keyboard.current);
-            //Instantiate(playerPrefab).GetComponent<PlayerInput>().actions = inputActionAsset;
             numPlayers++;
         }
     }
