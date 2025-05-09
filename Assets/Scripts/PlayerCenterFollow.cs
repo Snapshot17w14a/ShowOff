@@ -32,10 +32,7 @@ public class PlayerCenterFollow : MonoBehaviour
 
     private Vector3 AvragePlayerPosition()
     {
-        if(playerTransforms.Length == 0)
-        {
-            return initialOffset;
-        }
+        if (playerTransforms.Length == 0) return initialOffset;
 
         float sumX = 0, sumY = 0, sumZ = 0;
         float numTransform = playerTransforms.Length;
