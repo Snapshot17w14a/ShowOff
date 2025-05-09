@@ -6,6 +6,7 @@ public class CreatePlayer : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     PlayerInputManager playerInputManager;
     [SerializeField] private InputActionAsset inputActionAsset;
+    [SerializeField] private Transform spawnPosition;
     private int numPlayers = 0;
     private int maxPlayers = 0;
 
