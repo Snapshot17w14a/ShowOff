@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c350e3e920fe39646a47411287eebe9b, type: 3}
+  m_Name: ServiceConfig
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 5353790784943384531, guid: 06037a91c951b3d44a50f8da4cf99a49, type: 3}
+  controlSchemes:
+  - Controller
+  - KeyboardLeft
+  - KeyboardRight
+  - Controller

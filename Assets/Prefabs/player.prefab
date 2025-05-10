@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2730527039040381327}
   - component: {fileID: 1228121129382461837}
   m_Layer: 0
-  m_Name: Player
+  m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
     m_ActionId: ce5edeb0-cd54-4ab9-8c36-836f1251b455
     m_ActionName: 'Player2/New action[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: KeyboardLeft
+  m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

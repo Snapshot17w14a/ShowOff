@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.Events;
 using System.Reflection;
 using System.Linq;
 using UnityEngine;
@@ -10,77 +11,90 @@ public class Bob : MonoBehaviour
     private readonly Dictionary<Type, BobState> states = new();
 
     private WaitWhile waitForStateExecution;
-    private BobState currentState;
     private Coroutine attackRoutine;
+    private BobState currentState;
 
-    bool dummy = true;
+    [Header("Events")]
+    [SerializeField] private UnityEvent onStateChange;
 
     void Start()
     {
+        //Get all classes that inherit from BobState and store their Types
         var stateClasses = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsSubclassOf(typeof(BobState)) && !t.IsAbstract && t.IsClass);
 
-        foreach (var stateClass in stateClasses)
-        {
-            BobState createdState = (BobState)Activator.CreateInstance(stateClass);
-            states.Add(stateClass, createdState);
-        }
+        //Instantiate each state and store them in the dictionary with their Type being the key
+        foreach (var stateClass in stateClasses) states.Add(stateClass, (BobState)Activator.CreateInstance(stateClass));
 
-        LoadState(states[typeof(BobIdleState)]);
-
+        //Set up the wait condition for the coroutine
         waitForStateExecution = new(() => currentState.IsStateRunning);
 
+        //Start the attack routine
         StartAttack();
     }
 
-    private void LoadState(BobState state, params object[] parameters)
+    //Load the state and invoke the onStateChange event
+    private void LoadState<T>(params object[] parameters) where T : BobState
     {
         currentState?.UnloadState();
-        currentState = state;
+        currentState = states[typeof(T)];
         currentState.LoadState(parameters);
+        onStateChange?.Invoke();
     }
 
+    //Stop the previous coroutine, start a new coroutine and keep a reference to the handle
     public void StartAttack()
     {
+        if (attackRoutine != null) StopAttack();
         attackRoutine = StartCoroutine(AttackPattern(StartAttack));
     }
 
-    public void StopAttack()
-    {
-        StopCoroutine(attackRoutine);
-    }
+    //Stop the coroutine using the currently stored coroutine handle
+    public void StopAttack() => StopCoroutine(attackRoutine);
 
-    private void Update()
-    {
-        currentState?.TickState();
-        dummy = !dummy;
-    }
+    //Update the current state class
+    private void Update() => currentState?.TickState();
 
+    //Coroutine for the attack pattern of bob
     private IEnumerator AttackPattern(Action callback)
     {
         //Ice attack
-        LoadState(states[typeof(BobIceState)], transform);
+        LoadState<BobIceState>(transform);
         yield return waitForStateExecution;
-        yield return new WaitForSeconds(2);
+
+        //Idle after attack state
+        LoadState<BobIdleState>(transform, 2f);
+        yield return waitForStateExecution;
 
         //Tail attack
-        LoadState(states[typeof(BobTailState)]);
+        LoadState<BobTailState>();
         yield return waitForStateExecution;
-        yield return new WaitForSeconds(4);
 
-        if (/*TODO: check if brittle ice exists*/ true)
+        //Idle after attack state
+        LoadState<BobIdleState>(transform, 4f);
+        yield return waitForStateExecution;
+
+        //TODO: check if brittle ice exists
+        //Chose the state based on whether there is any brittle ice
+        if (true)
         {
             //Bomb attack
-            LoadState(states[typeof(BobBombState)]);
+            LoadState<BobBombState>();
             yield return waitForStateExecution;
         }
         else
         {
             //Stomp attack
-            LoadState(states[typeof(BobStompState)]);
+#pragma warning disable CS0162 // Unreachable code detected
+            LoadState<BobStompState>();
+#pragma warning restore CS0162 // Unreachable code detected
             yield return waitForStateExecution;
         }
-        yield return new WaitForSeconds(3);
 
+        //Idle after attack state
+        LoadState<BobIdleState>(transform, 3f);
+        yield return waitForStateExecution;
+
+        //Restart the coroutine
         callback.Invoke();
     }
 }

@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class BobBombState : MonoBehaviour
+public class BobBombState : BobState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void LoadState(params object[] parameters)
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void TickState()
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public override void UnloadState()
+    {
+        throw new System.NotImplementedException();
     }
 }

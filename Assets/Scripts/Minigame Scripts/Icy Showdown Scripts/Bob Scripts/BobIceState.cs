@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class BobIceState : BobState
 {
@@ -9,15 +10,17 @@ public class BobIceState : BobState
     private Quaternion initialRotation;
     private Quaternion targetRotation;
     private float turnMultiplier;
-    private float time;
+    private float time = 0;
 
     public override void LoadState(params object[] parameters)
     {
+        if (parameters.Length != 1) throw new Exception("Provided parameters array length was not 1");
+
         bobTransform = (Transform)parameters[0];
+
+        ChoseTargetRotation();
+
         isStateRunning = true;
-        turnMultiplier = Random.Range(0, 2) == 0 ? 1 : -1;
-        initialRotation = bobTransform.rotation;
-        targetRotation = initialRotation * Quaternion.Euler(0, attackAngle * turnMultiplier, 0);
     }
 
     public override void TickState()
@@ -26,12 +29,19 @@ public class BobIceState : BobState
         time += Time.deltaTime / attackSeconds;
         bobTransform.rotation = Quaternion.Lerp(initialRotation, targetRotation, time);
         Fire();
-        if (time >= attackSeconds) isStateRunning = false;
+        if (time >= 1) isStateRunning = false;
     }
 
     public override void UnloadState()
     {
         time = 0;
+    }
+
+    private void ChoseTargetRotation()
+    {
+        turnMultiplier = UnityEngine.Random.Range(0, 2) == 0 ? 1 : -1;
+        initialRotation = bobTransform.rotation;
+        targetRotation = initialRotation * Quaternion.Euler(0, attackAngle * turnMultiplier, 0);
     }
 
     private void Fire()
