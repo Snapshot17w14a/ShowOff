@@ -4,6 +4,7 @@ public class IcePlatform : MonoBehaviour
 {
     [SerializeField] private Texture solidTexture;
     [SerializeField] private Texture brittleTexture;
+    [SerializeField] private Texture waterTexture;
 
     private MeshRenderer meshRenderer;
     private MeshCollider meshCollider;
@@ -42,5 +43,6 @@ public class IcePlatform : MonoBehaviour
     {
         isBrittle = false;
         meshCollider.enabled = false;
+        meshRenderer.material.mainTexture = waterTexture;
     }
 }
