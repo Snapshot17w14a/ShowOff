@@ -4,16 +4,18 @@ public class BobStompState : BobState
 {
     public override void LoadState(params object[] parameters)
     {
-        throw new System.NotImplementedException();
+        isStateRunning = true;
     }
 
     public override void TickState()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("STOMP!");
+        IcePlatformManager.Instance.BreakBrittlePlatforms();
+        isStateRunning = false;
     }
 
     public override void UnloadState()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

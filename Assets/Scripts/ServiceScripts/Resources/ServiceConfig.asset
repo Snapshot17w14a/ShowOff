@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5353790784943384531, guid: 06037a91c951b3d44a50f8da4cf99a49, type: 3}
   controlSchemes:
-  - Controller
   - KeyboardLeft
   - KeyboardRight
+  - Controller
   - Controller

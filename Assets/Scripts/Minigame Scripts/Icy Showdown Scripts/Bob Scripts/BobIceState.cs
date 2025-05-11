@@ -46,6 +46,12 @@ public class BobIceState : BobState
 
     private void Fire()
     {
-        return;
+        IcePlatformManager.Instance.ExecuteForEachPlatform(FreezePlatformInArc);
+    }
+
+    private void FreezePlatformInArc(IcePlatform platform)
+    {
+        var angleToPlatform = Vector3.Angle(bobTransform.forward, (platform.transform.position - bobTransform.position).normalized);
+        if (angleToPlatform < 1f) platform.FreezePlatform();
     }
 }

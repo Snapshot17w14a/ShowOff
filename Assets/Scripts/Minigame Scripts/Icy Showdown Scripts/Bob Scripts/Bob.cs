@@ -14,6 +14,10 @@ public class Bob : MonoBehaviour
     private Coroutine attackRoutine;
     private BobState currentState;
 
+    [Header("Bomb state settings")]
+    [SerializeField] private GameObject bombPrefab;
+    [SerializeField] private Transform bombParentTransform;
+
     [Header("Events")]
     [SerializeField] private UnityEvent onStateChange;
 
@@ -66,27 +70,24 @@ public class Bob : MonoBehaviour
         yield return waitForStateExecution;
 
         //Tail attack
-        LoadState<BobTailState>();
+        LoadState<BobTailState>(2f, 10);
         yield return waitForStateExecution;
 
         //Idle after attack state
         LoadState<BobIdleState>(transform, 4f);
         yield return waitForStateExecution;
 
-        //TODO: check if brittle ice exists
-        //Chose the state based on whether there is any brittle ice
-        if (true)
+        //Choose the state based on whether there are any brittle ice platforms
+        if (IcePlatformManager.Instance.DoBrittlePlatformsExist)
         {
-            //Bomb attack
-            LoadState<BobBombState>();
+            //Stomp attack
+            LoadState<BobStompState>();
             yield return waitForStateExecution;
         }
         else
         {
-            //Stomp attack
-#pragma warning disable CS0162 // Unreachable code detected
-            LoadState<BobStompState>();
-#pragma warning restore CS0162 // Unreachable code detected
+            //Bomb attack
+            LoadState<BobBombState>(bombPrefab, bombParentTransform);
             yield return waitForStateExecution;
         }
 

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerCenterFollow : MonoBehaviour
 {
+    [SerializeField] private float sensitivity = 1;
     private Transform[] playerTransforms;
     private Vector3 initialOffset;
 
@@ -27,10 +28,10 @@ public class PlayerCenterFollow : MonoBehaviour
         {
             playerTransforms[i] = players[i].transform;
         }
-        transform.position = Vector3.Slerp(transform.position, AvragePlayerPosition(), Time.deltaTime);
+        transform.position = Vector3.Slerp(transform.position, AveragePlayerPosition(), Time.deltaTime * sensitivity);
     }
 
-    private Vector3 AvragePlayerPosition()
+    private Vector3 AveragePlayerPosition()
     {
         if (playerTransforms.Length == 0) return initialOffset;
 

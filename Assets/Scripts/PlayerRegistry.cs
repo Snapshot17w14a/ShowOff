@@ -14,7 +14,6 @@ public class PlayerRegistry : Service
     public int RegisteredPlayerCount => players;
     public int MaxPlayers => maxPlayers;
 
-
     public override void InitializeService()
     {
         maxPlayers = GameObject.FindFirstObjectByType<PlayerInputManager>().maxPlayerCount;
@@ -22,13 +21,13 @@ public class PlayerRegistry : Service
     }
 
     /// <summary>
-    /// Create a player and pair it with an input device
+    /// Create a player and pair it with an input device, optionally instantiate it immediatly
     /// </summary>
     /// <param name="device"><see cref="InputDevice"/> that the player will be paired with</param>
     /// <returns>The created user <see cref="MinigamePlayer"/></returns>
     public MinigamePlayer CreatePlayerWithDevice(InputDevice device, bool instantiatePlayer = true)
     {
-        //Create a RegisteredPlayer struct to hold the player's device, id and the reference to its gameobject if it exists
+        //Create a RegisteredPlayer struct to hold the player's device, id and the reference to its GameObject if it exists
         var regPlayer = new RegisteredPlayer()
         {
             device = device,
@@ -66,6 +65,14 @@ public class PlayerRegistry : Service
         registeredPlayers[id] = playerToInstantiate;
 
         return playerToInstantiate.minigamePlayer;
+    }
+
+    /// <summary>
+    /// Instantiate all players stored in the registry, useful when loading a different scene
+    /// </summary>
+    public void InstantiateAllPlayers()
+    {
+        foreach (var player in registeredPlayers) InstantiatePlayerWithId(player.id);
     }
 
     private MinigamePlayer CreatePlayer(InputDevice device, int id)

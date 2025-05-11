@@ -9,7 +9,7 @@ public class Countdown : MonoBehaviour
     [SerializeField] private bool startOnUnityStart = true;
 
     [Header("Events")]
-    [SerializeField] private UnityEvent onContdownStarted;
+    [SerializeField] private UnityEvent onContdownStart;
     [SerializeField] private UnityEvent onContdownEnd;
 
     private float currentSeconds;
@@ -26,14 +26,15 @@ public class Countdown : MonoBehaviour
     {
         currentSeconds = countdownSeconds;
         isCountdownStarted = true;
-        onContdownStarted?.Invoke();
+        onContdownStart?.Invoke();
     }
 
     private void Update()
     {
         if (!isCountdownStarted) return;
         currentSeconds -= Time.deltaTime;
-        countdownText.text = Mathf.RoundToInt(currentSeconds).ToString();
+        var numString = Mathf.RoundToInt(currentSeconds).ToString();
+        countdownText.text = numString == "0" ? "GO!" : numString;
         if (currentSeconds <= 0)
         {
             onContdownEnd?.Invoke();

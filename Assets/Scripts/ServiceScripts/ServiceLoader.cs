@@ -9,7 +9,7 @@ public static class ServiceLoader
         //Find the config scriptable holding all editable values
         var config = Resources.Load<ServiceConfig>("ServiceConfig");
 
-        //If not fould throw an exception
+        //If not found throw an exception
         if (config == null) throw new System.Exception("Service Config scriptalbe not found in Resources folder.");
 
         //Call the SetUpServices method to instantiate all services and set up required references and values

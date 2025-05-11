@@ -11,7 +11,7 @@ public abstract class Service
 #nullable enable
 public static class ServiceLocator
 {
-    private static Dictionary<Type, Service> services = new();
+    private static readonly Dictionary<Type, Service> services = new();
 
     /// <summary>
     /// Register a service, the service will be held and can be accessed anywhere with <see cref="GetService{T}(T)"/>
@@ -74,6 +74,9 @@ public static class ServiceLocator
         return services[typeof(T)] == service;
     }
 
+    /// <summary>
+    /// Method to initialize registered services, should only be called by the ServiceLoader script
+    /// </summary>
     public static void InitializeServices()
     {
         foreach (var service in services.Values) service.InitializeService();
