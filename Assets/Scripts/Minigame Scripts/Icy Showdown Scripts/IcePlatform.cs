@@ -23,6 +23,7 @@ public class IcePlatform : MonoBehaviour
     public void FreezePlatform()
     {
         meshCollider.enabled = true;
+        meshRenderer.enabled = true;
         meshRenderer.material.color = solidColor;
     }
 
@@ -43,6 +44,7 @@ public class IcePlatform : MonoBehaviour
     {
         isBrittle = false;
         meshCollider.enabled = false;
+        meshRenderer.enabled = false;
         meshRenderer.material.color = waterColor;
     }
 }

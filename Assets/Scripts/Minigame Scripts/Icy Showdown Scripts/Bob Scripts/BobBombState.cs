@@ -31,31 +31,19 @@ public class BobBombState : BobState
 
     public void LaunchBomb(Vector3 start, IcePlatform target, float timeToTarget = 2f)
     {
+        //Instantiate the bomb prefab with the parent transform
         var bomb = GameObject.Instantiate(bombPrefab, bombParentTransform);
+
+        //Get a reference to its rigidbody
         Rigidbody rb = bomb.GetComponent<Rigidbody>();
+
+        //Get a reference to its BobBomb script, set the callback and the target platform
         var bombScript = bomb.GetComponent<BobBomb>();
         bombScript.onBombExplode = BombCallback;
         bombScript.targetPlatform = target;
 
-        Vector3 displacement = target.transform.position - start;
-        Vector3 horizontalDisplacement = new(displacement.x, 0, displacement.z);
-
-        float horizontalDistance = horizontalDisplacement.magnitude;
-        float verticalDistance = displacement.y;
-
-        // Horizontal speed needed to reach the target in time
-        float horizontalSpeed = horizontalDistance / timeToTarget;
-
-        // Vertical speed needed to reach the height in time (accounting for gravity)
-        float verticalSpeed = (verticalDistance - 0.5f * Physics.gravity.y * timeToTarget * timeToTarget) / timeToTarget;
-
-        // Final velocity vector
-        Vector3 direction = horizontalDisplacement.normalized;
-        Vector3 velocity = direction * horizontalSpeed;
-        velocity.y = verticalSpeed;
-
-        // Set the new Unity 6 style linear velocity
-        rb.linearVelocity = velocity;
+        //Calculate the reguired velocity reach the target in timeToTarget time
+        rb.linearVelocity = PathCalculator.CalculateRequiredVelocity(start, target.transform.position, timeToTarget);
     }
 
     private void BombCallback()

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 
-[RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
+[RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class MinigamePlayer : MonoBehaviour
 {
     private Vector2 inputVector = Vector2.zero;
@@ -17,7 +17,7 @@ public class MinigamePlayer : MonoBehaviour
     [SerializeField] private float blinkInterval = 0.33f;
 
     private bool isStunned = false;
-
+    private bool isFlying = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,7 +32,7 @@ public class MinigamePlayer : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E)) StunPlayer(2f);    
-        if (isStunned) return;
+        if (isStunned || isFlying) return;
         UpdateMovement();
     }
 
@@ -53,6 +53,8 @@ public class MinigamePlayer : MonoBehaviour
     {
         StartCoroutine(StunRoutine(seconds));
     }
+
+    public void SetFlightState(bool state) => isFlying = state;
 
     public void SetPlayerColor(Color color, int playerId)
     {

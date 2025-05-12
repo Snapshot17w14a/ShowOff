@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9006338040558885461}
   - component: {fileID: 8779098865699672147}
   - component: {fileID: 7923799766648303022}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StunEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 1681844817334346745}
   - component: {fileID: 4425607277496657928}
   - component: {fileID: 699954441857335202}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 324798671967874932}
   - component: {fileID: 9121208996895523616}
   - component: {fileID: 6766590893159140315}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,10 +415,10 @@ GameObject:
   - component: {fileID: 785967597057265196}
   - component: {fileID: 6312266770890761823}
   - component: {fileID: 4266837146530975175}
-  - component: {fileID: 2002729264653451879}
+  - component: {fileID: 7103562432943879307}
   - component: {fileID: -2730527039040381327}
   - component: {fileID: 1228121129382461837}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -533,8 +533,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2002729264653451879
-BoxCollider:
+--- !u!135 &7103562432943879307
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -552,7 +552,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.49999997
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-2730527039040381327
 Rigidbody:
@@ -579,8 +579,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!114 &1228121129382461837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,7 +605,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5392864226160595296}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -640,7 +640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7781248443977168525}
   - component: {fileID: 7178609729368060484}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BottomIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}

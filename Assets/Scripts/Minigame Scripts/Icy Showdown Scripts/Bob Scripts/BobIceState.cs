@@ -53,7 +53,7 @@ public class BobIceState : BobState
     {
         var platformPosition = platform.transform.position;
         platformPosition.y = 0;
-        var angleToPlatform = Vector3.Angle(bobTransform.forward, (platformPosition - bobTransform.position).normalized);
+        var angleToPlatform = Vector3.Angle(bobTransform.forward, (platformPosition - Vector3.zero).normalized);
         if (angleToPlatform < 1f) platform.FreezePlatform();
     }
 }
