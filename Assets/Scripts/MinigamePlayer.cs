@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -55,5 +56,15 @@ public class MinigamePlayer : MonoBehaviour
     {
         stunDuration = seconds;
         rigidbody.linearVelocity = Vector3.zero;
+    }
+
+    public void SetPlayerColor(Color color, int playerId)
+    {
+        var spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        foreach (var renderer in spriteRenderers) renderer.color = color;
+
+        var textMeshPro = GetComponentInChildren<TextMeshPro>();
+        textMeshPro.color = color;
+        textMeshPro.text = $"P{playerId + 1}";
     }
 }

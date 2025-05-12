@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/HubScene.unity
+    guid: 36b9c8dc55da93349b4a66adaf2f6e63
+  - enabled: 1
+    path: Assets/Scenes/Icy Showdown.unity
+    guid: f7d2b10f13296b343877ebb22cef77a7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

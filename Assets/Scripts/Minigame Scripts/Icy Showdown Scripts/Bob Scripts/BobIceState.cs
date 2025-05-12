@@ -51,7 +51,9 @@ public class BobIceState : BobState
 
     private void FreezePlatformInArc(IcePlatform platform)
     {
-        var angleToPlatform = Vector3.Angle(bobTransform.forward, (platform.transform.position - bobTransform.position).normalized);
+        var platformPosition = platform.transform.position;
+        platformPosition.y = 0;
+        var angleToPlatform = Vector3.Angle(bobTransform.forward, (platformPosition - bobTransform.position).normalized);
         if (angleToPlatform < 1f) platform.FreezePlatform();
     }
 }

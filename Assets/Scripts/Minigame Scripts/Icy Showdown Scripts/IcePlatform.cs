@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class IcePlatform : MonoBehaviour
 {
-    [SerializeField] private Texture solidTexture;
-    [SerializeField] private Texture brittleTexture;
-    [SerializeField] private Texture waterTexture;
+    [SerializeField] private Color solidColor;
+    [SerializeField] private Color brittleColor;
+    [SerializeField] private Color waterColor;
 
     private MeshRenderer meshRenderer;
     private MeshCollider meshCollider;
@@ -17,19 +17,19 @@ public class IcePlatform : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         meshCollider = GetComponent<MeshCollider>();
 
-        meshRenderer.material.mainTexture = solidTexture;
+        meshRenderer.material.color = solidColor;
     }
 
     public void FreezePlatform()
     {
         meshCollider.enabled = true;
-        meshRenderer.material.mainTexture = solidTexture;
+        meshRenderer.material.color = solidColor;
     }
 
     public void SetBrittle()
     {
         isBrittle = true;
-        meshRenderer.material.mainTexture = brittleTexture;
+        meshRenderer.material.color = brittleColor;
     }
 
     public void BreakIfBrittle()
@@ -43,6 +43,6 @@ public class IcePlatform : MonoBehaviour
     {
         isBrittle = false;
         meshCollider.enabled = false;
-        meshRenderer.material.mainTexture = waterTexture;
+        meshRenderer.material.color = waterColor;
     }
 }

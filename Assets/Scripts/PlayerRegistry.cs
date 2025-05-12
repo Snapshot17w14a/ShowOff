@@ -7,6 +7,7 @@ public class PlayerRegistry : Service
 
     public GameObject playerPrefab;
     public string[] controlSchemes;
+    public Color[] playerColors;
 
     private int players = 0;
     private int maxPlayers = 0;
@@ -72,12 +73,18 @@ public class PlayerRegistry : Service
     /// </summary>
     public void InstantiateAllPlayers()
     {
-        foreach (var player in registeredPlayers) InstantiatePlayerWithId(player.id);
+        foreach (var player in registeredPlayers) if (!RegisteredPlayer.IsNull(player)) InstantiatePlayerWithId(player.id);
     }
 
     private MinigamePlayer CreatePlayer(InputDevice device, int id)
     {
-        return PlayerInput.Instantiate(playerPrefab, playerIndex: id, controlScheme: controlSchemes[Mathf.Min(players, maxPlayers)], pairWithDevice: device).GetComponent<MinigamePlayer>();
+        //Instantiate the player with the given device, id and choose a free control scheme
+        var player = PlayerInput.Instantiate(playerPrefab, playerIndex: id, controlScheme: controlSchemes[Mathf.Min(id, maxPlayers)], pairWithDevice: device).GetComponent<MinigamePlayer>();
+
+        //Set the color of the player indicators
+        player.SetPlayerColor(playerColors[id], id);
+
+        return player;
     }
 }
 
@@ -93,4 +100,9 @@ public struct RegisteredPlayer
     public int id;
     public InputDevice device;
     public MinigamePlayer minigamePlayer;
+
+    public static bool IsNull(RegisteredPlayer registeredPlayer)
+    {
+        return registeredPlayer.id == 0 && registeredPlayer.device == null && registeredPlayer.minigamePlayer == null;
+    }
 }

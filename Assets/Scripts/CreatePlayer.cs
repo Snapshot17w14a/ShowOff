@@ -38,4 +38,9 @@ public class CreatePlayer : MonoBehaviour
     {
         onPlayerJoin?.Invoke();
     }
+    
+    public void InstantiateAllPlayers()
+    {
+        ServiceLocator.GetService<PlayerRegistry>().InstantiateAllPlayers();
+    }
 }

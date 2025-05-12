@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2921946099993092453}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.15, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -92,3 +92,6 @@ MonoBehaviour:
   inputActionAsset: {fileID: -944628639613478452, guid: 2b1428ed59ecb6447a63d6a59a4cf11e, type: 3}
   playerPrefab: {fileID: 5353790784943384531, guid: 06037a91c951b3d44a50f8da4cf99a49, type: 3}
   spawnPosition: {fileID: 0}
+  onPlayerJoin:
+    m_PersistentCalls:
+      m_Calls: []
