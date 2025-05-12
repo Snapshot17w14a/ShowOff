@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,19 +9,21 @@ public class MinigamePlayer : MonoBehaviour
 {
     private Vector2 inputVector = Vector2.zero;
     private new Rigidbody rigidbody;
+    private VisualEffect stunEffect;
+    private MeshRenderer meshRenderer;
 
     [SerializeField] private float turnSpeedMultiplier;
     [SerializeField] private float movementSpeed = 1.0f;
+    [SerializeField] private float blinkInterval = 0.33f;
 
-    private float stunDuration = 0;
-    private float stunTime = 0;
+    private bool isStunned = false;
 
-    private VisualEffect stunEffect;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        meshRenderer = GetComponent<MeshRenderer>();
         stunEffect = GetComponentInChildren<VisualEffect>();
         stunEffect.Stop();
     }
@@ -28,8 +31,8 @@ public class MinigamePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) StunPlayer(2f);
-        if (HandleStun()) return;
+        if (Input.GetKeyDown(KeyCode.E)) StunPlayer(2f);    
+        if (isStunned) return;
         UpdateMovement();
     }
 
@@ -46,24 +49,9 @@ public class MinigamePlayer : MonoBehaviour
         inputVector = value.Get<Vector2>();
     }
 
-    private bool HandleStun()
-    {
-        stunTime += Time.deltaTime;
-        if (stunTime >= stunDuration)
-        {
-            stunDuration = 0;
-            stunTime = 0;
-            stunEffect.Stop();
-            return false;
-        }
-        return true;
-    }
-
     public void StunPlayer(float seconds)
     {
-        stunDuration = seconds;
-        stunEffect.Play();
-        rigidbody.linearVelocity = Vector3.zero;
+        StartCoroutine(StunRoutine(seconds));
     }
 
     public void SetPlayerColor(Color color, int playerId)
@@ -74,5 +62,37 @@ public class MinigamePlayer : MonoBehaviour
         var textMeshPro = GetComponentInChildren<TextMeshPro>();
         textMeshPro.color = color;
         textMeshPro.text = $"P{playerId + 1}";
+    }
+
+    private IEnumerator StunRoutine(float stunSeconds)
+    {
+        isStunned = true;
+        stunEffect.Play();
+        rigidbody.linearVelocity = Vector3.zero;
+
+        float timer = 0;
+        float nextBlinkTime = blinkInterval;
+
+        while (timer < stunSeconds)
+        {
+            timer += Time.deltaTime;
+            if (timer >= nextBlinkTime)
+            {
+                nextBlinkTime += blinkInterval;
+                var currentColor = meshRenderer.material.color;
+                currentColor.a = currentColor.a == 0.5f ? 1f : 0.5f;
+
+                meshRenderer.material.color = currentColor;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
+        isStunned = false;
+        stunEffect.Stop();
+        var solidColor = meshRenderer.material.color;
+        solidColor.a = 1f;
+        meshRenderer.material.color = solidColor;
+
+        yield return null;
     }
 }
