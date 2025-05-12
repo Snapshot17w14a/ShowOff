@@ -166,9 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &5047942
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -291,9 +291,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &7049142
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -462,9 +462,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &81936748
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1453,9 +1453,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &1412795422
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1578,9 +1578,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &1479035851
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1916,9 +1916,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &1819489899
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4897,9 +4897,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &4004067539835908473
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5331,9 +5331,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &4456981663657840225
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6359,6 +6359,63 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &6138950773320344249
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2378384683568221559, guid: ccae05153b78b644b918047219d968bb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378384683568221559, guid: ccae05153b78b644b918047219d968bb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.452
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378384683568221559, guid: ccae05153b78b644b918047219d968bb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378384683568221559, guid: ccae05153b78b644b918047219d968bb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378384683568221559, guid: ccae05153b78b644b918047219d968bb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378384683568221559, guid: ccae05153b78b644b918047219d968bb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378384683568221559, guid: ccae05153b78b644b918047219d968bb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378384683568221559, guid: ccae05153b78b644b918047219d968bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378384683568221559, guid: ccae05153b78b644b918047219d968bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378384683568221559, guid: ccae05153b78b644b918047219d968bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932365911964751970, guid: ccae05153b78b644b918047219d968bb, type: 3}
+      propertyPath: m_Name
+      value: Visual Effect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ccae05153b78b644b918047219d968bb, type: 3}
 --- !u!1 &6186167724428669446
 GameObject:
   m_ObjectHideFlags: 0
@@ -6660,9 +6717,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &6544245352371216282
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6712,9 +6769,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &6593938559659251938
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7357,9 +7414,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &7807361230385614563
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7429,9 +7486,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &7951197498625691320
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7529,9 +7586,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &7999830710321940951
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7821,9 +7878,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &8472344884201905697
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7897,9 +7954,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &8557300847329904704
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8020,9 +8077,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &8718545406935651589
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8275,9 +8332,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c407467905ecf104287371b9ab631fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  solidTexture: {fileID: 2800000, guid: c74e906fee0248f45b021bc8fec5da34, type: 3}
-  brittleTexture: {fileID: 2800000, guid: 2cfc9093a096b9049af01b218bf4bb5f, type: 3}
-  waterTexture: {fileID: 2800000, guid: fc819f3dea3bce44bb9253da3893cc9b, type: 3}
+  solidColor: {r: 0, g: 0, b: 0, a: 0}
+  brittleColor: {r: 0, g: 0, b: 0, a: 0}
+  waterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!64 &9142043248434199099
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8328,3 +8385,4 @@ SceneRoots:
   - {fileID: 1620836871}
   - {fileID: 1683579576}
   - {fileID: 178040029}
+  - {fileID: 6138950773320344249}
