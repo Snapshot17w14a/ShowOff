@@ -1,8 +1,8 @@
 using System.Collections;
-using TMPro;
-using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
+using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class MinigamePlayer : MonoBehaviour
@@ -12,12 +12,23 @@ public class MinigamePlayer : MonoBehaviour
     private VisualEffect stunEffect;
     private MeshRenderer meshRenderer;
 
+    [Header("View settings")]
     [SerializeField] private float turnSpeedMultiplier;
     [SerializeField] private float movementSpeed = 1.0f;
+
+    [Header("Stun settings")]
     [SerializeField] private float blinkInterval = 0.33f;
+
+    [Header("Dash settings")]
+    [SerializeField] private float dashStunDuration = 1f;
+    [SerializeField] private float dashCooldown = 5f;
+    [SerializeField] private float dashDuration = 5f;
+    [SerializeField] private float dashForce = 5f;
+    private float lastDashTime = 0;
 
     private bool isStunned = false;
     private bool isFlying = false;
+    private bool isDashing = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,7 +42,7 @@ public class MinigamePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) StunPlayer(2f);    
+        if (Input.GetKeyDown(KeyCode.E)) StunPlayer(2f);
         if (isStunned || isFlying) return;
         UpdateMovement();
     }
@@ -39,14 +50,25 @@ public class MinigamePlayer : MonoBehaviour
     private void UpdateMovement()
     {
         if (inputVector.sqrMagnitude == 0) return;
-        rigidbody.AddForce(movementSpeed * Time.deltaTime * new Vector3(inputVector.x, 0, inputVector.y));
-        var targetAngle = Vector3.SignedAngle(Vector3.forward, rigidbody.linearVelocity.normalized, Vector3.up);
+        Vector3 inputDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
+        rigidbody.AddForce(movementSpeed * Time.deltaTime * inputDirection);
+        var targetAngle = Vector3.SignedAngle(Vector3.forward, inputDirection, Vector3.up);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, targetAngle, 0), Time.deltaTime * turnSpeedMultiplier);
     }
 
     private void OnMove(InputValue value)
     {
         inputVector = value.Get<Vector2>();
+    }
+
+    private void OnDash()
+    {
+        if (Time.time >= lastDashTime + dashCooldown) Dash();
+    }
+
+    private void OnGrab()
+    {
+        
     }
 
     public void StunPlayer(float seconds)
@@ -64,6 +86,15 @@ public class MinigamePlayer : MonoBehaviour
         var textMeshPro = GetComponentInChildren<TextMeshPro>();
         textMeshPro.color = color;
         textMeshPro.text = $"P{playerId + 1}";
+    }
+
+    private void Dash()
+    {
+        isDashing = true;
+        lastDashTime = Time.time;
+        Vector3 forceVector = inputVector.sqrMagnitude == 0 ? transform.forward : new Vector3(inputVector.x, 0, inputVector.y);
+        rigidbody.AddForce(forceVector.normalized * dashForce, ForceMode.Impulse);
+        StartCoroutine(ResetDashInSeconds(dashDuration));
     }
 
     private IEnumerator StunRoutine(float stunSeconds)
@@ -96,5 +127,21 @@ public class MinigamePlayer : MonoBehaviour
         meshRenderer.material.color = solidColor;
 
         yield return null;
+    }
+
+    private IEnumerator ResetDashInSeconds(float dashDuration)
+    {
+        yield return new WaitForSeconds(dashDuration);
+
+        isDashing = false;
+
+        yield return null;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!isDashing || !collision.gameObject.CompareTag("Player")) return;
+
+        collision.gameObject.GetComponent<MinigamePlayer>().StunPlayer(dashStunDuration);
     }
 }
