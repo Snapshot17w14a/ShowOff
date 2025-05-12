@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
 public class MinigamePlayer : MonoBehaviour
@@ -14,15 +15,20 @@ public class MinigamePlayer : MonoBehaviour
     private float stunDuration = 0;
     private float stunTime = 0;
 
+    private VisualEffect stunEffect;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        stunEffect = GetComponentInChildren<VisualEffect>();
+        stunEffect.Stop();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E)) StunPlayer(2f);
         if (HandleStun()) return;
         UpdateMovement();
     }
@@ -47,6 +53,7 @@ public class MinigamePlayer : MonoBehaviour
         {
             stunDuration = 0;
             stunTime = 0;
+            stunEffect.Stop();
             return false;
         }
         return true;
@@ -55,6 +62,7 @@ public class MinigamePlayer : MonoBehaviour
     public void StunPlayer(float seconds)
     {
         stunDuration = seconds;
+        stunEffect.Play();
         rigidbody.linearVelocity = Vector3.zero;
     }
 
