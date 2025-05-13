@@ -1023,6 +1023,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSeconds: 15
   maxSeconds: 15
+--- !u!1001 &496047810
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ebc3d0979274ee74daacd0c3933e83f8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.2053175
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ebc3d0979274ee74daacd0c3933e83f8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ebc3d0979274ee74daacd0c3933e83f8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.1793203
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ebc3d0979274ee74daacd0c3933e83f8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92760986
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ebc3d0979274ee74daacd0c3933e83f8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000013085328
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ebc3d0979274ee74daacd0c3933e83f8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.3735506
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ebc3d0979274ee74daacd0c3933e83f8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000052694915
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ebc3d0979274ee74daacd0c3933e83f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ebc3d0979274ee74daacd0c3933e83f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ebc3d0979274ee74daacd0c3933e83f8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ebc3d0979274ee74daacd0c3933e83f8, type: 3}
+      propertyPath: m_Name
+      value: Pinguin
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ebc3d0979274ee74daacd0c3933e83f8, type: 3}
 --- !u!1 &614240164
 GameObject:
   m_ObjectHideFlags: 0
@@ -8740,3 +8797,4 @@ SceneRoots:
   - {fileID: 614240166}
   - {fileID: 1075210591}
   - {fileID: 631446563}
+  - {fileID: 496047810}
