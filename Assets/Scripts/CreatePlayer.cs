@@ -16,11 +16,14 @@ public class CreatePlayer : MonoBehaviour
     [Header("Events")]
     [SerializeField] private UnityEvent onPlayerJoin;
 
+    private Gamepad[] gamepads;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerInputManager = GetComponent<PlayerInputManager>();
         maxPlayers = playerInputManager.maxPlayerCount;
+        gamepads = Gamepad.all.ToArray();
     }
 
     // Update is called once per frame
@@ -28,7 +31,7 @@ public class CreatePlayer : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && numPlayers < maxPlayers)
         {
-            ServiceLocator.GetService<PlayerRegistry>().CreatePlayerWithDevice(numPlayers < 2 ? Keyboard.current : Gamepad.current);
+            ServiceLocator.GetService<PlayerRegistry>().CreatePlayerWithDevice(numPlayers < 2 ? Keyboard.current : gamepads[numPlayers - 2]);
             numPlayers++;
         }
     }

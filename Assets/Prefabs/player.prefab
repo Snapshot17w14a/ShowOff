@@ -610,7 +610,7 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ce5edeb0-cd54-4ab9-8c36-836f1251b455
     m_ActionName: 'Player2/New action[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
@@ -698,7 +698,7 @@ Rigidbody:
   m_GameObject: {fileID: 5353790784943384531}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSpeedMultiplier: 10
-  movementSpeed: 100
+  movementSpeed: 400
   blinkInterval: 0.2
   dashStunDuration: 1
   dashCooldown: 5

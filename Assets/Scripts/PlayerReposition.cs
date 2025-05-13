@@ -1,10 +1,13 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerReposition : MonoBehaviour
 {
     [SerializeField] private Vector3 reposition;
     [SerializeField] private float flightAndStunDuration;
+
+    private Dictionary<Collider, float> colliderDampeningPair = new();
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,6 +25,9 @@ public class PlayerReposition : MonoBehaviour
             var collider = other.GetComponent<Collider>();
             collider.enabled = false;
 
+            colliderDampeningPair.Add(collider, rb.linearDamping);
+            rb.linearDamping = 0;
+
             StartCoroutine(ResetPlayerCollider(collider, flightAndStunDuration));
         }
     }
@@ -32,6 +38,8 @@ public class PlayerReposition : MonoBehaviour
 
         colliderToReset.enabled = true;
         colliderToReset.GetComponent<MinigamePlayer>().SetFlightState(false);
+        colliderToReset.GetComponent<Rigidbody>().linearDamping = colliderDampeningPair[colliderToReset];
+        colliderDampeningPair.Remove(colliderToReset);
 
         yield return null;
     }

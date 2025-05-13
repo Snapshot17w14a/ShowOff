@@ -224,7 +224,7 @@
                 {
                     "name": "",
                     "id": "7cb08a43-3c80-446c-9f46-023971143d20",
-                    "path": "<XInputController>/buttonSouth",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Controller",
@@ -257,10 +257,10 @@
                 {
                     "name": "",
                     "id": "138e51f5-422a-4996-8301-aea11a75c51c",
-                    "path": "<XInputController>/buttonEast",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Controller",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -296,7 +296,7 @@
             "bindingGroup": "Controller",
             "devices": [
                 {
-                    "devicePath": "<XInputController>",
+                    "devicePath": "<Gamepad>",
                     "isOptional": false,
                     "isOR": false
                 }

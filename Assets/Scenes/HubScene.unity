@@ -525,6 +525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reposition: {x: 0, y: 0, z: 0}
+  flightAndStunDuration: 2
 --- !u!1 &1702012861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,7 +1128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8010002473103490996, guid: cf525065ce53df44e86c143c5a721cd1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.35
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8010002473103490996, guid: cf525065ce53df44e86c143c5a721cd1, type: 3}
       propertyPath: m_LocalPosition.z
