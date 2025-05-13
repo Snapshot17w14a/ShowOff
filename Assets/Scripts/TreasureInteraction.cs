@@ -58,9 +58,12 @@ public class TreasureInteraction : MonoBehaviour
             Vector3 position = transform.position;
             Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
             Vector3 spawnPosition = position + randomDirection * Random.Range(0f, dropRange);
-            NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas);
-            Pickupable treasure = Instantiate(treasurePrefab, hit.position, Quaternion.identity);
-            treasure.DespawnAfter(droppedTreasureDespawnTime);
+
+            if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+            {
+                Pickupable treasure = Instantiate(treasurePrefab, hit.position, Quaternion.identity);
+                treasure.DespawnAfter(droppedTreasureDespawnTime);
+            }
         }
     }
 
