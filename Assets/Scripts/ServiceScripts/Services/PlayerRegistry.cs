@@ -1,13 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using System;
 
 public class PlayerRegistry : Service
 {
-    private RegisteredPlayer[] registeredPlayers;
-
     public GameObject playerPrefab;
     public string[] controlSchemes;
     public Color[] playerColors;
+
+    private readonly List<InputDevice> usedInputDevices = new();
+    private RegisteredPlayer[] registeredPlayers;
 
     private int players = 0;
     private int maxPlayers = 0;
@@ -17,9 +20,13 @@ public class PlayerRegistry : Service
     public int RegisteredPlayerCount => players;
     public int MaxPlayers => maxPlayers;
 
+    public event Action<MinigamePlayer> OnPlayerSpawn;
+
     public override void InitializeService()
     {
-        maxPlayers = GameObject.FindFirstObjectByType<PlayerInputManager>().maxPlayerCount;
+        var playerInputManager = GameObject.FindFirstObjectByType<PlayerInputManager>();
+
+        maxPlayers = playerInputManager == null ? 8 : playerInputManager.maxPlayerCount; 
         registeredPlayers = new RegisteredPlayer[maxPlayers];
     }
 
@@ -78,19 +85,29 @@ public class PlayerRegistry : Service
         foreach (var player in registeredPlayers) if (!RegisteredPlayer.IsNull(player)) InstantiatePlayerWithId(player.id);
     }
 
+    /// <summary>
+    /// Check wether a device is already in use by another player
+    /// </summary>
+    /// <returns>True if the device is already in use</returns>
     public bool DoesPlayerWithDeviceExist(InputDevice device)
     {
-        foreach (var player in registeredPlayers) if (device.Equals(player.device)) return true;
-        return false;
+        if (device == Keyboard.current && keyboardPlayers < 2) return false; 
+        return usedInputDevices.Contains(device);
     }
 
     private MinigamePlayer CreatePlayer(InputDevice device, int id)
     {
         //Instantiate the player with the given device, id and choose a free control scheme
-        var player = PlayerInput.Instantiate(playerPrefab, playerIndex: id, controlScheme: ControlSchemeForDevice(device)/*controlSchemes[Mathf.Min(id, maxPlayers)]*/, pairWithDevice: device).GetComponent<MinigamePlayer>();
+        var player = PlayerInput.Instantiate(playerPrefab, playerIndex: id, controlScheme: ControlSchemeForDevice(device), pairWithDevice: device).GetComponent<MinigamePlayer>();
 
         //Set the color of the player indicators
         player.SetPlayerColor(playerColors[id], id);
+
+        //Add the paired device to the list of already in use devices
+        usedInputDevices.Add(device);
+
+        //Invoke the event with the created player
+        OnPlayerSpawn?.Invoke(player);
 
         return player;
     }
@@ -102,6 +119,9 @@ public class PlayerRegistry : Service
 
         //Set the color of the player indicators
         player.SetPlayerColor(playerColors[registeredPlayer.id], registeredPlayer.id);
+
+        //Invoke the event with the created player
+        OnPlayerSpawn?.Invoke(player);
 
         return player;
     }
@@ -116,10 +136,10 @@ public class PlayerRegistry : Service
 
 public struct RegisteredPlayer
 {
-    public RegisteredPlayer(int id, InputDevice device, MinigamePlayer minigamePlayer = null, string controllScheme = "")
+    public RegisteredPlayer(int id, InputDevice device, MinigamePlayer minigamePlayer = null, string controlScheme = "")
     {
         this.id = id;
-        this.controlScheme = controllScheme;
+        this.controlScheme = controlScheme;
         this.device = device;
         this.minigamePlayer = minigamePlayer;
     }

@@ -16,12 +16,12 @@ public class PlayerScoreManager : MonoBehaviour
         Debug.Assert(scoreParent != null);
         Debug.Assert(scorePrefab != null);
 
-        createPlayer.OnPlayerSpawn += GenerateScoreUI;
+        ServiceLocator.GetService<PlayerRegistry>().OnPlayerSpawn += GenerateScoreUI;
     }
 
     private void OnDestroy()
     {
-        createPlayer.OnPlayerSpawn -= GenerateScoreUI;
+        ServiceLocator.GetService<PlayerRegistry>().OnPlayerSpawn -= GenerateScoreUI;
     }
 
     private void GenerateScoreUI(MinigamePlayer player)
