@@ -41,7 +41,7 @@ public class BobTailState : BobState
 
     private void FireProjectile()
     {
-        Debug.Log("Fired spruce needle");
+        //Debug.Log("Fired spruce needle");
         firedProjectileCount++;
     }
 }

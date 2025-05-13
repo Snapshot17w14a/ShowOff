@@ -1,9 +1,12 @@
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
 using UnityEngine;
+using System;
 
 public class CreatePlayer : MonoBehaviour
 {
+    public event Action<MinigamePlayer> OnPlayerSpawn;
+
     [Header("References")]
     [SerializeField] private InputActionAsset inputActionAsset;
     [SerializeField] private GameObject playerPrefab;
@@ -38,8 +41,9 @@ public class CreatePlayer : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && numPlayers < maxPlayers)
         {
-            ServiceLocator.GetService<PlayerRegistry>().CreatePlayerWithDevice(numPlayers < 2 ? Keyboard.current : gamepads[numPlayers - 2]);
+            MinigamePlayer player = ServiceLocator.GetService<PlayerRegistry>().CreatePlayerWithDevice(numPlayers < 2 ? Keyboard.current : gamepads[numPlayers - 2]);
             numPlayers++;
+            OnPlayerSpawn?.Invoke(player);
         }
     }
 

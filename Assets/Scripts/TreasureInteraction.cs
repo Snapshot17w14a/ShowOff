@@ -1,63 +1,100 @@
+using System;
 using UnityEngine;
+using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class TreasureInteraction : MonoBehaviour
 {
+    public event Action OnTreasureDelivered;
+
+    [SerializeField] private Transform holdPoint;
+    [SerializeField] private Pickupable treasurePrefab;
     [SerializeField] private float pickupRange = 2f;
-    private Pickupable nearbyPickupable;
+    [SerializeField] private float dropRange = 5f;
+    [SerializeField] private float droppedTreasureDespawnTime = 10f;
+
     private Pickupable collectedPickupable;
+    private bool isInTreasureZone = false;
+    private bool isInCollectionZone = false;
 
-    void Start()
+    private void Update()
     {
-        
-    }
-
-    void Update()
-    {
-        DetectNearbyPickupables();
-    }
-
-    private void FixedUpdate()
-    {
-        if(collectedPickupable != null)
+        if(isInCollectionZone && collectedPickupable != null)
         {
-            collectedPickupable.transform.position = transform.position + transform.forward * 1f;
+            DeliverTreasure();
         }
     }
 
-    private void DetectNearbyPickupables()
+    private void CollectTreasure()
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, pickupRange);
+        Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
 
-        foreach(Collider hit in hits)
+        if (treasure != null)
         {
-            Pickupable pickUp = hit.GetComponent<Pickupable>();
-
-            if(pickUp != null && !pickUp.IsPickedUp)
-            {
-                Debug.Log("Found Pickup");
-                nearbyPickupable = pickUp;
-                break;
-            }
+            treasure.Collect(holdPoint);
+            collectedPickupable = treasure;
+            Debug.Log("Collected treasure!");
         }
     }
 
-    private void PickUp(Pickupable pickUp)
+    private void DeliverTreasure()
     {
-        pickUp.Collect(transform);
-        collectedPickupable = pickUp;
+        if (collectedPickupable != null)
+        { 
+            Destroy(collectedPickupable.gameObject);
+            collectedPickupable = null;
+            Debug.Log("Treasure Delivered!");
+            OnTreasureDelivered?.Invoke();
+        }
     }
 
-    private void Drop()
+    public void DropTreasure()
     {
-        collectedPickupable.Drop();
-        collectedPickupable = null;
+        if (collectedPickupable != null)
+        {
+            Destroy(collectedPickupable.gameObject);
+            collectedPickupable = null;
+
+            Vector3 position = transform.position;
+            Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
+            Vector3 spawnPosition = position + randomDirection * Random.Range(0f, dropRange);
+            NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas);
+            Pickupable treasure = Instantiate(treasurePrefab, hit.position, Quaternion.identity);
+            treasure.DespawnAfter(droppedTreasureDespawnTime);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<TreasureZone>() != null)
+        {
+            isInTreasureZone = true;
+        }
+
+        if (other.GetComponent<CollectionZone>() != null)
+        {
+            isInCollectionZone = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.GetComponent<TreasureZone>() != null)
+        {
+            isInTreasureZone = false;
+        }
+
+        if(other.GetComponent<CollectionZone>() != null)
+        {
+            isInCollectionZone = false;
+        }
     }
 
     private void OnGrab()
     {
-        if (nearbyPickupable != null && collectedPickupable == null)
+        if (isInTreasureZone && collectedPickupable == null)
         {
-            PickUp(nearbyPickupable);
+            CollectTreasure();
         }
     }
 }

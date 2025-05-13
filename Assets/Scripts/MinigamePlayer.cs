@@ -7,6 +7,8 @@ using TMPro;
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class MinigamePlayer : MonoBehaviour
 {
+    public TreasureInteraction TreasureInteraction { get; private set; }
+
     private Vector2 inputVector = Vector2.zero;
     private new Rigidbody rigidbody;
     private VisualEffect stunEffect;
@@ -29,20 +31,18 @@ public class MinigamePlayer : MonoBehaviour
     private bool isStunned = false;
     private bool isFlying = false;
     private bool isDashing = false;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
         stunEffect = GetComponentInChildren<VisualEffect>();
+        TreasureInteraction = GetComponent<TreasureInteraction>();
         stunEffect.Stop();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) StunPlayer(2f);
         if (isStunned || isFlying) return;
         UpdateMovement();
     }
@@ -73,6 +73,7 @@ public class MinigamePlayer : MonoBehaviour
 
     public void StunPlayer(float seconds)
     {
+        TreasureInteraction.DropTreasure();
         StartCoroutine(StunRoutine(seconds));
     }
 

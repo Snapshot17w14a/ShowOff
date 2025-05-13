@@ -213,7 +213,7 @@
                 {
                     "name": "",
                     "id": "48251a17-1e9d-4996-ba57-3994b078461c",
-                    "path": "<Keyboard>/numpad0",
+                    "path": "<Keyboard>/0",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardRight",
