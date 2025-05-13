@@ -83,6 +83,8 @@ public class MinigamePlayer : MonoBehaviour
         var spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         foreach (var renderer in spriteRenderers) renderer.color = color;
 
+        GetComponent<MeshRenderer>().material.color = color;
+
         var textMeshPro = GetComponentInChildren<TextMeshPro>();
         textMeshPro.color = color;
         textMeshPro.text = $"P{playerId + 1}";
@@ -92,7 +94,7 @@ public class MinigamePlayer : MonoBehaviour
     {
         isDashing = true;
         lastDashTime = Time.time;
-        Vector3 forceVector = inputVector.sqrMagnitude == 0 ? transform.forward : new Vector3(inputVector.x, 0, inputVector.y);
+        Vector3 forceVector = inputVector.sqrMagnitude == 0 ? transform.forward : new Vector3(inputVector.x, 0.5f, inputVector.y);
         rigidbody.AddForce(forceVector.normalized * dashForce, ForceMode.Impulse);
         StartCoroutine(ResetDashInSeconds(dashDuration));
     }

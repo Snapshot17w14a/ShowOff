@@ -12,6 +12,8 @@ public class PlayerRegistry : Service
     private int players = 0;
     private int maxPlayers = 0;
 
+    private int keyboardPlayers = 0;
+
     public int RegisteredPlayerCount => players;
     public int MaxPlayers => maxPlayers;
 
@@ -59,7 +61,7 @@ public class PlayerRegistry : Service
         }
 
         //Instantiate the player and store it's reference in the RegisteredPlayer struct
-        var playerGameObject = CreatePlayer(playerToInstantiate.device, id);
+        var playerGameObject = CreatePlayer(playerToInstantiate/*playerToInstantiate.device, id*/);
         playerToInstantiate.minigamePlayer = playerGameObject;
 
         //Reassign the struct with the struct that now stores the GameObject reference
@@ -76,28 +78,54 @@ public class PlayerRegistry : Service
         foreach (var player in registeredPlayers) if (!RegisteredPlayer.IsNull(player)) InstantiatePlayerWithId(player.id);
     }
 
+    public bool DoesPlayerWithDeviceExist(InputDevice device)
+    {
+        foreach (var player in registeredPlayers) if (device.Equals(player.device)) return true;
+        return false;
+    }
+
     private MinigamePlayer CreatePlayer(InputDevice device, int id)
     {
         //Instantiate the player with the given device, id and choose a free control scheme
-        var player = PlayerInput.Instantiate(playerPrefab, playerIndex: id, controlScheme: controlSchemes[Mathf.Min(id, maxPlayers)], pairWithDevice: device).GetComponent<MinigamePlayer>();
+        var player = PlayerInput.Instantiate(playerPrefab, playerIndex: id, controlScheme: ControlSchemeForDevice(device)/*controlSchemes[Mathf.Min(id, maxPlayers)]*/, pairWithDevice: device).GetComponent<MinigamePlayer>();
 
         //Set the color of the player indicators
         player.SetPlayerColor(playerColors[id], id);
 
         return player;
     }
+
+    private MinigamePlayer CreatePlayer(RegisteredPlayer registeredPlayer)
+    {
+        //Instantiate the player with the given device, id and choose a free control scheme
+        var player = PlayerInput.Instantiate(playerPrefab, playerIndex: registeredPlayer.id, controlScheme: registeredPlayer.controlScheme, pairWithDevice: registeredPlayer.device).GetComponent<MinigamePlayer>();
+
+        //Set the color of the player indicators
+        player.SetPlayerColor(playerColors[registeredPlayer.id], registeredPlayer.id);
+
+        return player;
+    }
+
+    private string ControlSchemeForDevice(InputDevice device)
+    {
+        if (device is Gamepad) return "Controller";
+        if (device is Keyboard) return ++keyboardPlayers == 1 ? "KeyboardLeft" : "KeyboardRight";
+        return "";
+    }
 }
 
 public struct RegisteredPlayer
 {
-    public RegisteredPlayer(int id, InputDevice device, MinigamePlayer minigamePlayer = null)
+    public RegisteredPlayer(int id, InputDevice device, MinigamePlayer minigamePlayer = null, string controllScheme = "")
     {
         this.id = id;
+        this.controlScheme = controllScheme;
         this.device = device;
         this.minigamePlayer = minigamePlayer;
     }
 
     public int id;
+    public string controlScheme;
     public InputDevice device;
     public MinigamePlayer minigamePlayer;
 

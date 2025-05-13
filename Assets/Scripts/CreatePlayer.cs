@@ -24,6 +24,13 @@ public class CreatePlayer : MonoBehaviour
         playerInputManager = GetComponent<PlayerInputManager>();
         maxPlayers = playerInputManager.maxPlayerCount;
         gamepads = Gamepad.all.ToArray();
+
+        //inputActionAsset.FindActionMap("Player").actionTriggered += context => { Debug.Log(context); };
+
+        //foreach (var binding in inputActionAsset.FindActionMap("Player").bindings)
+        //{
+        //    Debug.Log(binding.effectivePath);
+        //}
     }
 
     // Update is called once per frame
