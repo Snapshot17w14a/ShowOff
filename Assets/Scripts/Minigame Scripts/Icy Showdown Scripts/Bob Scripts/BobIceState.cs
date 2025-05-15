@@ -21,14 +21,17 @@ public class BobIceState : BobState
 
     private IceState state = IceState.Idle;
 
-    public override void LoadState(params object[] parameters)
+    public override void Initialize(params object[] parameters)
     {
         if (parameters.Length != 3) throw new Exception("Provided parameters array length was not 3");
 
         bobTransform = (Transform)parameters[0];
         chargeUpEffect = (VisualEffect)parameters[1];
         beamEffect = (VisualEffect)parameters[2];
+    }
 
+    public override void LoadState(params object[] parameters)
+    {
         ChoseTargetRotation();
 
         isStateRunning = true;

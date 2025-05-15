@@ -10,12 +10,16 @@ public class BobIdleState : BobState
     private Quaternion targetRotation;
     private Transform bobTransform;
 
-    public override void LoadState(params object[] parameters)
+    public override void Initialize(params object[] parameters)
     {
-        if (parameters.Length != 2) throw new Exception("Provided parameters array length was not 2");
+        if (parameters.Length != 1) throw new Exception("Provided parameters array length was not 1");
 
         bobTransform = (Transform)parameters[0];
-        idleSeconds = (float)parameters[1];
+    }
+
+    public override void LoadState(params object[] parameters)
+    {
+        idleSeconds = (float)parameters[0];
 
         ChooseRandomAngle();
 

@@ -6,13 +6,16 @@ public class BobBombState : BobState
     private GameObject bombPrefab;
     private Transform bombParentTransform;
 
-    public override void LoadState(params object[] parameters)
+    public override void Initialize(params object[] parameters)
     {
         if (parameters.Length != 2) throw new Exception("Provided parameters array length was not 2");
 
         bombPrefab = (GameObject)parameters[0];
         bombParentTransform = (Transform)parameters[1];
+    }
 
+    public override void LoadState(params object[] parameters)
+    {
         isStateRunning = true;
 
         var targetPlatform = IcePlatformManager.Instance.GetRandomPlatform;

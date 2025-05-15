@@ -23,6 +23,12 @@ public class Bob : MonoBehaviour
     [SerializeField] private VisualEffect iceChargeup;
     [SerializeField] private VisualEffect iceBeam;
 
+    [Header("Tail state settings")]
+    [SerializeField] private float tailAttackTime;
+    [SerializeField] private int tailProjectileCount;
+    [SerializeField] private Vector2 tailAttackArc;
+    [SerializeField] private GameObject tailProjectile; 
+
     [Header("Events")]
     [SerializeField] private UnityEvent onStateChange;
 
@@ -37,8 +43,33 @@ public class Bob : MonoBehaviour
         //Set up the wait condition for the coroutine
         waitForStateExecution = new(() => currentState.IsStateRunning);
 
+        //Initialize the states with their needed references and values
+        InitializeStates();
+
         //Start the attack routine
         StartAttack();
+    }
+
+    private void InitializeStates()
+    {
+        foreach (var state in states.Values)
+        {
+            switch (state)
+            {
+                case BobTailState tailState:
+                    tailState.Initialize(tailAttackTime, tailProjectileCount, tailAttackArc, tailProjectile, transform);
+                    break;
+                case BobIceState iceState: 
+                    iceState.Initialize(transform, iceChargeup, iceBeam); 
+                    break;
+                case BobBombState bombState:
+                    bombState.Initialize(bombPrefab, bombParentTransform);
+                    break;
+                case BobIdleState idleState:
+                    idleState.Initialize(transform);
+                    break;
+            }
+        }
     }
 
     //Load the state and invoke the onStateChange event
@@ -67,19 +98,19 @@ public class Bob : MonoBehaviour
     private IEnumerator AttackPattern(Action callback)
     {
         //Ice attack
-        LoadState<BobIceState>(transform, iceChargeup, iceBeam);
+        LoadState<BobIceState>();
         yield return waitForStateExecution;
 
         //Idle after attack state
-        LoadState<BobIdleState>(transform, 2f);
+        LoadState<BobIdleState>(2f);
         yield return waitForStateExecution;
 
         //Tail attack
-        LoadState<BobTailState>(2f, 10);
+        LoadState<BobTailState>();
         yield return waitForStateExecution;
 
         //Idle after attack state
-        LoadState<BobIdleState>(transform, 4f);
+        LoadState<BobIdleState>(4f);
         yield return waitForStateExecution;
 
         //Choose the state based on whether there are any brittle ice platforms
@@ -92,12 +123,12 @@ public class Bob : MonoBehaviour
         else
         {
             //Bomb attack
-            LoadState<BobBombState>(bombPrefab, bombParentTransform);
+            LoadState<BobBombState>();
             yield return waitForStateExecution;
         }
 
         //Idle after attack state
-        LoadState<BobIdleState>(transform, 3f);
+        LoadState<BobIdleState>(3f);
         yield return waitForStateExecution;
 
         //Restart the coroutine

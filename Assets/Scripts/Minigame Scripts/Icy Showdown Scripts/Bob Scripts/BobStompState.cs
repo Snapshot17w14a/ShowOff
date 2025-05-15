@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class BobStompState : BobState
 {
+    public override void Initialize(params object[] parameters)
+    {
+        return;
+    }
+
     public override void LoadState(params object[] parameters)
     {
         isStateRunning = true;
