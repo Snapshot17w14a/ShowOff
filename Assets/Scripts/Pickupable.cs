@@ -17,6 +17,8 @@ public class Pickupable : MonoBehaviour
     {
         IsPickedUp = true;
         gameObject.transform.SetParent(parent, false);
+        //This is fucking ugly, but I was over it making it work with math
+        transform.localScale = new Vector3(9,9,9);
         gameObject.transform.localPosition = Vector3.zero;
     }
 
