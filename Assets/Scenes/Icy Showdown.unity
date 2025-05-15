@@ -633,13 +633,22 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 0.3
+        m_Name: Beam size
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: Beam Particle Duration
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
       m_Array: []
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 3.977216, y: 6.04544, z: 6.3396225, w: 0}
+        m_Name: General Color
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
@@ -2276,7 +2285,7 @@ VisualEffect:
   m_GameObject: {fileID: 1631712735}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 3a931f074280c754cb4d3e6415df4b9b, type: 3}
-  m_InitialEventName: OnPlay
+  m_InitialEventName: 
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
@@ -2284,7 +2293,13 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 2
+        m_Name: Spawn Sphere radius
+        m_Overridden: 1
+      - m_Value: 0.3
+        m_Name: Attractor Sphere radius
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -2300,7 +2315,39 @@ VisualEffect:
     m_AnimationCurve:
       m_Array: []
     m_Gradient:
-      m_Array: []
+      m_Array:
+      - m_Value:
+          serializedVersion: 2
+          key0: {r: 0.5623888, g: 1.3396227, b: 1.2756153, a: 1}
+          key1: {r: 0.60062885, g: 1.3470715, b: 1.4980391, a: 1}
+          key2: {r: 0.863257, g: 0.75608593, b: 1.4980394, a: 0}
+          key3: {r: 0, g: 0, b: 0, a: 0}
+          key4: {r: 0, g: 0, b: 0, a: 0}
+          key5: {r: 0, g: 0, b: 0, a: 0}
+          key6: {r: 0, g: 0, b: 0, a: 0}
+          key7: {r: 0, g: 0, b: 0, a: 0}
+          ctime0: 19275
+          ctime1: 37201
+          ctime2: 65535
+          ctime3: 0
+          ctime4: 0
+          ctime5: 0
+          ctime6: 0
+          ctime7: 0
+          atime0: 0
+          atime1: 65535
+          atime2: 65150
+          atime3: 65535
+          atime4: 0
+          atime5: 0
+          atime6: 0
+          atime7: 0
+          m_Mode: 1
+          m_ColorSpace: 1
+          m_NumColorKeys: 3
+          m_NumAlphaKeys: 2
+        m_Name: Colors of particles
+        m_Overridden: 1
     m_NamedObject:
       m_Array: []
     m_Bool:
