@@ -50,7 +50,10 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 3
+        m_Name: Lifetime of bomb
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -64,7 +67,105 @@ VisualEffect:
     m_Matrix4x4f:
       m_Array: []
     m_AnimationCurve:
-      m_Array: []
+      m_Array:
+      - m_Value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.14959608
+            value: 0.9979396
+            inSlope: -0.03318364
+            outSlope: -0.03318364
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33366284
+          - serializedVersion: 3
+            time: 0.3008614
+            value: -0.0021505356
+            inSlope: -0.03269396
+            outSlope: -0.03269396
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.9973491
+          - serializedVersion: 3
+            time: 0.4289877
+            value: 0.99676764
+            inSlope: 0.011821866
+            outSlope: 0.011821866
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.123781554
+          - serializedVersion: 3
+            time: 0.5511611
+            value: 0.00017994083
+            inSlope: 0.029504098
+            outSlope: 0.029504098
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.1645109
+          - serializedVersion: 3
+            time: 0.6468972
+            value: 0.9949726
+            inSlope: -0.023909092
+            outSlope: -0.023909092
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.24259488
+          - serializedVersion: 3
+            time: 0.75268877
+            value: -0.0018254519
+            inSlope: 0.02504301
+            outSlope: 0.02504301
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.3578316
+          - serializedVersion: 3
+            time: 0.7999819
+            value: 0.999079
+            inSlope: 0.045508757
+            outSlope: 0.045508757
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 1
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 0.9020781
+            value: -0.0009003449
+            inSlope: 0.013652937
+            outSlope: 0.013652937
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.6540303
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Name: Bomb Alpha
+        m_Overridden: 1
     m_Gradient:
       m_Array: []
     m_NamedObject:
