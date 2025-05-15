@@ -56,7 +56,7 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
-    public void DropTreasure()
+    public void DropTreasureRandom()
     {
         if (collectedPickupable != null)
         {
@@ -66,6 +66,22 @@ public class TreasureInteraction : MonoBehaviour
             Vector3 position = transform.position;
             Vector3 randomDirection = new Vector3(Random.Range(-spawnRange, spawnRange), 0f, Random.Range(-spawnRange, spawnRange));
             Vector3 spawnPosition = position + randomDirection;
+
+            if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+            {
+                Pickupable treasure = Instantiate(treasurePrefab, hit.position, Quaternion.identity);
+                treasure.DespawnAfter(droppedTreasureDespawnTime);
+            }
+        }
+    }
+
+    private void DropTreasure()
+    {
+        if (collectedPickupable != null)
+        {
+            Vector3 position = transform.position;
+            Vector3 dropPosition = transform.forward / 2f;
+            Vector3 spawnPosition = position + dropPosition;
 
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
             {
@@ -120,6 +136,12 @@ public class TreasureInteraction : MonoBehaviour
         if (isInTreasureZone && collectedPickupable == null)
         {
             CollectTreasure();
+        }
+        else if (collectedPickupable != null)
+        {
+            DropTreasure();
+            Destroy(collectedPickupable.gameObject);
+            collectedPickupable = null;
         }
     }
 }

@@ -78,7 +78,7 @@ public class MinigamePlayer : MonoBehaviour
 
     public void StunPlayer(float seconds)
     {
-        TreasureInteraction.DropTreasure();
+        TreasureInteraction.DropTreasureRandom();
         StartCoroutine(StunRoutine(seconds));
         OnPlayerStunned?.Invoke();
     }
