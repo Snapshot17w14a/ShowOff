@@ -15,6 +15,7 @@ public class TreasureInteraction : MonoBehaviour
     [SerializeField] private float spawnRange = 0.5f;
     [SerializeField] private float treasurePickUpCooldown = 2f;
 
+    private SpriteRenderer spriteRenderer;
     private MinigamePlayer miniGamePlayer;
     private Pickupable collectedPickupable;
     private bool isInTreasureZone = false;
@@ -23,6 +24,7 @@ public class TreasureInteraction : MonoBehaviour
     private void Awake()
     {
         miniGamePlayer = GetComponent<MinigamePlayer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()
@@ -96,6 +98,7 @@ public class TreasureInteraction : MonoBehaviour
         if (other.GetComponent<TreasureZone>() != null)
         {
             isInTreasureZone = true;
+            EnableButtonIndicator(true);
         }
 
         if (other.GetComponent<CollectionZone>() != null)
@@ -118,6 +121,7 @@ public class TreasureInteraction : MonoBehaviour
         if (other.GetComponent<TreasureZone>() != null)
         {
             isInTreasureZone = false;
+            EnableButtonIndicator(false);
         }
 
         if (other.GetComponent<CollectionZone>() != null)
@@ -129,6 +133,11 @@ public class TreasureInteraction : MonoBehaviour
     private bool IsPlayerStunned()
     {
         return miniGamePlayer != null && miniGamePlayer.IsStunned;
+    }
+
+    private void EnableButtonIndicator(bool state)
+    {
+        spriteRenderer.gameObject.SetActive(state);
     }
 
     private void OnGrab()
