@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class BobBomb : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class BobBomb : MonoBehaviour
 
     private BombState state = BombState.Flying;
     private float timer = 0;
+
+    private void Start()
+    {
+        GetComponentInChildren<VisualEffect>().SetFloat("Lifetime of bomb", explosionCooldown + flightTime);
+    }
 
     // Update is called once per frame
     void Update()

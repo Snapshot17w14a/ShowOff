@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.Events;
 using System.Reflection;
+using UnityEngine.VFX;
 using System.Linq;
 using UnityEngine;
 using System;
@@ -17,6 +18,10 @@ public class Bob : MonoBehaviour
     [Header("Bomb state settings")]
     [SerializeField] private GameObject bombPrefab;
     [SerializeField] private Transform bombParentTransform;
+
+    [Header("IceBeam state settings")]
+    [SerializeField] private VisualEffect iceChargeup;
+    [SerializeField] private VisualEffect iceBeam;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onStateChange;
@@ -62,7 +67,7 @@ public class Bob : MonoBehaviour
     private IEnumerator AttackPattern(Action callback)
     {
         //Ice attack
-        LoadState<BobIceState>(transform);
+        LoadState<BobIceState>(transform, iceChargeup, iceBeam);
         yield return waitForStateExecution;
 
         //Idle after attack state

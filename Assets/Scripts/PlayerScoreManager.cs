@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerScoreManager : MonoBehaviour
 {
-    [SerializeField] private CreatePlayer createPlayer;
     [SerializeField] private Transform scoreParent;
     [SerializeField] private PlayerScoreUI scorePrefab;
     [SerializeField] private float xOffset = 100f;
@@ -12,7 +11,6 @@ public class PlayerScoreManager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Assert(createPlayer != null);
         Debug.Assert(scoreParent != null);
         Debug.Assert(scorePrefab != null);
 
