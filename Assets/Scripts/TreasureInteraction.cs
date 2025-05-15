@@ -12,15 +12,22 @@ public class TreasureInteraction : MonoBehaviour
     [SerializeField] private float pickupRange = 2f;
     [SerializeField] private float dropRange = 0.2f;
     [SerializeField] private float droppedTreasureDespawnTime = 10f;
+    [SerializeField] private float spawnRange = 0.5f;
+    [SerializeField] private float treasurePickUpCooldown = 2f;
 
-    [SerializeField] private float spawnRange = 1f;
+    private MinigamePlayer miniGamePlayer;
     private Pickupable collectedPickupable;
     private bool isInTreasureZone = false;
     private bool isInCollectionZone = false;
 
+    private void Awake()
+    {
+        miniGamePlayer = GetComponent<MinigamePlayer>();
+    }
+
     private void Update()
     {
-        if(isInCollectionZone && collectedPickupable != null)
+        if (isInCollectionZone && collectedPickupable != null)
         {
             DeliverTreasure();
         }
@@ -41,7 +48,7 @@ public class TreasureInteraction : MonoBehaviour
     private void DeliverTreasure()
     {
         if (collectedPickupable != null)
-        { 
+        {
             Destroy(collectedPickupable.gameObject);
             collectedPickupable = null;
             Debug.Log("Treasure Delivered!");
@@ -58,9 +65,9 @@ public class TreasureInteraction : MonoBehaviour
 
             Vector3 position = transform.position;
             Vector3 randomDirection = new Vector3(Random.Range(-spawnRange, spawnRange), 0f, Random.Range(-spawnRange, spawnRange));
-            Vector3 spawnPosition = position + randomDirection * Random.Range(0f, dropRange);
+            Vector3 spawnPosition = position + randomDirection;
 
-            if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 3f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
             {
                 Pickupable treasure = Instantiate(treasurePrefab, hit.position, Quaternion.identity);
                 treasure.DespawnAfter(droppedTreasureDespawnTime);
@@ -70,7 +77,7 @@ public class TreasureInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<TreasureZone>() != null)
+        if (other.GetComponent<TreasureZone>() != null)
         {
             isInTreasureZone = true;
         }
@@ -79,19 +86,33 @@ public class TreasureInteraction : MonoBehaviour
         {
             isInCollectionZone = true;
         }
+
+        if (other.GetComponent<Pickupable>() != null)
+        {
+            if (!IsPlayerStunned() && collectedPickupable == null)
+            {
+                CollectTreasure();
+                Destroy(other.gameObject);
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.GetComponent<TreasureZone>() != null)
+        if (other.GetComponent<TreasureZone>() != null)
         {
             isInTreasureZone = false;
         }
 
-        if(other.GetComponent<CollectionZone>() != null)
+        if (other.GetComponent<CollectionZone>() != null)
         {
             isInCollectionZone = false;
         }
+    }
+
+    private bool IsPlayerStunned()
+    {
+        return miniGamePlayer != null && miniGamePlayer.IsStunned;
     }
 
     private void OnGrab()

@@ -3,11 +3,16 @@ using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 using UnityEngine;
 using TMPro;
+using System;
 
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class MinigamePlayer : MonoBehaviour
 {
     public TreasureInteraction TreasureInteraction { get; private set; }
+
+    public event Action OnPlayerStunned;
+
+    public bool IsStunned => isStunned;
 
     private Vector2 inputVector = Vector2.zero;
     private new Rigidbody rigidbody;
@@ -75,6 +80,7 @@ public class MinigamePlayer : MonoBehaviour
     {
         TreasureInteraction.DropTreasure();
         StartCoroutine(StunRoutine(seconds));
+        OnPlayerStunned?.Invoke();
     }
 
     public void SetFlightState(bool state) => isFlying = state;
