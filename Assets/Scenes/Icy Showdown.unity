@@ -3078,7 +3078,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -4096,6 +4096,10 @@ PrefabInstance:
       value: PlayerScoreManager
       objectReference: {fileID: 0}
     - target: {fileID: 6640206914846835774, guid: 8e0d96c9ce2785c439a2de703e254a8d, type: 3}
+      propertyPath: scorePrefab
+      value: 
+      objectReference: {fileID: 1670897895007765480, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
+    - target: {fileID: 6640206914846835774, guid: 8e0d96c9ce2785c439a2de703e254a8d, type: 3}
       propertyPath: createPlayer
       value: 
       objectReference: {fileID: 0}
@@ -4157,19 +4161,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7358005942430186787, guid: 8e0d96c9ce2785c439a2de703e254a8d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7358005942430186787, guid: 8e0d96c9ce2785c439a2de703e254a8d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7358005942430186787, guid: 8e0d96c9ce2785c439a2de703e254a8d, type: 3}
-      propertyPath: m_LocalRotation.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7358005942430186787, guid: 8e0d96c9ce2785c439a2de703e254a8d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358005942430186787, guid: 8e0d96c9ce2785c439a2de703e254a8d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358005942430186787, guid: 8e0d96c9ce2785c439a2de703e254a8d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7358005942430186787, guid: 8e0d96c9ce2785c439a2de703e254a8d, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4194,6 +4198,10 @@ PrefabInstance:
     - target: {fileID: 7358005942430186787, guid: 8e0d96c9ce2785c439a2de703e254a8d, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989612441505826044, guid: 8e0d96c9ce2785c439a2de703e254a8d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
