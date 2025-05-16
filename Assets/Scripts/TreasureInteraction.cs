@@ -9,13 +9,13 @@ public class TreasureInteraction : MonoBehaviour
 
     [SerializeField] private Transform holdPoint;
     [SerializeField] private Pickupable treasurePrefab;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float pickupRange = 2f;
     [SerializeField] private float dropRange = 0.2f;
     [SerializeField] private float droppedTreasureDespawnTime = 10f;
     [SerializeField] private float spawnRange = 0.5f;
     [SerializeField] private float treasurePickUpCooldown = 2f;
 
-    private SpriteRenderer spriteRenderer;
     private MinigamePlayer miniGamePlayer;
     private Pickupable collectedPickupable;
     private bool isInTreasureZone = false;
@@ -24,7 +24,6 @@ public class TreasureInteraction : MonoBehaviour
     private void Awake()
     {
         miniGamePlayer = GetComponent<MinigamePlayer>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update()

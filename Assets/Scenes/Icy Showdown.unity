@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc083e4d56be1746b7fa17150615d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialMinigameState: {fileID: 906880321}
+  initialMinigameState: {fileID: 4230930453622720980}
   onStateChanged:
     m_PersistentCalls:
       m_Calls: []

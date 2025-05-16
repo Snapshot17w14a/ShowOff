@@ -31,11 +31,19 @@ public class MinigamePlayer : MonoBehaviour
     [SerializeField] private float dashCooldown = 5f;
     [SerializeField] private float dashDuration = 5f;
     [SerializeField] private float dashForce = 5f;
-    private float lastDashTime = 0;
+    [SerializeField] private GameObject dashIndicator;
+    private Material dashIndicatorMaterial;
+
+    [Header("Color changes")]
+    [SerializeField] private SpriteRenderer[] spritesToRecolor;
+
+    private bool isDashAvailable = true;
+    private float dashTimer = 0f;
 
     private bool isStunned = false;
     private bool isFlying = false;
     private bool isDashing = false;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -43,11 +51,14 @@ public class MinigamePlayer : MonoBehaviour
         stunEffect = GetComponentInChildren<VisualEffect>();
         TreasureInteraction = GetComponent<TreasureInteraction>();
         stunEffect.Stop();
+
+        dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
     }
 
     // Update is called once per frame
     private void Update()
     {
+        UpdateDashTimer();
         if (isStunned || isFlying) return;
         UpdateMovement();
     }
@@ -68,12 +79,7 @@ public class MinigamePlayer : MonoBehaviour
 
     private void OnDash()
     {
-        if (Time.time >= lastDashTime + dashCooldown) Dash();
-    }
-
-    private void OnGrab()
-    {
-        
+        if (isDashAvailable) Dash();
     }
 
     public void StunPlayer(float seconds)
@@ -87,23 +93,40 @@ public class MinigamePlayer : MonoBehaviour
 
     public void SetPlayerColor(Color color, int playerId)
     {
-        var spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-        foreach (var renderer in spriteRenderers) renderer.color = color;
+        foreach (var renderer in spritesToRecolor) renderer.color = color;
 
         GetComponent<MeshRenderer>().material.color = color;
 
         var textMeshPro = GetComponentInChildren<TextMeshPro>();
         textMeshPro.color = color;
         textMeshPro.text = $"P{playerId + 1}";
+
+        dashIndicator.GetComponent<MeshRenderer>().material.SetColor("_ColorCircle", color);
     }
 
     private void Dash()
     {
+        //Set flags and reset the timer
         isDashing = true;
-        lastDashTime = Time.time;
+        isDashAvailable = false;
+        dashTimer = 0f;
+
         Vector3 forceVector = inputVector.sqrMagnitude == 0 ? transform.forward : new Vector3(inputVector.x, 0.5f, inputVector.y);
         rigidbody.AddForce(forceVector.normalized * dashForce, ForceMode.Impulse);
         StartCoroutine(ResetDashInSeconds(dashDuration));
+    }
+
+    private void UpdateDashTimer()
+    {
+        if (isDashAvailable) return;
+
+        dashTimer += Time.deltaTime;
+        dashIndicatorMaterial.SetFloat("_FillAmount", dashTimer / dashCooldown);
+        if (dashTimer >= dashCooldown)
+        {
+            isDashAvailable = true;
+            dashTimer = dashCooldown;
+        }
     }
 
     private IEnumerator StunRoutine(float stunSeconds)
