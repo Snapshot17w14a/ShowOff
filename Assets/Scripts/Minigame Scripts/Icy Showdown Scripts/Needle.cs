@@ -1,0 +1,31 @@
+using UnityEngine;
+
+public class Needle : MonoBehaviour
+{
+    [SerializeField] private float stunDuration = 1f;
+    [SerializeField] private float timeoutSeconds = 5f;
+
+    private Rigidbody rb;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        Destroy(gameObject, timeoutSeconds);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.up = rb.linearVelocity.normalized;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            other.GetComponent<MinigamePlayer>().StunPlayer(stunDuration);
+        }
+        else Destroy(gameObject);
+    }
+}

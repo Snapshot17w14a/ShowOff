@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 4750752721107119651}
   - component: {fileID: 9188597628192284030}
   - component: {fileID: 5781151949949478305}
-  - component: {fileID: -9220864092583905552}
+  - component: {fileID: 3046576966377989167}
+  - component: {fileID: -3103129468690113452}
   m_Layer: 0
   m_Name: Needle
   m_TagString: Untagged
@@ -198,8 +199,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &-9220864092583905552
-SphereCollider:
+--- !u!65 &3046576966377989167
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -217,5 +218,19 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2.820037
+  m_Size: {x: 2, y: 5.640074, z: 6.81}
   m_Center: {x: 0, y: 0.47060537, z: 0}
+--- !u!114 &-3103129468690113452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77015465337896198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cccebee211bc2a34c92fcfbbcfb2557b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stunDuration: 2
+  timeoutSeconds: 5
