@@ -22,12 +22,14 @@ public class Bob : MonoBehaviour
     [Header("IceBeam state settings")]
     [SerializeField] private VisualEffect iceChargeup;
     [SerializeField] private VisualEffect iceBeam;
+    [SerializeField] private GameObject hitEffect;
 
     [Header("Tail state settings")]
     [SerializeField] private float tailAttackTime;
     [SerializeField] private int tailProjectileCount;
-    [SerializeField] private Vector2 tailAttackArc;
-    [SerializeField] private GameObject tailProjectile; 
+    [SerializeField] private float tailAttackArc;
+    [SerializeField] private GameObject tailProjectile;
+    [SerializeField] private float tailProjectileStrength;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onStateChange;
@@ -57,10 +59,10 @@ public class Bob : MonoBehaviour
             switch (state)
             {
                 case BobTailState tailState:
-                    tailState.Initialize(tailAttackTime, tailProjectileCount, tailAttackArc, tailProjectile, transform);
+                    tailState.Initialize(tailAttackTime, tailProjectileCount, tailAttackArc, tailProjectile, transform, tailProjectileStrength);
                     break;
                 case BobIceState iceState: 
-                    iceState.Initialize(transform, iceChargeup, iceBeam); 
+                    iceState.Initialize(transform, iceChargeup, iceBeam, hitEffect); 
                     break;
                 case BobBombState bombState:
                     bombState.Initialize(bombPrefab, bombParentTransform);

@@ -36,6 +36,7 @@ public class MinigamePlayer : MonoBehaviour
 
     [Header("Color changes")]
     [SerializeField] private SpriteRenderer[] spritesToRecolor;
+    [SerializeField] private VisualEffect walkEffect;
 
     private bool isDashAvailable = true;
     private float dashTimer = 0f;

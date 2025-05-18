@@ -13,6 +13,7 @@ public class BobIceState : BobState
     private Transform bobTransform;
     private VisualEffect chargeUpEffect;
     private VisualEffect beamEffect;
+    private GameObject hitEffect;
 
     private Quaternion initialRotation;
     private Quaternion targetRotation;
@@ -20,14 +21,16 @@ public class BobIceState : BobState
     private float time = 0;
 
     private IceState state = IceState.Idle;
+    private GameObject instantiatedHitEffect;
 
     public override void Initialize(params object[] parameters)
     {
-        if (parameters.Length != 3) throw new Exception("Provided parameters array length was not 3");
+        if (parameters.Length != 4) throw new Exception("Provided parameters array length was not 4");
 
         bobTransform = (Transform)parameters[0];
         chargeUpEffect = (VisualEffect)parameters[1];
         beamEffect = (VisualEffect)parameters[2];
+        hitEffect = (GameObject)parameters[3];
     }
 
     public override void LoadState(params object[] parameters)
@@ -67,6 +70,8 @@ public class BobIceState : BobState
     public override void UnloadState()
     {
         time = 0;
+        instantiatedHitEffect.GetComponent<VisualEffect>().Stop();
+        GameObject.Destroy(instantiatedHitEffect, 0.5f);
     }
 
     private void ChoseTargetRotation()
@@ -85,14 +90,26 @@ public class BobIceState : BobState
             state = IceState.Firing;
             chargeUpEffect.Stop();
             beamEffect.Play();
+
+            instantiatedHitEffect = GameObject.Instantiate(hitEffect);
         }
     }
 
     private void Fire()
     {
         time += Time.deltaTime / attackSeconds;
+        RaycastAndHitParticle();
         bobTransform.rotation = Quaternion.Lerp(initialRotation, targetRotation, time);
         IcePlatformManager.Instance.ExecuteForEachPlatform(FreezePlatformInArc);
+        ServiceLocator.GetService<PlayerRegistry>().ExecuteForEachPlayer(StunPlayerInArc);
+    }
+
+    private void StunPlayerInArc(MinigamePlayer player)
+    {
+        var playerPos = player.transform.position;
+        playerPos.y = 0;
+        var angleToPlayer = Vector3.Angle(bobTransform.forward, playerPos.normalized);
+        if (angleToPlayer < 1f) player.StunPlayer(2f);
     }
 
     private void FreezePlatformInArc(IcePlatform platform)
@@ -101,5 +118,13 @@ public class BobIceState : BobState
         platformPosition.y = 0;
         var angleToPlatform = Vector3.Angle(bobTransform.forward, (platformPosition - Vector3.zero).normalized);
         if (angleToPlatform < 1f) platform.FreezePlatform();
+    }
+
+    private void RaycastAndHitParticle()
+    {
+        if (Physics.Raycast(new Ray(new Vector3(0, -0.085f, 0), bobTransform.forward), out RaycastHit hit, 10f))
+        {
+            instantiatedHitEffect.transform.position = hit.point;
+        }
     }
 }

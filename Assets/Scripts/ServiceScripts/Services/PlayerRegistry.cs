@@ -95,6 +95,19 @@ public class PlayerRegistry : Service
         return usedInputDevices.Contains(device);
     }
 
+    /// <summary>
+    /// Pass in a fuction to execute of all players
+    /// </summary>
+    /// <param name="function"></param>
+    public void ExecuteForEachPlayer(Action<MinigamePlayer> function)
+    {
+        foreach (var player in registeredPlayers)
+        {
+            if (RegisteredPlayer.IsNull(player)) continue;
+            function(player.minigamePlayer);
+        }
+    }
+
     private MinigamePlayer CreatePlayer(InputDevice device, int id)
     {
         //Instantiate the player with the given device, id and choose a free control scheme
