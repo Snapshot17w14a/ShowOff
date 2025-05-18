@@ -20,6 +20,7 @@ public class TreasureInteraction : MonoBehaviour
     private Pickupable collectedPickupable;
     private bool isInTreasureZone = false;
     private bool isInCollectionZone = false;
+    private Minecart currentMinecart;
 
     private void Awake()
     {
@@ -53,6 +54,7 @@ public class TreasureInteraction : MonoBehaviour
             Destroy(collectedPickupable.gameObject);
             collectedPickupable = null;
             Debug.Log("Treasure Delivered!");
+            currentMinecart.AddGem();
             OnTreasureDelivered?.Invoke();
         }
     }
@@ -100,6 +102,12 @@ public class TreasureInteraction : MonoBehaviour
             EnableButtonIndicator(true);
         }
 
+        Minecart minecart = other.GetComponent<Minecart>();
+        if (minecart != null)
+        {
+            currentMinecart = minecart;
+        }
+
         if (other.GetComponent<CollectionZone>() != null)
         {
             isInCollectionZone = true;
@@ -121,6 +129,12 @@ public class TreasureInteraction : MonoBehaviour
         {
             isInTreasureZone = false;
             EnableButtonIndicator(false);
+        }
+
+        Minecart minecart = other.GetComponent<Minecart>();
+        if (minecart != null && minecart == currentMinecart)
+        {
+            currentMinecart = null;
         }
 
         if (other.GetComponent<CollectionZone>() != null)
