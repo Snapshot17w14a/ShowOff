@@ -34,16 +34,18 @@ public class TreasureInteraction : MonoBehaviour
         if (isInCollectionZone && collectedPickupable != null)
         {
             DeliverTreasure();
+            isInCollectionZone = false;
         }
     }
 
     private void CollectTreasure()
     {
         Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
-
+        
         if (treasure != null)
         {
             treasure.Collect(holdPoint);
+            treasure.GetComponent<Collider>().enabled = false;
             collectedPickupable = treasure;
             Debug.Log("Collected treasure!");
         }
@@ -104,14 +106,13 @@ public class TreasureInteraction : MonoBehaviour
             EnableButtonIndicator(true);
         }
 
-        Minecart minecart = other.GetComponent<Minecart>();
+        if (other.GetComponent<CollectionZone>() != null)
+        {
+                    Minecart minecart = other.GetComponent<Minecart>();
         if (minecart != null)
         {
             currentMinecart = minecart;
         }
-
-        if (other.GetComponent<CollectionZone>() != null)
-        {
             isInCollectionZone = true;
         }
 
@@ -133,14 +134,13 @@ public class TreasureInteraction : MonoBehaviour
             EnableButtonIndicator(false);
         }
 
-        Minecart minecart = other.GetComponent<Minecart>();
-        if (minecart != null && minecart == currentMinecart)
-        {
-            currentMinecart = null;
-        }
-
         if (other.GetComponent<CollectionZone>() != null)
         {
+            Minecart minecart = other.GetComponent<Minecart>();
+            if (minecart != null && minecart == currentMinecart)
+            {
+                currentMinecart = null;
+            }
             isInCollectionZone = false;
         }
     }

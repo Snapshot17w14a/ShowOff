@@ -46,6 +46,7 @@ public class Minecart : MonoBehaviour
 
         while (Vector3.Distance(transform.position, endPosition) > 0.1f)
         {
+
             transform.position = Vector3.MoveTowards(transform.position, endPosition, speed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
@@ -59,7 +60,6 @@ public class Minecart : MonoBehaviour
         }
 
         boxCollider.enabled = true;
-
         currentGemAmount = 0;
         isMoving = false;
         isFull = false;
