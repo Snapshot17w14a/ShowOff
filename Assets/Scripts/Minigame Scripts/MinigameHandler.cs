@@ -33,4 +33,6 @@ public class MinigameHandler : MonoBehaviour
         currentMinigameState.LoadState();
         onStateChanged?.Invoke();
     }
+
+    public void InstantiateAllPlayers() => ServiceLocator.GetService<PlayerRegistry>().InstantiateAllPlayers();
 }

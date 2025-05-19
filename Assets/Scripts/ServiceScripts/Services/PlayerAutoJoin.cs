@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.InputSystem;
+using Debug = UnityEngine.Debug;
 
 public class PlayerAutoJoin : Service
 {
@@ -60,23 +62,82 @@ public class PlayerAutoJoin : Service
         foreach (var binding in bindings) joinAction.AddBinding(binding);
 
         //Add the method to be called each time any connected device performs an action with any relevant binding
-        joinAction.performed += context => CreatePlayerIfPossible(context.control.device);
+        joinAction.performed += context => CreatePlayerIfPossible(context);
 
         //Enable the action to listen for inputs
         AllowJoining = true;
     }
 
     //Check wether the device performing the action is already assigned with a player, if not create a new player,
-    private void CreatePlayerIfPossible(InputDevice device)
+    private void CreatePlayerIfPossible(InputAction.CallbackContext context)
     {
+        InputDevice device = context.control.device;
+
         //Get a reference to the player registry
         var playerRegistry = ServiceLocator.GetService<PlayerRegistry>();
 
         //If a player with the given device already exists ignore it
         if (playerRegistry.DoesPlayerWithDeviceExist(device)) return;
 
-        //Create the player with the device and fire an event using the MinigamePlayer reference returned from the registry
-        var player = playerRegistry.CreatePlayerWithDevice(device);
+        MinigamePlayer player;
+
+        //Check wether the device that triggered the joinAction is the keyboard if so remove the binding from the inputAciton
+        //and create a player using the control scheme of the binding that was used to trigger the event
+        //If the device was not the keyboard just create a player and figure out the control scheme later
+        if (device == Keyboard.current)
+        {
+            var controlScheme = RemoveBindingFromJoining(context);
+            player = playerRegistry.CreatePlayerWithDevice(device, true, controlScheme);
+        }
+        else
+        {
+            player = playerRegistry.CreatePlayerWithDevice(device);
+        }
+
+        //Trigger the event with the created player
         OnPlayerJoin?.Invoke(player);
     }
+
+    private string RemoveBindingFromJoining(InputAction.CallbackContext context)
+    {
+        //Get the index of the used binding and using the index get the group (control scheme) for the binding
+        int bindingIndex = context.action.GetBindingIndexForControl(context.control);
+        string bindingGroup = GetGroupForBinding(joinAction.ChangeBinding(bindingIndex).binding);
+
+        //Create a list of all the bindings' effective paths to be removed, this makes it easy to compare with the inputAction bindings
+        List<string> bindingsToRemove = new();
+        foreach (var binding in inputActions.FindActionMap("Player").bindings)
+        {
+            if (binding.groups == bindingGroup || binding.groups == ';' + bindingGroup) bindingsToRemove.Add(binding.effectivePath);
+        }
+
+        //Check each binding, if the list contains the effective path of the binding erase it, effectively stopping it from being checked
+        for (int i = joinAction.bindings.Count - 1; i >= 0; i--)
+        {
+            if (bindingsToRemove.Contains(joinAction.bindings[i].effectivePath))
+            {
+                joinAction.ChangeBinding(i).Erase();
+            }
+        }
+
+        //Return the group (control scheme) of the binding
+        return bindingGroup;
+    }
+
+    string GetGroupForBinding(InputBinding binding)
+    {
+        //Check each binding, if one matches return its group (control scheme)
+        foreach (var currentBinding in inputActions.FindActionMap("Player").bindings)
+        {
+            if (currentBinding.effectivePath == binding.effectivePath)
+            {
+                return currentBinding.groups[0] == ';' ? currentBinding.groups[1..currentBinding.groups.Length] : currentBinding.groups;
+            }
+        }
+
+        //If none was found the input asset is set up incorrectly as a binding is not connected to a group, return null
+        Debug.LogError("Binding group was not found for binding!");
+        return null;
+    }
+
 }

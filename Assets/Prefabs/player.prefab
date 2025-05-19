@@ -980,6 +980,7 @@ MonoBehaviour:
   dashIndicator: {fileID: 4324543987656939266}
   spritesToRecolor:
   - {fileID: 9121208996895523616}
+  walkEffect: {fileID: 0}
 --- !u!114 &7865321752991679214
 MonoBehaviour:
   m_ObjectHideFlags: 0

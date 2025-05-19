@@ -80,7 +80,7 @@ public class MinigamePlayer : MonoBehaviour
 
     private void OnDash()
     {
-        if (isDashAvailable) Dash();
+        if (isDashAvailable && !isStunned && !isFlying) Dash();
     }
 
     public void StunPlayer(float seconds)

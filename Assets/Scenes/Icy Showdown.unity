@@ -1498,7 +1498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc083e4d56be1746b7fa17150615d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialMinigameState: {fileID: 4230930453622720980}
+  initialMinigameState: {fileID: 906880321}
   onStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2941,7 +2941,7 @@ VisualEffect:
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 34ad3f05e4e86dc418483d7962f1a99d, type: 3}
   m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -5662,8 +5662,8 @@ Transform:
   m_GameObject: {fileID: 8143182101518915477}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 3.9803302, y: 0, z: 0}
-  m_LocalScale: {x: 1.3756397, y: 0.5130008, z: 0.82043177}
+  m_LocalPosition: {x: 3.9803302, y: -0.014999986, z: 0}
+  m_LocalScale: {x: 1.3756397, y: 0.6836762, z: 0.82043177}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511978089}
@@ -6446,7 +6446,19 @@ MonoBehaviour:
   stateDurationSeconds: 240
   onStateLoaded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 857171068}
+        m_TargetAssemblyTypeName: MinigameHandler, Assembly-CSharp
+        m_MethodName: InstantiateAllPlayers
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onStateUnloaded:
     m_PersistentCalls:
       m_Calls: []
@@ -7927,8 +7939,8 @@ Transform:
   m_GameObject: {fileID: 7793082624175654791}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -4.071971, y: 0, z: 0}
-  m_LocalScale: {x: 1.3756397, y: 0.5130008, z: 0.82043177}
+  m_LocalPosition: {x: -4.071971, y: -0.015, z: 0}
+  m_LocalScale: {x: 1.3756397, y: 0.6836762, z: 0.82043177}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511978089}
@@ -8623,6 +8635,7 @@ MonoBehaviour:
   maxGemIntake: 3
   speed: 2
   waitTime: 3
+  boxCollider: {fileID: 0}
 --- !u!1 &7541321137125719419
 GameObject:
   m_ObjectHideFlags: 0
@@ -8693,6 +8706,7 @@ MonoBehaviour:
   maxGemIntake: 3
   speed: 2
   waitTime: 3
+  boxCollider: {fileID: 0}
 --- !u!4 &7546420717603262789
 Transform:
   m_ObjectHideFlags: 0
@@ -8798,6 +8812,7 @@ GameObject:
   - component: {fileID: 6688309645512781425}
   - component: {fileID: 3565001524596676069}
   - component: {fileID: 6029338183423687078}
+  - component: {fileID: 7793082624175654792}
   m_Layer: 0
   m_Name: Plane.002
   m_TagString: Untagged
@@ -8805,6 +8820,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &7793082624175654792
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793082624175654791}
+  m_Material: {fileID: 13400000, guid: 660905cef5b7e724c973e242d0715bf9, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 1.9999996, z: 1.9590576}
+  m_Center: {x: 0, y: 0, z: -0.9201267}
 --- !u!4 &7810777234785476268
 Transform:
   m_ObjectHideFlags: 0
@@ -8950,6 +8986,7 @@ GameObject:
   - component: {fileID: 3348223018360019420}
   - component: {fileID: 7675429570031101136}
   - component: {fileID: 4200685649416711111}
+  - component: {fileID: 8143182101518915478}
   m_Layer: 0
   m_Name: Plane.001
   m_TagString: Untagged
@@ -8957,6 +8994,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &8143182101518915478
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8143182101518915477}
+  m_Material: {fileID: 13400000, guid: 660905cef5b7e724c973e242d0715bf9, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 1.9999996, z: 1.9590573}
+  m_Center: {x: 0, y: 0, z: -0.9201268}
 --- !u!4 &8157777061393054063
 Transform:
   m_ObjectHideFlags: 0

@@ -43,7 +43,7 @@ public class TreasureInteraction : MonoBehaviour
         {
             treasure.Collect(holdPoint);
             collectedPickupable = treasure;
-            Debug.Log("Collected treasure!");
+            //Debug.Log("Collected treasure!");
         }
     }
 
@@ -53,7 +53,7 @@ public class TreasureInteraction : MonoBehaviour
         {
             Destroy(collectedPickupable.gameObject);
             collectedPickupable = null;
-            Debug.Log("Treasure Delivered!");
+            //Debug.Log("Treasure Delivered!");
             currentMinecart.AddGem();
             OnTreasureDelivered?.Invoke();
         }

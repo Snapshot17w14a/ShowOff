@@ -35,14 +35,14 @@ public class PlayerRegistry : Service
     /// </summary>
     /// <param name="device"><see cref="InputDevice"/> that the player will be paired with</param>
     /// <returns>The created user <see cref="MinigamePlayer"/></returns>
-    public MinigamePlayer CreatePlayerWithDevice(InputDevice device, bool instantiatePlayer = true)
+    public MinigamePlayer CreatePlayerWithDevice(InputDevice device, bool instantiatePlayer = true, string controlScheme = "")
     {
         //Create a RegisteredPlayer struct to hold the player's device, id and the reference to its GameObject if it exists
         var regPlayer = new RegisteredPlayer()
         {
             device = device,
             id = players,
-            minigamePlayer = instantiatePlayer ? CreatePlayer(device, players) : null
+            minigamePlayer = instantiatePlayer ? CreatePlayer(device, players, controlScheme) : null
         };
 
         //Add it to the array and increment the number of players
@@ -108,10 +108,10 @@ public class PlayerRegistry : Service
         }
     }
 
-    private MinigamePlayer CreatePlayer(InputDevice device, int id)
+    private MinigamePlayer CreatePlayer(InputDevice device, int id, string controlScheme = "")
     {
         //Instantiate the player with the given device, id and choose a free control scheme
-        var player = PlayerInput.Instantiate(playerPrefab, playerIndex: id, controlScheme: ControlSchemeForDevice(device), pairWithDevice: device).GetComponent<MinigamePlayer>();
+        var player = PlayerInput.Instantiate(playerPrefab, playerIndex: id, controlScheme: controlScheme == "" ? ControlSchemeForDevice(device) : controlScheme, pairWithDevice: device).GetComponent<MinigamePlayer>();
 
         //Set the color of the player indicators
         player.SetPlayerColor(playerColors[id], id);

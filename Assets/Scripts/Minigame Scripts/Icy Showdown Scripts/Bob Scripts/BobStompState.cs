@@ -14,7 +14,6 @@ public class BobStompState : BobState
 
     public override void TickState()
     {
-        Debug.Log("STOMP!");
         IcePlatformManager.Instance.BreakBrittlePlatforms();
         isStateRunning = false;
     }
