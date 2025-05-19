@@ -22,6 +22,8 @@ public class TreasureInteraction : MonoBehaviour
     private bool isInCollectionZone = false;
     private Minecart currentMinecart;
 
+    public bool IsHoldingItem => collectedPickupable != null;
+
     private void Awake()
     {
         miniGamePlayer = GetComponent<MinigamePlayer>();
@@ -43,7 +45,7 @@ public class TreasureInteraction : MonoBehaviour
         {
             treasure.Collect(holdPoint);
             collectedPickupable = treasure;
-            //Debug.Log("Collected treasure!");
+            Debug.Log("Collected treasure!");
         }
     }
 
@@ -53,7 +55,7 @@ public class TreasureInteraction : MonoBehaviour
         {
             Destroy(collectedPickupable.gameObject);
             collectedPickupable = null;
-            //Debug.Log("Treasure Delivered!");
+            Debug.Log("Treasure Delivered!");
             currentMinecart.AddGem();
             OnTreasureDelivered?.Invoke();
         }

@@ -19,9 +19,10 @@ public class MinigamePlayer : MonoBehaviour
     private VisualEffect stunEffect;
     private MeshRenderer meshRenderer;
 
-    [Header("View settings")]
+    [Header("Move settings")]
     [SerializeField] private float turnSpeedMultiplier;
     [SerializeField] private float movementSpeed = 1.0f;
+    [SerializeField] private float gemSlowdownPercentage = 80f;
 
     [Header("Stun settings")]
     [SerializeField] private float blinkInterval = 0.33f;
@@ -68,7 +69,7 @@ public class MinigamePlayer : MonoBehaviour
     {
         if (inputVector.sqrMagnitude == 0) return;
         Vector3 inputDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
-        rigidbody.AddForce(movementSpeed * Time.deltaTime * inputDirection);
+        rigidbody.AddForce((movementSpeed * (TreasureInteraction.IsHoldingItem ? gemSlowdownPercentage / 100f : 1)) * Time.deltaTime * inputDirection);
         var targetAngle = Vector3.SignedAngle(Vector3.forward, inputDirection, Vector3.up);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, targetAngle, 0), Time.deltaTime * turnSpeedMultiplier);
     }
@@ -93,8 +94,8 @@ public class MinigamePlayer : MonoBehaviour
     public void SetFlightState(bool state) => isFlying = state;
 
     public void SetPlayerColor(Color color, int playerId)
-    {
-        foreach (var renderer in spritesToRecolor) renderer.color = color;
+    {   
+        foreach (var renderer in spritesToRecolor) renderer.color = new Color(color.r, color.g, color.b, renderer.color.a);
 
         GetComponent<MeshRenderer>().material.color = color;
 

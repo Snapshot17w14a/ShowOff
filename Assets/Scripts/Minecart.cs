@@ -47,7 +47,7 @@ public class Minecart : MonoBehaviour
         while (Vector3.Distance(transform.position, endPosition) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, endPosition, speed * Time.deltaTime);
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
 
         yield return new WaitForSeconds(waitTime);
@@ -55,7 +55,7 @@ public class Minecart : MonoBehaviour
         while(Vector3.Distance(transform.position, startPosition) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, startPosition, speed * Time.deltaTime);
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
 
         boxCollider.enabled = true;
