@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class PlayerRegistry : Service
 {
     public GameObject playerPrefab;
-    public string[] controlSchemes;
     public Color[] playerColors;
 
     private readonly List<InputDevice> usedInputDevices = new();
@@ -155,6 +155,8 @@ public class PlayerRegistry : Service
         if (device is Keyboard) return ++keyboardPlayers == 1 ? "KeyboardLeft" : "KeyboardRight";
         return "";
     }
+
+    public int IdOf(MinigamePlayer player) => registeredPlayers.Where(regPlayer => regPlayer.minigamePlayer == player).First().id;
 }
 
 public struct RegisteredPlayer

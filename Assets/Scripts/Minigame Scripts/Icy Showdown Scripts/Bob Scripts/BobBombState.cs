@@ -18,8 +18,9 @@ public class BobBombState : BobState
     {
         isStateRunning = true;
 
-        var platforms = IcePlatformManager.Instance.SelectUniquePlatforms(3);
-        for (int i = 0; i < 3; i++) if (platforms[i] != null) LaunchBomb(Vector3.zero, platforms[i]);
+        var bombCount = UnityEngine.Random.Range(0, 2);
+        var platforms = IcePlatformManager.Instance.SelectUniquePlatforms(bombCount);
+        for (int i = 0; i < bombCount; i++) if (platforms[i] != null) LaunchBomb(Vector3.zero, platforms[i]);
     }
 
     public override void TickState()

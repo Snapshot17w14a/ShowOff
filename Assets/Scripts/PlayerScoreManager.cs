@@ -5,7 +5,6 @@ public class PlayerScoreManager : MonoBehaviour
 {
     [SerializeField] private Transform scoreParent;
     [SerializeField] private PlayerScoreUI scorePrefab;
-    [SerializeField] private float xOffset = 100f;
 
     private List<PlayerScoreUI> scores = new List<PlayerScoreUI>();
 

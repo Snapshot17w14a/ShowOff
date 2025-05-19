@@ -13,9 +13,15 @@ public class MinigameHandler : MonoBehaviour
     private MinigameState currentMinigameState;
     private MinigameState nextMinigameState;
 
+    public static MinigameHandler Instance => _instance;
+    private static MinigameHandler _instance;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (_instance == null) _instance = this;
+        else Destroy(gameObject);
+
         currentMinigameState = initialMinigameState;
         currentMinigameState.LoadState();
     }
@@ -30,23 +36,25 @@ public class MinigameHandler : MonoBehaviour
     {
         nextMinigameState = state;
         yield return new WaitForSeconds(seconds);
-        currentMinigameState.UnloadState();
-        currentMinigameState = state;
-        currentMinigameState.LoadState();
-        onStateChanged?.Invoke();
+        LoadState(state);
     }
 
     public void LoadNextScene()
     {
         if (nextMinigameState == null)
         {
-            Debug.LogError("Next scene reference was null");
+            Debug.LogError("Next state reference was null");
             return;
         }
+        LoadState(nextMinigameState);
+        nextMinigameState = null;
+    }
+
+    public void LoadState(MinigameState state)
+    {
         StopAllCoroutines();
         currentMinigameState.UnloadState();
-        currentMinigameState = nextMinigameState;
-        nextMinigameState = null;
+        currentMinigameState = state;
         currentMinigameState.LoadState();
         onStateChanged?.Invoke();
     }

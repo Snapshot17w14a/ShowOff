@@ -4,6 +4,8 @@ public class PlayerDistributor : MonoBehaviour
 {
     private const float Tau = 2 * Mathf.PI;
 
+    [SerializeField] private Transform playerParent;
+
     public void InstantiatePlayersInCircle(float radius)
     {
         var playerRegistry = ServiceLocator.GetService<PlayerRegistry>();
@@ -17,6 +19,7 @@ public class PlayerDistributor : MonoBehaviour
         {
             if (player == null) continue;
             player.transform.position = new Vector3(Mathf.Cos(t * Tau), 1, Mathf.Sin(t * Tau)) * radius;
+            player.transform.parent = playerParent;
             t += increment;
         }
     }

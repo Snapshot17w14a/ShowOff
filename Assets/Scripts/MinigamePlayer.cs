@@ -23,6 +23,7 @@ public class MinigamePlayer : MonoBehaviour
     [SerializeField] private float turnSpeedMultiplier;
     [SerializeField] private float movementSpeed = 1.0f;
     [SerializeField] private float gemSlowdownPercentage = 80f;
+    [SerializeField] private float walkEffectRate = 10f;
 
     [Header("Stun settings")]
     [SerializeField] private float blinkInterval = 0.33f;
@@ -63,6 +64,7 @@ public class MinigamePlayer : MonoBehaviour
         UpdateDashTimer();
         if (isStunned || isFlying) return;
         UpdateMovement();
+        walkEffect.SetFloat("Rate", rigidbody.linearVelocity.magnitude != 0 ? walkEffectRate : 0);
     }
 
     private void UpdateMovement()
@@ -177,7 +179,7 @@ public class MinigamePlayer : MonoBehaviour
         yield return null;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollision(Collision collision)
     {
         if (!isDashing || !collision.gameObject.CompareTag("Player")) return;
 

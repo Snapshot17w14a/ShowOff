@@ -8,16 +8,6 @@ public class PlayerScoreUI : MonoBehaviour
 
     private int score;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
     public void Initialize(TreasureInteraction _treasureInteraction)
     {
         treasureInteraction = _treasureInteraction;

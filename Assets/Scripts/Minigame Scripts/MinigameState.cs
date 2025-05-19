@@ -21,7 +21,7 @@ public abstract class MinigameState : MonoBehaviour
     {
         onStateLoaded?.Invoke();
         gameObject.SetActive(true);
-        StartCoroutine(FindFirstObjectByType<MinigameHandler>().ChangeStateInSeconds(stateDurationSeconds, nextMinigameState));
+        if (stateDurationSeconds != 0) StartCoroutine(FindFirstObjectByType<MinigameHandler>().ChangeStateInSeconds(stateDurationSeconds, nextMinigameState));
     }
 
     public virtual void UnloadState()
