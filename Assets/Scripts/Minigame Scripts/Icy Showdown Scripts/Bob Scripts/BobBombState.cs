@@ -19,7 +19,7 @@ public class BobBombState : BobState
         isStateRunning = true;
 
         var platforms = IcePlatformManager.Instance.SelectUniquePlatforms(3);
-        for (int i = 0; i < 3; i++) LaunchBomb(Vector3.zero, platforms[i]);
+        for (int i = 0; i < 3; i++) if (platforms[i] != null) LaunchBomb(Vector3.zero, platforms[i]);
     }
 
     public override void TickState()

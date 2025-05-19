@@ -20,7 +20,7 @@ public class IcePlatformEditor : Editor
 
         LabelField("Ice brittleness time", GUILayout.Width(150));
         LabelField(MathF.Round(minSeconds, 1).ToString(), GUILayout.Width(25));
-        MinMaxSlider(ref minSeconds, ref maxSeconds, 0, 15);
+        MinMaxSlider(ref minSeconds, ref maxSeconds, 0, 60);
         LabelField(MathF.Round(maxSeconds, 1).ToString(), GUILayout.Width(25));
 
         EndHorizontal();

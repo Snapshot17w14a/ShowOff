@@ -9,8 +9,10 @@ public class IcePlatform : MonoBehaviour
     private MeshRenderer meshRenderer;
     private MeshCollider meshCollider;
 
-    public bool IsBrittle => isBrittle;
-    private bool isBrittle = false;
+    public bool IsBrittle { get; private set; }
+
+    public bool IsBroken { get; private set; }
+
 
     private void Start()
     {
@@ -22,6 +24,8 @@ public class IcePlatform : MonoBehaviour
 
     public void FreezePlatform()
     {
+        IsBrittle = false;
+        IsBroken = false;
         meshCollider.enabled = true;
         meshRenderer.enabled = true;
         meshRenderer.material.color = solidColor;
@@ -29,20 +33,22 @@ public class IcePlatform : MonoBehaviour
 
     public void SetBrittle()
     {
-        isBrittle = true;
+        IsBrittle = true;
+        IsBroken = false;
         meshRenderer.material.color = brittleColor;
     }
 
     public void BreakIfBrittle()
     {
-        if (!isBrittle) return;
+        if (!IsBrittle) return;
 
         BreakPlatform();
     }
 
     public void BreakPlatform()
     {
-        isBrittle = false;
+        IsBrittle = false;
+        IsBroken = true;
         meshCollider.enabled = false;
         meshRenderer.enabled = false;
         meshRenderer.material.color = waterColor;

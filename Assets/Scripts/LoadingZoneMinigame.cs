@@ -11,16 +11,20 @@ public class LoadingZoneMinigame : MonoBehaviour
     private float countdownTimer = 3;
     private bool playersReady;
 
+    private bool isTranstitioning = false;
+
     private void Update()
     {
-        if (playersReady)
+        if (playersReady && !isTranstitioning)
         {
             countdownTimer -= Time.deltaTime;
             countDownTimerText.text = countdownTimer.ToString("F0");
 
             if (countdownTimer <= 0)
             {
-                SceneManager.LoadScene(minigameName);
+                //SceneManager.LoadScene(minigameName);
+                isTranstitioning = true;
+                TransitionController.Instance.TransitionOut("Icy Showdown");
             }
         }
     }

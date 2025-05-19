@@ -44,6 +44,14 @@ public class IcePlatformManager : MonoBehaviour
         }
     }
 
+    public IcePlatform[] NonBrokenPlatforms
+    {
+        get
+        {
+            return icePlatforms.Where(platform => !platform.IsBroken).ToArray();
+        }
+    }
+
     public IcePlatform GetRandomPlatform => icePlatforms[Random.Range(0, icePlatforms.Length)];
 
     private void Start()
@@ -87,9 +95,9 @@ public class IcePlatformManager : MonoBehaviour
 
     public IcePlatform[] SelectUniquePlatforms(int count)
     {
-        var brittlePlatforms = BrittlePlatforms;
-        
-        if (count == 0 || count > brittlePlatforms.Length) return null;
+        var platforms = NonBrokenPlatforms;
+
+        if (count == 0 || count > platforms.Length) return null;
 
         List<int> usedIndicies = new();
         IcePlatform[] selectedPlatforms = new IcePlatform[count];
@@ -97,10 +105,11 @@ public class IcePlatformManager : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             int index;
-            do index = Random.Range(0, brittlePlatforms.Length);
+            do index = Random.Range(0, platforms.Length);
             while (usedIndicies.Contains(index));
 
-            selectedPlatforms[index] = brittlePlatforms[index];
+            selectedPlatforms[i] = platforms[index];
+            usedIndicies.Add(index);
         }
 
         return selectedPlatforms;

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerReposition : MonoBehaviour
 {
-    [SerializeField] private Vector3 reposition;
-    [SerializeField] private float flightAndStunDuration;
+    [SerializeField] private float flightDuration;
+    [SerializeField] private float stunDuration;
 
     private Dictionary<Collider, float> colliderDampeningPair = new();
 
@@ -15,12 +15,27 @@ public class PlayerReposition : MonoBehaviour
         {
             var playerScript = other.GetComponent<MinigamePlayer>();
             playerScript.SetFlightState(true);
-            playerScript.StunPlayer(flightAndStunDuration);
+            playerScript.StunPlayer(stunDuration);
 
             var rb = other.GetComponent<Rigidbody>();
 
             rb.linearVelocity = Vector3.zero;
-            rb.linearVelocity = PathCalculator.CalculateRequiredVelocity(other.transform.position, reposition, flightAndStunDuration);
+
+            var platforms = IcePlatformManager.Instance.NonBrokenPlatforms;
+            IcePlatform closestPlatform = null;
+            float closestDistance = float.MaxValue;
+
+            foreach (var platform in platforms)
+            {
+                var dist = Vector3.Distance(other.transform.position, platform.transform.position);
+                if (dist < closestDistance)
+                {
+                    closestDistance = dist;
+                    closestPlatform = platform;
+                }
+            }
+
+            rb.linearVelocity = PathCalculator.CalculateRequiredVelocity(other.transform.position, closestPlatform != null ? closestPlatform.transform.position : Vector3.zero, flightDuration);
 
             var collider = other.GetComponent<Collider>();
             collider.enabled = false;
@@ -28,7 +43,7 @@ public class PlayerReposition : MonoBehaviour
             colliderDampeningPair.Add(collider, rb.linearDamping);
             rb.linearDamping = 0;
 
-            StartCoroutine(ResetPlayerCollider(collider, flightAndStunDuration));
+            StartCoroutine(ResetPlayerCollider(collider, flightDuration - 0.1f));
         }
     }
 
