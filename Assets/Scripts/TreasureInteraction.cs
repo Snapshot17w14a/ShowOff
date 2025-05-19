@@ -98,6 +98,32 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
+    public void DropTreasureInstant()
+    {
+        if(collectedPickupable != null)
+        {
+            Destroy(collectedPickupable.gameObject);
+            collectedPickupable = null;
+        }
+    }
+
+    public void CollectTreasureDirect()
+    {
+        if(collectedPickupable != null)
+        {
+            return;
+        }
+
+        Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
+
+        if(treasure != null)
+        {
+            treasure.Collect(holdPoint);
+            treasure.GetComponent<Collider>().enabled = false;
+            collectedPickupable = treasure;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<TreasureZone>() != null)

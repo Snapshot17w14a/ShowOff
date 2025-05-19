@@ -86,9 +86,14 @@ public class MinigamePlayer : MonoBehaviour
 
     public void StunPlayer(float seconds)
     {
-        TreasureInteraction.DropTreasureRandom();
+        
         StartCoroutine(StunRoutine(seconds));
         OnPlayerStunned?.Invoke();
+    }
+
+    public void DropTreasure()
+    {
+        TreasureInteraction.DropTreasureRandom();
     }
 
     public void SetFlightState(bool state) => isFlying = state;
@@ -176,6 +181,18 @@ public class MinigamePlayer : MonoBehaviour
     {
         if (!isDashing || !collision.gameObject.CompareTag("Player")) return;
 
-        collision.gameObject.GetComponent<MinigamePlayer>().StunPlayer(dashStunDuration);
+        MinigamePlayer otherPlayer = collision.gameObject.GetComponent<MinigamePlayer>();
+
+        if(otherPlayer != null && otherPlayer != this)
+        {
+            otherPlayer.StunPlayer(dashStunDuration);
+            TreasureInteraction otherTreasure = otherPlayer.TreasureInteraction;
+
+            if(otherTreasure != null && otherTreasure.IsHoldingItem)
+            {
+                otherTreasure.DropTreasureInstant();
+                TreasureInteraction.CollectTreasureDirect();
+            }
+        }
     }
 }

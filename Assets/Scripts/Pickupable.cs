@@ -3,6 +3,8 @@ using UnityEngine;
 public class Pickupable : MonoBehaviour
 {
     public bool IsPickedUp {  get; private set; } = false;
+
+    [SerializeField] private int gemPickUpSize = 12;
    
     private float despawnTime;
     private bool isDespawning;
@@ -18,7 +20,7 @@ public class Pickupable : MonoBehaviour
         IsPickedUp = true;
         gameObject.transform.SetParent(parent, false);
         //This is fucking ugly, but I was over it making it work with math
-        transform.localScale = new Vector3(9,9,9);
+        transform.localScale = new Vector3(gemPickUpSize, gemPickUpSize, gemPickUpSize);
         gameObject.transform.localPosition = Vector3.zero;
     }
 
