@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnSpeedMultiplier: 10
   movementSpeed: 400
-  gemSlowdownPercentage: 80
+  gemSlowdownPercentage: 75
   blinkInterval: 0.2
   dashStunDuration: 1
   dashCooldown: 5
