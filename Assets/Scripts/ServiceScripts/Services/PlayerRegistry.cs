@@ -19,6 +19,15 @@ public class PlayerRegistry : Service
 
     public int RegisteredPlayerCount => players;
     public int MaxPlayers => maxPlayers;
+    public MinigamePlayer[] AllPlayers
+    {
+        get
+        {
+            MinigamePlayer[] playersArray = new MinigamePlayer[maxPlayers];
+            for (int i = 0; i < playersArray.Length; i++) playersArray[i] = registeredPlayers[i].minigamePlayer;
+            return playersArray;
+        }
+    }
 
     public event Action<MinigamePlayer> OnPlayerSpawn;
 
@@ -42,7 +51,8 @@ public class PlayerRegistry : Service
         {
             device = device,
             id = players,
-            minigamePlayer = instantiatePlayer ? CreatePlayer(device, players, controlScheme) : null
+            minigamePlayer = instantiatePlayer ? CreatePlayer(device, players, controlScheme) : null,
+            controlScheme = controlScheme == "" ? ControlSchemeForDevice(device) : controlScheme
         };
 
         //Add it to the array and increment the number of players

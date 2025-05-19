@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
+using System.Linq;
 
 public class IcePlatformManager : MonoBehaviour
 {
@@ -23,7 +26,25 @@ public class IcePlatformManager : MonoBehaviour
         }
     }
 
-    public IcePlatform GetRandomPlatform => icePlatforms[UnityEngine.Random.Range(0, icePlatforms.Length)];
+    public int BrittlePlatformCount
+    {
+        get
+        {
+            int count = 0;
+            foreach (var platform in icePlatforms) if (platform.IsBrittle) count++;
+            return count;
+        }
+    }
+
+    public IcePlatform[] BrittlePlatforms
+    {
+        get
+        {
+            return icePlatforms.Where(platform => platform.IsBrittle).ToArray();
+        }
+    }
+
+    public IcePlatform GetRandomPlatform => icePlatforms[Random.Range(0, icePlatforms.Length)];
 
     private void Start()
     {
@@ -39,7 +60,7 @@ public class IcePlatformManager : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= currentWaitTime)
         {
-            icePlatforms[UnityEngine.Random.Range(0, icePlatforms.Length)].SetBrittle();
+            icePlatforms[Random.Range(0, icePlatforms.Length)].SetBrittle();
             SelectWaitTime();
         }
     }
@@ -47,7 +68,7 @@ public class IcePlatformManager : MonoBehaviour
     private void SelectWaitTime()
     {
         timer = 0;
-        currentWaitTime = UnityEngine.Random.Range(minSeconds, maxSeconds);
+        currentWaitTime = Random.Range(minSeconds, maxSeconds);
     }
 
     public void BreakBrittlePlatforms()
@@ -62,5 +83,26 @@ public class IcePlatformManager : MonoBehaviour
     public void ExecuteForEachPlatform(Action<IcePlatform> action)
     {
         foreach (var platform in icePlatforms) action(platform);
+    }
+
+    public IcePlatform[] SelectUniquePlatforms(int count)
+    {
+        var brittlePlatforms = BrittlePlatforms;
+        
+        if (count == 0 || count > brittlePlatforms.Length) return null;
+
+        List<int> usedIndicies = new();
+        IcePlatform[] selectedPlatforms = new IcePlatform[count];
+
+        for (int i = 0; i < count; i++)
+        {
+            int index;
+            do index = Random.Range(0, brittlePlatforms.Length);
+            while (usedIndicies.Contains(index));
+
+            selectedPlatforms[index] = brittlePlatforms[index];
+        }
+
+        return selectedPlatforms;
     }
 }

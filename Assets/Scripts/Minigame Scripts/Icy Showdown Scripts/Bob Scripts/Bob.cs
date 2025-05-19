@@ -31,6 +31,9 @@ public class Bob : MonoBehaviour
     [SerializeField] private GameObject tailProjectile;
     [SerializeField] private float tailProjectileStrength;
 
+    [Header("Stomp state settings")]
+    [SerializeField] private int minBrittleRequirement;
+
     [Header("Events")]
     [SerializeField] private UnityEvent onStateChange;
 
@@ -116,7 +119,7 @@ public class Bob : MonoBehaviour
         yield return waitForStateExecution;
 
         //Choose the state based on whether there are any brittle ice platforms
-        if (IcePlatformManager.Instance.DoBrittlePlatformsExist)
+        if (IcePlatformManager.Instance.BrittlePlatformCount >= minBrittleRequirement)
         {
             //Stomp attack
             LoadState<BobStompState>();

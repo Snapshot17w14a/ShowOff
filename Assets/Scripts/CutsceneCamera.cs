@@ -1,5 +1,6 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CutsceneCamera : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class CutsceneCamera : MonoBehaviour
     private Vector3 startPos;
     private Quaternion startRot;
     private int knots;
+
+    public UnityEvent OnCameraReady;
+
     private void Start()
     {
         Debug.Log(cinemachineSplineDolly.Spline.Splines[0].Count);
@@ -69,5 +73,7 @@ public class CutsceneCamera : MonoBehaviour
         isTransitioning = false;
         cutsceneCamera.enabled = false;
         MainCamera.enabled = true;
+
+        OnCameraReady?.Invoke();
     }
 }

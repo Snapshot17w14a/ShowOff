@@ -31,7 +31,7 @@ public class BobIdleState : BobState
         if (!isStateRunning) return;
 
         time += Time.deltaTime / idleSeconds;
-        bobTransform.rotation = Quaternion.Lerp(initialRotation, targetRotation, time);
+        bobTransform.rotation = Quaternion.Slerp(initialRotation, targetRotation, time);
 
         if (time >= 1) isStateRunning = false;
     }
