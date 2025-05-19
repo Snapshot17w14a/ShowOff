@@ -19,15 +19,15 @@ public abstract class MinigameState : MonoBehaviour
 
     public virtual void LoadState()
     {
-        onStateLoaded?.Invoke();
         gameObject.SetActive(true);
+        onStateLoaded?.Invoke();
         if (stateDurationSeconds != 0) StartCoroutine(FindFirstObjectByType<MinigameHandler>().ChangeStateInSeconds(stateDurationSeconds, nextMinigameState));
     }
 
     public virtual void UnloadState()
     {
-        onStateUnloaded?.Invoke();
         gameObject.SetActive(false);
+        onStateUnloaded?.Invoke();
     }
 
     public virtual void TickState()

@@ -88,7 +88,6 @@ public class MinigamePlayer : MonoBehaviour
 
     public void StunPlayer(float seconds)
     {
-        
         StartCoroutine(StunRoutine(seconds));
         OnPlayerStunned?.Invoke();
     }
@@ -179,7 +178,7 @@ public class MinigamePlayer : MonoBehaviour
         yield return null;
     }
 
-    private void OnCollision(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (!isDashing || !collision.gameObject.CompareTag("Player")) return;
 

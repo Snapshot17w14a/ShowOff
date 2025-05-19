@@ -2,6 +2,7 @@
 
 public class ScoreRegistry : Service
 {
+    //ID, Score pair
     private Dictionary<int, int> playerScores;
 
     public override void InitializeService()
@@ -9,13 +10,47 @@ public class ScoreRegistry : Service
         playerScores = new();
     }
 
-    public void AddScore(int idOfPlayer, int scoreToAdd) => playerScores[idOfPlayer] += scoreToAdd;
+    public void AddScore(int idOfPlayer, int scoreToAdd)
+    {
+        if (!playerScores.ContainsKey(idOfPlayer)) playerScores.Add(idOfPlayer, scoreToAdd);
+        else playerScores[idOfPlayer] += scoreToAdd;
+    }
 
-    public void AddScore(MinigamePlayer player, int scoreToAdd) => playerScores[ServiceLocator.GetService<PlayerRegistry>().IdOf(player)] += scoreToAdd;
+    public void AddScore(MinigamePlayer player, int scoreToAdd) => AddScore(ServiceLocator.GetService<PlayerRegistry>().IdOf(player), scoreToAdd);
 
-    public int ScoreOfPlayer(int idOfPlayer) => playerScores[idOfPlayer];
+    public int ScoreOfPlayer(int idOfPlayer)
+    {
+        if (!playerScores.ContainsKey(idOfPlayer)) return 0;
+        return playerScores[idOfPlayer];
+    }
 
-    public int ScoreOfPlayer(MinigamePlayer player) => playerScores[ServiceLocator.GetService<PlayerRegistry>().IdOf(player)];
+    public int ScoreOfPlayer(MinigamePlayer player) => ScoreOfPlayer(ServiceLocator.GetService<PlayerRegistry>().IdOf(player));
+
+    public PlayerScore[] GetStoredScores()
+    {
+        var scores = new PlayerScore[playerScores.Count];
+
+        int index = 0;
+        foreach (var score in playerScores)
+        {
+            scores[index] = new(score.Key, score.Value);
+            index++;
+        }
+
+        return scores;
+    }
 
     public void WipeData() => playerScores.Clear();
+}
+
+public struct PlayerScore
+{
+    public PlayerScore(int id, int score)
+    {
+        this.id = id;
+        this.score = score;
+    }
+
+    public int id;
+    public int score;
 }

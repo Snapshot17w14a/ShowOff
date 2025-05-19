@@ -19,14 +19,14 @@ public class PlayerRegistry : Service
 
     public int RegisteredPlayerCount => players;
     public int MaxPlayers => maxPlayers;
-    public MinigamePlayer[] AllPlayers
+    public /*MinigamePlayer[]*/RegisteredPlayer[] AllPlayers
     {
-        get
-        {
-            MinigamePlayer[] playersArray = new MinigamePlayer[maxPlayers];
-            for (int i = 0; i < playersArray.Length; i++) playersArray[i] = registeredPlayers[i].minigamePlayer;
-            return playersArray;
-        }
+        get => registeredPlayers;
+        //{
+        //    MinigamePlayer[] playersArray = new MinigamePlayer[maxPlayers];
+        //    for (int i = 0; i < playersArray.Length; i++) playersArray[i] = registeredPlayers[i].minigamePlayer;
+        //    return playersArray;
+        //}
     }
 
     public event Action<MinigamePlayer> OnPlayerSpawn;
@@ -46,13 +46,15 @@ public class PlayerRegistry : Service
     /// <returns>The created user <see cref="MinigamePlayer"/></returns>
     public MinigamePlayer CreatePlayerWithDevice(InputDevice device, bool instantiatePlayer = true, string controlScheme = "")
     {
+        if (controlScheme == "") controlScheme = ControlSchemeForDevice(device);
+
         //Create a RegisteredPlayer struct to hold the player's device, id and the reference to its GameObject if it exists
         var regPlayer = new RegisteredPlayer()
         {
             device = device,
             id = players,
             minigamePlayer = instantiatePlayer ? CreatePlayer(device, players, controlScheme) : null,
-            controlScheme = controlScheme == "" ? ControlSchemeForDevice(device) : controlScheme
+            controlScheme = controlScheme
         };
 
         //Add it to the array and increment the number of players
@@ -78,7 +80,7 @@ public class PlayerRegistry : Service
         }
 
         //Instantiate the player and store it's reference in the RegisteredPlayer struct
-        var playerGameObject = CreatePlayer(playerToInstantiate/*playerToInstantiate.device, id*/);
+        var playerGameObject = CreatePlayer(playerToInstantiate);
         playerToInstantiate.minigamePlayer = playerGameObject;
 
         //Reassign the struct with the struct that now stores the GameObject reference
@@ -121,7 +123,9 @@ public class PlayerRegistry : Service
     private MinigamePlayer CreatePlayer(InputDevice device, int id, string controlScheme = "")
     {
         //Instantiate the player with the given device, id and choose a free control scheme
-        var player = PlayerInput.Instantiate(playerPrefab, playerIndex: id, controlScheme: controlScheme == "" ? ControlSchemeForDevice(device) : controlScheme, pairWithDevice: device).GetComponent<MinigamePlayer>();
+        var player = PlayerInput.Instantiate(playerPrefab, playerIndex: id, controlScheme: controlScheme, pairWithDevice: device).GetComponent<MinigamePlayer>();
+
+        player.GetComponent<PlayerInput>().neverAutoSwitchControlSchemes = true;
 
         //Set the color of the player indicators
         player.SetPlayerColor(playerColors[id], id);
@@ -139,6 +143,8 @@ public class PlayerRegistry : Service
     {
         //Instantiate the player with the given device, id and choose a free control scheme
         var player = PlayerInput.Instantiate(playerPrefab, playerIndex: registeredPlayer.id, controlScheme: registeredPlayer.controlScheme, pairWithDevice: registeredPlayer.device).GetComponent<MinigamePlayer>();
+
+        player.GetComponent<PlayerInput>().neverAutoSwitchControlSchemes = true;
 
         //Set the color of the player indicators
         player.SetPlayerColor(playerColors[registeredPlayer.id], registeredPlayer.id);

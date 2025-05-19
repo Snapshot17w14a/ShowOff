@@ -18,7 +18,7 @@ public class BobBombState : BobState
     {
         isStateRunning = true;
 
-        var bombCount = UnityEngine.Random.Range(0, 2);
+        var bombCount = UnityEngine.Random.Range(1, 3);
         var platforms = IcePlatformManager.Instance.SelectUniquePlatforms(bombCount);
         for (int i = 0; i < bombCount; i++) if (platforms[i] != null) LaunchBomb(Vector3.zero, platforms[i]);
     }

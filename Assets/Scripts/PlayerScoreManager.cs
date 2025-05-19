@@ -24,7 +24,7 @@ public class PlayerScoreManager : MonoBehaviour
     private void GenerateScoreUI(MinigamePlayer player)
     {
         PlayerScoreUI playerScore = Instantiate(scorePrefab, scoreParent);
-        playerScore.Initialize(player.TreasureInteraction);
+        playerScore.Initialize(player.TreasureInteraction, player);
         playerScore.gameObject.SetActive(true);
         scores.Add(playerScore);
     }
