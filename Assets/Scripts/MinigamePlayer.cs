@@ -47,6 +47,11 @@ public class MinigamePlayer : MonoBehaviour
     private bool isFlying = false;
     private bool isDashing = false;
 
+    /// <summary>
+    /// The id of the player in the PlayerRegistry
+    /// </summary>
+    public int RegistryID { get; set; }
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -56,6 +61,11 @@ public class MinigamePlayer : MonoBehaviour
         stunEffect.Stop();
 
         dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
+    }
+
+    private void Start()
+    {
+        ServiceLocator.GetService<ScoreRegistry>().AddPlayer(RegistryID);
     }
 
     // Update is called once per frame

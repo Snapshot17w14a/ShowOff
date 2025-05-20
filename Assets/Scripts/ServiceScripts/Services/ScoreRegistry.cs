@@ -10,6 +10,10 @@ public class ScoreRegistry : Service
         playerScores = new();
     }
 
+    public void AddPlayer(int idOfPlayer) { if (!playerScores.ContainsKey(idOfPlayer)) playerScores.Add(idOfPlayer, 0); }
+
+    public void AddPlayer(MinigamePlayer player) => AddPlayer(ServiceLocator.GetService<PlayerRegistry>().IdOf(player));
+
     public void AddScore(int idOfPlayer, int scoreToAdd)
     {
         if (!playerScores.ContainsKey(idOfPlayer)) playerScores.Add(idOfPlayer, scoreToAdd);
