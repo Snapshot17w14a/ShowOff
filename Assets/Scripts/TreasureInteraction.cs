@@ -60,6 +60,7 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
+    //Drops the treasure randomly around the player or whenever goes outside the ice, drops it back on the ice.
     public void DropTreasureRandom()
     {
         if (collectedPickupable != null)
@@ -79,6 +80,7 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
+    //Used to manually drop the treasure infront of the player
     private void DropTreasure()
     {
         if (collectedPickupable != null)
@@ -95,6 +97,7 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
+    //Destroys the treasure whenever of the player holding the treasure whenever stunned - works with CollectTreasureDirect
     public void DropTreasureInstant()
     {
         if(collectedPickupable != null)
@@ -104,6 +107,7 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
+    //See above
     public void CollectTreasureDirect()
     {
         if(collectedPickupable != null)

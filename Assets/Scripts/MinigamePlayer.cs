@@ -100,7 +100,7 @@ public class MinigamePlayer : MonoBehaviour
     public void SetFlightState(bool state) => isFlying = state;
 
     public void SetPlayerColor(Color color, int playerId)
-    {   
+    {
         foreach (var renderer in spritesToRecolor) renderer.color = new Color(color.r, color.g, color.b, renderer.color.a);
 
         GetComponent<MeshRenderer>().material.color = color;
@@ -184,12 +184,16 @@ public class MinigamePlayer : MonoBehaviour
 
         MinigamePlayer otherPlayer = collision.gameObject.GetComponent<MinigamePlayer>();
 
-        if(otherPlayer != null && otherPlayer != this)
+        if (otherPlayer != null && otherPlayer != this)
         {
             otherPlayer.StunPlayer(dashStunDuration);
             TreasureInteraction otherTreasure = otherPlayer.TreasureInteraction;
 
-            if(otherTreasure != null && otherTreasure.IsHoldingItem)
+            if (otherTreasure != null && otherTreasure.IsHoldingItem && this.TreasureInteraction != null && this.TreasureInteraction.IsHoldingItem)
+            {
+                otherTreasure.DropTreasureRandom();
+            }
+            else
             {
                 otherTreasure.DropTreasureInstant();
                 TreasureInteraction.CollectTreasureDirect();
