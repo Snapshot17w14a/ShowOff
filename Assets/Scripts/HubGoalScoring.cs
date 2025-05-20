@@ -20,9 +20,9 @@ public class HubGoalScoring : MonoBehaviour
         {
             currentScore++;
             scoreText.text = currentScore.ToString();
-            
+
             if (partyParticle)
-                partyParticle.SendEvent("OnPlay");
+                partyParticle.Play();
 
             if (partySound)
                 partySound.Play();
