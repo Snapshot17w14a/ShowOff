@@ -7,16 +7,21 @@ public class BobBomb : MonoBehaviour
     enum BombState { Flying, WaitingToExplode }
 
     public Action onBombExplode;
-    public IcePlatform targetPlatform;
-    /*[HideInInspector]*/ private float flightTime = 2f;
-    /*[HideInInspector]*/ private float explosionCooldown = 3f;
+
+    [HideInInspector] public IcePlatform targetPlatform;
+
+    [SerializeField] private VisualEffect bombExplosion;
+    [SerializeField] private VisualEffect trailEffect;
+
+    private float flightTime = 2f;
+    private float explosionCooldown = 3f;
 
     private BombState state = BombState.Flying;
     private float timer = 0;
 
     private void Start()
     {
-        GetComponentInChildren<VisualEffect>().SetFloat("Lifetime of bomb", explosionCooldown + flightTime);
+        bombExplosion.SetFloat("Lifetime", explosionCooldown + flightTime);
     }
 
     // Update is called once per frame
@@ -31,6 +36,7 @@ public class BobBomb : MonoBehaviour
                 {
                     timer -= flightTime;
                     state = BombState.WaitingToExplode;
+                    trailEffect.Stop();
                     GetComponent<Rigidbody>().isKinematic = true;
                 }
             break;

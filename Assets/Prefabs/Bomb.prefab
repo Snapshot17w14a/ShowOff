@@ -54,6 +54,9 @@ VisualEffect:
       - m_Value: 4
         m_Name: Lifetime of bomb
         m_Overridden: 1
+      - m_Value: 2
+        m_Name: Lifetime
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -371,6 +374,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPlatform: {fileID: 0}
+  bombExplosion: {fileID: 1601403383659790239}
+  trailEffect: {fileID: 7230330153909770269}
 --- !u!2083052967 &7230330153909770269
 VisualEffect:
   m_ObjectHideFlags: 0
