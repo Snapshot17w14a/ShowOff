@@ -130,6 +130,9 @@ public class PlayerRegistry : Service
         //Set the color of the player indicators
         player.SetPlayerColor(playerColors[id], id);
 
+        //Set the id reference in the minigame player
+        player.RegistryID = id;
+
         //Add the paired device to the list of already in use devices
         usedInputDevices.Add(device);
 
@@ -149,6 +152,9 @@ public class PlayerRegistry : Service
         //Set the color of the player indicators
         player.SetPlayerColor(playerColors[registeredPlayer.id], registeredPlayer.id);
 
+        //Set the id reference in the minigame player
+        player.RegistryID = registeredPlayer.id;
+
         //Invoke the event with the created player
         OnPlayerSpawn?.Invoke(player);
 
@@ -162,7 +168,7 @@ public class PlayerRegistry : Service
         return "";
     }
 
-    public int IdOf(MinigamePlayer player) => registeredPlayers.Where(regPlayer => regPlayer.minigamePlayer == player).First().id;
+    public int IdOf(MinigamePlayer player) => registeredPlayers.Where(regPlayer => regPlayer.minigamePlayer.Equals(player)).First().id;
 }
 
 public struct RegisteredPlayer
