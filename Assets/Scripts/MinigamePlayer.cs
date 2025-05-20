@@ -203,7 +203,7 @@ public class MinigamePlayer : MonoBehaviour
             {
                 otherTreasure.DropTreasureRandom();
             }
-            else
+            else if(otherTreasure != null && otherTreasure.IsHoldingItem)
             {
                 otherTreasure.DropTreasureInstant();
                 TreasureInteraction.CollectTreasureDirect();
