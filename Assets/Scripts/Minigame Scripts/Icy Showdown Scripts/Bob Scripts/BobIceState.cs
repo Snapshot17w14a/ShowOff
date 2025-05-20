@@ -109,7 +109,11 @@ public class BobIceState : BobState
         var playerPos = player.transform.position;
         playerPos.y = 0;
         var angleToPlayer = Vector3.Angle(bobTransform.forward, playerPos.normalized);
-        if (angleToPlayer < 1f) player.StunPlayer(2f);
+        if (angleToPlayer < 1f)
+        {
+            player.StunPlayer(2f);
+            player.DropTreasure();
+        }
     }
 
     private void FreezePlatformInArc(IcePlatform platform)
