@@ -831,6 +831,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Countdown
       objectReference: {fileID: 0}
+    - target: {fileID: 2810472105186437202, guid: 1ca8c33d16f85f84984ad9362ba6e8ef, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8bbdbe788ff5f624a9a047312d124394, type: 2}
+    - target: {fileID: 2810472105186437202, guid: 1ca8c33d16f85f84984ad9362ba6e8ef, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8307667340000864988, guid: 8bbdbe788ff5f624a9a047312d124394, type: 2}
+    - target: {fileID: 2810472105186437202, guid: 1ca8c33d16f85f84984ad9362ba6e8ef, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3812513168191765510, guid: 1ca8c33d16f85f84984ad9362ba6e8ef, type: 3}
       propertyPath: countdownSeconds
       value: 120
@@ -1416,7 +1428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc083e4d56be1746b7fa17150615d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialMinigameState: {fileID: 4230930453622720980}
+  initialMinigameState: {fileID: 906880321}
   onStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2079,7 +2091,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00007353638}
+  m_AnchoredPosition: {x: 0, y: 0.0010443802}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1262361296
@@ -3157,7 +3169,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1758826602}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999075
+  m_Size: 0.9999989
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3651,9 +3663,9 @@ GameObject:
   - component: {fileID: 7417521699481548649}
   - component: {fileID: 7858414390784602209}
   - component: {fileID: 7858414390784602208}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player zone_cell.007
-  m_TagString: Untagged
+  m_TagString: IcePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4630,9 +4642,9 @@ GameObject:
   - component: {fileID: 2886827927100622986}
   - component: {fileID: 8586747035505706119}
   - component: {fileID: 8586747035505706118}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player zone_cell.023
-  m_TagString: Untagged
+  m_TagString: IcePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4989,9 +5001,9 @@ GameObject:
   - component: {fileID: 3558899381503961845}
   - component: {fileID: 5942270073533425246}
   - component: {fileID: 5942270073533425245}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player zone_cell.005
-  m_TagString: Untagged
+  m_TagString: IcePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5403,6 +5415,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Countdown
       objectReference: {fileID: 0}
+    - target: {fileID: 2810472105186437202, guid: 1ca8c33d16f85f84984ad9362ba6e8ef, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8bbdbe788ff5f624a9a047312d124394, type: 2}
+    - target: {fileID: 2810472105186437202, guid: 1ca8c33d16f85f84984ad9362ba6e8ef, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8307667340000864988, guid: 8bbdbe788ff5f624a9a047312d124394, type: 2}
+    - target: {fileID: 2810472105186437202, guid: 1ca8c33d16f85f84984ad9362ba6e8ef, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3812513168191765510, guid: 1ca8c33d16f85f84984ad9362ba6e8ef, type: 3}
       propertyPath: countdownSeconds
       value: 3
@@ -5636,9 +5660,9 @@ GameObject:
   - component: {fileID: 1383063842428849391}
   - component: {fileID: 4495719687309365197}
   - component: {fileID: 4495719687309365196}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player zone_cell.021
-  m_TagString: Untagged
+  m_TagString: IcePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6036,9 +6060,9 @@ GameObject:
   - component: {fileID: 1232028182144289935}
   - component: {fileID: 7015742367235879069}
   - component: {fileID: 7015742367235879068}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player zone_cell.010
-  m_TagString: Untagged
+  m_TagString: IcePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6180,9 +6204,9 @@ GameObject:
   - component: {fileID: 2583860650537915353}
   - component: {fileID: 4084486150600586430}
   - component: {fileID: 4084486150600586429}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player zone_cell
-  m_TagString: Untagged
+  m_TagString: IcePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7342,9 +7366,9 @@ GameObject:
   - component: {fileID: 8981471295492438055}
   - component: {fileID: 9166211462969357956}
   - component: {fileID: 9166211462969357955}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player zone_cell.017
-  m_TagString: Untagged
+  m_TagString: IcePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7470,9 +7494,9 @@ GameObject:
   - component: {fileID: 5093159511731789671}
   - component: {fileID: 5991084324350271782}
   - component: {fileID: 5991084324350271781}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player zone_cell.009
-  m_TagString: Untagged
+  m_TagString: IcePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7685,9 +7709,9 @@ GameObject:
   - component: {fileID: 2670634574728978350}
   - component: {fileID: 7326264394035490911}
   - component: {fileID: 7326264394035490910}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player zone_cell.011
-  m_TagString: Untagged
+  m_TagString: IcePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8478,9 +8502,9 @@ GameObject:
   - component: {fileID: 6891551584548275814}
   - component: {fileID: 7470659198151716876}
   - component: {fileID: 7470659198151716875}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player zone_cell.014
-  m_TagString: Untagged
+  m_TagString: IcePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

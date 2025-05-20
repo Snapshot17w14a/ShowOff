@@ -17,10 +17,10 @@ public class Needle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.up = rb.linearVelocity.normalized;
+        if (!rb.isKinematic) transform.up = rb.linearVelocity.normalized;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -32,6 +32,5 @@ public class Needle : MonoBehaviour
         {
             rb.isKinematic = true;
         }
-        else Destroy(gameObject);
     }
 }

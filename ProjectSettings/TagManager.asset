@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - TreasureZone
+  - IcePlatform
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Walkable
   - FootbalWalls
   - Bomb
-  - 
+  - IcePlatfom
   - 
   - 
   - 

@@ -54,7 +54,7 @@ public class BobTailState : BobState
     {
         var dir = NeedleDirection();
 
-        GameObject.Instantiate(needlePrefab, new Vector3(0, -0.5f, 0), Quaternion.identity).GetComponent<Rigidbody>().AddForce(dir * needleStrength, ForceMode.Impulse);
+        GameObject.Instantiate(needlePrefab, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<Rigidbody>().AddForce(needleStrength * ((UnityEngine.Random.value * 0.5f) + 0.5f) * dir, ForceMode.Impulse);
 
         firedProjectileCount++;
     }
@@ -74,7 +74,7 @@ public class BobTailState : BobState
         //return -dir;
 
         var angle = attackArc / 2f;
-        var dir = Quaternion.Euler(UnityEngine.Random.Range(-(angle / 3), angle / 3), UnityEngine.Random.Range(-angle, angle), 0) * (-bobTransform.forward);
+        var dir = Quaternion.Euler(0, UnityEngine.Random.Range(-angle, angle), 0) * (-bobTransform.forward);
         return dir;
     }
 }
