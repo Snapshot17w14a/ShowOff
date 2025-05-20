@@ -33,6 +33,18 @@ MonoBehaviour:
     - model: {fileID: 8926484042661617113}
       id: 0
       isStickyNote: 0
+    - model: {fileID: 8926484042661617796}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661617803}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661617878}
+      id: 0
+      isStickyNote: 0
+    - model: {fileID: 8926484042661617923}
+      id: 0
+      isStickyNote: 0
   stickyNoteInfos: []
   categories: []
   uiBounds:
@@ -343,7 +355,7 @@ MonoBehaviour:
   particlePerStripCount: 16
   needsComputeBounds: 0
   boundsMode: 0
-  m_Space: 0
+  m_Space: 1
 --- !u!114 &8926484042661617009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,7 +375,7 @@ MonoBehaviour:
   - {fileID: 8926484042661617803}
   - {fileID: 8926484042661617878}
   - {fileID: 8926484042661617923}
-  m_UIPosition: {x: 1634, y: 142}
+  m_UIPosition: {x: 1643, y: 172}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -2060,7 +2072,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.TArcSphere, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":0.10000000149011612},"arc":6.2831854820251469}'
+      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.018279794603586198},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":0.05000000074505806},"arc":6.2831854820251469}'
     m_Space: 0
   m_Property:
     name: arcSphere
@@ -3282,7 +3294,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 8926484042661617009}
   m_Children: []
-  m_UIPosition: {x: 0, y: 0}
+  m_UIPosition: {x: 0, y: 293}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
