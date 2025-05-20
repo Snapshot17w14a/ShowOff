@@ -1970,7 +1970,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.TArcSphere, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.20000000298023225},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":0.800000011920929,"y":0.800000011920929,"z":0.10000000149011612}},"radius":1.0},"arc":6.2831854820251469}'
+      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.20000000298023225},"angles":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":5.0,"y":5.0,"z":0.10000000149011612}},"radius":1.0},"arc":6.2831854820251469}'
     m_Space: 0
   m_Property:
     name: arcSphere

@@ -99,16 +99,19 @@ VisualEffect:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77015465337896198}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: ceba0e80cb826c74fa9c9564be4f8c59, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: e9dfd57d037588f4492072de2c50b53b, type: 3}
   m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 3
+        m_Name: Speed
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -171,7 +174,7 @@ VFXRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
 --- !u!54 &5781151949949478305
 Rigidbody:
   m_ObjectHideFlags: 0
