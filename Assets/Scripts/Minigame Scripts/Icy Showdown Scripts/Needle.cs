@@ -24,7 +24,9 @@ public class Needle : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<MinigamePlayer>().StunPlayer(stunDuration);
+            var player = other.GetComponent<MinigamePlayer>();
+            player.StunPlayer(stunDuration);
+            player.DropTreasure();
         }
         else Destroy(gameObject);
     }
