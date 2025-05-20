@@ -42,8 +42,8 @@ VisualEffect:
   m_GameObject: {fileID: 119535952465392141}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 90c339210ed0d4d4db9eed6225670adc, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -157,14 +157,17 @@ VisualEffect:
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: c5f7e19ccbf5e7446ab663a19d804249, type: 3}
   m_InitialEventName: 
-  m_InitialEventNameOverriden: 0
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 0.4
+        m_Name: Cloud dust rate
+        m_Overridden: 0
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -813,6 +816,9 @@ VisualEffect:
       - m_Value: 10
         m_Name: Cloud dust rate
         m_Overridden: 1
+      - m_Value: 1
+        m_Name: Rate
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -1189,6 +1195,8 @@ MonoBehaviour:
   - {fileID: 9121208996895523616}
   - {fileID: 1905895023603013796}
   walkEffect: {fileID: 8682700338727768244}
+  dashEffect: {fileID: 7455305759139401211}
+  stunEffect: {fileID: 8779098865699672147}
 --- !u!114 &7865321752991679214
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -103,8 +103,8 @@ MonoBehaviour:
     max: Infinity
     enumValues: []
     descendantCount: 0
-  - name: Lifetime of bomb
-    path: Lifetime of bomb
+  - name: Lifetime
+    path: Lifetime
     tooltip: 
     space: -1
     spaceable: 0
@@ -9348,7 +9348,7 @@ MonoBehaviour:
   m_InputSlots: []
   m_OutputSlots:
   - {fileID: 8926484042661617855}
-  m_ExposedName: Lifetime of bomb
+  m_ExposedName: Lifetime
   m_Exposed: 1
   m_Order: 2
   m_Category: 

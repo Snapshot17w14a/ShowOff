@@ -16,7 +16,6 @@ public class MinigamePlayer : MonoBehaviour
 
     private Vector2 inputVector = Vector2.zero;
     private new Rigidbody rigidbody;
-    private VisualEffect stunEffect;
     private MeshRenderer meshRenderer;
 
     [Header("Move settings")]
@@ -39,6 +38,8 @@ public class MinigamePlayer : MonoBehaviour
     [Header("Color changes")]
     [SerializeField] private SpriteRenderer[] spritesToRecolor;
     [SerializeField] private VisualEffect walkEffect;
+    [SerializeField] private VisualEffect dashEffect;
+    [SerializeField] private VisualEffect stunEffect;
 
     private bool isDashAvailable = true;
     private float dashTimer = 0f;
@@ -56,7 +57,6 @@ public class MinigamePlayer : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
-        stunEffect = GetComponentInChildren<VisualEffect>();
         TreasureInteraction = GetComponent<TreasureInteraction>();
         stunEffect.Stop();
 
@@ -128,6 +128,8 @@ public class MinigamePlayer : MonoBehaviour
         isDashing = true;
         isDashAvailable = false;
         dashTimer = 0f;
+
+        dashEffect.Play();
 
         Vector3 forceVector = inputVector.sqrMagnitude == 0 ? transform.forward : new Vector3(inputVector.x, 0.5f, inputVector.y);
         rigidbody.AddForce(forceVector.normalized * dashForce, ForceMode.Impulse);
