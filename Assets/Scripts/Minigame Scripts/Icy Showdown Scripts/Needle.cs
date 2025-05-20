@@ -28,6 +28,10 @@ public class Needle : MonoBehaviour
             player.StunPlayer(stunDuration);
             player.DropTreasure();
         }
+        else if (other.gameObject.CompareTag("IcePlatform"))
+        {
+            rb.isKinematic = true;
+        }
         else Destroy(gameObject);
     }
 }

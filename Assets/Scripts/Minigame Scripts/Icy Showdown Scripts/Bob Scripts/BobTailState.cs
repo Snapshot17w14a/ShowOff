@@ -74,7 +74,7 @@ public class BobTailState : BobState
         //return -dir;
 
         var angle = attackArc / 2f;
-        var dir = Quaternion.Euler(0, UnityEngine.Random.Range(-angle, angle), 0) * (-bobTransform.forward);
+        var dir = Quaternion.Euler(UnityEngine.Random.Range(-(angle / 3), angle / 3), UnityEngine.Random.Range(-angle, angle), 0) * (-bobTransform.forward);
         return dir;
     }
 }
