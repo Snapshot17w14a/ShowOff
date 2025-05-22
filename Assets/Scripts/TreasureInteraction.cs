@@ -38,6 +38,8 @@ public class TreasureInteraction : MonoBehaviour
     private void CollectTreasure()
     {
         Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
+        treasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
+
         Rigidbody TreasureRB = treasure.GetComponent<Rigidbody>();
         TreasureRB.isKinematic = true;
 
@@ -95,6 +97,8 @@ public class TreasureInteraction : MonoBehaviour
 
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
             Pickupable treasure = Instantiate(treasurePrefab, spawnPoint, Quaternion.identity);
+            treasure.OnPickupableEnteredMinecartEvent += HandleTreasureEnteredMinecart;
+
             Rigidbody treasureRB = treasure.GetComponent<Rigidbody>();
             treasureRB.isKinematic = false;
             Rigidbody rb = GetComponent<Rigidbody>();
@@ -156,6 +160,7 @@ public class TreasureInteraction : MonoBehaviour
             {
                 currentMinecart = minecart;
             }
+
             isInCollectionZone = true;
         }
 
@@ -210,5 +215,16 @@ public class TreasureInteraction : MonoBehaviour
             Destroy(collectedPickupable.gameObject);
             collectedPickupable = null;
         }
+    }
+
+    private void HandleTreasureDespawned(Pickupable pickupable)
+    {
+        pickupable.OnPickupableEnteredMinecartEvent -= HandleTreasureEnteredMinecart;
+        pickupable.OnPickupableDespawnedEvent -= HandleTreasureDespawned;
+    }
+
+    private void HandleTreasureEnteredMinecart(Pickupable pickupable)
+    {
+        OnTreasureDelivered?.Invoke();
     }
 }

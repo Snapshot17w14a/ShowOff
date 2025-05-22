@@ -1,7 +1,11 @@
+using System;
 using UnityEngine;
 
 public class Pickupable : MonoBehaviour
 {
+    public event Action<Pickupable> OnPickupableDespawnedEvent;
+    public event Action<Pickupable> OnPickupableEnteredMinecartEvent;
+
     public bool IsPickedUp {  get; private set; } = false;
 
     [SerializeField] private int gemPickUpSize = 12;
@@ -36,9 +40,15 @@ public class Pickupable : MonoBehaviour
     {
         if (isDespawning && Time.time >= despawnTime)
         {
-            Destroy(gameObject);
-            isDespawning = false;
+            Despawn();
         }
+    }
+
+    private void Despawn()
+    {
+        isDespawning = false;
+        Destroy(gameObject);
+        OnPickupableDespawnedEvent?.Invoke(this);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,7 +63,8 @@ public class Pickupable : MonoBehaviour
         {
             Minecart minecart = other.GetComponent<Minecart>();
             minecart.AddGem();
-            Destroy(gameObject);
+            OnPickupableEnteredMinecartEvent?.Invoke(this);
+            Despawn();
         }
     }
 }
