@@ -31,6 +31,7 @@ public class Needle : MonoBehaviour
         else if (other.gameObject.CompareTag("IcePlatform"))
         {
             rb.isKinematic = true;
+            GetComponent<Collider>().enabled = false;
         }
     }
 }

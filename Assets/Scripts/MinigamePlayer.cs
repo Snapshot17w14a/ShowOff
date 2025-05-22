@@ -190,6 +190,16 @@ public class MinigamePlayer : MonoBehaviour
         yield return null;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("DeathBarrier"))
+        {
+            var pos = transform.position;
+            pos.y = 1;
+            transform.position = pos;
+        }
+    }
+
     private void OnCollisionStay(Collision collision)
     {
         if (!isDashing || !collision.gameObject.CompareTag("Player")) return;

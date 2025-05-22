@@ -49,5 +49,10 @@ public class IcePlatform : MonoBehaviour
         meshCollider.enabled = false;
         meshRenderer.enabled = false;
         meshRenderer.material.color = waterColor;
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
     }
 }
