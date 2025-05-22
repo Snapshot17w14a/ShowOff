@@ -331,20 +331,6 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "9b8e427e371c4927a7371d5da7162dfd"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "cc004229b4724e709c5553c24bece3fe"
-                },
-                "m_SlotId": 3
-            },
-            "m_InputSlot": {
-                "m_Node": {
                     "m_Id": "ed10aecc441d40cca34fce2572d56630"
                 },
                 "m_SlotId": 1
@@ -374,6 +360,20 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "1d2dc565532f4bef9a36f247914faeeb"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "ed10aecc441d40cca34fce2572d56630"
+                },
+                "m_SlotId": 2
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "9b8e427e371c4927a7371d5da7162dfd"
                 },
                 "m_SlotId": 0
             }
@@ -710,9 +710,9 @@
     "m_ShaderOutputName": "BaseColor",
     "m_StageCapability": 2,
     "m_Value": {
-        "x": 0.5,
-        "y": 0.5,
-        "z": 0.5
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
     },
     "m_DefaultValue": {
         "x": 0.0,
@@ -1624,7 +1624,7 @@
     "m_AlembicMotionVectors": false,
     "m_SupportsLODCrossFade": false,
     "m_CustomEditorGUI": "",
-    "m_SupportVFX": false
+    "m_SupportVFX": true
 }
 
 {
@@ -1742,9 +1742,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -815.0000610351563,
-            "y": 227.00001525878907,
-            "width": 132.0,
+            "x": -739.0,
+            "y": 228.00001525878907,
+            "width": 131.99993896484376,
             "height": 34.00001525878906
         }
     },
@@ -2336,7 +2336,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Smoothness",
     "m_StageCapability": 2,
-    "m_Value": 1.0,
+    "m_Value": 0.0,
     "m_DefaultValue": 0.5,
     "m_Labels": []
 }
@@ -2830,9 +2830,9 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 1056838.125,
-        "g": 907174.3125,
-        "b": 1383604.0,
+        "r": 689121.4375,
+        "g": 591531.75,
+        "b": 902192.3125,
         "a": 0.0
     },
     "isMainColor": false,
