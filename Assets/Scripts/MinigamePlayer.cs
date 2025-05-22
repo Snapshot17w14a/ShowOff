@@ -213,7 +213,7 @@ public class MinigamePlayer : MonoBehaviour
 
             if (otherTreasure != null && otherTreasure.IsHoldingItem && this.TreasureInteraction != null && this.TreasureInteraction.IsHoldingItem)
             {
-                otherTreasure.DropTreasureRandom();
+                DropTreasure();
             }
             else if(otherTreasure != null && otherTreasure.IsHoldingItem)
             {

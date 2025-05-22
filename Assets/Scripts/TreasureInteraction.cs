@@ -38,6 +38,8 @@ public class TreasureInteraction : MonoBehaviour
     private void CollectTreasure()
     {
         Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
+        Rigidbody TreasureRB = treasure.GetComponent<Rigidbody>();
+        TreasureRB.isKinematic = true;
         
         if (treasure != null)
         {
@@ -74,8 +76,7 @@ public class TreasureInteraction : MonoBehaviour
 
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
             {
-                Pickupable treasure = Instantiate(treasurePrefab, hit.position, Quaternion.identity);
-                treasure.DespawnAfter(droppedTreasureDespawnTime);
+                SpawnAnimation(hit, 0.5f, 1f);
             }
         }
     }
@@ -86,18 +87,27 @@ public class TreasureInteraction : MonoBehaviour
         if (collectedPickupable != null)
         {
             Vector3 position = transform.position;
-            Vector3 dropPosition = transform.forward / 2f;
+            Vector3 dropPosition = transform.forward / 1.5f;
             Vector3 spawnPosition = position + dropPosition;
 
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
             {
-                Pickupable treasure = Instantiate(treasurePrefab, hit.position, Quaternion.identity);
-                treasure.DespawnAfter(droppedTreasureDespawnTime);
+                SpawnAnimation(hit, 0.3f, 0.3f);
             }
         }
     }
 
-    //Destroys the treasure whenever of the player holding the treasure whenever stunned - works with CollectTreasureDirect
+    private void SpawnAnimation(NavMeshHit hit,float playerYOffset, float timeToTarget)
+    {
+        Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + playerYOffset, transform.position.z);
+        Pickupable treasure = Instantiate(treasurePrefab, spawnPoint, Quaternion.identity);
+        Rigidbody treasureRB = treasure.GetComponent<Rigidbody>();
+        treasureRB.isKinematic = false;
+        treasureRB.linearVelocity = PathCalculator.CalculateRequiredVelocity(spawnPoint, hit.position, timeToTarget);
+        treasure.DespawnAfter(droppedTreasureDespawnTime);
+    }
+
+    //Destroys the treasure whenever of the player holding the treasure whenever stunned and gives it to the other player - works with CollectTreasureDirect
     public void DropTreasureInstant()
     {
         if(collectedPickupable != null)

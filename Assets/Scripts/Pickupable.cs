@@ -38,4 +38,13 @@ public class Pickupable : MonoBehaviour
             isDespawning = false;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<IcePlatform>() != null)
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.isKinematic = true;
+        }
+    }
 }
