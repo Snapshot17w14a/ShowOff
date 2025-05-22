@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.VFX;
 
 public class BobTailState : BobState
 {
@@ -9,6 +10,8 @@ public class BobTailState : BobState
     private GameObject needlePrefab;
     private Transform bobTransform;
     private float needleStrength = 2.5f;
+    private Transform needleParentTransform;
+    private VisualEffect stompEffect;
 
     private float timeBetweenProjectiles = 0;
     private int firedProjectileCount = 0;
@@ -17,7 +20,7 @@ public class BobTailState : BobState
 
     public override void Initialize(params object[] parameters)
     {
-        if (parameters.Length != 6) throw new Exception("Provided parameters array length was not 6");
+        if (parameters.Length != 7) throw new Exception("Provided parameters array length was not 7");
 
         attackTime = (float)parameters[0];
         projectileCount = (int)parameters[1];
@@ -25,6 +28,7 @@ public class BobTailState : BobState
         needlePrefab = (GameObject)parameters[3];
         bobTransform = (Transform)parameters[4];
         needleStrength = (float)parameters[5];
+        needleParentTransform = (Transform)parameters[6];
     }
 
     public override void LoadState(params object[] parameters)
@@ -54,7 +58,7 @@ public class BobTailState : BobState
     {
         var dir = NeedleDirection();
 
-        GameObject.Instantiate(needlePrefab, new Vector3(0, 0, 0), Quaternion.identity).GetComponent<Rigidbody>().AddForce(needleStrength * ((UnityEngine.Random.value * 0.5f) + 0.5f) * dir, ForceMode.Impulse);
+        GameObject.Instantiate(needlePrefab, new Vector3(0, 1, 0), Quaternion.identity, needleParentTransform).GetComponent<Rigidbody>().AddForce(needleStrength * ((UnityEngine.Random.value * 0.5f) + 0.5f) * dir, ForceMode.Impulse);
 
         firedProjectileCount++;
     }

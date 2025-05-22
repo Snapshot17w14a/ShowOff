@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 public class BobStompState : BobState
@@ -10,15 +11,17 @@ public class BobStompState : BobState
     private float radius;
     private float knockbackRange;
     private float knockbackForce;
+    private VisualEffect stompEffect;
 
     public override void Initialize(params object[] parameters)
     {
-        if (parameters.Length != 4) throw new Exception("Provided parameters array length was not 4");
+        if (parameters.Length != 5) throw new Exception("Provided parameters array length was not 5");
 
         iciclePrefab = (GameObject)parameters[0];
         radius = (float)parameters[1];
         knockbackRange = (float)parameters[2];
         knockbackForce = (float)parameters[3];
+        stompEffect = (VisualEffect)parameters[4];
     }
 
     public override void LoadState(params object[] parameters)
@@ -26,6 +29,7 @@ public class BobStompState : BobState
         isStateRunning = true;
         SpawnIcicles(Random.Range(2, 5));
         KnockBackPlayers();
+        stompEffect.Play();
         IcePlatformManager.Instance.BreakBrittlePlatforms();
     }
 
@@ -36,7 +40,7 @@ public class BobStompState : BobState
 
     public override void UnloadState()
     {
-        
+        stompEffect.Stop();
     }
 
     private void SpawnIcicles(int count)

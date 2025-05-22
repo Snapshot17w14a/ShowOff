@@ -120,13 +120,13 @@ public class BobIceState : BobState
     {
         var platformPosition = platform.transform.position;
         platformPosition.y = 0;
-        var angleToPlatform = Vector3.Angle(bobTransform.forward, (platformPosition - Vector3.zero).normalized);
+        var angleToPlatform = Vector3.Angle(bobTransform.forward, platformPosition.normalized);
         if (angleToPlatform < 1f) platform.FreezePlatform();
     }
 
     private void RaycastAndHitParticle()
     {
-        if (Physics.Raycast(new Ray(new Vector3(0, -0.085f, 0), bobTransform.forward), out RaycastHit hit, 10f))
+        if (Physics.Raycast(new Ray(Vector3.up, bobTransform.forward), out RaycastHit hit, 10f))
         {
             instantiatedHitEffect.transform.position = hit.point;
         }

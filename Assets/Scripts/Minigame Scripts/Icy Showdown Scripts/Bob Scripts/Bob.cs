@@ -30,6 +30,7 @@ public class Bob : MonoBehaviour
     [SerializeField] private float tailAttackArc;
     [SerializeField] private GameObject tailProjectile;
     [SerializeField] private float tailProjectileStrength;
+    [SerializeField] private Transform needleParentTransform;
 
     [Header("Stomp state settings")]
     [SerializeField] private int minBrittleRequirement;
@@ -37,6 +38,7 @@ public class Bob : MonoBehaviour
     [SerializeField] private float spawnRadius;
     [SerializeField] private float knokbackRange;
     [SerializeField] private float knockbackForce;
+    [SerializeField] private VisualEffect stompEffect;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onStateChange;
@@ -66,7 +68,7 @@ public class Bob : MonoBehaviour
             switch (state)
             {
                 case BobTailState tailState:
-                    tailState.Initialize(tailAttackTime, tailProjectileCount, tailAttackArc, tailProjectile, transform, tailProjectileStrength);
+                    tailState.Initialize(tailAttackTime, tailProjectileCount, tailAttackArc, tailProjectile, transform, tailProjectileStrength, needleParentTransform);
                     break;
                 case BobIceState iceState: 
                     iceState.Initialize(transform, iceChargeup, iceBeam, hitEffect); 
@@ -78,7 +80,7 @@ public class Bob : MonoBehaviour
                     idleState.Initialize(transform);
                     break;
                 case BobStompState stompState:
-                    stompState.Initialize(iciclePrefab, spawnRadius, knokbackRange, knockbackForce);
+                    stompState.Initialize(iciclePrefab, spawnRadius, knokbackRange, knockbackForce, stompEffect);
                     break;
             }
         }

@@ -20,7 +20,7 @@ public class BobBombState : BobState
 
         var bombCount = UnityEngine.Random.Range(1, 3);
         var platforms = IcePlatformManager.Instance.SelectUniquePlatforms(bombCount);
-        for (int i = 0; i < bombCount; i++) if (platforms[i] != null) LaunchBomb(Vector3.zero, platforms[i]);
+        for (int i = 0; i < bombCount; i++) if (platforms[i] != null) LaunchBomb(Vector3.up, platforms[i]);
     }
 
     public override void TickState()

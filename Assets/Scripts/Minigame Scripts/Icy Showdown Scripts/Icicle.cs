@@ -13,8 +13,6 @@ public class Icicle : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         initialY = transform.position.y;
         shadow = GetComponentInChildren<IcicleShadow>();
-
-        
     }
 
     private void Update()
@@ -25,7 +23,7 @@ public class Icicle : MonoBehaviour
             shadow.UpdateTime(transform.position.y / initialY);
 
             var pos = transform.position;
-            shadow.transform.position = new(pos.x, -0.95f, pos.z);
+            shadow.transform.position = new(pos.x, 0.05f, pos.z);
         }
     }
 
@@ -39,7 +37,7 @@ public class Icicle : MonoBehaviour
             transform.parent = other.transform;
 
             var pos = transform.position;
-            pos.y = -0.8f;
+            pos.y = 0.2f;
             transform.position = pos;
 
             Destroy(shadow.gameObject);
