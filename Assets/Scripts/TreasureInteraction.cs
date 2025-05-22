@@ -93,10 +93,13 @@ public class TreasureInteraction : MonoBehaviour
             Vector3 dropPosition = transform.forward / 1.5f;
             Vector3 spawnPosition = position + dropPosition;
 
-            if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
-            {
-                SpawnAnimation(hit, 0.3f, 0.3f);
-            }
+            Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
+            Pickupable treasure = Instantiate(treasurePrefab, spawnPoint, Quaternion.identity);
+            Rigidbody treasureRB = treasure.GetComponent<Rigidbody>();
+            treasureRB.isKinematic = false;
+            Rigidbody rb = GetComponent<Rigidbody>();
+            treasureRB.linearVelocity = PathCalculator.CalculateRequiredVelocity(spawnPoint, spawnPosition + (rb.linearVelocity / 3f), 0.3f);
+            treasure.DespawnAfter(droppedTreasureDespawnTime);
         }
     }
 

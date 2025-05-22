@@ -10,8 +10,6 @@ public class MinigamePlayer : MonoBehaviour
 {
     public TreasureInteraction TreasureInteraction { get; private set; }
 
-    public event Action OnPlayerStunned;
-
     public bool IsStunned => isStunned;
 
     private Vector2 inputVector = Vector2.zero;
@@ -99,7 +97,6 @@ public class MinigamePlayer : MonoBehaviour
     public void StunPlayer(float seconds)
     {
         StartCoroutine(StunRoutine(seconds));
-        OnPlayerStunned?.Invoke();
     }
 
     public void DropTreasure()
