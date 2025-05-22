@@ -40,7 +40,7 @@ public class TreasureInteraction : MonoBehaviour
         Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
         Rigidbody TreasureRB = treasure.GetComponent<Rigidbody>();
         TreasureRB.isKinematic = true;
-        
+
         if (treasure != null)
         {
             treasure.Collect(holdPoint);
@@ -55,8 +55,12 @@ public class TreasureInteraction : MonoBehaviour
         {
             Destroy(collectedPickupable.gameObject);
             collectedPickupable = null;
-            currentMinecart.AddGem();
             OnTreasureDelivered?.Invoke();
+            Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+            Pickupable treasure = Instantiate(treasurePrefab, spawnPoint, Quaternion.identity);
+            Rigidbody treasureRB = treasure.GetComponent<Rigidbody>();
+            treasureRB.isKinematic = false;
+            treasureRB.linearVelocity = PathCalculator.CalculateRequiredVelocity(spawnPoint, currentMinecart.transform.position, 1f);
         }
     }
 
@@ -96,7 +100,7 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
-    private void SpawnAnimation(NavMeshHit hit,float playerYOffset, float timeToTarget)
+    private void SpawnAnimation(NavMeshHit hit, float playerYOffset, float timeToTarget)
     {
         Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + playerYOffset, transform.position.z);
         Pickupable treasure = Instantiate(treasurePrefab, spawnPoint, Quaternion.identity);
@@ -109,7 +113,7 @@ public class TreasureInteraction : MonoBehaviour
     //Destroys the treasure whenever of the player holding the treasure whenever stunned and gives it to the other player - works with CollectTreasureDirect
     public void DropTreasureInstant()
     {
-        if(collectedPickupable != null)
+        if (collectedPickupable != null)
         {
             Destroy(collectedPickupable.gameObject);
             collectedPickupable = null;
@@ -119,14 +123,14 @@ public class TreasureInteraction : MonoBehaviour
     //See above
     public void CollectTreasureDirect()
     {
-        if(collectedPickupable != null)
+        if (collectedPickupable != null)
         {
             return;
         }
 
         Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
 
-        if(treasure != null)
+        if (treasure != null)
         {
             treasure.Collect(holdPoint);
             treasure.GetComponent<Collider>().enabled = false;
@@ -144,11 +148,11 @@ public class TreasureInteraction : MonoBehaviour
 
         if (other.GetComponent<CollectionZone>() != null)
         {
-                    Minecart minecart = other.GetComponent<Minecart>();
-        if (minecart != null)
-        {
-            currentMinecart = minecart;
-        }
+            Minecart minecart = other.GetComponent<Minecart>();
+            if (minecart != null)
+            {
+                currentMinecart = minecart;
+            }
             isInCollectionZone = true;
         }
 
