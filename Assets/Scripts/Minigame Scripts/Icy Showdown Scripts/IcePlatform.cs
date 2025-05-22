@@ -8,6 +8,7 @@ public class IcePlatform : MonoBehaviour
     [SerializeField] private Color waterColor;
 
     [SerializeField] private float sinkTime = 1f;
+    [SerializeField] private AnimationCurve falloffSpeed;
 
     private Vector3 startingPosition;
     private Vector3 sinkPosition;
@@ -72,7 +73,7 @@ public class IcePlatform : MonoBehaviour
         while (time < sinkTime)
         {
             time += Time.deltaTime;
-            transform.position = Vector3.Lerp(startingPosition, sinkPosition, time / sinkTime);
+            transform.position = Vector3.Lerp(startingPosition, sinkPosition, falloffSpeed.Evaluate(time / sinkTime));
             yield return null;
         }
 
