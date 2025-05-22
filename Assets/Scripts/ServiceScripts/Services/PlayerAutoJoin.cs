@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
 
@@ -96,6 +97,8 @@ public class PlayerAutoJoin : Service
 
         //Trigger the event with the created player
         OnPlayerJoin?.Invoke(player);
+
+        player.transform.position = UnityEngine.Vector3.up;
     }
 
     private string RemoveBindingFromJoining(InputAction.CallbackContext context)
