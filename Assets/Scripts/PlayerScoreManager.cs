@@ -6,10 +6,20 @@ public class PlayerScoreManager : MonoBehaviour
     [SerializeField] private Transform scoreParent;
     [SerializeField] private PlayerScoreUI scorePrefab;
 
-    private List<PlayerScoreUI> scores = new List<PlayerScoreUI>();
+    private Dictionary<MinigamePlayer, PlayerScoreUI> scores = new();
+
+    public static PlayerScoreManager Instance => _instance;
+    private static PlayerScoreManager _instance;
 
     private void Awake()
     {
+        if (_instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        _instance = this;
+
         Debug.Assert(scoreParent != null);
         Debug.Assert(scorePrefab != null);
 
@@ -26,6 +36,8 @@ public class PlayerScoreManager : MonoBehaviour
         PlayerScoreUI playerScore = Instantiate(scorePrefab, scoreParent);
         playerScore.Initialize(player.TreasureInteraction, player);
         playerScore.gameObject.SetActive(true);
-        scores.Add(playerScore);
+        scores.Add(player, playerScore);
     }
+
+    public PlayerScoreUI GetPlayerUI(MinigamePlayer player) => scores[player];
 }

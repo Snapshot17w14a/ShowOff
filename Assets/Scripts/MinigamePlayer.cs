@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 using UnityEngine;
 using TMPro;
-using System;
 
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class MinigamePlayer : MonoBehaviour
@@ -45,6 +44,8 @@ public class MinigamePlayer : MonoBehaviour
     private bool isStunned = false;
     private bool isFlying = false;
     private bool isDashing = false;
+
+    public Color playerColor;
 
     /// <summary>
     /// The id of the player in the PlayerRegistry
@@ -117,6 +118,9 @@ public class MinigamePlayer : MonoBehaviour
         textMeshPro.text = $"P{playerId + 1}";
 
         dashIndicator.GetComponent<MeshRenderer>().material.SetColor("_ColorCircle", color);
+
+        //PlayerScoreManager.Instance.GetPlayerUI(this).SetColor(color);
+        playerColor = color;
     }
 
     private void Dash()

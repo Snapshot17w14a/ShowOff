@@ -1,8 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScoreUI : MonoBehaviour
 {
+    [SerializeField] private Image[] imagesToRecolor;
+
     [SerializeField] private TMP_Text scoreText;
     private TreasureInteraction treasureInteraction;
     private MinigamePlayer minigamePlayer;
@@ -15,6 +18,7 @@ public class PlayerScoreUI : MonoBehaviour
         minigamePlayer = player;
         treasureInteraction.OnTreasureDelivered += OnTreasureDelivered;
         UpdateText();
+        SetColor(player.playerColor);
     }
 
     private void OnDestroy()
@@ -32,5 +36,10 @@ public class PlayerScoreUI : MonoBehaviour
     private void UpdateText()
     {
         scoreText.text = score.ToString();
+    }
+
+    public void SetColor(Color color)
+    {
+        foreach (var img in imagesToRecolor) img.color = color;
     }
 }
