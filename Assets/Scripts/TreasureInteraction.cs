@@ -76,7 +76,8 @@ public class TreasureInteraction : MonoBehaviour
 
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
             {
-                SpawnAnimation(hit, 0.5f, 1f);
+                //for some reason if I increase the timeToTarget above 0.6 (whenever I get stunned by bob the gem sinks into the ground).
+                SpawnAnimation(hit, 0.5f, 0.6f);
             }
         }
     }
