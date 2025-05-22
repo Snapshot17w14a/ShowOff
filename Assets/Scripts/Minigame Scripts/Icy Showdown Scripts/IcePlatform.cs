@@ -20,7 +20,6 @@ public class IcePlatform : MonoBehaviour
 
     public bool IsBroken => !meshCollider.enabled;
 
-
     private void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
