@@ -18,6 +18,8 @@ public class Pickupable : MonoBehaviour
     public void Collect(Transform parent)
     {
         IsPickedUp = true;
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
         gameObject.transform.SetParent(parent, false);
         //This is fucking ugly, but I was over it making it work with math
         transform.localScale = new Vector3(gemPickUpSize, gemPickUpSize, gemPickUpSize);

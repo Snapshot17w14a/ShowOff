@@ -11,7 +11,7 @@ public class TreasureInteraction : MonoBehaviour
     [SerializeField] private Pickupable treasurePrefab;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float droppedTreasureDespawnTime = 10f;
-    [SerializeField] private float spawnRange = 0.5f;
+    [SerializeField] private float spawnRange = 1f;
 
     private MinigamePlayer miniGamePlayer;
     private Pickupable collectedPickupable;
@@ -46,7 +46,6 @@ public class TreasureInteraction : MonoBehaviour
             treasure.Collect(holdPoint);
             treasure.GetComponent<Collider>().enabled = false;
             collectedPickupable = treasure;
-            Debug.Log("Collected treasure!");
         }
     }
 
@@ -56,7 +55,6 @@ public class TreasureInteraction : MonoBehaviour
         {
             Destroy(collectedPickupable.gameObject);
             collectedPickupable = null;
-            Debug.Log("Treasure Delivered!");
             currentMinecart.AddGem();
             OnTreasureDelivered?.Invoke();
         }
