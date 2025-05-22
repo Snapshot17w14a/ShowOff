@@ -48,5 +48,12 @@ public class Pickupable : MonoBehaviour
             Rigidbody rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;
         }
+
+        if(other.GetComponent<Minecart>() != null)
+        {
+            Minecart minecart = other.GetComponent<Minecart>();
+            minecart.AddGem();
+            Destroy(gameObject);
+        }
     }
 }
