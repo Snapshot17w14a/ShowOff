@@ -8,19 +8,24 @@ public class BobStompState : BobState
 
     private GameObject iciclePrefab;
     private float radius;
+    private float knockbackRange;
+    private float knockbackForce;
 
     public override void Initialize(params object[] parameters)
     {
-        if (parameters.Length != 2) throw new Exception("Provided parameters array length was not 2");
+        if (parameters.Length != 4) throw new Exception("Provided parameters array length was not 4");
 
         iciclePrefab = (GameObject)parameters[0];
         radius = (float)parameters[1];
+        knockbackRange = (float)parameters[2];
+        knockbackForce = (float)parameters[3];
     }
 
     public override void LoadState(params object[] parameters)
     {
         isStateRunning = true;
-        SpawnIcicles(UnityEngine.Random.Range(2, 5));
+        SpawnIcicles(Random.Range(2, 5));
+        KnockBackPlayers();
         IcePlatformManager.Instance.BreakBrittlePlatforms();
     }
 
@@ -46,5 +51,21 @@ public class BobStompState : BobState
         }
 
         isStateRunning = false;
+    }
+
+    private void KnockBackPlayers()
+    {
+        var players = GameObject.FindObjectsByType<MinigamePlayer>(FindObjectsSortMode.None);
+
+        foreach(var p in players)
+        {
+            var pos = p.transform.position;
+            var dist = pos.magnitude;
+
+            if (dist < knockbackRange)
+            {
+                p.GetComponent<Rigidbody>().AddForce(pos.normalized * knockbackForce, ForceMode.Impulse);
+            }
+        }
     }
 }

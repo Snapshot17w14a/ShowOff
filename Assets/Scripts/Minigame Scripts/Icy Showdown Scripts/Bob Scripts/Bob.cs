@@ -35,6 +35,8 @@ public class Bob : MonoBehaviour
     [SerializeField] private int minBrittleRequirement;
     [SerializeField] private GameObject iciclePrefab;
     [SerializeField] private float spawnRadius;
+    [SerializeField] private float knokbackRange;
+    [SerializeField] private float knockbackForce;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onStateChange;
@@ -76,7 +78,7 @@ public class Bob : MonoBehaviour
                     idleState.Initialize(transform);
                     break;
                 case BobStompState stompState:
-                    stompState.Initialize(iciclePrefab, spawnRadius);
+                    stompState.Initialize(iciclePrefab, spawnRadius, knokbackRange, knockbackForce);
                     break;
             }
         }
