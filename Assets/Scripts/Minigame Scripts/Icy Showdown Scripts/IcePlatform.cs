@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class IcePlatform : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class IcePlatform : MonoBehaviour
     [SerializeField] private Color waterColor;
 
     [SerializeField] private float sinkTime = 1f;
+    [SerializeField] private float freezeTime = 1f;
     [SerializeField] private AnimationCurve falloffSpeed;
 
     private Vector3 startingPosition;
@@ -15,6 +17,8 @@ public class IcePlatform : MonoBehaviour
 
     private MeshRenderer meshRenderer;
     private MeshCollider meshCollider;
+    private VisualEffect freezeEffect;
+    private Coroutine currentRoutine;
 
     public bool IsBrittle { get; private set; } = false;
 
@@ -28,15 +32,28 @@ public class IcePlatform : MonoBehaviour
         startingPosition = transform.position;
 
         sinkPosition = startingPosition + new Vector3(0, -8, 0);
+
+        freezeEffect = GetComponent<VisualEffect>();
+        freezeEffect.Reinit();
     }
 
     public void FreezePlatform()
     {
-        IsBrittle = false;
+        if (IsBroken)
+        {
+            freezeEffect.Reinit();
+            freezeEffect.Play();
+
+            if (currentRoutine != null) StopCoroutine(currentRoutine);
+            currentRoutine = StartCoroutine(FreezeRoutine());
+        }
+        
         meshCollider.enabled = true;
         meshRenderer.enabled = true;
 
         meshRenderer.material.color = solidColor;
+
+        IsBrittle = false;
     }
 
     public void SetBrittle()
@@ -62,7 +79,8 @@ public class IcePlatform : MonoBehaviour
             Destroy(transform.GetChild(i).gameObject);
         }
 
-        StartCoroutine(SinkPlatform());
+        if (currentRoutine != null) StopCoroutine(currentRoutine);
+        currentRoutine = StartCoroutine(SinkPlatform());
     }
 
     private IEnumerator SinkPlatform()
@@ -78,5 +96,20 @@ public class IcePlatform : MonoBehaviour
 
         meshRenderer.enabled = false;
         transform.position = startingPosition;
+    }
+
+    private IEnumerator FreezeRoutine()
+    {
+        float time = 0;
+
+        while (time < freezeTime)
+        {
+            time += Time.deltaTime;
+            float t = Mathf.Lerp(0, 1, time / freezeTime);
+            transform.localScale = new Vector3(t, t, t);
+            yield return null;
+        }
+
+        transform.localScale = Vector3.one;
     }
 }
