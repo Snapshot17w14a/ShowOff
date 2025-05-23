@@ -81,7 +81,7 @@ public class TreasureInteraction : MonoBehaviour
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
             {
                 //for some reason if I increase the timeToTarget above 0.6 (whenever I get stunned by bob the gem sinks into the ground).
-                SpawnAnimation(hit, 0.5f, 0.6f);
+                SpawnAnimation(hit, 0.5f, 1f);
             }
         }
     }
@@ -113,6 +113,8 @@ public class TreasureInteraction : MonoBehaviour
         Pickupable treasure = Instantiate(treasurePrefab, spawnPoint, Quaternion.identity);
         Rigidbody treasureRB = treasure.GetComponent<Rigidbody>();
         treasureRB.isKinematic = false;
+        Collider collider = treasure.GetComponent<Collider>();
+        collider.isTrigger = false;
         treasureRB.linearVelocity = PathCalculator.CalculateRequiredVelocity(spawnPoint, hit.position, timeToTarget);
         treasure.DespawnAfter(droppedTreasureDespawnTime);
     }

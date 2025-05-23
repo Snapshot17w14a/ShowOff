@@ -67,4 +67,12 @@ public class Pickupable : MonoBehaviour
             Despawn();
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        Collider collider = GetComponent<Collider>();
+        collider.isTrigger = true;
+    }
 }
