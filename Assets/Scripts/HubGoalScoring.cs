@@ -16,7 +16,7 @@ public class HubGoalScoring : MonoBehaviour
     private int currentScore; 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Pickupable>()) 
+        if (other.CompareTag("Ball"))
         {
             currentScore++;
             scoreText.text = currentScore.ToString();
