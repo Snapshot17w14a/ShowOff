@@ -6784,7 +6784,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: HubBall
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4670900980365345946, guid: 6c912461e5212bc4cac2513c37a3cac2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
