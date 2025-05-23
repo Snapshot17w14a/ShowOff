@@ -251,7 +251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6954853252471952283
 Transform:
   m_ObjectHideFlags: 0
@@ -1197,6 +1197,7 @@ MonoBehaviour:
   walkEffect: {fileID: 8682700338727768244}
   dashEffect: {fileID: 7455305759139401211}
   stunEffect: {fileID: 8779098865699672147}
+  playerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &7865321752991679214
 MonoBehaviour:
   m_ObjectHideFlags: 0
