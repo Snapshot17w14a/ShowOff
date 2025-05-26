@@ -44,6 +44,26 @@ public class ScoreRegistry : Service
         return scores;
     }
 
+    public PlayerScore HighestScore
+    {
+        get
+        {
+            int highestScore = 0;
+            int highestScoreId = 0;
+
+            foreach (var score in playerScores)
+            {
+                if (score.Value > highestScore)
+                {
+                    highestScore = score.Value;
+                    highestScoreId = score.Key;
+                }
+            }
+
+                return new PlayerScore(highestScoreId, highestScore);
+        }
+    }
+
     public void WipeData() => playerScores.Clear();
 }
 

@@ -23,4 +23,6 @@ public class PlayerDistributor : MonoBehaviour
             t += increment;
         }
     }
+
+    public void SetOnPodiumFlag(bool set) => PlayerPrefs.SetInt("DoPodium", set ? 1 : 0);
 }
