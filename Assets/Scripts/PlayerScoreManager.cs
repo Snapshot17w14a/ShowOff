@@ -5,6 +5,7 @@ public class PlayerScoreManager : MonoBehaviour
 {
     [SerializeField] private Transform scoreParent;
     [SerializeField] private PlayerScoreUI scorePrefab;
+    [SerializeField] private Material gold;
 
     private Dictionary<MinigamePlayer, PlayerScoreUI> scores = new();
 
@@ -36,29 +37,21 @@ public class PlayerScoreManager : MonoBehaviour
     private void GenerateScoreUI(MinigamePlayer player)
     {
         PlayerScoreUI playerScore = Instantiate(scorePrefab, scoreParent);
+
+        //Changing the material of the winner penguin
+        RegisteredPlayer data = ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(player.RegistryID);
+        if(data.isLastWinner)
+        {
+            player.SetPlayerColor(Color.yellow, player.RegistryID);
+            MeshRenderer renderer = player.GetComponent<MeshRenderer>();
+            renderer.material = gold;
+            playerScore.goldenPenguinFrame.gameObject.SetActive(true);
+        }
+
         playerScore.Initialize(player.TreasureInteraction, player);
         playerScore.gameObject.SetActive(true);
         scores.Add(player, playerScore);
     }
-
-    public MinigamePlayer GetHighestScoringPlayer()
-    {
-        MinigamePlayer highestPlayer = null;
-        int highestScore = int.MinValue;
-
-        foreach (var pair in scores)
-        {
-            if (pair.Value.Score > highestScore)
-            {
-                highestScore = pair.Value.Score;
-                highestPlayer = pair.Key;
-            }
-        }
-
-        return highestPlayer;
-    }
-
-
 
     public PlayerScoreUI GetPlayerUI(MinigamePlayer player) => scores[player];
 }

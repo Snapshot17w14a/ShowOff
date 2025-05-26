@@ -29,7 +29,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8599817078488118982}
   - {fileID: 8989612441505826044}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,10 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8169aacc0d41010479e3f8a5ba03196c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createPlayer: {fileID: 0}
   scoreParent: {fileID: 8989612441505826044}
-  scorePrefab: {fileID: 8511327282738647180}
-  xOffset: 100
+  scorePrefab: {fileID: 0}
+  gold: {fileID: 0}
 --- !u!1 &8420191488642066330
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,84 +114,3 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1001 &7002666247877333860
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 7358005942430186787}
-    m_Modifications:
-    - target: {fileID: 1245620707966876750, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-      propertyPath: m_Name
-      value: PlayerScorePrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 1245620707966876750, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618700779936785826, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618700779936785826, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618700779936785826, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618700779936785826, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618700779936785826, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618700779936785826, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618700779936785826, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 985
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618700779936785826, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618700779936785826, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618700779936785826, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618700779936785826, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
---- !u!114 &8511327282738647180 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1670897895007765480, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-  m_PrefabInstance: {fileID: 7002666247877333860}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f47575e2e9a1a045a0c80189d05c7d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!224 &8599817078488118982 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1618700779936785826, guid: adc18626e6552a14b93a6b7b95091aaa, type: 3}
-  m_PrefabInstance: {fileID: 7002666247877333860}
-  m_PrefabAsset: {fileID: 0}

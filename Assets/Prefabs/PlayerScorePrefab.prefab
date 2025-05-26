@@ -59,6 +59,7 @@ MonoBehaviour:
   - {fileID: 8513910360793194016}
   - {fileID: 2753668403513901595}
   scoreText: {fileID: 8907183806950882427}
+  goldenPenguinFrame: {fileID: 6777268734211084249}
 --- !u!1 &2312629522152159703
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &80839509380676872
 RectTransform:
   m_ObjectHideFlags: 0

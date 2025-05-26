@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class PlayerScoreUI : MonoBehaviour
 {
     [SerializeField] private Image[] imagesToRecolor;
-
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] public GameObject goldenPenguinFrame;
     private TreasureInteraction treasureInteraction;
 
     private MinigamePlayer Player => minigamePlayer;
