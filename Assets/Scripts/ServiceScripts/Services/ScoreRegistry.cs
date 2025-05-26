@@ -12,7 +12,7 @@ public class ScoreRegistry : Service
 
     public void AddPlayer(int idOfPlayer) { if (!playerScores.ContainsKey(idOfPlayer)) playerScores.Add(idOfPlayer, 0); }
 
-    public void AddPlayer(MinigamePlayer player) => AddPlayer(ServiceLocator.GetService<PlayerRegistry>().IdOf(player));
+    public void AddPlayer(MinigamePlayer player) => AddPlayer(player.RegistryID);
 
     public void AddScore(int idOfPlayer, int scoreToAdd)
     {
@@ -20,7 +20,7 @@ public class ScoreRegistry : Service
         else playerScores[idOfPlayer] += scoreToAdd;
     }
 
-    public void AddScore(MinigamePlayer player, int scoreToAdd) => AddScore(ServiceLocator.GetService<PlayerRegistry>().IdOf(player), scoreToAdd);
+    public void AddScore(MinigamePlayer player, int scoreToAdd) => AddScore(player.RegistryID, scoreToAdd);
 
     public int ScoreOfPlayer(int idOfPlayer)
     {
@@ -28,7 +28,7 @@ public class ScoreRegistry : Service
         return playerScores[idOfPlayer];
     }
 
-    public int ScoreOfPlayer(MinigamePlayer player) => ScoreOfPlayer(ServiceLocator.GetService<PlayerRegistry>().IdOf(player));
+    public int ScoreOfPlayer(MinigamePlayer player) => ScoreOfPlayer(player.RegistryID);
 
     public PlayerScore[] GetStoredScores()
     {

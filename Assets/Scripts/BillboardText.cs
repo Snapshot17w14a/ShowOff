@@ -6,7 +6,6 @@ public class BillboardText : MonoBehaviour
 
     private void Start()
     {
-
         cameraTransform = Camera.main.transform;
     }
 

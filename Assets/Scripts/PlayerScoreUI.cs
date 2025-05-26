@@ -8,8 +8,11 @@ public class PlayerScoreUI : MonoBehaviour
 
     [SerializeField] private TMP_Text scoreText;
     private TreasureInteraction treasureInteraction;
+
+    private MinigamePlayer Player => minigamePlayer;
     private MinigamePlayer minigamePlayer;
 
+    public int Score => score;
     private int score;
 
     public void Initialize(TreasureInteraction _treasureInteraction, MinigamePlayer player)

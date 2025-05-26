@@ -57,7 +57,6 @@ public class MinigamePlayer : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
         TreasureInteraction = GetComponent<TreasureInteraction>();
-        stunEffect.Stop();
 
         dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
     }

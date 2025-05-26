@@ -169,6 +169,8 @@ public class PlayerRegistry : Service
     }
 
     public int IdOf(MinigamePlayer player) => registeredPlayers.Where(regPlayer => regPlayer.minigamePlayer.Equals(player)).First().id;
+
+    public RegisteredPlayer GetPlayerData(int id) => registeredPlayers[id];
 }
 
 public struct RegisteredPlayer
@@ -179,12 +181,14 @@ public struct RegisteredPlayer
         this.controlScheme = controlScheme;
         this.device = device;
         this.minigamePlayer = minigamePlayer;
+        isLastWinner = false;
     }
 
     public int id;
     public string controlScheme;
     public InputDevice device;
     public MinigamePlayer minigamePlayer;
+    public bool isLastWinner;
 
     public static bool IsNull(RegisteredPlayer registeredPlayer)
     {

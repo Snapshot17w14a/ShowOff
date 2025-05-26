@@ -54,6 +54,7 @@ Material:
     - _Color_Prism: 6
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Time_slower: 1.1
     m_Colors:
     - _Color: {r: 0.7490196, g: 0.2355135, b: 0, a: 0}
     - _Color_Cristal: {r: 1, g: 0.2088135, b: 0, a: 0}

@@ -11,6 +11,8 @@ public class PlayerScoreManager : MonoBehaviour
     public static PlayerScoreManager Instance => _instance;
     private static PlayerScoreManager _instance;
 
+
+
     private void Awake()
     {
         if (_instance != null)
@@ -38,6 +40,25 @@ public class PlayerScoreManager : MonoBehaviour
         playerScore.gameObject.SetActive(true);
         scores.Add(player, playerScore);
     }
+
+    public MinigamePlayer GetHighestScoringPlayer()
+    {
+        MinigamePlayer highestPlayer = null;
+        int highestScore = int.MinValue;
+
+        foreach (var pair in scores)
+        {
+            if (pair.Value.Score > highestScore)
+            {
+                highestScore = pair.Value.Score;
+                highestPlayer = pair.Key;
+            }
+        }
+
+        return highestPlayer;
+    }
+
+
 
     public PlayerScoreUI GetPlayerUI(MinigamePlayer player) => scores[player];
 }
