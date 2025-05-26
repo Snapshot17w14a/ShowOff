@@ -110,13 +110,24 @@ public class PlayerRegistry : Service
     /// <summary>
     /// Pass in a fuction to execute of all players
     /// </summary>
-    /// <param name="function"></param>
     public void ExecuteForEachPlayer(Action<MinigamePlayer> function)
     {
         foreach (var player in registeredPlayers)
         {
             if (RegisteredPlayer.IsNull(player)) continue;
             function(player.minigamePlayer);
+        }
+    }
+
+    /// <summary>
+    /// Pass in a fucntion modifying and returning a <see cref="RegisteredPlayer"/>
+    /// </summary>
+    public void ExecuteForEachPlayerData(Func<RegisteredPlayer, RegisteredPlayer> function)
+    {
+        for (int i = 0; i < registeredPlayers.Length; i++)
+        {
+            if (RegisteredPlayer.IsNull(registeredPlayers[i])) continue;
+            registeredPlayers[i] = function(registeredPlayers[i]);
         }
     }
 
@@ -170,7 +181,20 @@ public class PlayerRegistry : Service
 
     public int IdOf(MinigamePlayer player) => registeredPlayers.Where(regPlayer => regPlayer.minigamePlayer.Equals(player)).First().id;
 
+    /// <summary>
+    /// Get a copy of the stored player data in the form of a RegisteredPlayer struct
+    /// </summary>
+    /// <param name="id">ID of the player, stored in the <see cref="MinigamePlayer"/> as <see cref="MinigamePlayer.RegistryID"/></param>
     public RegisteredPlayer GetPlayerData(int id) => registeredPlayers[id];
+
+    /// <summary>
+    /// Set the registry's data with a custom <see cref="RegisteredPlayer"/> struct. Use with caution can easily break things if wrong parameters are used. Use <see cref="PlayerRegistry.GetPlayerData(int)"/> first, change values and then reassign using <see cref="PlayerRegistry.SetPlayerData(RegisteredPlayer)"/>.
+    /// </summary>
+    /// <param name="playerData">The struct holding the data</param>
+    public void SetPlayerData(RegisteredPlayer playerData)
+    {
+        registeredPlayers[playerData.id] = playerData;
+    }
 }
 
 public struct RegisteredPlayer
