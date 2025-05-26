@@ -52,6 +52,7 @@ public class BobBombState : BobState
 
     private void BombCallback()
     {
+        Camera.main.GetComponent<PlayerCenterFollow>().ShakeCamera(1f);
         isStateRunning = false;
     }
 }

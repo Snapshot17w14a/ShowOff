@@ -31,6 +31,7 @@ public class BobStompState : BobState
         KnockBackPlayers();
         stompEffect.Play();
         IcePlatformManager.Instance.BreakBrittlePlatforms();
+        Camera.main.GetComponent<PlayerCenterFollow>().ShakeCamera(1f);
     }
 
     public override void TickState()

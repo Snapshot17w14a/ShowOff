@@ -42,6 +42,8 @@ public class BobIceState : BobState
         //Set up ChargeUp state
         state = IceState.ChargeUp;
         chargeUpEffect.Play();
+
+        
     }
 
     public override void TickState()
@@ -90,6 +92,8 @@ public class BobIceState : BobState
             state = IceState.Firing;
             chargeUpEffect.Stop();
             beamEffect.Play();
+
+            Camera.main.GetComponent<PlayerCenterFollow>().ShakeCamera(attackSeconds);
 
             instantiatedHitEffect = GameObject.Instantiate(hitEffect);
         }
