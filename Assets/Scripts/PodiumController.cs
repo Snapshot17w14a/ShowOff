@@ -19,7 +19,9 @@ public class PodiumController : MonoBehaviour
         }
 
         var parentPos = transform.position;
-        parentPos.x = 0.5f * playerCount + spacing * (playerCount - 1) / 2f;
+        parentPos.x = 0.5f * playerCount + spacing * Mathf.Max(playerCount - 1, 0) / 2f;
+
+        PlayerPrefs.SetInt("DoPodium", 0);
     }
 
     private Podium CreatePodium(int index)
