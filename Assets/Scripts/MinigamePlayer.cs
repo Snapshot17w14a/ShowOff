@@ -94,6 +94,11 @@ public class MinigamePlayer : MonoBehaviour
         if (isDashAvailable && !isStunned && !isFlying) Dash();
     }
 
+    private void OnPause()
+    {
+        ServiceLocator.GetService<PauseManager>().TogglePause(RegistryID);
+    }
+
     public void StunPlayer(float seconds)
     {
         StartCoroutine(StunRoutine(seconds));

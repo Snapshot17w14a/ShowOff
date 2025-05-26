@@ -28,5 +28,8 @@ public class ServiceConfig : ScriptableObject
 
         ScoreRegistry scoreRegistry = new();
         ServiceLocator.RegisterService(scoreRegistry);
+
+        PauseManager pauseManager = new();
+        ServiceLocator.RegisterService(pauseManager);
     }
 }
