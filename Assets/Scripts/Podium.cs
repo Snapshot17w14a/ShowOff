@@ -1,21 +1,26 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class Podium : MonoBehaviour
 {
     [HideInInspector] public MinigamePlayer player;
 
-    [SerializeField] private TextMeshPro scoreText;
     [SerializeField] private float maxHeight;
 
-    public static int HighestScore = 0;
+    public static int highestScore = 0;
+    public static PodiumController controller;
 
+    private TextMeshPro scoreText;
     private int podiumScoreLimit;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Initialize()
     {
         podiumScoreLimit = ServiceLocator.GetService<ScoreRegistry>().ScoreOfPlayer(player);
+        player.transform.rotation = Quaternion.Euler(0, 180f, 0);
+        SetPlayerInteraction(false);
+
+        scoreText = controller.CreateScoreText().GetComponent<TextMeshPro>();
     }
 
     public void UpdateScaleAndPosition(int score)
@@ -24,11 +29,30 @@ public class Podium : MonoBehaviour
 
         scoreText.text = score.ToString();
 
-        var height = Mathf.Lerp(0, maxHeight, score / (float)HighestScore);
+        var height = Mathf.Lerp(0, maxHeight, score / (float)highestScore);
         height = score == 0 ? 0 : height;
         transform.localScale = new Vector3(1, height, 1);
 
         var localPos = transform.localPosition;
         transform.localPosition = new Vector3(localPos.x, transform.localScale.y / 2f, localPos.z);
+
+        scoreText.transform.position = transform.position + new Vector3(0, transform.localScale.y / 2f, -0.6f);
+
+        player.transform.position = transform.position + new Vector3(0, (transform.localScale.y / 2f) + 0.5f, 0);
+    }
+
+    public void SetPlayerInteraction(bool state)
+    {
+        player.GetComponent<Rigidbody>().isKinematic = !state;
+        var input = player.GetComponent<PlayerInput>();
+
+        if (state) input.ActivateInput();
+        else input.DeactivateInput();
+    }
+
+    public void CleanUp()
+    {
+        Destroy(scoreText.gameObject);
+        SetPlayerInteraction(true);
     }
 }

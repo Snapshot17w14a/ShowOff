@@ -75,7 +75,7 @@ public class PlayerRegistry : Service
         //If the player already has a GameObject in the scene log an error
         if (playerToInstantiate.minigamePlayer != null)
         {
-            Debug.LogError("Player is already instantiated");
+            Debug.LogWarning("Player is already instantiated");
             return null;
         }
 

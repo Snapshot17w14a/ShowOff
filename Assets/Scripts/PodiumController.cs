@@ -4,8 +4,10 @@ using UnityEngine;
 public class PodiumController : MonoBehaviour
 {
     [SerializeField] private GameObject podiumPrefab;
-    [SerializeField] private float spacing;
+    [SerializeField] private GameObject scoreTextPrefab;
+    [SerializeField] private Transform scoreTextParent;
 
+    [SerializeField] private float spacing;
     [SerializeField] private int scorePerSecond;
 
     private int currentScore;
@@ -21,7 +23,8 @@ public class PodiumController : MonoBehaviour
 
         //Get the highest score from the ScoreRegistry
         PlayerScore highestScore = ServiceLocator.GetService<ScoreRegistry>().HighestScore;
-        Podium.HighestScore = highestScore.score;
+        Podium.highestScore = highestScore.score;
+        Podium.controller = this;
 
         //Reset all winner flags to false
         registry.ExecuteForEachPlayerData(data =>
@@ -41,6 +44,7 @@ public class PodiumController : MonoBehaviour
         for (int i = 0; i < playerCount; i++)
         {
             var podium = CreatePodium(i, registry);
+            podium.Initialize();
             podiums[i] = podium;
         }
 
@@ -83,6 +87,19 @@ public class PodiumController : MonoBehaviour
             yield return waitCondition;
         }
 
-        Podium.HighestScore = -1;
+        foreach (var podium in podiums) podium.SetPlayerInteraction(true);
+
+        Podium.highestScore = -1;
+    }
+
+    public GameObject CreateScoreText()
+    {
+        var scoreText = Instantiate(scoreTextPrefab, scoreTextParent);
+        return scoreText;
+    }
+
+    public void CleanUp()
+    {
+        foreach (var podium in podiums) podium.CleanUp();
     }
 }

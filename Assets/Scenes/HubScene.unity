@@ -1766,6 +1766,7 @@ GameObject:
   - component: {fileID: 552439408}
   - component: {fileID: 552439407}
   - component: {fileID: 552439406}
+  - component: {fileID: 552439409}
   m_Layer: 0
   m_Name: Cloud
   m_TagString: Untagged
@@ -1841,6 +1842,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1955875612}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!64 &552439409
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552439405}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -462981019419857548, guid: 7940d0cdfea11734da755b4f5298ee16, type: 3}
 --- !u!1 &632472410
 GameObject:
   m_ObjectHideFlags: 0
@@ -3575,8 +3598,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   podiumPrefab: {fileID: 995742127709945014, guid: a5ca5bb964fb4044c91fbb70c268979e, type: 3}
+  scoreTextPrefab: {fileID: 0}
+  scoreTextParent: {fileID: 0}
   spacing: 0.25
-  scorePerSecond: 1
+  scorePerSecond: 2
 --- !u!1 &1088407344
 GameObject:
   m_ObjectHideFlags: 0
@@ -6332,6 +6357,7 @@ Transform:
   - {fileID: 1078915039}
   - {fileID: 1645914232}
   - {fileID: 552439408}
+  - {fileID: 1987283688}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1956750801
@@ -6550,6 +6576,37 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 5b835aa5932fced44a034e6d9863f26d, type: 3}
+--- !u!1 &1987283687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1987283688}
+  m_Layer: 0
+  m_Name: ScoreTexts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1987283688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987283687}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1955875612}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2015591507
 GameObject:
   m_ObjectHideFlags: 0
