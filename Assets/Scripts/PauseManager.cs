@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : Service
 {
@@ -15,7 +16,7 @@ public class PauseManager : Service
 
     public void TogglePause(int playerId)
     {
-        if (!isPaused)
+        if (!isPaused && SceneManager.GetActiveScene() != SceneManager.GetSceneByName("HubScene"))
         {
             Time.timeScale = 0f;
             isPaused = true;
@@ -33,5 +34,11 @@ public class PauseManager : Service
         {
             Debug.Log("You can't pause");
         }
+    }
+
+    public void SetIsPaused()
+    {
+        Time.timeScale = 1f;
+        isPaused = !isPaused;
     }
 }
