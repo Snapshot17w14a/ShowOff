@@ -1858,6 +1858,7 @@ GameObject:
   - component: {fileID: 552439408}
   - component: {fileID: 552439407}
   - component: {fileID: 552439406}
+  - component: {fileID: 552439409}
   m_Layer: 0
   m_Name: Cloud
   m_TagString: Untagged
@@ -1933,6 +1934,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1955875612}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!64 &552439409
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552439405}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -462981019419857548, guid: 7940d0cdfea11734da755b4f5298ee16, type: 3}
 --- !u!1 &632472410
 GameObject:
   m_ObjectHideFlags: 0
@@ -7851,5 +7874,5 @@ SceneRoots:
   - {fileID: 529830770}
   - {fileID: 1809726264}
   - {fileID: 1955875612}
-  - {fileID: 318194415}
   - {fileID: 857793417}
+  - {fileID: 318194415}

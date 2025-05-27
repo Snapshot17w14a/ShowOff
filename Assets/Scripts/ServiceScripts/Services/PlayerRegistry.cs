@@ -35,6 +35,8 @@ public class PlayerRegistry : Service
         maxPlayers = playerInputManager == null ? 8 : playerInputManager.maxPlayerCount;
         availableIDs = new(maxPlayers);
         registeredPlayers = new RegisteredPlayer[maxPlayers];
+
+        for (int i = maxPlayers - 1; i >= 0; i--) availableIDs.Push(i);
     }
 
     /// <summary>
