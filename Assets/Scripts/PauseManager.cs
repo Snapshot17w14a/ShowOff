@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class PauseManager : Service
 {
+    public Action<bool> OnPaused;
     public bool isPaused { get; private set; } = false;
 
     private int pausedByPlayerId = -1;
@@ -17,12 +19,14 @@ public class PauseManager : Service
         {
             Time.timeScale = 0f;
             isPaused = true;
+            OnPaused?.Invoke(true);
             pausedByPlayerId = playerId;
         }
         else if (playerId == pausedByPlayerId)
         {
             Time.timeScale = 1f;
             isPaused = false;
+            OnPaused?.Invoke(false);
             pausedByPlayerId = -1;
         }
         else
@@ -30,8 +34,4 @@ public class PauseManager : Service
             Debug.Log("You can't pause");
         }
     }
-
-    public int GetPausedByPlayerId() => pausedByPlayerId;
-
-
 }
