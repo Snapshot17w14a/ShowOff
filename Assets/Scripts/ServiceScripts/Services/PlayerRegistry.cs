@@ -12,6 +12,8 @@ public class PlayerRegistry : Service
     private readonly List<InputDevice> usedInputDevices = new();
     private RegisteredPlayer[] registeredPlayers;
 
+    private Stack<int> availableIDs;
+
     private int players = 0;
     private int maxPlayers = 0;
 
@@ -19,14 +21,9 @@ public class PlayerRegistry : Service
 
     public int RegisteredPlayerCount => players;
     public int MaxPlayers => maxPlayers;
-    public /*MinigamePlayer[]*/RegisteredPlayer[] AllPlayers
+    public RegisteredPlayer[] AllPlayers
     {
         get => registeredPlayers;
-        //{
-        //    MinigamePlayer[] playersArray = new MinigamePlayer[maxPlayers];
-        //    for (int i = 0; i < playersArray.Length; i++) playersArray[i] = registeredPlayers[i].minigamePlayer;
-        //    return playersArray;
-        //}
     }
 
     public event Action<MinigamePlayer> OnPlayerSpawn;
@@ -35,7 +32,8 @@ public class PlayerRegistry : Service
     {
         var playerInputManager = GameObject.FindFirstObjectByType<PlayerInputManager>();
 
-        maxPlayers = playerInputManager == null ? 8 : playerInputManager.maxPlayerCount; 
+        maxPlayers = playerInputManager == null ? 8 : playerInputManager.maxPlayerCount;
+        availableIDs = new(maxPlayers);
         registeredPlayers = new RegisteredPlayer[maxPlayers];
     }
 
@@ -48,17 +46,20 @@ public class PlayerRegistry : Service
     {
         if (controlScheme == "") controlScheme = ControlSchemeForDevice(device);
 
+        //Get the next available id
+        var id = availableIDs.Pop();
+
         //Create a RegisteredPlayer struct to hold the player's device, id and the reference to its GameObject if it exists
         var regPlayer = new RegisteredPlayer()
         {
             device = device,
-            id = players,
-            minigamePlayer = instantiatePlayer ? CreatePlayer(device, players, controlScheme) : null,
+            id = id,
+            minigamePlayer = instantiatePlayer ? CreatePlayer(device, id, controlScheme) : null,
             controlScheme = controlScheme
         };
 
         //Add it to the array and increment the number of players
-        registeredPlayers[regPlayer.id] = regPlayer;
+        registeredPlayers[id] = regPlayer;
         players++;
 
         return regPlayer.minigamePlayer;
@@ -206,12 +207,12 @@ public class PlayerRegistry : Service
         //Push the id of the disconnected player to allow it to he used again
         availableIDs.Push(id);
 
+        //Decrement the player amount
+        players--;
+
         //Reset the values so IsNull returns true
         regPlayer.id = 0;
         regPlayer.device = null;
-
-        //Decrement the player amount
-        players--;
 
         //Reassign the data to the registry;
         registeredPlayers[id] = regPlayer;

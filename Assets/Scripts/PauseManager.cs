@@ -9,9 +9,12 @@ public class PauseManager : Service
 
     private int pausedByPlayerId = -1;
 
+    private string currentSceneName;
+
     public override void InitializeService()
     {
-
+        SceneManager.sceneLoaded += (scene, mode) => currentSceneName = scene.name;
+        currentSceneName = SceneManager.GetActiveScene().name;
     }
 
     public void TogglePause(int playerId)
