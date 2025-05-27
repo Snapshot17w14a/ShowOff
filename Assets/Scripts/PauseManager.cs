@@ -16,6 +16,12 @@ public class PauseManager : Service
 
     public void TogglePause(int playerId)
     {
+        if (currentSceneName == "HubScene")
+        {
+            ServiceLocator.GetService<PlayerRegistry>().DisconnectUser(playerId);
+            return;
+        }
+
         if (!isPaused && SceneManager.GetActiveScene() != SceneManager.GetSceneByName("HubScene"))
         {
             Time.timeScale = 0f;

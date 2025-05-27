@@ -179,6 +179,44 @@ public class PlayerRegistry : Service
         return "";
     }
 
+    /// <summary>
+    /// Disconnect a user, and free up the device associated with it
+    /// </summary>
+    /// <param name="id">ID of the user in the registry</param>
+    public void DisconnectUser(int id)
+    {
+        Debug.Log("Disconnecting user with id: " + id);
+
+        //Get a copy of the player data
+        var regPlayer = registeredPlayers[id];
+
+        //If the player has a gameobject in the scene destroy it
+        if (regPlayer.minigamePlayer != null) GameObject.Destroy(regPlayer.minigamePlayer.gameObject);
+
+        //Remove the device from the list of used devices to allow it to join again
+        usedInputDevices.Remove(regPlayer.device);
+
+        //Decrement the keyboardPlayers amount and add back the bindings to the auto join to allow them to join again
+        if (regPlayer.device == Keyboard.current)
+        {
+            keyboardPlayers--;
+            ServiceLocator.GetService<PlayerAutoJoin>().AddBackKeyboardBindings(regPlayer.controlScheme);
+        }
+
+        //Push the id of the disconnected player to allow it to he used again
+        availableIDs.Push(id);
+
+        //Reset the values so IsNull returns true
+        regPlayer.id = 0;
+        regPlayer.device = null;
+
+        //Decrement the player amount
+        players--;
+
+        //Reassign the data to the registry;
+        registeredPlayers[id] = regPlayer;
+    }
+
     public int IdOf(MinigamePlayer player) => registeredPlayers.Where(regPlayer => regPlayer.minigamePlayer.Equals(player)).First().id;
 
     /// <summary>

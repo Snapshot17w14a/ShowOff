@@ -4,9 +4,8 @@ using UnityEngine.VFX;
 
 public class IcePlatform : MonoBehaviour
 {
-    [SerializeField] private Color solidColor;
-    [SerializeField] private Color brittleColor;
-    [SerializeField] private Color waterColor;
+    [SerializeField] private Material solidMaterial;
+    [SerializeField] private Material brittleMaterial;
 
     [SerializeField] private float sinkTime = 1f;
     [SerializeField] private float freezeTime = 1f;
@@ -51,7 +50,7 @@ public class IcePlatform : MonoBehaviour
         meshCollider.enabled = true;
         meshRenderer.enabled = true;
 
-        meshRenderer.material.color = solidColor;
+        meshRenderer.material = solidMaterial;
 
         IsBrittle = false;
     }
@@ -59,7 +58,7 @@ public class IcePlatform : MonoBehaviour
     public void SetBrittle()
     {
         IsBrittle = true;
-        meshRenderer.material.color = brittleColor;
+        meshRenderer.material = brittleMaterial;
     }
 
     public void BreakIfBrittle()

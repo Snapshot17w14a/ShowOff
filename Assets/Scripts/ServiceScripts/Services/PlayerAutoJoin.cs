@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
 
@@ -34,6 +32,8 @@ public class PlayerAutoJoin : Service
 
     private InputAction joinAction;
 
+    private readonly Dictionary<string, InputBinding[]> removedKeyboardBindings = new(2);
+
     public override void InitializeService()
     {
         //Create a list to store all binding used to interact with the players
@@ -51,7 +51,7 @@ public class PlayerAutoJoin : Service
             bindings.Add(currentBindingString);
         }
 
-        //Create an InputAction that will hold the binding to listen for
+        //Create an InputAction that will hold the bindings to listen for
         joinAction = new(
             name: "JoinAction",
             binding: "",
@@ -67,6 +67,20 @@ public class PlayerAutoJoin : Service
 
         //Enable the action to listen for inputs
         AllowJoining = true;
+    }
+
+    /// <summary>
+    /// Add the bindings back to the join action so that a disconnected keyboard user can join again
+    /// </summary>
+    /// <param name="bindingGroup">The control scheme of the keyboard bindings</param>
+    /// <returns>Wether the operation was successful</returns>
+    public bool AddBackKeyboardBindings(string bindingGroup)
+    {
+        if (!removedKeyboardBindings.ContainsKey(bindingGroup)) return false;
+
+        foreach (var binding in removedKeyboardBindings[bindingGroup]) joinAction.AddBinding(binding);
+
+        return true;
     }
 
     //Check wether the device performing the action is already assigned with a player, if not create a new player,
@@ -109,6 +123,8 @@ public class PlayerAutoJoin : Service
 
         //Create a list of all the bindings' effective paths to be removed, this makes it easy to compare with the inputAction bindings
         List<string> bindingsToRemove = new();
+        List<InputBinding> removedBindings = new();
+
         foreach (var binding in inputActions.FindActionMap("Player").bindings)
         {
             if (binding.groups == bindingGroup || binding.groups == ';' + bindingGroup) bindingsToRemove.Add(binding.effectivePath);
@@ -119,15 +135,19 @@ public class PlayerAutoJoin : Service
         {
             if (bindingsToRemove.Contains(joinAction.bindings[i].effectivePath))
             {
+                removedBindings.Add(joinAction.bindings[i]);
                 joinAction.ChangeBinding(i).Erase();
             }
         }
+
+        //Store the removed keyboard bindings so we can add it back when a keyboard player leaves
+        if (!removedKeyboardBindings.ContainsKey(bindingGroup)) removedKeyboardBindings.Add(bindingGroup, removedBindings.ToArray());      
 
         //Return the group (control scheme) of the binding
         return bindingGroup;
     }
 
-    string GetGroupForBinding(InputBinding binding)
+    private string GetGroupForBinding(InputBinding binding)
     {
         //Check each binding, if one matches return its group (control scheme)
         foreach (var currentBinding in inputActions.FindActionMap("Player").bindings)
@@ -142,5 +162,4 @@ public class PlayerAutoJoin : Service
         Debug.LogError("Binding group was not found for binding!");
         return null;
     }
-
 }
