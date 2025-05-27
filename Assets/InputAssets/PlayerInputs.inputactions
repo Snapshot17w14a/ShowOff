@@ -299,7 +299,7 @@
                 {
                     "name": "",
                     "id": "423af475-a07a-4053-8d7a-67804deb0adb",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/0",
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardRight",
