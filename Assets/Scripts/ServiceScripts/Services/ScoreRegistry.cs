@@ -50,6 +50,7 @@ public class ScoreRegistry : Service
         {
             int highestScore = 0;
             int highestScoreId = 0;
+            bool isUnique = true;
 
             foreach (var score in playerScores)
             {
@@ -57,10 +58,12 @@ public class ScoreRegistry : Service
                 {
                     highestScore = score.Value;
                     highestScoreId = score.Key;
+                    isUnique = true;
                 }
+                else if (score.Value == highestScore) isUnique = false;
             }
 
-                return new PlayerScore(highestScoreId, highestScore);
+            return new PlayerScore(highestScoreId, highestScore) { isUnique = isUnique };
         }
     }
 
@@ -73,8 +76,10 @@ public struct PlayerScore
     {
         this.id = id;
         this.score = score;
+        isUnique = true;
     }
 
     public int id;
     public int score;
+    public bool isUnique;
 }

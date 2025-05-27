@@ -38,12 +38,15 @@ public class PodiumController : MonoBehaviour
         {
             data.isLastWinner = false;
             return data;
-        }); 
+        });
 
         //Set the winner's data to have winner as true
-        var winnerData = registry.GetPlayerData(highestScore.id);
-        winnerData.isLastWinner = true;
-        registry.SetPlayerData(winnerData);
+        if (highestScore.isUnique) 
+        {
+            var winnerData = registry.GetPlayerData(highestScore.id);
+            winnerData.isLastWinner = true;
+            registry.SetPlayerData(winnerData);
+        }
 
         podiums = new Podium[playerCount];
 
