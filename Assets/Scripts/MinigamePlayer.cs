@@ -37,6 +37,7 @@ public class MinigamePlayer : MonoBehaviour
     [SerializeField] private VisualEffect walkEffect;
     [SerializeField] private VisualEffect dashEffect;
     [SerializeField] private VisualEffect stunEffect;
+    [SerializeField] private Material gold;
 
     private bool isDashAvailable = true;
     private float dashTimer = 0f;
@@ -195,6 +196,18 @@ public class MinigamePlayer : MonoBehaviour
         yield return null;
     }
 
+    public void ChangeSkin()
+    {
+        RegisteredPlayer data = ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(RegistryID);
+
+        if (data.isLastWinner)
+        {
+            SetPlayerColor(Color.yellow, RegistryID);
+            MeshRenderer renderer = GetComponent<MeshRenderer>();
+            renderer.material = gold;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("DeathBarrier"))
@@ -220,7 +233,7 @@ public class MinigamePlayer : MonoBehaviour
             {
                 otherTreasure.DropTreasureRandom();
             }
-            else if(otherTreasure != null && otherTreasure.IsHoldingItem)
+            else if (otherTreasure != null && otherTreasure.IsHoldingItem)
             {
                 otherTreasure.DropTreasureInstant();
                 TreasureInteraction.CollectTreasureDirect();

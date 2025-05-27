@@ -17,6 +17,11 @@ public class PlayerDistributor : MonoBehaviour
         {
             if (RegisteredPlayer.IsNull(player)) continue;
 
+            if(player.isLastWinner)
+            {
+                player.minigamePlayer.ChangeSkin();
+            }
+
             var minigamePlayer = player.minigamePlayer;
             minigamePlayer.transform.position = new Vector3(Mathf.Cos(t * Tau), 1, Mathf.Sin(t * Tau)) * radius;
 

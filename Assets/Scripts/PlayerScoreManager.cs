@@ -38,13 +38,10 @@ public class PlayerScoreManager : MonoBehaviour
     {
         PlayerScoreUI playerScore = Instantiate(scorePrefab, scoreParent);
 
-        //Changing the material of the winner penguin
+        //Changing the UI frame of the winner penguin
         RegisteredPlayer data = ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(player.RegistryID);
         if(data.isLastWinner)
         {
-            player.SetPlayerColor(Color.yellow, player.RegistryID);
-            MeshRenderer renderer = player.GetComponent<MeshRenderer>();
-            renderer.material = gold;
             playerScore.goldenPenguinFrame.gameObject.SetActive(true);
         }
 

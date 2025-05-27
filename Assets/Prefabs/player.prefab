@@ -1197,6 +1197,7 @@ MonoBehaviour:
   walkEffect: {fileID: 8682700338727768244}
   dashEffect: {fileID: 7455305759139401211}
   stunEffect: {fileID: 8779098865699672147}
+  gold: {fileID: 2100000, guid: f5f0b6068676eb34bb58f4ba8fc35cb0, type: 2}
   playerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &7865321752991679214
 MonoBehaviour:
