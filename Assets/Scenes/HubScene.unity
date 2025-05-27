@@ -1273,7 +1273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleState: {fileID: 857793416}
   handler: {fileID: 529830769}
-  maxIdleTime: 2
+  maxIdleTime: 30
 --- !u!1 &430605195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2923,6 +2923,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   idleVideoPlayer: {fileID: 2078343944}
+  clips:
+  - {fileID: 32900000, guid: a10eb6e28275d4748b8098491c7a6329, type: 3}
+  - {fileID: 32900000, guid: 400e7de78b80f5f4389e42fa19fb1242, type: 3}
+  - {fileID: 32900000, guid: d4e0cddc5326ad54a827d060ac85662c, type: 3}
+  - {fileID: 32900000, guid: 81ed0f16ce8d9ab47befa0d5935cd74d, type: 3}
 --- !u!4 &857793417
 Transform:
   m_ObjectHideFlags: 0
@@ -7115,14 +7120,12 @@ VideoPlayer:
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 1

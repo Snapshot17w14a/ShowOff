@@ -40,7 +40,7 @@ public class Podium : MonoBehaviour
 
         scoreText.transform.position = transform.position + new Vector3(0, transform.localScale.y / 2f - 0.2f, -0.6f);
 
-        player.transform.position = transform.position + new Vector3(0, (transform.localScale.y / 2f), 0);
+        player.transform.position = transform.position + new Vector3(0, (transform.localScale.y / 2f) + 0.6f, 0);
     }
 
     public void SetPlayerInteraction(bool state)
