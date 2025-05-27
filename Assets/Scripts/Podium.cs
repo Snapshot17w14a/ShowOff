@@ -38,7 +38,7 @@ public class Podium : MonoBehaviour
 
         scoreText.transform.position = transform.position + new Vector3(0, transform.localScale.y / 2f, -0.6f);
 
-        player.transform.position = transform.position + new Vector3(0, (transform.localScale.y / 2f) + 0.5f, 0);
+        player.transform.position = transform.position + new Vector3(0, (transform.localScale.y / 2f), 0);
     }
 
     public void SetPlayerInteraction(bool state)
@@ -53,6 +53,5 @@ public class Podium : MonoBehaviour
     public void CleanUp()
     {
         Destroy(scoreText.gameObject);
-        SetPlayerInteraction(true);
     }
 }

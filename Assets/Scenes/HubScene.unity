@@ -3598,8 +3598,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   podiumPrefab: {fileID: 995742127709945014, guid: a5ca5bb964fb4044c91fbb70c268979e, type: 3}
-  scoreTextPrefab: {fileID: 0}
-  scoreTextParent: {fileID: 0}
+  scoreTextPrefab: {fileID: 2717158754920824641, guid: 9fbc23fc1cca83b4999ebcb6c42213fc, type: 3}
+  scoreTextParent: {fileID: 1987283688}
   spacing: 0.25
   scorePerSecond: 2
 --- !u!1 &1088407344
@@ -6337,7 +6337,19 @@ MonoBehaviour:
         m_CallState: 2
   onStateUnloaded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1078915040}
+        m_TargetAssemblyTypeName: PodiumController, Assembly-CSharp
+        m_MethodName: CleanUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onStateTick:
     m_PersistentCalls:
       m_Calls: []
