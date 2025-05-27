@@ -22,6 +22,7 @@ public class PauseManager : Service
             isPaused = true;
             OnPaused?.Invoke(true);
             pausedByPlayerId = playerId;
+            ServiceLocator.GetService<PlayerAutoJoin>().AllowJoining = false;
         }
         else if (playerId == pausedByPlayerId)
         {
@@ -29,6 +30,8 @@ public class PauseManager : Service
             isPaused = false;
             OnPaused?.Invoke(false);
             pausedByPlayerId = -1;
+            ServiceLocator.GetService<PlayerAutoJoin>().AllowJoining = false;
+
         }
         else
         {
@@ -39,6 +42,8 @@ public class PauseManager : Service
     public void SetIsPaused()
     {
         Time.timeScale = 1f;
+        OnPaused?.Invoke(false);
+        ServiceLocator.GetService<PlayerAutoJoin>().AllowJoining = false;
         isPaused = !isPaused;
     }
 }
