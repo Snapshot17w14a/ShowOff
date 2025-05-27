@@ -20,6 +20,8 @@ public class Podium : MonoBehaviour
         player.transform.rotation = Quaternion.Euler(0, 180f, 0);
         SetPlayerInteraction(false);
 
+        GetComponent<MeshRenderer>().material.color = player.GetComponent<MeshRenderer>().material.color;
+
         scoreText = controller.CreateScoreText().GetComponent<TextMeshPro>();
     }
 
@@ -36,7 +38,7 @@ public class Podium : MonoBehaviour
         var localPos = transform.localPosition;
         transform.localPosition = new Vector3(localPos.x, transform.localScale.y / 2f, localPos.z);
 
-        scoreText.transform.position = transform.position + new Vector3(0, transform.localScale.y / 2f, -0.6f);
+        scoreText.transform.position = transform.position + new Vector3(0, transform.localScale.y / 2f - 0.2f, -0.6f);
 
         player.transform.position = transform.position + new Vector3(0, (transform.localScale.y / 2f), 0);
     }

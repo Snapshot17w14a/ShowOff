@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PodiumController : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class PodiumController : MonoBehaviour
     [SerializeField] private float spacing;
     [SerializeField] private int scorePerSecond;
 
+    public UnityEvent OnCountStart;
+    public UnityEvent OnCountEnd;
+
     private int currentScore;
     private int targetScore;
 
@@ -17,6 +21,9 @@ public class PodiumController : MonoBehaviour
 
     public void StartPodiumSequence()
     {
+        //Reset the podium flag in the PlayerPrefs
+        PlayerPrefs.SetInt("DoPodium", 0);
+
         //Get a referene to the PlayerRegistry and get player count
         var registry = ServiceLocator.GetService<PlayerRegistry>();
         int playerCount = registry.RegisteredPlayerCount;
@@ -53,12 +60,10 @@ public class PodiumController : MonoBehaviour
         parentPos.x = -((playerCount + spacing * Mathf.Max(playerCount - 1, 0)) / 2f);
         transform.position = parentPos;
 
-        //Reset the podium flag in the PlayerPrefs
-        PlayerPrefs.SetInt("DoPodium", 0);
-
         //Set up the Animation and start it
         targetScore = highestScore.score;
         currentScore = 0;
+        OnCountStart?.Invoke();
         StartCoroutine(AnimatePodiums(new WaitForSeconds(1 / (float)scorePerSecond)));
     }
 
@@ -86,6 +91,8 @@ public class PodiumController : MonoBehaviour
 
             yield return waitCondition;
         }
+        
+        OnCountEnd?.Invoke();
 
         foreach (var podium in podiums) podium.SetPlayerInteraction(true);
 
