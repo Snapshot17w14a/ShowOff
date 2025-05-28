@@ -1609,27 +1609,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121f16eab83016246858e6d5d353e217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClips:
-  - name: Attack
-    clip: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
+  audioGroups:
+  - soundType: 0
+    audioClips:
+    - name: 
+      clip: {fileID: 0}
+    - name: 
+      clip: {fileID: 0}
+  - soundType: 0
+    audioClips:
+    - name: 
+      clip: {fileID: 0}
+    - name: 
+      clip: {fileID: 0}
 --- !u!4 &423439503
 Transform:
   m_ObjectHideFlags: 0
@@ -6605,7 +6597,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1758826603}
   m_HandleRect: {fileID: 1758826602}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
