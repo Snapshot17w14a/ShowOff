@@ -2,18 +2,32 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ESoundType
+{
+    Bob,
+    Penguin,
+}
+
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
     [Serializable]
-    public class NameOfAudioClip
+    public class ClipEntry
     {
         public string name;
         public AudioClip clip;
     }
 
-    [SerializeField] private List<NameOfAudioClip> audioClips;
+    [Serializable]
+    public class NameOfAudioClip
+    {
+        public ESoundType soundType;
+        [SerializeField] private List<ClipEntry> audioClips;
+    }
+
+    [SerializeField] private List<NameOfAudioClip> audioGroups;
 
     private Dictionary<string, AudioClip> sounds = new Dictionary<string, AudioClip>();
     private AudioSource audioSource;
@@ -29,7 +43,7 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        foreach (var audioClip in audioClips)
+/*        foreach (var audioClip in audioClips)
         {
             if (!sounds.ContainsKey(audioClip.name))
             {
@@ -39,7 +53,7 @@ public class AudioManager : MonoBehaviour
             {
                 Debug.LogError($"Duplicated clip {audioClip.name}");
             }
-        }
+        }*/
     }
 
     public static void PlaySound(string name, float volume = 1f)
