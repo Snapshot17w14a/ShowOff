@@ -1,11 +1,12 @@
-using System.Collections.Generic;
-using System.Collections;
-using UnityEngine.Events;
-using System.Reflection;
-using UnityEngine.VFX;
-using System.Linq;
-using UnityEngine;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.VFX;
+using static BobAttackPattern;
 
 public class Bob : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class Bob : MonoBehaviour
     private WaitWhile waitForStateExecution;
     private Coroutine attackRoutine;
     private BobState currentState;
+
+    [Header("Attack Pattern")]
+    [SerializeField] private BobAttackPattern attackPattern;
+    [SerializeField] private bool loopPattern = true;
 
     [Header("Bomb state settings")]
     [SerializeField] private GameObject bombPrefab;
@@ -95,11 +100,20 @@ public class Bob : MonoBehaviour
         onStateChange?.Invoke();
     }
 
+    private void LoadState(Type type, params object[] parameters)
+    {
+        currentState?.UnloadState();
+        currentState = states[type];
+        currentState.LoadState(parameters);
+        onStateChange?.Invoke();
+    }
+
     //Stop the previous coroutine, start a new coroutine and keep a reference to the handle
     public void StartAttack()
     {
         if (attackRoutine != null) StopAttack();
-        attackRoutine = StartCoroutine(AttackPattern(StartAttack));
+        //attackRoutine = StartCoroutine(AttackPattern(StartAttack));
+        attackRoutine = StartCoroutine(TestPatternFetcher(StartAttack));
     }
 
     //Stop the coroutine using the currently stored coroutine handle
@@ -148,4 +162,37 @@ public class Bob : MonoBehaviour
         //Restart the coroutine
         callback.Invoke();
     }
+
+    private IEnumerator TestPatternFetcher(Action callback)
+    {
+        for (int i = 0; i < attackPattern.StateCount; i++)
+        {
+            var nextState = attackPattern.NextState();
+            Type type = MapContainerToType(nextState);
+
+            if (nextState.State == BobStates.Idle) LoadState(type, nextState.time);
+            else if (nextState.State == BobStates.HeavyStomp || nextState.State == BobStates.SpruceBomb)
+            {
+                if (IcePlatformManager.Instance.BrittlePlatformCount >= minBrittleRequirement) LoadState<BobStompState>();
+                else LoadState<BobBombState>();
+            }
+            else LoadState(type);
+
+            yield return waitForStateExecution;
+        }
+
+        if (loopPattern) callback.Invoke();
+    }
+
+    private Type MapContainerToType(BobAttackContainer container) => container.State switch
+    {
+        BobStates.Idle => typeof(BobIdleState),
+        BobStates.IceBeam => typeof(BobIceState),
+        BobStates.TailBurst => typeof(BobTailState),
+        BobStates.SpruceBomb => typeof(BobBombState),
+        BobStates.HeavyStomp => typeof(BobStompState),
+        //BobStates.Star
+        //BobStates.BobsRage
+        _ => null
+    };
 }
