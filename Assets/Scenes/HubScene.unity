@@ -2338,7 +2338,12 @@ MonoBehaviour:
         Easing: 1
     - m_Index: 2
       m_Value:
-        LookAt: {fileID: 2015591510}
+        LookAt: {fileID: 275034431}
+        Offset: {x: 0, y: 0, z: 0}
+        Easing: 1
+    - m_Index: 2
+      m_Value:
+        LookAt: {fileID: 275034431}
         Offset: {x: 0, y: 0, z: 0}
         Easing: 1
 --- !u!1001 &714753371
@@ -5599,39 +5604,57 @@ MonoBehaviour:
       TangentIn:
         x: 0
         y: 0
-        z: -1.1872582
+        z: -1.1097685
       TangentOut:
         x: 0
         y: 0
-        z: 1.1872582
+        z: 1.1097685
       Rotation:
         value:
-          x: 0.128256
-          y: -0.008946325
-          z: 0.06900708
-          w: 0.98929685
+          x: 0.12368856
+          y: 0.0026006624
+          z: 0.07051742
+          w: 0.98980886
     - Position:
-        x: 0
+        x: 0.15
         y: -1.0484493
         z: 6.7809105
       TangentIn:
         x: 0
         y: 0
-        z: -2.1949053
+        z: -2.478495
       TangentOut:
         x: 0
         y: 0
-        z: 2.1949053
+        z: 2.478495
       Rotation:
         value:
-          x: -0.03702166
-          y: -0.0016115155
-          z: -0.043457925
-          w: 0.9983677
+          x: -0.007863064
+          y: 0.009697604
+          z: -0.043285668
+          w: 0.99898475
     - Position:
+        x: 0.3
+        y: 0.3725543
+        z: 13.597243
+      TangentIn:
         x: 0
-        y: 0.9753616
-        z: 13.133265
+        y: 0
+        z: -1.7168533
+      TangentOut:
+        x: 0
+        y: 0
+        z: 1.7168533
+      Rotation:
+        value:
+          x: 0.10603109
+          y: 0.20442073
+          z: 0.8916409
+          w: -0.3898028
+    - Position:
+        x: 0.4565418
+        y: 2.9787233
+        z: 15.663357
       TangentIn:
         x: 0
         y: 0
@@ -5642,11 +5665,13 @@ MonoBehaviour:
         z: 0
       Rotation:
         value:
-          x: -0.065962255
-          y: -0.0000000010144409
-          z: 0.9180649
-          w: -0.39090383
+          x: 0.9954855
+          y: -1.1694326e-10
+          z: -0.014524666
+          w: 0.09379635
     m_MetaData:
+    - Mode: 2
+      Tension: 0.5
     - Mode: 2
       Tension: 0.5
     - Mode: 2
