@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public enum ESoundType
@@ -24,7 +25,7 @@ public class AudioManager : MonoBehaviour
     public class NameOfAudioClip
     {
         public ESoundType soundType;
-        [SerializeField] private List<ClipEntry> audioClips;
+        [SerializeField] public List<ClipEntry> audioClips;
     }
 
     [SerializeField] private List<NameOfAudioClip> audioGroups;
@@ -43,33 +44,42 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-/*        foreach (var audioClip in audioClips)
+        foreach (var audioClip in audioGroups)
         {
-            if (!sounds.ContainsKey(audioClip.name))
+            foreach (var entry in audioClip.audioClips)
             {
-                sounds.Add(audioClip.name, audioClip.clip);
+                if (!sounds.ContainsKey(entry.name))
+                {
+                    sounds.Add(entry.name, entry.clip);
+                }
             }
-            else
-            {
-                Debug.LogError($"Duplicated clip {audioClip.name}");
-            }
-        }*/
+        }
     }
 
-    public static void PlaySound(string name, float volume = 1f)
+    public static void PlaySound(ESoundType soundSourceType, string name, float volume = 1f)
     {
         if (Instance == null)
         {
+            Debug.LogWarning("AudioManager instance is null.");
             return;
         }
 
-        if (Instance.sounds.TryGetValue(name, out var clip))
+        var group = Instance.audioGroups.Find(g => g.soundType == soundSourceType);
+
+        if(group == null )
         {
-            Instance.audioSource.PlayOneShot(clip, volume);
+            Debug.LogError($"SoundType: {soundSourceType} does not exist!");
+            return;
         }
-        else
+
+        var clip = group.audioClips.Find(c => c.name == name);
+
+        if( clip == null )
         {
-            Debug.LogError($"Sound: {name} not found!");
+            Debug.LogError($"Sound name: {name} doesn't exist in {group}");
+            return;
         }
+
+        Instance.audioSource.PlayOneShot(clip.clip, volume);
     }
 }
