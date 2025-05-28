@@ -16,7 +16,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -139,7 +139,7 @@ Material:
     - _IceColor: {r: 0.3764706, g: 0.45490196, b: 0.627451, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 0.59607846, g: 0.79607844, b: 1, a: 0}
-    - _Tiles: {r: 15, g: 15, b: 0, a: 0}
+    - _Tiles: {r: 5, g: 5, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5751849272767910322

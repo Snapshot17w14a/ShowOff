@@ -139,7 +139,7 @@ Material:
     - _IceColor: {r: 0.37775394, g: 0.45310694, b: 0.6289307, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 0.5943395, g: 0.79716974, b: 1, a: 0}
-    - _Tiles: {r: 15, g: 15, b: 0, a: 0}
+    - _Tiles: {r: 5, g: 5, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5751849272767910322
