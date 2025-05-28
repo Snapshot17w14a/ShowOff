@@ -11,6 +11,9 @@ public class PodiumController : MonoBehaviour
     [SerializeField] private float spacing;
     [SerializeField] private int scorePerSecond;
 
+    public int ScorePerSecond => scorePerSecond;
+    public float CooldownPerScore => 1 / (float)scorePerSecond;
+
     public UnityEvent OnCountStart;
     public UnityEvent OnCountEnd;
 
@@ -67,7 +70,7 @@ public class PodiumController : MonoBehaviour
         targetScore = highestScore.score;
         currentScore = 0;
         OnCountStart?.Invoke();
-        StartCoroutine(AnimatePodiums(new WaitForSeconds(1 / (float)scorePerSecond)));
+        StartCoroutine(AnimatePodiums(new WaitForSeconds(CooldownPerScore)));
     }
 
     //Create a podium, set its position based on the index
@@ -76,6 +79,7 @@ public class PodiumController : MonoBehaviour
         var pos = new Vector3(0.5f * (index + 1) + (0.5f + spacing) * index, 0, 0);
         var podium = Instantiate(podiumPrefab, Vector3.zero, Quaternion.identity, transform).GetComponent<Podium>();
         podium.transform.localPosition = pos;
+        podium.transform.localScale = new Vector3(1, 0, 1);
         podium.player = registry.InstantiatePlayerWithId(index);
 
         return podium;

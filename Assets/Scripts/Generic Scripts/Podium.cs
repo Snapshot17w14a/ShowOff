@@ -14,6 +14,20 @@ public class Podium : MonoBehaviour
     private TextMeshPro scoreText;
     private int podiumScoreLimit;
 
+    private Vector3 startingPosition;
+    private Vector3 targetPosition;
+
+    private Vector3 startingScale;
+    private Vector3 targetScale;
+
+    private Vector3 startingPlayerPosition;
+    private Vector3 targetPlayerPosition;
+
+    private Vector3 startingTextPosition;
+    private Vector3 targetTextPosition;
+
+    private float timer;
+
     public void Initialize()
     {
         podiumScoreLimit = ServiceLocator.GetService<ScoreRegistry>().ScoreOfPlayer(player);
@@ -23,24 +37,51 @@ public class Podium : MonoBehaviour
         GetComponent<MeshRenderer>().material.color = player.GetComponent<MeshRenderer>().material.color;
 
         scoreText = controller.CreateScoreText().GetComponent<TextMeshPro>();
+
+        scoreText.transform.position = transform.position + new Vector3(0, 0, -0.6f);
+        player.transform.position = transform.position;
+    }
+
+    private void Update()
+    {
+        timer += Mathf.Clamp01(Time.deltaTime * controller.ScorePerSecond);
+
+        transform.localPosition = Vector3.Lerp(startingPosition, targetPosition, timer);
+        transform.localScale = Vector3.Lerp(startingScale, targetScale, timer);
+        player.transform.position = Vector3.Lerp(startingPlayerPosition, targetPlayerPosition, timer);
+        scoreText.transform.position = Vector3.Lerp(startingTextPosition, targetTextPosition, timer);
+
     }
 
     public void UpdateScaleAndPosition(int score)
     {
         if (score > podiumScoreLimit) return;
 
+        timer = 0;
+
         scoreText.text = score.ToString();
 
-        var height = Mathf.Lerp(0, maxHeight, score / (float)highestScore);
+        //var height = Mathf.Lerp(0, maxHeight, score / (float)highestScore);
+        var height = maxHeight * (score / (float)highestScore);
         height = score == 0 ? 0 : height;
-        transform.localScale = new Vector3(1, height, 1);
+
+        startingScale = transform.localScale;
+        targetScale = new Vector3(1, height, 1);
 
         var localPos = transform.localPosition;
-        transform.localPosition = new Vector3(localPos.x, transform.localScale.y / 2f, localPos.z);
 
-        scoreText.transform.position = transform.position + new Vector3(0, transform.localScale.y / 2f - 0.2f, -0.6f);
+        startingPosition = localPos;
+        targetPosition = new Vector3(localPos.x, targetScale.y / 2f, localPos.z);
 
-        player.transform.position = transform.position + new Vector3(0, (transform.localScale.y / 2f) + 0.6f, 0);
+        //scoreText.transform.position = transform.position + new Vector3(0, transform.localScale.y / 2f, -0.6f);
+
+        startingTextPosition = scoreText.transform.position;
+        targetTextPosition = transform.position + new Vector3(0, targetScale.y / 2f, -0.6f);
+
+        //player.transform.position = transform.position + new Vector3(0, (transform.localScale.y / 2f) + 0.6f, 0);
+
+        startingPlayerPosition = player.transform.position;
+        targetPlayerPosition = transform.position + new Vector3(0, (targetScale.y / 2f) + 0.25f, 0);
     }
 
     public void SetPlayerInteraction(bool state)
