@@ -7384,10 +7384,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
   - {fileID: 11400000, guid: 54ea6353847f64645874006ed2d3e964, type: 2}
   - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
-  - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
   - {fileID: 11400000, guid: 54ea6353847f64645874006ed2d3e964, type: 2}
   - {fileID: 11400000, guid: 399abfeee23ee854abee1b2c9b4bbfdf, type: 2}
   - {fileID: 11400000, guid: 399abfeee23ee854abee1b2c9b4bbfdf, type: 2}
+  - {fileID: 11400000, guid: 54ea6353847f64645874006ed2d3e964, type: 2}
   beamLayerMask:
     serializedVersion: 2
     m_Bits: 2112

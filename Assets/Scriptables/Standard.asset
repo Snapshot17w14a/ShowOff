@@ -16,11 +16,11 @@ MonoBehaviour:
   - State: 3
     time: 0
   - State: 0
-    time: 2
+    time: 1
   - State: 5
     time: 0
   - State: 0
-    time: 2
+    time: 1
   - State: 1
     time: 0
   - State: 0
@@ -31,3 +31,5 @@ MonoBehaviour:
     time: 2
   - State: 4
     time: 2
+  - State: 0
+    time: 1
