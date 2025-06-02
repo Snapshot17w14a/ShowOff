@@ -17,8 +17,9 @@ public class Bob : MonoBehaviour
     private BobState currentState;
 
     [Header("Attack Pattern")]
-    [SerializeField] private BobAttackPattern attackPattern;
-    [SerializeField] private bool loopPattern = true;
+    [SerializeField] private BobAttackPattern[] attackPatterns;
+    private BobAttackPattern currentPattern;
+    private int attackPatternIndex = -1;
 
     [Header("Bomb state settings")]
     [SerializeField] private GameObject bombPrefab;
@@ -100,7 +101,7 @@ public class Bob : MonoBehaviour
                 case BobRageState rageState:
                     rageState.Initialize(crossDuration, transform, crossEffect, crossChargupTime);
                     break;
-                    case BobStarState starState:
+                case BobStarState starState:
                     starState.Initialize(timeBeforeSpawn, iciclePrefab, minIcicleCount, maxIcicleCount);
                     break;
             }
@@ -128,6 +129,9 @@ public class Bob : MonoBehaviour
     public void StartAttack()
     {
         if (attackRoutine != null) StopAttack();
+
+        currentPattern = attackPatterns[++attackPatternIndex % attackPatterns.Length];
+
         attackRoutine = StartCoroutine(TestPatternFetcher(StartAttack));
     }
 
@@ -140,9 +144,9 @@ public class Bob : MonoBehaviour
     //Coroutine for attacking based on the provided attack pattern
     private IEnumerator TestPatternFetcher(Action callback)
     {
-        for (int i = 0; i < attackPattern.StateCount; i++)
+        for (int i = 0; i < currentPattern.StateCount; i++)
         {
-            var nextState = attackPattern.NextState();
+            var nextState = currentPattern.NextState();
             Type type = MapContainerToType(nextState);
 
             if (nextState.State == BobStates.Idle) LoadState(type, nextState.time);
@@ -156,7 +160,7 @@ public class Bob : MonoBehaviour
             yield return waitForStateExecution;
         }
 
-        if (loopPattern) callback.Invoke();
+        callback.Invoke();
     }
 
     private Type MapContainerToType(BobAttackContainer container) => container.State switch

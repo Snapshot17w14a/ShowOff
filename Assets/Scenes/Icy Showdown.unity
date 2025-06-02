@@ -1726,7 +1726,7 @@ Transform:
   m_GameObject: {fileID: 423439501}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6181319, y: -9.85195, z: 12.092052}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2868,8 +2868,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776730a154a4fad47a224ef3aed521d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPattern: {fileID: 11400000, guid: 2d8fbde8121cace4aae3decd943e0078, type: 2}
-  loopPattern: 1
+  attackPatterns:
+  - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
+  - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
+  - {fileID: 11400000, guid: 54ea6353847f64645874006ed2d3e964, type: 2}
+  - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
+  - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
+  - {fileID: 11400000, guid: 54ea6353847f64645874006ed2d3e964, type: 2}
+  - {fileID: 11400000, guid: 399abfeee23ee854abee1b2c9b4bbfdf, type: 2}
+  - {fileID: 11400000, guid: 399abfeee23ee854abee1b2c9b4bbfdf, type: 2}
   bombPrefab: {fileID: 4439887629073268654, guid: 7fbaa3b5cbec6f94fad7636f74f3e7b2, type: 3}
   bombParentTransform: {fileID: 1324245770}
   iceChargeup: {fileID: 1631712738}
@@ -2882,7 +2889,6 @@ MonoBehaviour:
   tailProjectileStrength: 7
   needleParentTransform: {fileID: 1799889828}
   minBrittleRequirement: 2
-  iciclePrefab: {fileID: 1806973241429043664, guid: 635f9be13b674b24f96314e711a82a2a, type: 3}
   spawnRadius: 2
   knokbackRange: 1.5
   knockbackForce: 5
@@ -2890,6 +2896,10 @@ MonoBehaviour:
   crossDuration: 8
   crossChargupTime: 3
   crossEffect: {fileID: 1824977043}
+  timeBeforeSpawn: 2
+  iciclePrefab: {fileID: 1806973241429043664, guid: 635f9be13b674b24f96314e711a82a2a, type: 3}
+  minIcicleCount: 2
+  maxIcicleCount: 5
   onStateChange:
     m_PersistentCalls:
       m_Calls: []
@@ -4397,7 +4407,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116519830}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &1116519834
 Camera:
   m_ObjectHideFlags: 0
