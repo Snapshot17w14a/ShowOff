@@ -29,9 +29,9 @@ public class PlayerScoreUI : MonoBehaviour
         treasureInteraction.OnTreasureDelivered -= OnTreasureDelivered;
     }
 
-    private void OnTreasureDelivered()
+    private void OnTreasureDelivered(int points)
     {
-        score++;
+        score += points;
         ServiceLocator.GetService<ScoreRegistry>().AddScore(minigamePlayer, 1);
         UpdateText();
     }

@@ -1,14 +1,24 @@
 using System;
 using UnityEngine;
 
+public enum PickupType
+{
+    Small,
+    Large
+}
+
 public class Pickupable : MonoBehaviour
 {
     public event Action<Pickupable> OnPickupableDespawnedEvent;
-    public event Action<Pickupable> OnPickupableEnteredMinecartEvent;
+    public event Action<Pickupable, int> OnPickupableEnteredMinecartEvent;
 
+    public PickupType PickupType => pickupType;
+    public int Worth => worth;
     public bool IsPickedUp {  get; private set; } = false;
 
+    [SerializeField] private PickupType pickupType;
     [SerializeField] private int gemPickUpSize = 12;
+    [SerializeField] private int worth = 1;
    
     private float despawnTime;
     private bool isDespawning;
@@ -72,7 +82,7 @@ public class Pickupable : MonoBehaviour
         {
             Minecart minecart = other.GetComponent<Minecart>();
             minecart.AddGem();
-            OnPickupableEnteredMinecartEvent?.Invoke(this);
+            OnPickupableEnteredMinecartEvent?.Invoke(this, worth);
             Despawn();
         }
     }

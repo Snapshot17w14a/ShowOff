@@ -1632,7 +1632,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133727041}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -4234,7 +4234,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 400691295}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -7345,7 +7345,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &787999234
 Transform:
   m_ObjectHideFlags: 0
@@ -14823,7 +14823,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631712735}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -16120,7 +16120,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1824977040}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -18115,7 +18115,7 @@ MonoBehaviour:
         z: 0.7304658
       Rotation:
         value:
-          x: -0.030437399
+          x: -0.030437395
           y: 0.43016154
           z: 0.05210271
           w: 0.90073293
@@ -18170,9 +18170,9 @@ MonoBehaviour:
       Rotation:
         value:
           x: -0.006308864
-          y: 0.9999089
-          z: 0.0039563105
-          w: -0.01125468
+          y: 0.99990904
+          z: 0.003956311
+          w: -0.011254682
     - Position:
         x: -0.927
         y: 0.09399998

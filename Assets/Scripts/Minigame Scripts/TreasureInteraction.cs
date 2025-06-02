@@ -5,15 +5,23 @@ using Random = UnityEngine.Random;
 
 public class TreasureInteraction : MonoBehaviour
 {
-    public event Action OnTreasureDelivered;
+    public event Action<int> OnTreasureDelivered;
 
-    [SerializeField] private Transform holdPoint;
+    [Header("Prefabs")]
     [SerializeField] private Pickupable treasurePrefab;
+    [SerializeField] private Pickupable largeTreasurePrefab;
+
+    [Header("Large Gem Settings")]
+    [SerializeField, Range(1, 100)] private int spawnChance;
+    [SerializeField, Range(0, 50)] private int movementSpeedPenalty;
+
+    [Header("Other stuff")]
+    [SerializeField] private Transform holdPoint;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float droppedTreasureDespawnTime = 10f;
-    [SerializeField] private float spawnRange = 1f;
     [SerializeField] private float pickUpCooldown = 2f;
 
+    private float spawnRange = 1f;
     private float _pickUpCooldown;
     private MinigamePlayer miniGamePlayer;
     private Pickupable collectedPickupable;
@@ -46,15 +54,33 @@ public class TreasureInteraction : MonoBehaviour
     {
         if (!PauseManager.isPaused)
         {
-            Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
-            treasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
-            treasure.SetKinematic(true);
+            int roll = UnityEngine.Random.Range(1, 101);
 
-            if (treasure != null)
+            if (roll <= spawnChance)
             {
-                treasure.Collect(holdPoint);
-                treasure.GetComponent<Collider>().enabled = false;
-                collectedPickupable = treasure;
+                Pickupable largeTreasure = Instantiate(largeTreasurePrefab, holdPoint.position, Quaternion.identity);
+                largeTreasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
+                largeTreasure.SetKinematic(true);
+
+                if (largeTreasure != null)
+                {
+                    largeTreasure.Collect(holdPoint);
+                    largeTreasure.GetComponent<Collider>().enabled = false;
+                    collectedPickupable = largeTreasure;
+                }
+            }
+            else
+            {
+                Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
+                treasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
+                treasure.SetKinematic(true);
+
+                if (treasure != null)
+                {
+                    treasure.Collect(holdPoint);
+                    treasure.GetComponent<Collider>().enabled = false;
+                    collectedPickupable = treasure;
+                }
             }
         }
     }
@@ -63,13 +89,15 @@ public class TreasureInteraction : MonoBehaviour
     {
         if (collectedPickupable != null)
         {
-            Destroy(collectedPickupable.gameObject);
-            collectedPickupable = null;
-            OnTreasureDelivered?.Invoke();
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-            Pickupable treasure = Instantiate(treasurePrefab, spawnPoint, Quaternion.identity);
+            Pickupable spawnPrefab = GetTreasurePrefab(collectedPickupable.PickupType);
+            Pickupable treasure = Instantiate(spawnPrefab, spawnPoint, Quaternion.identity);
             treasure.SetKinematic(false);
             treasure.CalculateVelocity(spawnPoint, currentMinecart.transform.position, 1f);
+
+            OnTreasureDelivered?.Invoke(collectedPickupable.Worth);
+            Destroy(collectedPickupable.gameObject);
+            collectedPickupable = null;
         }
     }
 
@@ -103,8 +131,8 @@ public class TreasureInteraction : MonoBehaviour
             Vector3 spawnPosition = position + dropPosition;
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
             Rigidbody rb = GetComponent<Rigidbody>();
-
-            Pickupable treasure = Instantiate(treasurePrefab, spawnPoint, Quaternion.identity);
+            Pickupable spawnPrefab = GetTreasurePrefab(collectedPickupable.PickupType);
+            Pickupable treasure = Instantiate(spawnPrefab, spawnPoint, Quaternion.identity);
             treasure.OnPickupableEnteredMinecartEvent += HandleTreasureEnteredMinecart;
             treasure.SetKinematic(false);
             treasure.CalculateVelocity(spawnPoint, spawnPosition + (rb.linearVelocity / 3f), 0.3f);
@@ -112,10 +140,23 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
+    private Pickupable GetTreasurePrefab(PickupType type)
+    {
+        switch (collectedPickupable.PickupType)
+        {
+            case PickupType.Small:
+                return treasurePrefab;
+            case PickupType.Large:
+                return largeTreasurePrefab;
+            default: throw new NotImplementedException(collectedPickupable.PickupType.ToString());
+        }
+    }
+
     private void SpawnAnimation(NavMeshHit hit, float playerYOffset, float timeToTarget)
     {
         Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + playerYOffset, transform.position.z);
-        Pickupable treasure = Instantiate(treasurePrefab, spawnPoint, Quaternion.identity);
+        Pickupable spawnPrefab = GetTreasurePrefab(collectedPickupable.PickupType);
+        Pickupable treasure = Instantiate(spawnPrefab, spawnPoint, Quaternion.identity);
         treasure.SetKinematic(false);
         treasure.SetTrigger(false);
         treasure.CalculateVelocity(spawnPoint, hit.position, timeToTarget);
@@ -229,8 +270,8 @@ public class TreasureInteraction : MonoBehaviour
         pickupable.OnPickupableDespawnedEvent -= HandleTreasureDespawned;
     }
 
-    private void HandleTreasureEnteredMinecart(Pickupable pickupable)
+    private void HandleTreasureEnteredMinecart(Pickupable pickupable, int value)
     {
-        OnTreasureDelivered?.Invoke();
+        OnTreasureDelivered?.Invoke(value);
     }
 }
