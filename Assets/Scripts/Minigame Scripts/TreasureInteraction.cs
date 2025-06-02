@@ -12,7 +12,9 @@ public class TreasureInteraction : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float droppedTreasureDespawnTime = 10f;
     [SerializeField] private float spawnRange = 1f;
+    [SerializeField] private float pickUpCooldown = 2f;
 
+    private float _pickUpCooldown;
     private MinigamePlayer miniGamePlayer;
     private Pickupable collectedPickupable;
     private bool isInTreasureZone = false;
@@ -26,6 +28,11 @@ public class TreasureInteraction : MonoBehaviour
         miniGamePlayer = GetComponent<MinigamePlayer>();
     }
 
+    private void Start()
+    {
+        _pickUpCooldown = pickUpCooldown;
+    }
+
     private void Update()
     {
         if (isInCollectionZone && collectedPickupable != null)
@@ -37,7 +44,7 @@ public class TreasureInteraction : MonoBehaviour
 
     private void CollectTreasure()
     {
-        if(!PauseManager.isPaused)
+        if (!PauseManager.isPaused)
         {
             Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
             treasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
@@ -210,9 +217,10 @@ public class TreasureInteraction : MonoBehaviour
 
     private void OnGrab()
     {
-        if (isInTreasureZone && collectedPickupable == null)
+        if (isInTreasureZone && collectedPickupable == null && Time.time > pickUpCooldown)
         {
             CollectTreasure();
+            pickUpCooldown = Time.time + _pickUpCooldown;
         }
         else if (collectedPickupable != null)
         {

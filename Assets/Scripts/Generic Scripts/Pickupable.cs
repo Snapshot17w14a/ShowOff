@@ -13,6 +13,23 @@ public class Pickupable : MonoBehaviour
     private float despawnTime;
     private bool isDespawning;
 
+    private Rigidbody rb;
+    private Collider collider;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        collider = GetComponent<Collider>();
+    }
+
+    private void Update()
+    {
+        if (isDespawning && Time.time >= despawnTime)
+        {
+            Despawn();
+        }
+    }
+
     public void DespawnAfter(float timeUntilDespawn)
     {
         despawnTime = Time.time + timeUntilDespawn;
@@ -22,7 +39,6 @@ public class Pickupable : MonoBehaviour
     public void Collect(Transform parent)
     {
         IsPickedUp = true;
-        Rigidbody rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
         gameObject.transform.SetParent(parent, false);
         //This is fucking ugly, but I was over it making it work with math
@@ -36,13 +52,7 @@ public class Pickupable : MonoBehaviour
         transform.SetParent(null);
     }
 
-    private void Update()
-    {
-        if (isDespawning && Time.time >= despawnTime)
-        {
-            Despawn();
-        }
-    }
+
 
     private void Despawn()
     {
@@ -55,7 +65,6 @@ public class Pickupable : MonoBehaviour
     {
         if(other.GetComponent<IcePlatform>() != null)
         {
-            Rigidbody rb = GetComponent<Rigidbody>();
             rb.isKinematic = true;
         }
 
@@ -70,9 +79,12 @@ public class Pickupable : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
-        Collider collider = GetComponent<Collider>();
         collider.isTrigger = true;
+    }
+
+    public void SetKinematic()
+    {
+        rb.isKinematic = !rb.isKinematic;
     }
 }

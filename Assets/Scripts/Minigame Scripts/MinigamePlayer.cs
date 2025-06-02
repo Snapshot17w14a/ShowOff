@@ -107,7 +107,6 @@ public class MinigamePlayer : MonoBehaviour
     public void StunPlayer(float seconds)
     {
         StartCoroutine(StunRoutine(seconds));
-        DropTreasure();
     }
 
     public void DropTreasure()

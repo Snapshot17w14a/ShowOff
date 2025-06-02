@@ -31,7 +31,7 @@ public class Minecart : MonoBehaviour
         }
 
         currentGemAmount++;
-        float gemLimit = 1 + (Mathf.CeilToInt(ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount / 2));
+        float gemLimit = (Mathf.CeilToInt((ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount + 1) / 2) + 1);
         Debug.Log($"Gem intake: {gemLimit}");
 
         if (currentGemAmount >= gemLimit)
