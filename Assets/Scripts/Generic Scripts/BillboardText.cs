@@ -6,7 +6,7 @@ public class BillboardText : MonoBehaviour
 
     private void Start()
     {
-        cameraTransform = Camera.main.transform;
+        cameraTransform = GameObject.FindWithTag("MainCamera").transform;
     }
 
     private void Update()
