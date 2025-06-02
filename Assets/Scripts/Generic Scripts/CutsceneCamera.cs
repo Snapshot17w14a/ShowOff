@@ -19,6 +19,7 @@ public class CutsceneCamera : MonoBehaviour
     private Vector3 startPos;
     private Quaternion startRot;
     private int knots;
+    private bool cutsceneSkipped;
 
     public UnityEvent OnCameraReady;
 
@@ -50,8 +51,9 @@ public class CutsceneCamera : MonoBehaviour
         }
 
         //Skips Cutscene (Can assign it to other keybinds, just call this function)
-        if (Input.GetKey(KeyCode.Space)) 
+        if (Input.GetKey(KeyCode.Space) && !cutsceneSkipped) 
         {
+            cutsceneSkipped = true;
             CutsceneFinished();
         }
     }
