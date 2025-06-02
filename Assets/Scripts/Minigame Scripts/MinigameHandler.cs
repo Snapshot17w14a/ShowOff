@@ -22,8 +22,9 @@ public class MinigameHandler : MonoBehaviour
         if (_instance == null) _instance = this;
         else Destroy(gameObject);
 
-        currentMinigameState = initialMinigameState;
-        currentMinigameState.LoadState();
+        foreach (Transform child in transform) child.gameObject.SetActive(false);
+
+        LoadState(initialMinigameState);
     }
 
     // Update is called once per frame
@@ -53,7 +54,7 @@ public class MinigameHandler : MonoBehaviour
     public void LoadState(MinigameState state)
     {
         StopAllCoroutines();
-        currentMinigameState.UnloadState();
+        if(currentMinigameState != null) currentMinigameState.UnloadState();
         currentMinigameState = state;
         currentMinigameState.LoadState();
         onStateChanged?.Invoke();
