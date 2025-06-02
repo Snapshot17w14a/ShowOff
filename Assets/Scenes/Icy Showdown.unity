@@ -7348,6 +7348,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 54ea6353847f64645874006ed2d3e964, type: 2}
   - {fileID: 11400000, guid: 399abfeee23ee854abee1b2c9b4bbfdf, type: 2}
   - {fileID: 11400000, guid: 399abfeee23ee854abee1b2c9b4bbfdf, type: 2}
+  beamLayerMask:
+    serializedVersion: 2
+    m_Bits: 2112
   bombPrefab: {fileID: 4439887629073268654, guid: 7fbaa3b5cbec6f94fad7636f74f3e7b2, type: 3}
   bombParentTransform: {fileID: 1324245770}
   iceChargeup: {fileID: 1631712738}
@@ -7366,7 +7369,7 @@ MonoBehaviour:
   stompEffect: {fileID: 400691298}
   crossDuration: 8
   crossChargupTime: 3
-  rageStunTime: 0
+  rageStunTime: 2
   crossEffect: {fileID: 1824977043}
   timeBeforeSpawn: 2
   iciclePrefab: {fileID: 1806973241429043664, guid: 635f9be13b674b24f96314e711a82a2a, type: 3}
@@ -17497,6 +17500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Final_bg_wall
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7f31f1b1c6e0f0443810b1e55ec51eb9, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18139,7 +18146,7 @@ MonoBehaviour:
         z: 0.7304658
       Rotation:
         value:
-          x: -0.030437395
+          x: -0.030437399
           y: 0.43016154
           z: 0.05210271
           w: 0.90073293
@@ -18194,9 +18201,9 @@ MonoBehaviour:
       Rotation:
         value:
           x: -0.006308864
-          y: 0.99990904
-          z: 0.003956311
-          w: -0.011254682
+          y: 0.9999089
+          z: 0.0039563105
+          w: -0.01125468
     - Position:
         x: -0.927
         y: 0.09399998

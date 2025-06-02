@@ -14,6 +14,7 @@ public class BobIceState : BobState
     private VisualEffect chargeUpEffect;
     private VisualEffect beamEffect;
     private GameObject hitEffect;
+    private int layerMask;
 
     private Quaternion initialRotation;
     private Quaternion targetRotation;
@@ -25,12 +26,13 @@ public class BobIceState : BobState
 
     public override void Initialize(params object[] parameters)
     {
-        if (parameters.Length != 4) throw new Exception("Provided parameters array length was not 4");
+        if (parameters.Length != 5) throw new Exception("Provided parameters array length was not 5");
 
         bobTransform = (Transform)parameters[0];
         chargeUpEffect = (VisualEffect)parameters[1];
         beamEffect = (VisualEffect)parameters[2];
         hitEffect = (GameObject)parameters[3];
+        layerMask = (int)parameters[4];
     }
 
     public override void LoadState(params object[] parameters)
@@ -116,7 +118,7 @@ public class BobIceState : BobState
 
     private void RaycastAndHitParticle()
     {
-        if (Physics.Raycast(new Ray(new Vector3(0, 0.2f, 0), bobTransform.forward), out RaycastHit hit, 10f))
+        if (Physics.Raycast(new Ray(new Vector3(0, 0.2f, 0), bobTransform.forward), out RaycastHit hit, 10f, layerMask))
         {
             instantiatedHitEffect.transform.position = hit.point;
             if (hit.collider.CompareTag("Player"))

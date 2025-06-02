@@ -21,6 +21,9 @@ public class Bob : MonoBehaviour
     private BobAttackPattern currentPattern;
     private int attackPatternIndex = -1;
 
+    [Header("Beams layer mask")]
+    [SerializeField] private LayerMask beamLayerMask;
+
     [Header("Bomb state settings")]
     [SerializeField] private GameObject bombPrefab;
     [SerializeField] private Transform bombParentTransform;
@@ -88,7 +91,7 @@ public class Bob : MonoBehaviour
                     tailState.Initialize(tailAttackTime, tailProjectileCount, tailAttackArc, tailProjectile, transform, tailProjectileStrength, needleParentTransform);
                     break;
                 case BobIceState iceState: 
-                    iceState.Initialize(transform, iceChargeup, iceBeam, hitEffect); 
+                    iceState.Initialize(transform, iceChargeup, iceBeam, hitEffect, beamLayerMask.value); 
                     break;
                 case BobBombState bombState:
                     bombState.Initialize(bombPrefab, bombParentTransform);
@@ -100,7 +103,7 @@ public class Bob : MonoBehaviour
                     stompState.Initialize(knokbackRange, knockbackForce, stompEffect);
                     break;
                 case BobRageState rageState:
-                    rageState.Initialize(crossDuration, transform, crossEffect, crossChargupTime, rageStunTime);
+                    rageState.Initialize(crossDuration, transform, crossEffect, crossChargupTime, rageStunTime, beamLayerMask.value);
                     break;
                 case BobStarState starState:
                     starState.Initialize(timeBeforeSpawn, iciclePrefab, minIcicleCount, maxIcicleCount);
