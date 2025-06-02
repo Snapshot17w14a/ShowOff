@@ -37,17 +37,20 @@ public class TreasureInteraction : MonoBehaviour
 
     private void CollectTreasure()
     {
-        Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
-        treasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
-
-        Rigidbody TreasureRB = treasure.GetComponent<Rigidbody>();
-        TreasureRB.isKinematic = true;
-
-        if (treasure != null)
+        if(!PauseManager.isPaused)
         {
-            treasure.Collect(holdPoint);
-            treasure.GetComponent<Collider>().enabled = false;
-            collectedPickupable = treasure;
+            Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
+            treasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
+
+            Rigidbody TreasureRB = treasure.GetComponent<Rigidbody>();
+            TreasureRB.isKinematic = true;
+
+            if (treasure != null)
+            {
+                treasure.Collect(holdPoint);
+                treasure.GetComponent<Collider>().enabled = false;
+                collectedPickupable = treasure;
+            }
         }
     }
 
