@@ -12,6 +12,8 @@ public abstract class MinigameState : MonoBehaviour
     [SerializeField] protected UnityEvent onStateUnloaded;
     [SerializeField] protected UnityEvent onStateTick;
 
+    private void Awake() => gameObject.SetActive(false);
+
     public virtual void LoadState()
     {
         gameObject.SetActive(true);
