@@ -48,9 +48,7 @@ public class TreasureInteraction : MonoBehaviour
         {
             Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
             treasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
-
-            Rigidbody TreasureRB = treasure.GetComponent<Rigidbody>();
-            TreasureRB.isKinematic = true;
+            treasure.SetKinematic(true);
 
             if (treasure != null)
             {
@@ -70,9 +68,8 @@ public class TreasureInteraction : MonoBehaviour
             OnTreasureDelivered?.Invoke();
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
             Pickupable treasure = Instantiate(treasurePrefab, spawnPoint, Quaternion.identity);
-            Rigidbody treasureRB = treasure.GetComponent<Rigidbody>();
-            treasureRB.isKinematic = false;
-            treasureRB.linearVelocity = PathCalculator.CalculateRequiredVelocity(spawnPoint, currentMinecart.transform.position, 1f);
+            treasure.SetKinematic(false);
+            treasure.CalculateVelocity(spawnPoint, currentMinecart.transform.position, 1f);
         }
     }
 
@@ -104,15 +101,13 @@ public class TreasureInteraction : MonoBehaviour
             Vector3 position = transform.position;
             Vector3 dropPosition = transform.forward / 1.5f;
             Vector3 spawnPosition = position + dropPosition;
-
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
+            Rigidbody rb = GetComponent<Rigidbody>();
+
             Pickupable treasure = Instantiate(treasurePrefab, spawnPoint, Quaternion.identity);
             treasure.OnPickupableEnteredMinecartEvent += HandleTreasureEnteredMinecart;
-
-            Rigidbody treasureRB = treasure.GetComponent<Rigidbody>();
-            treasureRB.isKinematic = false;
-            Rigidbody rb = GetComponent<Rigidbody>();
-            treasureRB.linearVelocity = PathCalculator.CalculateRequiredVelocity(spawnPoint, spawnPosition + (rb.linearVelocity / 3f), 0.3f);
+            treasure.SetKinematic(false);
+            treasure.CalculateVelocity(spawnPoint, spawnPosition + (rb.linearVelocity / 3f), 0.3f);
             treasure.DespawnAfter(droppedTreasureDespawnTime);
         }
     }
@@ -121,11 +116,9 @@ public class TreasureInteraction : MonoBehaviour
     {
         Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + playerYOffset, transform.position.z);
         Pickupable treasure = Instantiate(treasurePrefab, spawnPoint, Quaternion.identity);
-        Rigidbody treasureRB = treasure.GetComponent<Rigidbody>();
-        treasureRB.isKinematic = false;
-        Collider collider = treasure.GetComponent<Collider>();
-        collider.isTrigger = false;
-        treasureRB.linearVelocity = PathCalculator.CalculateRequiredVelocity(spawnPoint, hit.position, timeToTarget);
+        treasure.SetKinematic(false);
+        treasure.SetTrigger(false);
+        treasure.CalculateVelocity(spawnPoint, hit.position, timeToTarget);
         treasure.DespawnAfter(droppedTreasureDespawnTime);
     }
 

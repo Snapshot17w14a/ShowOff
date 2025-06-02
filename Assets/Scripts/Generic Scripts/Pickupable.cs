@@ -83,8 +83,18 @@ public class Pickupable : MonoBehaviour
         collider.isTrigger = true;
     }
 
-    public void SetKinematic()
+    public void CalculateVelocity(Vector3 spawnPoint, Vector3 position, float speed)
     {
-        rb.isKinematic = !rb.isKinematic;
+        rb.linearVelocity = PathCalculator.CalculateRequiredVelocity(spawnPoint, position, speed);
+    }
+
+    public void SetKinematic(bool state)
+    {
+        rb.isKinematic = state;
+    }
+
+    public void SetTrigger(bool state)
+    {
+        collider.isTrigger = state;
     }
 }

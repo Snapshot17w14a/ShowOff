@@ -8,7 +8,7 @@ public class Minecart : MonoBehaviour
     [SerializeField] private int maxGemIntake = 3;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float waitTime = 10f;
-    [SerializeField] private BoxCollider boxCollider;
+    private BoxCollider boxCollider;
 
     private int currentGemAmount = 0;
     private bool isFull = false;
@@ -25,7 +25,7 @@ public class Minecart : MonoBehaviour
 
     public void AddGem()
     {
-        if(isFull || isMoving)
+        if (isFull || isMoving)
         {
             return;
         }
@@ -55,7 +55,7 @@ public class Minecart : MonoBehaviour
 
         yield return new WaitForSeconds(waitTime);
 
-        while(Vector3.Distance(transform.position, startPosition) > 0.1f)
+        while (Vector3.Distance(transform.position, startPosition) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, startPosition, speed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
