@@ -100,6 +100,7 @@ public class IcePlatform : MonoBehaviour
     private IEnumerator FreezeRoutine()
     {
         float time = 0;
+        transform.position = startingPosition;
 
         while (time < freezeTime)
         {

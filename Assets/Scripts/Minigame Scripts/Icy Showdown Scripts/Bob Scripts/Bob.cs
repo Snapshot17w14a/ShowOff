@@ -17,8 +17,9 @@ public class Bob : MonoBehaviour
     private BobState currentState;
 
     [Header("Attack Pattern")]
-    [SerializeField] private BobAttackPattern attackPattern;
-    [SerializeField] private bool loopPattern = true;
+    [SerializeField] private BobAttackPattern[] attackPatterns;
+    private BobAttackPattern currentPattern;
+    private int attackPatternIndex = -1;
 
     [Header("Bomb state settings")]
     [SerializeField] private GameObject bombPrefab;
@@ -39,7 +40,6 @@ public class Bob : MonoBehaviour
 
     [Header("Stomp state settings")]
     [SerializeField] private int minBrittleRequirement;
-    [SerializeField] private GameObject iciclePrefab;
     [SerializeField] private float spawnRadius;
     [SerializeField] private float knokbackRange;
     [SerializeField] private float knockbackForce;
@@ -49,6 +49,12 @@ public class Bob : MonoBehaviour
     [SerializeField] private float crossDuration;
     [SerializeField] private float crossChargupTime;
     [SerializeField] private VisualEffect crossEffect;
+
+    [Header("Star state settings")]
+    [SerializeField] private float timeBeforeSpawn;
+    [SerializeField] private GameObject iciclePrefab;
+    [SerializeField] private int minIcicleCount;
+    [SerializeField] private int maxIcicleCount;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onStateChange;
@@ -90,10 +96,13 @@ public class Bob : MonoBehaviour
                     idleState.Initialize(transform);
                     break;
                 case BobStompState stompState:
-                    stompState.Initialize(iciclePrefab, spawnRadius, knokbackRange, knockbackForce, stompEffect);
+                    stompState.Initialize(knokbackRange, knockbackForce, stompEffect);
                     break;
                 case BobRageState rageState:
                     rageState.Initialize(crossDuration, transform, crossEffect, crossChargupTime);
+                    break;
+                case BobStarState starState:
+                    starState.Initialize(timeBeforeSpawn, iciclePrefab, minIcicleCount, maxIcicleCount);
                     break;
             }
         }
@@ -120,6 +129,9 @@ public class Bob : MonoBehaviour
     public void StartAttack()
     {
         if (attackRoutine != null) StopAttack();
+
+        currentPattern = attackPatterns[++attackPatternIndex % attackPatterns.Length];
+
         attackRoutine = StartCoroutine(TestPatternFetcher(StartAttack));
     }
 
@@ -132,9 +144,9 @@ public class Bob : MonoBehaviour
     //Coroutine for attacking based on the provided attack pattern
     private IEnumerator TestPatternFetcher(Action callback)
     {
-        for (int i = 0; i < attackPattern.StateCount; i++)
+        for (int i = 0; i < currentPattern.StateCount; i++)
         {
-            var nextState = attackPattern.NextState();
+            var nextState = currentPattern.NextState();
             Type type = MapContainerToType(nextState);
 
             if (nextState.State == BobStates.Idle) LoadState(type, nextState.time);
@@ -148,7 +160,7 @@ public class Bob : MonoBehaviour
             yield return waitForStateExecution;
         }
 
-        if (loopPattern) callback.Invoke();
+        callback.Invoke();
     }
 
     private Type MapContainerToType(BobAttackContainer container) => container.State switch
@@ -158,7 +170,7 @@ public class Bob : MonoBehaviour
         BobStates.TailBurst => typeof(BobTailState),
         BobStates.SpruceBomb => typeof(BobBombState),
         BobStates.HeavyStomp => typeof(BobStompState),
-        //BobStates.Star
+        BobStates.Star => typeof(BobStarState),
         BobStates.BobsRage => typeof(BobRageState),
         _ => null
     };

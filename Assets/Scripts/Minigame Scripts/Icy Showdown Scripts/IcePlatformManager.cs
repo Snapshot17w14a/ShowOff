@@ -54,7 +54,7 @@ public class IcePlatformManager : MonoBehaviour
 
     public IcePlatform GetRandomPlatform => icePlatforms[Random.Range(0, icePlatforms.Length)];
 
-    private void Start()
+    private void Awake()
     {
         if (_instance != null) DestroyImmediate(gameObject);
         _instance = this;

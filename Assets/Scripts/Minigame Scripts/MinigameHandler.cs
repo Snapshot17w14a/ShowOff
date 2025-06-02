@@ -62,4 +62,6 @@ public class MinigameHandler : MonoBehaviour
     public void InstantiateAllPlayers() => ServiceLocator.GetService<PlayerRegistry>().InstantiateAllPlayers();
 
     public void WipeScoreData() => ServiceLocator.GetService<ScoreRegistry>().WipeData();
+
+    private void OnDestroy() => _instance = null;
 }

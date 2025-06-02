@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class PauseManager : Service
 {
     public Action<bool> OnPaused;
-    public bool isPaused { get; private set; } = false;
+    public static bool isPaused { get; private set; } = false;
 
     private int pausedByPlayerId = -1;
 

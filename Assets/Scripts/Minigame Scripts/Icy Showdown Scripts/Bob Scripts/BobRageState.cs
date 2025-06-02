@@ -32,6 +32,7 @@ public class BobRageState : BobState
         initialAngle = bobTransform.eulerAngles.y;
         targetAngle = initialAngle + 360f;
 
+        beamsEffect.Reinit();
         beamsEffect.Play();
 
         isStateRunning = true;
