@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public enum ESoundType
 {
     Bob,
     Penguin,
+    Music,
 }
 
 [RequireComponent(typeof(AudioSource))]
@@ -31,7 +34,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private List<NameOfAudioClip> audioGroups;
 
     private Dictionary<string, AudioClip> sounds = new Dictionary<string, AudioClip>();
-    private AudioSource audioSource;
+    private AudioSource sfxSource;
+    private AudioSource musicSource;
 
     private void Awake()
     {
@@ -43,6 +47,12 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        sfxSource = gameObject.AddComponent<AudioSource>();
+        sfxSource.loop = false;
+
+        musicSource = gameObject.AddComponent<AudioSource>();
+        musicSource.loop = true;
 
         foreach (var audioClip in audioGroups)
         {
@@ -56,7 +66,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public static void PlaySound(ESoundType soundSourceType, string name, float volume = 1f)
+    public static void PlaySound(ESoundType soundSourceType, string name, bool randomizePitch, float volume = 1f)
     {
         if (Instance == null)
         {
@@ -80,6 +90,48 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        Instance.audioSource.PlayOneShot(clip.clip, volume);
+        if(randomizePitch)
+        {
+            Instance.sfxSource.pitch = UnityEngine.Random.Range(1f, 3f);
+        } else
+        {
+            Instance.sfxSource.pitch = 1f;
+        }
+
+        Instance.sfxSource.PlayOneShot(clip.clip, volume);
+    }
+
+    public static void PlayMusic(ESoundType soundSourceType, string name, float volume = 1f)
+    {
+        if (Instance == null)
+        {
+            Debug.LogWarning("AudioManager instance is null.");
+            return;
+        }
+
+        var group = Instance.audioGroups.Find(g => g.soundType == soundSourceType);
+
+        if (group == null)
+        {
+            Debug.LogError($"SoundType: {soundSourceType} does not exist!");
+            return;
+        }
+
+        var clip = group.audioClips.Find(c => c.name == name);
+
+        if (clip == null)
+        {
+            Debug.LogError($"Sound name: {name} doesn't exist in {group}");
+            return;
+        }
+
+        if (Instance.musicSource.isPlaying)
+        {
+            Instance.musicSource.Stop();
+        }
+
+        Instance.musicSource.clip = clip.clip;
+        Instance.musicSource.volume = volume;
+        Instance.musicSource.Play();
     }
 }

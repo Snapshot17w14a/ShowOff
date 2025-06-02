@@ -20,7 +20,7 @@ public class BobAttackPattern : ScriptableObject
 
     private int index = -1;
 
-    public BobAttackContainer NextState() => bobAttackContainers[++index % bobAttackContainers.Count];
+    public BobAttackContainer NextState() => bobAttackContainers[+index % bobAttackContainers.Count];
 
     private void OnValidate() => index = -1;
 }

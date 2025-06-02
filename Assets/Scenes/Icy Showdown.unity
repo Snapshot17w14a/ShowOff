@@ -1709,18 +1709,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioGroups:
-  - soundType: 0
+  - soundType: 1
     audioClips:
-    - name: 
-      clip: {fileID: 0}
-    - name: 
-      clip: {fileID: 0}
-  - soundType: 0
+    - name: Dash
+      clip: {fileID: 8300000, guid: 2e84b6c3a445597498186c804076bcef, type: 3}
+  - soundType: 2
     audioClips:
-    - name: 
-      clip: {fileID: 0}
-    - name: 
-      clip: {fileID: 0}
+    - name: Cart
+      clip: {fileID: 8300000, guid: 13bb1d4a028bdb045ad933643b93c68c, type: 3}
 --- !u!4 &423439503
 Transform:
   m_ObjectHideFlags: 0
@@ -2871,7 +2867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776730a154a4fad47a224ef3aed521d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPattern: {fileID: 0}
+  attackPattern: {fileID: 11400000, guid: 96178afdb68744a4f890ca1fc8cb9e6b, type: 2}
   loopPattern: 1
   bombPrefab: {fileID: 4439887629073268654, guid: 7fbaa3b5cbec6f94fad7636f74f3e7b2, type: 3}
   bombParentTransform: {fileID: 1324245770}
@@ -4397,7 +4393,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116519830}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1116519834
 Camera:
   m_ObjectHideFlags: 0
@@ -5259,7 +5255,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0005137931}
+  m_AnchoredPosition: {x: 0, y: -0.00008305311}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1262361296
@@ -7529,8 +7525,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1758826603}
   m_HandleRect: {fileID: 1758826602}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99999464
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8028,9 +8024,9 @@ MonoBehaviour:
         z: 0.48958713
       Rotation:
         value:
-          x: 0.003377787
+          x: 0.0033777235
           y: 0.6903883
-          z: -0.010887961
+          z: -0.010888025
           w: 0.7233491
     - Position:
         x: 2.205
@@ -8046,7 +8042,7 @@ MonoBehaviour:
         z: 0.7304658
       Rotation:
         value:
-          x: -0.030437395
+          x: -0.030437399
           y: 0.43016154
           z: 0.05210271
           w: 0.90073293
@@ -8100,10 +8096,10 @@ MonoBehaviour:
         z: 0.73503435
       Rotation:
         value:
-          x: -0.0063076345
-          y: 0.99990904
-          z: 0.0039562974
-          w: -0.011254686
+          x: -0.006308864
+          y: 0.9999089
+          z: 0.0039563105
+          w: -0.01125468
     - Position:
         x: -0.927
         y: 0.09399998
@@ -22242,6 +22238,7 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 423439503}
   - {fileID: 5728470337148094889}
   - {fileID: 8727372955580726518}
   - {fileID: 781979955}
@@ -22257,4 +22254,3 @@ SceneRoots:
   - {fileID: 241839673}
   - {fileID: 1157122712}
   - {fileID: 30846961}
-  - {fileID: 423439503}

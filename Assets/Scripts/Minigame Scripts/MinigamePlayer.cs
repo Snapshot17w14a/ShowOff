@@ -92,7 +92,11 @@ public class MinigamePlayer : MonoBehaviour
 
     private void OnDash()
     {
-        if (isDashAvailable && !isStunned && !isFlying) Dash();
+        if (isDashAvailable && !isStunned && !isFlying)
+        {
+            Dash();
+            AudioManager.PlaySound(ESoundType.Penguin, "Dash", false, 1f);
+        }
     }
 
     private void OnPause()
