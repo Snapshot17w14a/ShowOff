@@ -5647,10 +5647,10 @@ MonoBehaviour:
         z: 1.7168533
       Rotation:
         value:
-          x: 0.10603109
-          y: 0.20442073
-          z: 0.8916409
-          w: -0.3898028
+          x: 0.106031075
+          y: 0.20442072
+          z: 0.89164084
+          w: -0.3898027
     - Position:
         x: 0.4565418
         y: 2.9787233
@@ -7046,7 +7046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1955875611
 MonoBehaviour:
   m_ObjectHideFlags: 0
