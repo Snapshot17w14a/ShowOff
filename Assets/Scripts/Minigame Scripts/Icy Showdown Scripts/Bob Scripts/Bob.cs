@@ -45,6 +45,11 @@ public class Bob : MonoBehaviour
     [SerializeField] private float knockbackForce;
     [SerializeField] private VisualEffect stompEffect;
 
+    [Header("Rage state settings")]
+    [SerializeField] private float crossDuration;
+    [SerializeField] private float crossChargupTime;
+    [SerializeField] private VisualEffect crossEffect;
+
     [Header("Events")]
     [SerializeField] private UnityEvent onStateChange;
 
@@ -87,6 +92,9 @@ public class Bob : MonoBehaviour
                 case BobStompState stompState:
                     stompState.Initialize(iciclePrefab, spawnRadius, knokbackRange, knockbackForce, stompEffect);
                     break;
+                case BobRageState rageState:
+                    rageState.Initialize(crossDuration, transform, crossEffect, crossChargupTime);
+                    break;
             }
         }
     }
@@ -112,7 +120,6 @@ public class Bob : MonoBehaviour
     public void StartAttack()
     {
         if (attackRoutine != null) StopAttack();
-        //attackRoutine = StartCoroutine(AttackPattern(StartAttack));
         attackRoutine = StartCoroutine(TestPatternFetcher(StartAttack));
     }
 
@@ -122,47 +129,7 @@ public class Bob : MonoBehaviour
     //Update the current state class
     private void Update() => currentState?.TickState();
 
-    //Coroutine for the attack pattern of bob
-    private IEnumerator AttackPattern(Action callback)
-    {
-        //Ice attack
-        LoadState<BobIceState>();
-        yield return waitForStateExecution;
-
-        //Idle after attack state
-        LoadState<BobIdleState>(2f);
-        yield return waitForStateExecution;
-
-        //Tail attack
-        LoadState<BobTailState>();
-        yield return waitForStateExecution;
-
-        //Idle after attack state
-        LoadState<BobIdleState>(4f);
-        yield return waitForStateExecution;
-
-        //Choose the state based on whether there are any brittle ice platforms
-        if (IcePlatformManager.Instance.BrittlePlatformCount >= minBrittleRequirement)
-        {
-            //Stomp attack
-            LoadState<BobStompState>();
-            yield return waitForStateExecution;
-        }
-        else
-        {
-            //Bomb attack
-            LoadState<BobBombState>();
-            yield return waitForStateExecution;
-        }
-
-        //Idle after attack state
-        LoadState<BobIdleState>(3f);
-        yield return waitForStateExecution;
-
-        //Restart the coroutine
-        callback.Invoke();
-    }
-
+    //Coroutine for attacking based on the provided attack pattern
     private IEnumerator TestPatternFetcher(Action callback)
     {
         for (int i = 0; i < attackPattern.StateCount; i++)
@@ -192,7 +159,7 @@ public class Bob : MonoBehaviour
         BobStates.SpruceBomb => typeof(BobBombState),
         BobStates.HeavyStomp => typeof(BobStompState),
         //BobStates.Star
-        //BobStates.BobsRage
+        BobStates.BobsRage => typeof(BobRageState),
         _ => null
     };
 }

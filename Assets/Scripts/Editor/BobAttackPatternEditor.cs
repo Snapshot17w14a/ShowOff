@@ -1,6 +1,5 @@
 using UnityEditor;
 using UnityEngine;
-using static BobAttackPattern;
 using static UnityEditor.EditorGUILayout;
 
 [CustomEditor(typeof(BobAttackPattern))]

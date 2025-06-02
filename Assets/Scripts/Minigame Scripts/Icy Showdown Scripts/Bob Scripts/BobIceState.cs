@@ -42,8 +42,6 @@ public class BobIceState : BobState
         //Set up ChargeUp state
         state = IceState.ChargeUp;
         chargeUpEffect.Play();
-
-        
     }
 
     public override void TickState()
@@ -105,19 +103,7 @@ public class BobIceState : BobState
         RaycastAndHitParticle();
         bobTransform.rotation = Quaternion.Lerp(initialRotation, targetRotation, time);
         IcePlatformManager.Instance.ExecuteForEachPlatform(FreezePlatformInArc);
-        ServiceLocator.GetService<PlayerRegistry>().ExecuteForEachPlayer(StunPlayerInArc);
-    }
-
-    private void StunPlayerInArc(MinigamePlayer player)
-    {
-        var playerPos = player.transform.position;
-        playerPos.y = 0;
-        var angleToPlayer = Vector3.Angle(bobTransform.forward, playerPos.normalized);
-        if (angleToPlayer < 1f)
-        {
-            player.StunPlayer(2f);
-            player.DropTreasure();
-        }
+        //ServiceLocator.GetService<PlayerRegistry>().ExecuteForEachPlayer(StunPlayerInArc);
     }
 
     private void FreezePlatformInArc(IcePlatform platform)
@@ -130,9 +116,13 @@ public class BobIceState : BobState
 
     private void RaycastAndHitParticle()
     {
-        if (Physics.Raycast(new Ray(Vector3.up, bobTransform.forward), out RaycastHit hit, 10f))
+        if (Physics.Raycast(new Ray(new Vector3(0, 0.2f, 0), bobTransform.forward), out RaycastHit hit, 10f))
         {
             instantiatedHitEffect.transform.position = hit.point;
+            if (hit.collider.CompareTag("Player"))
+            {
+                hit.collider.GetComponent<MinigamePlayer>().StunPlayer(2f);
+            }
         }
     }
 }
