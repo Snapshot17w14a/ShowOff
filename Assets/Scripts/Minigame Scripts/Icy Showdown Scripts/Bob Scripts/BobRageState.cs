@@ -7,6 +7,7 @@ public class BobRageState : BobState
     private float duration = 0;
     private float chargeUpTime = 0;
     private float fullDuration = 0;
+    private float stunDuration = 0;
     private Transform bobTransform;
     private VisualEffect beamsEffect;
 
@@ -16,12 +17,13 @@ public class BobRageState : BobState
 
     public override void Initialize(params object[] parameters)
     {
-        if (parameters.Length != 4) throw new Exception("Provided parameters array length was not 4");
+        if (parameters.Length != 5) throw new Exception("Provided parameters array length was not 5");
 
         duration = (float)parameters[0];
         bobTransform = (Transform)parameters[1];
         beamsEffect = (VisualEffect)parameters[2];
         chargeUpTime = (float)parameters[3];
+        stunDuration = (float)parameters[4];
 
         fullDuration = duration + chargeUpTime;
     }
@@ -72,7 +74,12 @@ public class BobRageState : BobState
     {
         if (Physics.Raycast(new Vector3(0, 0.2f, 0), dir, out RaycastHit hit, 10f))
         {
-            if (hit.collider.CompareTag("Player")) hit.collider.GetComponent<MinigamePlayer>().StunPlayer(2f);
+            if (hit.collider.CompareTag("Player"))
+            {
+                var player = hit.collider.GetComponent<MinigamePlayer>();
+                player.StunPlayer(stunDuration);
+                player.DropTreasure();
+            }
         }
     }
 

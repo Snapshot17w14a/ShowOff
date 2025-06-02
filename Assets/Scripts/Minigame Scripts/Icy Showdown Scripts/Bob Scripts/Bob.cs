@@ -48,6 +48,7 @@ public class Bob : MonoBehaviour
     [Header("Rage state settings")]
     [SerializeField] private float crossDuration;
     [SerializeField] private float crossChargupTime;
+    [SerializeField] private float rageStunTime;
     [SerializeField] private VisualEffect crossEffect;
 
     [Header("Star state settings")]
@@ -99,7 +100,7 @@ public class Bob : MonoBehaviour
                     stompState.Initialize(knokbackRange, knockbackForce, stompEffect);
                     break;
                 case BobRageState rageState:
-                    rageState.Initialize(crossDuration, transform, crossEffect, crossChargupTime);
+                    rageState.Initialize(crossDuration, transform, crossEffect, crossChargupTime, rageStunTime);
                     break;
                 case BobStarState starState:
                     starState.Initialize(timeBeforeSpawn, iciclePrefab, minIcicleCount, maxIcicleCount);
