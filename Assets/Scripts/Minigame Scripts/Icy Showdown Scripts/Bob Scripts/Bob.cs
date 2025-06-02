@@ -39,7 +39,6 @@ public class Bob : MonoBehaviour
 
     [Header("Stomp state settings")]
     [SerializeField] private int minBrittleRequirement;
-    [SerializeField] private GameObject iciclePrefab;
     [SerializeField] private float spawnRadius;
     [SerializeField] private float knokbackRange;
     [SerializeField] private float knockbackForce;
@@ -49,6 +48,12 @@ public class Bob : MonoBehaviour
     [SerializeField] private float crossDuration;
     [SerializeField] private float crossChargupTime;
     [SerializeField] private VisualEffect crossEffect;
+
+    [Header("Star state settings")]
+    [SerializeField] private float timeBeforeSpawn;
+    [SerializeField] private GameObject iciclePrefab;
+    [SerializeField] private int minIcicleCount;
+    [SerializeField] private int maxIcicleCount;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onStateChange;
@@ -90,10 +95,13 @@ public class Bob : MonoBehaviour
                     idleState.Initialize(transform);
                     break;
                 case BobStompState stompState:
-                    stompState.Initialize(iciclePrefab, spawnRadius, knokbackRange, knockbackForce, stompEffect);
+                    stompState.Initialize(knokbackRange, knockbackForce, stompEffect);
                     break;
                 case BobRageState rageState:
                     rageState.Initialize(crossDuration, transform, crossEffect, crossChargupTime);
+                    break;
+                    case BobStarState starState:
+                    starState.Initialize(timeBeforeSpawn, iciclePrefab, minIcicleCount, maxIcicleCount);
                     break;
             }
         }
@@ -158,7 +166,7 @@ public class Bob : MonoBehaviour
         BobStates.TailBurst => typeof(BobTailState),
         BobStates.SpruceBomb => typeof(BobBombState),
         BobStates.HeavyStomp => typeof(BobStompState),
-        //BobStates.Star
+        BobStates.Star => typeof(BobStarState),
         BobStates.BobsRage => typeof(BobRageState),
         _ => null
     };
