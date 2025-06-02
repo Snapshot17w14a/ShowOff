@@ -39,6 +39,7 @@ public class CutsceneCamera : MonoBehaviour
         if (isTransitioning)
         {
             transitionProgress += Time.deltaTime / transitionDuration;
+            cutsceneCamera.fieldOfView = Mathf.Lerp(60, 27, transitionProgress);
             cutsceneCamera.transform.position = Vector3.Lerp(startPos, MainCamera.transform.position, transitionProgress);
             cutsceneCamera.transform.rotation = Quaternion.Lerp(startRot, MainCamera.transform.rotation, transitionProgress);
 
@@ -59,6 +60,7 @@ public class CutsceneCamera : MonoBehaviour
     {
         Debug.Log("Cutscene Finished");
         cutsceneCamera.gameObject.GetComponent<CinemachineBrain>().enabled = false;
+        cinemachineSplineDolly.GetComponent<CinemachineCamera>().enabled = false;
 
         startPos = cutsceneCamera.transform.position;
         startRot = cutsceneCamera.transform.rotation;
