@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 using UnityEngine.VFX;
 using static BobAttackPattern;
 
@@ -54,6 +55,7 @@ public class Bob : MonoBehaviour
     [SerializeField] private float crossChargupTime;
     [SerializeField] private float rageStunTime;
     [SerializeField] private VisualEffect crossEffect;
+    [SerializeField] private Volume globalVolume;
 
     [Header("Star state settings")]
     [SerializeField] private float timeBeforeSpawn;
@@ -104,7 +106,7 @@ public class Bob : MonoBehaviour
                     stompState.Initialize(knokbackRange, knockbackForce, stompEffect);
                     break;
                 case BobRageState rageState:
-                    rageState.Initialize(crossDuration, transform, crossEffect, crossChargupTime, rageStunTime, beamLayerMask.value);
+                    rageState.Initialize(crossDuration, transform, crossEffect, crossChargupTime, rageStunTime, beamLayerMask.value, globalVolume);
                     break;
                 case BobStarState starState:
                     starState.Initialize(timeBeforeSpawn, iciclePrefab, minIcicleCount, maxIcicleCount);

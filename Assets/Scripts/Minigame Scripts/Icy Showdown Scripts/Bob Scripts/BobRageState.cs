@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.VFX;
 
 public class BobRageState : BobState
@@ -11,6 +13,9 @@ public class BobRageState : BobState
     private Transform bobTransform;
     private VisualEffect beamsEffect;
     private int layerMask;
+    private Volume globalVolume;
+    private ChromaticAberration chromatic;
+    private Camera mainCamera;
 
     private float time = 0f;
     private float initialAngle = 0f;
@@ -18,7 +23,7 @@ public class BobRageState : BobState
 
     public override void Initialize(params object[] parameters)
     {
-        if (parameters.Length != 6) throw new Exception("Provided parameters array length was not 6");
+        if (parameters.Length != 7) throw new Exception("Provided parameters array length was not 7");
 
         duration = (float)parameters[0];
         bobTransform = (Transform)parameters[1];
@@ -26,8 +31,10 @@ public class BobRageState : BobState
         chargeUpTime = (float)parameters[3];
         stunDuration = (float)parameters[4];
         layerMask = (int)parameters[5];
+        globalVolume = (Volume)parameters[6];
 
         fullDuration = duration + chargeUpTime;
+        mainCamera = Camera.main;
     }
 
     public override void LoadState(params object[] parameters)
@@ -38,6 +45,8 @@ public class BobRageState : BobState
 
         beamsEffect.Reinit();
         beamsEffect.Play();
+
+        globalVolume.sharedProfile.TryGet(out chromatic);
 
         isStateRunning = true;
     }
@@ -51,6 +60,8 @@ public class BobRageState : BobState
         if (time > chargeUpTime)
         {
             Rotate();
+            chromatic.active = true;
+            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 30f, Time.deltaTime);
             foreach (var direction in new Vector3[] { bobTransform.forward, bobTransform.right, -bobTransform.forward, -bobTransform.right })
             {
                 Raycast(direction);
@@ -65,6 +76,8 @@ public class BobRageState : BobState
     {
         time = 0;
         beamsEffect.Stop();
+        chromatic.active = false;
+        mainCamera.fieldOfView = 26.9f;
     }
 
     private void Rotate()
