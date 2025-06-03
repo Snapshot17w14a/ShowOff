@@ -48,7 +48,7 @@ public class LoadingZoneMinigame : MonoBehaviour
 
         if (isTranstitioning)
         {
-            if (cinemachineSplineDolly.CameraPosition >= 2.4f && !isLoadingMinigame)
+            if (cinemachineSplineDolly.CameraPosition >= 2.3f && !isLoadingMinigame)
             {
                 isLoadingMinigame = true;
                 TransitionController.Instance.TransitionOut(minigameName);
