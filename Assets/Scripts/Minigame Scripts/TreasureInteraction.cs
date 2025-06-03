@@ -13,7 +13,7 @@ public class TreasureInteraction : MonoBehaviour
 
     [Header("Large Gem Settings")]
     [SerializeField, Range(1, 100)] private int spawnChance;
-    [SerializeField, Range(100, 200)] private int movementSpeedPenalty;
+    [SerializeField, Range(0, 100)] private int movementSpeedPenalty;
 
     [Header("Other stuff")]
     [SerializeField] private Transform holdPoint;

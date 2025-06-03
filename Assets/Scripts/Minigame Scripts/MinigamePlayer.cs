@@ -83,7 +83,7 @@ public class MinigamePlayer : MonoBehaviour
         if (inputVector.sqrMagnitude == 0) return;
         Vector3 inputDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
         rigidbody.AddForce((movementSpeed * (TreasureInteraction.IsHoldingItem && TreasureInteraction.CollectedPickupable.Worth > 1 ?
-            gemSlowdownPercentage / TreasureInteraction.MovementSpeedPenalty : 1f)) * Time.deltaTime * inputDirection);
+            (1f - TreasureInteraction.MovementSpeedPenalty / 100f) : 1f)) * Time.deltaTime * inputDirection);
         var targetAngle = Vector3.SignedAngle(Vector3.forward, inputDirection, Vector3.up);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, targetAngle, 0), Time.deltaTime * turnSpeedMultiplier);
     }
