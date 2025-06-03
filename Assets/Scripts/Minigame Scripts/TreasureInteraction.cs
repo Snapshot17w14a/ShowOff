@@ -54,6 +54,7 @@ public class TreasureInteraction : MonoBehaviour
     {
         if (!PauseManager.isPaused)
         {
+
             int roll = UnityEngine.Random.Range(1, 101);
 
             if (roll <= spawnChance)
@@ -85,6 +86,23 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
+    private void CollectTreasureFromGround(Pickupable pickupable)
+    {
+        if (!PauseManager.isPaused)
+        {
+            Pickupable droppedTreasure = Instantiate(pickupable, holdPoint.position, Quaternion.identity);
+            droppedTreasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
+            droppedTreasure.SetKinematic(true);
+
+            if (pickupable != null)
+            {
+                droppedTreasure.Collect(holdPoint);
+                droppedTreasure.GetComponent<Collider>().enabled = false;
+                collectedPickupable = droppedTreasure;
+            }
+        }
+    }
+
     private void DeliverTreasure()
     {
         if (collectedPickupable != null)
@@ -106,9 +124,6 @@ public class TreasureInteraction : MonoBehaviour
     {
         if (collectedPickupable != null)
         {
-            Destroy(collectedPickupable.gameObject);
-            collectedPickupable = null;
-
             Vector3 position = transform.position;
             Vector3 randomDirection = new Vector3(Random.Range(-spawnRange, spawnRange), 0f, Random.Range(-spawnRange, spawnRange));
             Vector3 spawnPosition = position + randomDirection;
@@ -118,7 +133,20 @@ public class TreasureInteraction : MonoBehaviour
                 //for some reason if I increase the timeToTarget above 0.6 (whenever I get stunned by bob the gem sinks into the ground).
                 SpawnAnimation(hit, 0.5f, 1f);
             }
+            Destroy(collectedPickupable.gameObject);
+            collectedPickupable = null;
         }
+    }
+
+    private void SpawnAnimation(NavMeshHit hit, float playerYOffset, float timeToTarget)
+    {
+        Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + playerYOffset, transform.position.z);
+        Pickupable spawnPrefab = GetTreasurePrefab(collectedPickupable.PickupType);
+        Pickupable treasure = Instantiate(spawnPrefab, spawnPoint, Quaternion.identity);
+        treasure.SetKinematic(false);
+        treasure.SetTrigger(false);
+        treasure.CalculateVelocity(spawnPoint, hit.position, timeToTarget);
+        treasure.DespawnAfter(droppedTreasureDespawnTime);
     }
 
     //Used to manually drop the treasure infront of the player
@@ -152,16 +180,7 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
-    private void SpawnAnimation(NavMeshHit hit, float playerYOffset, float timeToTarget)
-    {
-        Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + playerYOffset, transform.position.z);
-        Pickupable spawnPrefab = GetTreasurePrefab(collectedPickupable.PickupType);
-        Pickupable treasure = Instantiate(spawnPrefab, spawnPoint, Quaternion.identity);
-        treasure.SetKinematic(false);
-        treasure.SetTrigger(false);
-        treasure.CalculateVelocity(spawnPoint, hit.position, timeToTarget);
-        treasure.DespawnAfter(droppedTreasureDespawnTime);
-    }
+
 
     //Destroys the treasure whenever of the player holding the treasure whenever stunned and gives it to the other player - works with CollectTreasureDirect
     public void DropTreasureInstant()
@@ -180,8 +199,8 @@ public class TreasureInteraction : MonoBehaviour
         {
             return;
         }
-
-        Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
+        Pickupable spawnPrefab = GetTreasurePrefab(collectedPickupable.PickupType);
+        Pickupable treasure = Instantiate(spawnPrefab, holdPoint.position, Quaternion.identity);
 
         if (treasure != null)
         {
@@ -210,11 +229,13 @@ public class TreasureInteraction : MonoBehaviour
             isInCollectionZone = true;
         }
 
+
         if (other.GetComponent<Pickupable>() != null)
         {
             if (!IsPlayerStunned() && collectedPickupable == null)
             {
-                CollectTreasure();
+                Pickupable pickupable = other.GetComponent<Pickupable>();
+                CollectTreasureFromGround(pickupable);
                 Destroy(other.gameObject);
             }
         }
