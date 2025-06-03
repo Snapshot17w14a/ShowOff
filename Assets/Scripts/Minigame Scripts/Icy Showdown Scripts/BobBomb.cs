@@ -8,7 +8,7 @@ public class BobBomb : MonoBehaviour
 
     public Action onBombExplode;
 
-    [HideInInspector] public IcePlatform targetPlatform;
+    public IcePlatform targetPlatform;
 
     [SerializeField] private VisualEffect bombExplosion;
     [SerializeField] private VisualEffect trailEffect;

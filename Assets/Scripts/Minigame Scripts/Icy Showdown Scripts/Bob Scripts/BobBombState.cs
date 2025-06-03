@@ -36,7 +36,7 @@ public class BobBombState : BobState
     public void LaunchBomb(Vector3 start, IcePlatform target, float timeToTarget = 2f)
     {
         //Instantiate the bomb prefab with the parent transform
-        var bomb = GameObject.Instantiate(bombPrefab, bombParentTransform);
+        var bomb = GameObject.Instantiate(bombPrefab, start, Quaternion.identity, bombParentTransform);
 
         //Get a reference to its rigidbody
         Rigidbody rb = bomb.GetComponent<Rigidbody>();
