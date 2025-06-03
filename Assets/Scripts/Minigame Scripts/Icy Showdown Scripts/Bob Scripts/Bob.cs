@@ -155,11 +155,6 @@ public class Bob : MonoBehaviour
             Type type = MapContainerToType(nextState);
 
             if (nextState.State == BobStates.Idle) LoadState(type, nextState.time);
-            else if (nextState.State == BobStates.HeavyStomp || nextState.State == BobStates.SpruceBomb)
-            {
-                if (IcePlatformManager.Instance.BrittlePlatformCount >= minBrittleRequirement) LoadState<BobStompState>();
-                else LoadState<BobBombState>();
-            }
             else LoadState(type);
 
             yield return waitForStateExecution;
