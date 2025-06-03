@@ -82,6 +82,10 @@ public class BobRageState : BobState
                 player.StunPlayer(stunDuration);
                 player.DropTreasure();
             }
+            else if (hit.collider.CompareTag("Icicle"))
+            {
+                GameObject.Destroy(hit.collider.gameObject);
+            }
         }
     }
 

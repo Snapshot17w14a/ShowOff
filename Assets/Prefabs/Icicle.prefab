@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 6231203742418981116}
   - component: {fileID: 5135064304662638813}
   - component: {fileID: 1317631369006558027}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Icicle
   m_TagString: Icicle
   m_Icon: {fileID: 0}

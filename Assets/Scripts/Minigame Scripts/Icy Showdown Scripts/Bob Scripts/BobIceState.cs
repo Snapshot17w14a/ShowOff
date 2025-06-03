@@ -15,6 +15,7 @@ public class BobIceState : BobState
     private VisualEffect beamEffect;
     private GameObject hitEffect;
     private int layerMask;
+    private float stunDuration;
 
     private Quaternion initialRotation;
     private Quaternion targetRotation;
@@ -26,13 +27,14 @@ public class BobIceState : BobState
 
     public override void Initialize(params object[] parameters)
     {
-        if (parameters.Length != 5) throw new Exception("Provided parameters array length was not 5");
+        if (parameters.Length != 6) throw new Exception("Provided parameters array length was not 6");
 
         bobTransform = (Transform)parameters[0];
         chargeUpEffect = (VisualEffect)parameters[1];
         beamEffect = (VisualEffect)parameters[2];
         hitEffect = (GameObject)parameters[3];
         layerMask = (int)parameters[4];
+        stunDuration = (float)parameters[5];
     }
 
     public override void LoadState(params object[] parameters)
@@ -105,7 +107,6 @@ public class BobIceState : BobState
         RaycastAndHitParticle();
         bobTransform.rotation = Quaternion.Lerp(initialRotation, targetRotation, time);
         IcePlatformManager.Instance.ExecuteForEachPlatform(FreezePlatformInArc);
-        //ServiceLocator.GetService<PlayerRegistry>().ExecuteForEachPlayer(StunPlayerInArc);
     }
 
     private void FreezePlatformInArc(IcePlatform platform)
@@ -123,7 +124,13 @@ public class BobIceState : BobState
             instantiatedHitEffect.transform.position = hit.point;
             if (hit.collider.CompareTag("Player"))
             {
-                hit.collider.GetComponent<MinigamePlayer>().StunPlayer(2f);
+                var player = hit.collider.GetComponent<MinigamePlayer>();
+                player.StunPlayer(stunDuration);
+                player.DropTreasure();
+            }
+            else if (hit.collider.CompareTag("Icicle"))
+            {
+                GameObject.Destroy(hit.collider.gameObject);
             }
         }
     }
