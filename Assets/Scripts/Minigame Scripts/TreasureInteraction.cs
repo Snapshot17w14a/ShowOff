@@ -13,13 +13,16 @@ public class TreasureInteraction : MonoBehaviour
 
     [Header("Large Gem Settings")]
     [SerializeField, Range(1, 100)] private int spawnChance;
-    [SerializeField, Range(0, 50)] private int movementSpeedPenalty;
+    [SerializeField, Range(100, 200)] private int movementSpeedPenalty;
 
     [Header("Other stuff")]
     [SerializeField] private Transform holdPoint;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float droppedTreasureDespawnTime = 10f;
     [SerializeField] private float pickUpCooldown = 2f;
+
+    public Pickupable CollectedPickupable => collectedPickupable;
+    public int MovementSpeedPenalty => movementSpeedPenalty;
 
     private float spawnRange = 1f;
     private float _pickUpCooldown;
@@ -168,7 +171,7 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
-    private Pickupable GetTreasurePrefab(PickupType type)
+    public Pickupable GetTreasurePrefab(PickupType type)
     {
         switch (collectedPickupable.PickupType)
         {
