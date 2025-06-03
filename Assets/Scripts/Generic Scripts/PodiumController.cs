@@ -22,6 +22,8 @@ public class PodiumController : MonoBehaviour
 
     private Podium[] podiums;
 
+    private int winnerID = -1;
+
     public void StartPodiumSequence()
     {
         //Reset the podium flag in the PlayerPrefs
@@ -48,6 +50,7 @@ public class PodiumController : MonoBehaviour
         {
             var winnerData = registry.GetPlayerData(highestScore.id);
             winnerData.isLastWinner = true;
+            winnerID = highestScore.id;
             registry.SetPlayerData(winnerData);
         }
 
@@ -85,20 +88,20 @@ public class PodiumController : MonoBehaviour
         return podium;
     }
 
-    private IEnumerator AnimatePodiums(WaitForSeconds waitCondition)
+    private IEnumerator AnimatePodiums(YieldInstruction waitCondition)
     {
         while (currentScore <= targetScore)
         {
-            foreach (var podium in podiums)
-            {
-                podium.UpdateScaleAndPosition(currentScore);
-            }
+            foreach (var podium in podiums) podium.UpdateScaleAndPosition(currentScore);
 
             currentScore++;
 
             yield return waitCondition;
         }
-        
+
+        CleanUp();
+        ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(winnerID).minigamePlayer.ChangeSkin();
+
         OnCountEnd?.Invoke();
 
         foreach (var podium in podiums) podium.SetPlayerInteraction(true);
@@ -114,6 +117,10 @@ public class PodiumController : MonoBehaviour
 
     public void CleanUp()
     {
-        foreach (var podium in podiums) podium.CleanUp();
+        foreach (var podium in podiums)
+        {
+            podium.CleanUp();
+            Destroy(podium);
+        }
     }
 }

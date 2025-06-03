@@ -11,7 +11,8 @@ public class BillboardText : MonoBehaviour
 
     private void Update()
     {
-        transform.LookAt(cameraTransform, Vector3.up);
-        transform.rotation *= Quaternion.Euler(0, 180, 0);
+        //transform.LookAt(cameraTransform, Vector3.up);
+        //transform.rotation *= Quaternion.Euler(0, 180, 0);
+        transform.forward = cameraTransform.forward;
     }
 }

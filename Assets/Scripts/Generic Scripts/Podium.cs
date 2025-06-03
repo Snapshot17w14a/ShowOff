@@ -61,7 +61,6 @@ public class Podium : MonoBehaviour
 
         scoreText.text = score.ToString();
 
-        //var height = Mathf.Lerp(0, maxHeight, score / (float)highestScore);
         var height = maxHeight * (score / (float)highestScore);
         height = score == 0 ? 0 : height;
 
@@ -73,12 +72,8 @@ public class Podium : MonoBehaviour
         startingPosition = localPos;
         targetPosition = new Vector3(localPos.x, targetScale.y / 2f, localPos.z);
 
-        //scoreText.transform.position = transform.position + new Vector3(0, transform.localScale.y / 2f, -0.6f);
-
         startingTextPosition = scoreText.transform.position;
         targetTextPosition = transform.position + new Vector3(0, targetScale.y / 2f, -0.6f);
-
-        //player.transform.position = transform.position + new Vector3(0, (transform.localScale.y / 2f) + 0.6f, 0);
 
         startingPlayerPosition = player.transform.position;
         targetPlayerPosition = transform.position + new Vector3(0, (targetScale.y / 2f) + 0.25f, 0);
@@ -95,6 +90,6 @@ public class Podium : MonoBehaviour
 
     public void CleanUp()
     {
-        Destroy(scoreText.gameObject);
+        //Destroy(scoreText.gameObject);
     }
 }
