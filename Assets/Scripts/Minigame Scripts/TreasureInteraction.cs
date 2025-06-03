@@ -173,7 +173,7 @@ public class TreasureInteraction : MonoBehaviour
 
     public Pickupable GetTreasurePrefab(PickupType type)
     {
-        switch (collectedPickupable.PickupType)
+        switch (type)
         {
             case PickupType.Small:
                 return treasurePrefab;
@@ -196,13 +196,9 @@ public class TreasureInteraction : MonoBehaviour
     }
 
     //See above
-    public void CollectTreasureDirect()
+    public void CollectTreasureDirect(PickupType type)
     {
-        if (collectedPickupable != null)
-        {
-            return;
-        }
-        Pickupable spawnPrefab = GetTreasurePrefab(collectedPickupable.PickupType);
+        Pickupable spawnPrefab = GetTreasurePrefab(type);
         Pickupable treasure = Instantiate(spawnPrefab, holdPoint.position, Quaternion.identity);
 
         if (treasure != null)

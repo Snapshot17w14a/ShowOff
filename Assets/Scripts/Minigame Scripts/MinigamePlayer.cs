@@ -85,7 +85,6 @@ public class MinigamePlayer : MonoBehaviour
             gemSlowdownPercentage / TreasureInteraction.MovementSpeedPenalty : 1f)) * Time.deltaTime * inputDirection);
         var targetAngle = Vector3.SignedAngle(Vector3.forward, inputDirection, Vector3.up);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, targetAngle, 0), Time.deltaTime * turnSpeedMultiplier);
-        Debug.Log($"{movementSpeed}");
     }
 
     private void OnMove(InputValue value)
@@ -242,8 +241,9 @@ public class MinigamePlayer : MonoBehaviour
             }
             else if (otherTreasure != null && otherTreasure.IsHoldingItem)
             {
+                Pickupable pickUp = otherTreasure.CollectedPickupable;
                 otherTreasure.DropTreasureInstant();
-                TreasureInteraction.CollectTreasureDirect();
+                TreasureInteraction.CollectTreasureDirect(pickUp.PickupType);
             }
         }
     }
