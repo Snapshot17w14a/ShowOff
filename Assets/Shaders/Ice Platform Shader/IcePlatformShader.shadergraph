@@ -597,7 +597,7 @@
     "m_Title": "Light Specular",
     "m_Position": {
         "x": -700.0,
-        "y": 262.0
+        "y": 261.9999084472656
     }
 }
 
@@ -2241,7 +2241,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Smoothness",
     "m_StageCapability": 2,
-    "m_Value": 0.0,
+    "m_Value": 1.0,
     "m_DefaultValue": 0.5,
     "m_Labels": []
 }
