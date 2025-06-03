@@ -39,6 +39,7 @@ public class MinigamePlayer : MonoBehaviour
     [SerializeField] private VisualEffect dashEffect;
     [SerializeField] private VisualEffect stunEffect;
     [SerializeField] private Material gold;
+    [SerializeField] private Material goldDashMaterial;
 
     private bool isDashAvailable = true;
     private float dashTimer = 0f;
@@ -211,6 +212,8 @@ public class MinigamePlayer : MonoBehaviour
             SetPlayerColor(Color.yellow, RegistryID);
             MeshRenderer renderer = GetComponent<MeshRenderer>();
             renderer.material = gold;
+            dashIndicator.GetComponent<MeshRenderer>().material = goldDashMaterial;
+            dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
         }
     }
 

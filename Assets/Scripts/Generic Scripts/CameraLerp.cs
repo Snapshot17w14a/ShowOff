@@ -30,7 +30,7 @@ public class CameraLerp : MonoBehaviour
         if (delayedTime >= 1f)
         {
             isLerpingAllowed = false;
-            swap.SetActive(false);
+            swap.SetActive(true);
         }
     }
 
