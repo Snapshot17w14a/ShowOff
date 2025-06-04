@@ -12,6 +12,7 @@ public class CutsceneCamera : MonoBehaviour
     [SerializeField] private CinemachineSplineDolly cinemachineSplineDolly;
     [SerializeField] private Camera MainCamera;
     [SerializeField] private Camera cutsceneCamera;
+    [SerializeField] private GameObject penguinExample;
 
     private bool isTransitioning = false;
     private float transitionProgress = 0.0f;
@@ -20,6 +21,10 @@ public class CutsceneCamera : MonoBehaviour
     private Quaternion startRot;
     private int knots;
     private bool cutsceneSkipped;
+    private bool penguinWalking;
+    private Vector3 penguinStartPos;
+    private Vector3 penguinEndPos;
+    private float walkPogression;
 
     public UnityEvent OnCameraReady;
 
@@ -31,6 +36,8 @@ public class CutsceneCamera : MonoBehaviour
 
     private void Update()
     {
+        PenguinWalking();
+
         if (cinemachineSplineDolly.CameraPosition >= (knots - 1) && !finishedCutscene) 
         {
             finishedCutscene = true;
@@ -79,5 +86,30 @@ public class CutsceneCamera : MonoBehaviour
         MainCamera.enabled = true;
 
         OnCameraReady?.Invoke();
+    }
+
+    private void PenguinWalking()
+    {
+        if (cinemachineSplineDolly.CameraPosition >= 2f)
+        {
+            penguinExample.SetActive(true);
+        }
+
+        if (cinemachineSplineDolly.CameraPosition >= 2.5f && cinemachineSplineDolly.CameraPosition <= 3.9f && !penguinWalking)
+        {
+            penguinWalking = true;
+            penguinStartPos = penguinExample.transform.position;
+            penguinEndPos = new Vector3(penguinStartPos.x + 1.5f, penguinStartPos.y, penguinStartPos.z);
+        }
+        if (penguinWalking)
+        {
+            walkPogression += Time.deltaTime / 1;
+            penguinExample.transform.position = Vector3.Lerp(penguinStartPos, penguinEndPos, walkPogression);
+        }
+
+        if (cinemachineSplineDolly.CameraPosition >= 6 && penguinWalking)
+        {
+            penguinExample.SetActive(false);
+        }
     }
 }
