@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public enum PickupType
@@ -15,19 +16,20 @@ public class Pickupable : MonoBehaviour
 
     public PickupType PickupType => pickupType;
     public int Worth => worth;
-    public bool IsPickedUp {  get; private set; } = false;
+    public bool IsPickedUp { get; private set; } = false;
 
     [SerializeField] private Material[] gemMaterials;
     [SerializeField] private PickupType pickupType;
     [SerializeField] private int gemPickUpSize = 12;
     [SerializeField] private int worth = 1;
-   
+
     private float despawnTime;
     private bool isDespawning;
 
     private Rigidbody rb;
     private new Collider collider;
     private MeshRenderer meshRenderer;
+    private Coroutine despawnCoroutine;
 
     private void Awake()
     {
@@ -36,22 +38,38 @@ public class Pickupable : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
-    private void Update()
+    public void DespawnAfter(float time)
     {
-        if (isDespawning && Time.time >= despawnTime)
+        if (despawnCoroutine != null)
         {
-            Despawn();
+            StopCoroutine(despawnCoroutine);
         }
+
+        isDespawning = true;
+        despawnCoroutine = StartCoroutine(DespawnCoroutine(time));
     }
 
-    public void DespawnAfter(float timeUntilDespawn)
+    private IEnumerator DespawnCoroutine(float time)
     {
-        despawnTime = Time.time + timeUntilDespawn;
-        isDespawning = true;
+        yield return new WaitForSeconds(time);
+        isDespawning = false;
+        OnPickupableDespawnedEvent?.Invoke(this);
+        Destroy(gameObject);
+    }
+
+    public void CancelDespawn()
+    {
+        if (despawnCoroutine != null)
+        {
+            StopCoroutine(despawnCoroutine);
+            despawnCoroutine = null;
+            isDespawning = false;
+        }
     }
 
     public void Collect(Transform parent)
     {
+        CancelDespawn();
         IsPickedUp = true;
         SetKinematic(true);
         gameObject.transform.SetParent(parent, false);
@@ -59,14 +77,6 @@ public class Pickupable : MonoBehaviour
         transform.localScale = new Vector3(gemPickUpSize, gemPickUpSize, gemPickUpSize);
         gameObject.transform.localPosition = Vector3.zero;
     }
-
-    public void Drop()
-    {
-        IsPickedUp = false;
-        transform.SetParent(null);
-    }
-
-
 
     private void Despawn()
     {
@@ -77,13 +87,13 @@ public class Pickupable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<IcePlatform>() != null)
+        if (other.GetComponent<IcePlatform>() != null)
         {
             SetKinematic(true);
             OnGroundTouched?.Invoke(this);
         }
 
-        if(other.GetComponent<Minecart>() != null)
+        if (other.GetComponent<Minecart>() != null)
         {
             Minecart minecart = other.GetComponent<Minecart>();
             minecart.AddGem();
@@ -121,7 +131,7 @@ public class Pickupable : MonoBehaviour
 
     public void SetRandomMaterial()
     {
-        if(gemMaterials != null && gemMaterials.Length < 1)
+        if (gemMaterials != null && gemMaterials.Length < 1)
         {
             return;
         }
