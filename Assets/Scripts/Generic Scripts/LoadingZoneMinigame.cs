@@ -22,6 +22,13 @@ public class LoadingZoneMinigame : MonoBehaviour
     private bool isLoadingMinigame = false;
 
     private List<PlayerInput> allPlayerInputs = new List<PlayerInput>();
+    private float playerReadyThreshold;
+
+    private void Start()
+    {
+        ServiceLocator.GetService<PlayerRegistry>().OnPlayerSpawn += AddPlayer;
+        ServiceLocator.GetService<PlayerRegistry>().OnPlayerDisconnect += RemovePlayer;
+    }
     private void Update()
     {
         if (playersReady && !isTranstitioning)
@@ -62,15 +69,9 @@ public class LoadingZoneMinigame : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             curPlayersReady++;
-
-            PlayerInput curPlayerInput = other.GetComponent<PlayerInput>();
-            if (!allPlayerInputs.Contains(curPlayerInput))
-            { 
-                allPlayerInputs.Add(curPlayerInput);
-            }
         }
-
-        if (ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount == curPlayersReady && curPlayersReady >= 2)
+        
+        if (playerReadyThreshold == curPlayersReady)
         {
             playersReady = true;
             countDownTimerText.enabled = true;
@@ -82,9 +83,47 @@ public class LoadingZoneMinigame : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             curPlayersReady--;
-            playersReady = false;
-            countdownTimer = 3;
-            countDownTimerText.enabled = false;
+            RecheckThreshold();
         }
+    }
+
+    private void AddPlayer(MinigamePlayer player)
+    {
+        int registeredPlayers = ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount;
+        float curPlayers = (float)registeredPlayers;
+        playerReadyThreshold = Mathf.Ceil(curPlayers / 2f + 1f);
+        RecheckThreshold();
+
+        if (!allPlayerInputs.Contains(player.GetComponent<PlayerInput>()))
+            allPlayerInputs.Add(player.GetComponent<PlayerInput>());
+    }
+
+    private void RemovePlayer(int curPlayers)
+    {
+        float currentPlayers = (float)curPlayers;
+        playerReadyThreshold = Mathf.Ceil(currentPlayers / 2f + 1f);
+
+        RecheckThreshold();
+    }
+
+    private void RecheckThreshold()
+    {
+        Debug.Log("Current Player Threshold to start the game: " + playerReadyThreshold);
+
+        playersReady = false;
+        countdownTimer = 3;
+        countDownTimerText.enabled = false;
+
+        if (playerReadyThreshold == curPlayersReady)
+        {
+            playersReady = true;
+            countDownTimerText.enabled = true;
+        }
+    }
+
+    private void OnDisable()
+    {
+        ServiceLocator.GetService<PlayerRegistry>().OnPlayerSpawn -= AddPlayer;
+        ServiceLocator.GetService<PlayerRegistry>().OnPlayerDisconnect -= RemovePlayer;
     }
 }
