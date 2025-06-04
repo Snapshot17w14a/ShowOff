@@ -26,7 +26,15 @@ public class PlayerRegistry : Service
         get => registeredPlayers;
     }
 
+    /// <summary>
+    /// When a player is instantiated, this event is triggered and a reference to the instantiated <see cref="MinigamePlayer"/> is passed as a parameter
+    /// </summary>
     public event Action<MinigamePlayer> OnPlayerSpawn;
+
+    /// <summary>
+    /// When a player is disconnecting this event is triggered and the id of the disconnected player is passed as a parameter
+    /// </summary>
+    public event Action<int> OnPlayerDisconnect;
 
     public override void InitializeService()
     {
@@ -218,6 +226,9 @@ public class PlayerRegistry : Service
 
         //Reassign the data to the registry;
         registeredPlayers[id] = regPlayer;
+
+        //Trigger the disconnect event to notify about a user disconnecting
+        OnPlayerDisconnect?.Invoke(id);
     }
 
     public int IdOf(MinigamePlayer player) => registeredPlayers.Where(regPlayer => regPlayer.minigamePlayer.Equals(player)).First().id;

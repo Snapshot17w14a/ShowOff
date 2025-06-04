@@ -100,7 +100,9 @@ public class PodiumController : MonoBehaviour
         }
 
         CleanUp();
-        ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(winnerID).minigamePlayer.ChangeSkin();
+
+        if (winnerID != -1)
+            ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(winnerID).minigamePlayer.ChangeSkin();
 
         OnCountEnd?.Invoke();
 

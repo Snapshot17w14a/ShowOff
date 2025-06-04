@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.VFX;
-
+using Random = UnityEngine.Random;
 public class BobRageState : BobState
 {
     private float duration = 0;
@@ -41,7 +41,7 @@ public class BobRageState : BobState
     {
 
         initialAngle = bobTransform.eulerAngles.y;
-        targetAngle = initialAngle + 360f;
+        targetAngle = initialAngle + Random.Range(0, 2) == 0 ? -360f : 360f;
 
         beamsEffect.Reinit();
         beamsEffect.Play();
