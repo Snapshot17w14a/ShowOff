@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c057f5e985ff74dad65f40a718e4f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballRespawnPosition: {x: -3.136, y: -0.297, z: -0.132}
+  ballRespawnPosition: {x: -3.136, y: -0.942, z: -0.132}
   ballPrefab: {fileID: 7237025748585089559, guid: 6c912461e5212bc4cac2513c37a3cac2, type: 3}
   scoreText: {fileID: 7334830108492503632}
   partyParticle: {fileID: 8828519373474034880}

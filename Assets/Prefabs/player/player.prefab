@@ -1129,7 +1129,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5353790784943384531}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c45bb6cc894ecc94f9e213319178eb39, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1216,7 +1216,7 @@ MonoBehaviour:
   treasurePrefab: {fileID: 8125225457616235221, guid: 129612f842b80a04998a3566709dbd7f, type: 3}
   largeTreasurePrefab: {fileID: 8125225457616235221, guid: d011e7f1123da6144a05c6ed863df824, type: 3}
   spawnChance: 50
-  movementSpeedPenalty: 200
+  movementSpeedPenalty: 100
   holdPoint: {fileID: 8409386958386833174}
   spriteRenderer: {fileID: 7963251910506268503}
   droppedTreasureDespawnTime: 10
