@@ -82,8 +82,9 @@ public class MinigamePlayer : MonoBehaviour
     {
         if (inputVector.sqrMagnitude == 0) return;
         Vector3 inputDirection = new Vector3(inputVector.x, 0, inputVector.y).normalized;
+        float movementPenalty = Mathf.Clamp01(1f - (TreasureInteraction.MovementSpeedPenalty / 100f));
         rigidbody.AddForce((movementSpeed * (TreasureInteraction.IsHoldingItem && TreasureInteraction.CollectedPickupable.Worth > 1 ?
-            (1f - TreasureInteraction.MovementSpeedPenalty / 100f) : 1f)) * Time.deltaTime * inputDirection);
+            movementPenalty : 1f)) * Time.deltaTime * inputDirection);
         var targetAngle = Vector3.SignedAngle(Vector3.forward, inputDirection, Vector3.up);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, targetAngle, 0), Time.deltaTime * turnSpeedMultiplier);
     }
