@@ -3,12 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-
-    void Awake()
-    {
-
-    }
-
     public void Continue()
     {
         ServiceLocator.GetService<PauseManager>().SetIsPaused();

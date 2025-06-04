@@ -154,7 +154,7 @@ public class Bob : MonoBehaviour
         for (int i = 0; i < currentPattern.StateCount; i++)
         {
             var nextState = currentPattern.NextState();
-            Type type = MapContainerToType(nextState);
+            Type type = MapEnumToType(nextState);
 
             if (nextState.State == BobStates.Idle) LoadState(type, nextState.time);
             else LoadState(type);
@@ -165,7 +165,7 @@ public class Bob : MonoBehaviour
         callback.Invoke();
     }
 
-    private Type MapContainerToType(BobAttackContainer container) => container.State switch
+    private Type MapEnumToType(BobAttackContainer container) => container.State switch
     {
         BobStates.Idle => typeof(BobIdleState),
         BobStates.IceBeam => typeof(BobIceState),

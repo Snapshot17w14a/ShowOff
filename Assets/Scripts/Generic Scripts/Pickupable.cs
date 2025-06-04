@@ -24,7 +24,7 @@ public class Pickupable : MonoBehaviour
     private bool isDespawning;
 
     private Rigidbody rb;
-    private Collider collider;
+    private new Collider collider;
 
     private void Awake()
     {

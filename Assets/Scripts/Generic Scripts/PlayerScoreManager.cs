@@ -40,7 +40,7 @@ public class PlayerScoreManager : MonoBehaviour
         RegisteredPlayer data = ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(player.RegistryID);
         if(data.isLastWinner)
         {
-            playerScore.goldenPenguinFrame.gameObject.SetActive(true);
+            playerScore.goldenPenguinFrame.SetActive(true);
         }
 
         playerScore.Initialize(player.TreasureInteraction, player);

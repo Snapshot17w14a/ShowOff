@@ -22,7 +22,7 @@ public class PlayerReposition : MonoBehaviour
 
             rb.linearVelocity = Vector3.zero;
 
-            var platforms = IcePlatformManager.Instance.NonBrokenPlatforms;
+            var platforms = IcePlatformManager.Instance.SelectPlatforms(platform => !platform.IsBroken);
             IcePlatform closestPlatform = null;
             float closestDistance = float.MaxValue;
 

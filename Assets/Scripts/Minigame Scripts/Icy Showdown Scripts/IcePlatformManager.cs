@@ -14,50 +14,18 @@ public class IcePlatformManager : MonoBehaviour
 
     private IcePlatform[] icePlatforms;
 
-    public static IcePlatformManager Instance => _instance;
-    private static IcePlatformManager _instance;
+    public static IcePlatformManager Instance { get; private set; }
 
-    public bool DoBrittlePlatformsExist
-    {
-        get
-        {
-            foreach (var platform in icePlatforms) if (platform.IsBrittle) return true;
-            return false;
-        }
-    }
+    public bool DoBrittlePlatformsExist => SelectPlatforms(platform => platform.IsBrittle).Length != 0;
 
-    public int BrittlePlatformCount
-    {
-        get
-        {
-            int count = 0;
-            foreach (var platform in icePlatforms) if (platform.IsBrittle) count++;
-            return count;
-        }
-    }
-
-    public IcePlatform[] BrittlePlatforms
-    {
-        get
-        {
-            return icePlatforms.Where(platform => platform.IsBrittle).ToArray();
-        }
-    }
-
-    public IcePlatform[] NonBrokenPlatforms
-    {
-        get
-        {
-            return icePlatforms.Where(platform => !platform.IsBroken).ToArray();
-        }
-    }
+    public int BrittlePlatformCount => SelectPlatforms(platform => platform.IsBrittle).Length;
 
     public IcePlatform GetRandomPlatform => icePlatforms[Random.Range(0, icePlatforms.Length)];
 
     private void Awake()
     {
-        if (_instance != null) DestroyImmediate(gameObject);
-        _instance = this;
+        if (Instance != null) DestroyImmediate(gameObject);
+        Instance = this;
 
         icePlatforms = FindObjectsByType<IcePlatform>(FindObjectsSortMode.None);
         SelectWaitTime();
@@ -87,15 +55,20 @@ public class IcePlatformManager : MonoBehaviour
     /// <summary>
     /// Pass in a function to be executed for each platform
     /// </summary>
-    /// <param name="action"></param>
     public void ExecuteForEachPlatform(Action<IcePlatform> action)
     {
         foreach (var platform in icePlatforms) action(platform);
     }
 
+    /// <summary>
+    /// Select a platform from the array of platforms using the predicate
+    /// </summary>
+    /// <param name="predicate">The predicate function to chose which platforms to select</param>
+    public IcePlatform[] SelectPlatforms(Func<IcePlatform, bool> predicate) => icePlatforms.Where(platform => predicate(platform)).ToArray();
+
     public IcePlatform[] SelectUniquePlatforms(int count)
     {
-        var platforms = NonBrokenPlatforms;
+        var platforms = SelectPlatforms(platform => !platform.IsBroken);
 
         if (count == 0 || count > platforms.Length) return null;
 

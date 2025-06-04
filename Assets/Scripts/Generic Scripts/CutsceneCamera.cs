@@ -12,7 +12,7 @@ public class CutsceneCamera : MonoBehaviour
     [SerializeField] private CinemachineSplineDolly cinemachineSplineDolly;
     [SerializeField] private Camera MainCamera;
     [SerializeField] private Camera cutsceneCamera;
-    [SerializeField] private GameObject penguinExample;
+    [SerializeField] private CutsceneAnimation penguinAnimScript;
 
     private bool isTransitioning = false;
     private float transitionProgress = 0.0f;
@@ -21,16 +21,12 @@ public class CutsceneCamera : MonoBehaviour
     private Quaternion startRot;
     private int knots;
     private bool cutsceneSkipped;
-    private bool penguinWalking;
-    private Vector3 penguinStartPos;
-    private Vector3 penguinEndPos;
-    private float walkPogression;
 
     public UnityEvent OnCameraReady;
 
     private void Start()
     {
-        Debug.Log(cinemachineSplineDolly.Spline.Splines[0].Count);
+        //Debug.Log(cinemachineSplineDolly.Spline.Splines[0].Count);
         knots = cinemachineSplineDolly.Spline.Splines[0].Count;
     }
 
@@ -41,16 +37,15 @@ public class CutsceneCamera : MonoBehaviour
         if (cinemachineSplineDolly.CameraPosition >= (knots - 1) && !finishedCutscene) 
         {
             finishedCutscene = true;
-            Invoke("CutsceneFinished", delayCameraSwap);
+            Invoke(nameof(CutsceneFinished), delayCameraSwap);
         }
 
         if (isTransitioning)
         {
             transitionProgress += Time.deltaTime / transitionDuration;
             cutsceneCamera.fieldOfView = Mathf.Lerp(60, 27, transitionProgress);
-            cutsceneCamera.transform.position = Vector3.Lerp(startPos, MainCamera.transform.position, transitionProgress);
-            cutsceneCamera.transform.rotation = Quaternion.Lerp(startRot, MainCamera.transform.rotation, transitionProgress);
-
+            cutsceneCamera.transform.SetPositionAndRotation(Vector3.Lerp(startPos, MainCamera.transform.position, transitionProgress),
+                                                            Quaternion.Lerp(startRot, MainCamera.transform.rotation, transitionProgress));
             if (transitionProgress >= 1)
             {
                 GameReadyToStart();
@@ -90,26 +85,16 @@ public class CutsceneCamera : MonoBehaviour
 
     private void PenguinWalking()
     {
-        if (cinemachineSplineDolly.CameraPosition >= 2f)
+
+        if (cinemachineSplineDolly.CameraPosition >= 2f && !penguinAnimScript.IsAnimating)
         {
-            penguinExample.SetActive(true);
+            penguinAnimScript.gameObject.SetActive(true);
+            penguinAnimScript.StartAnimation();
         }
 
-        if (cinemachineSplineDolly.CameraPosition >= 2.5f && cinemachineSplineDolly.CameraPosition <= 3.9f && !penguinWalking)
+        if (cinemachineSplineDolly.CameraPosition >= 6)
         {
-            penguinWalking = true;
-            penguinStartPos = penguinExample.transform.position;
-            penguinEndPos = new Vector3(penguinStartPos.x + 1.5f, penguinStartPos.y, penguinStartPos.z);
-        }
-        if (penguinWalking)
-        {
-            walkPogression += Time.deltaTime / 1;
-            penguinExample.transform.position = Vector3.Lerp(penguinStartPos, penguinEndPos, walkPogression);
-        }
-
-        if (cinemachineSplineDolly.CameraPosition >= 6 && penguinWalking)
-        {
-            penguinExample.SetActive(false);
+            penguinAnimScript.gameObject.SetActive(false);
         }
     }
 }

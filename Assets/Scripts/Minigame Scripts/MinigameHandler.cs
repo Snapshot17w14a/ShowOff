@@ -13,13 +13,11 @@ public class MinigameHandler : MonoBehaviour
     private MinigameState currentMinigameState;
     private MinigameState nextMinigameState;
 
-    public static MinigameHandler Instance => _instance;
-    private static MinigameHandler _instance;
+    public static MinigameHandler Instance { get; private set; }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (_instance == null) _instance = this;
+        if (Instance == null) Instance = this;
         else Destroy(gameObject);
 
         foreach (Transform child in transform) child.gameObject.SetActive(false);
@@ -27,7 +25,6 @@ public class MinigameHandler : MonoBehaviour
         LoadState(initialMinigameState);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (currentMinigameState != null) currentMinigameState.TickState();
@@ -64,7 +61,7 @@ public class MinigameHandler : MonoBehaviour
 
     public void WipeScoreData() => ServiceLocator.GetService<ScoreRegistry>().WipeData();
 
-    private void OnDestroy() => _instance = null;
+    private void OnDestroy() => Instance = null;
 
     public void SetAutoJoinStatus(bool status)
     {
