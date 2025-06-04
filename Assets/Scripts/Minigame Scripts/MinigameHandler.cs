@@ -65,4 +65,9 @@ public class MinigameHandler : MonoBehaviour
     public void WipeScoreData() => ServiceLocator.GetService<ScoreRegistry>().WipeData();
 
     private void OnDestroy() => _instance = null;
+
+    public void SetAutoJoinStatus(bool status)
+    {
+        ServiceLocator.GetService<PlayerAutoJoin>().AllowJoining = status;
+    }
 }
