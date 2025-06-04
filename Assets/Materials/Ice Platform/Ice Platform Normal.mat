@@ -24,18 +24,28 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Emission_texture:
+        m_Texture: {fileID: 2800000, guid: b4470b6db37293a4584cfb11f837e9a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Ice2:
-        m_Texture: {fileID: 2800000, guid: 5ce2abd606dce7e4eaa4bc7519964b2c, type: 3}
+        m_Texture: {fileID: 2800000, guid: f0363d10cf1faf94396313005ff87640, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: 24384907d169c6e48a0439283ab36caa, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Lerp: 0.57
+    - _Lerp: 0.5
     - _Saturation: 2.33
     m_Colors:
     - _Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
+    - _Emission_color: {r: 0, g: 0, b: 0, a: 0}
     - _IceColor: {r: 0.3764706, g: 0.45490196, b: 0.627451, a: 0}
     - _SpecularColor: {r: 0.59607846, g: 0.79607844, b: 1, a: 0}
+    - _Tiles: {r: 8, g: 8, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5751849272767910322

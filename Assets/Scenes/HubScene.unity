@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 01ab096a516f65445addd6c0f603e88d, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -3007,8 +3007,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 0.8666667, g: 0.9768392, b: 1, a: 1}
-  m_Intensity: 2.1
+  m_Color: {r: 0.495283, g: 0.8523151, b: 1, a: 1}
+  m_Intensity: 2.29
   m_Range: 10
   m_SpotAngle: 108.29664
   m_InnerSpotAngle: 0
@@ -4168,6 +4168,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.085
       objectReference: {fileID: 0}
+    - target: {fileID: 6153881755000081086, guid: 694c26a4bd8a9b14dac6367751538ca8, type: 3}
+      propertyPath: m_Cookie
+      value: 
+      objectReference: {fileID: 8900000, guid: 1d08eef3d2920b449b78e0943f8d6953, type: 3}
     - target: {fileID: 8151843875095633928, guid: 694c26a4bd8a9b14dac6367751538ca8, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -4725,6 +4729,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -18.632
       objectReference: {fileID: 0}
+    - target: {fileID: 6153881755000081086, guid: 694c26a4bd8a9b14dac6367751538ca8, type: 3}
+      propertyPath: m_Cookie
+      value: 
+      objectReference: {fileID: 8900000, guid: 1d08eef3d2920b449b78e0943f8d6953, type: 3}
     - target: {fileID: 8151843875095633928, guid: 694c26a4bd8a9b14dac6367751538ca8, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -7259,8 +7267,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 0.8666667, g: 0.9768392, b: 1, a: 1}
-  m_Intensity: 2.1
+  m_Color: {r: 0.96469337, g: 0.627451, b: 1, a: 1}
+  m_Intensity: 2.29
   m_Range: 10
   m_SpotAngle: 108.29664
   m_InnerSpotAngle: 0
@@ -10120,10 +10128,10 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 0.8666667, g: 0.9768392, b: 1, a: 1}
-  m_Intensity: 2.1
+  m_Color: {r: 0.75, g: 0.9461416, b: 1, a: 1}
+  m_Intensity: 2.29
   m_Range: 10
-  m_SpotAngle: 108.29664
+  m_SpotAngle: 122.71271
   m_InnerSpotAngle: 0
   m_CookieSize: 10
   m_Shadows:
@@ -10163,8 +10171,8 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
+  m_BounceIntensity: 9.55
+  m_ColorTemperature: 7075
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
