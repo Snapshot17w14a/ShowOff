@@ -7302,9 +7302,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPatterns:
+  - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
+  - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
   - {fileID: 11400000, guid: 54ea6353847f64645874006ed2d3e964, type: 2}
-  - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
-  - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
   - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
   - {fileID: 11400000, guid: 54ea6353847f64645874006ed2d3e964, type: 2}
   - {fileID: 11400000, guid: 399abfeee23ee854abee1b2c9b4bbfdf, type: 2}
@@ -7318,7 +7318,7 @@ MonoBehaviour:
   iceChargeup: {fileID: 1631712738}
   iceBeam: {fileID: 133727044}
   hitEffect: {fileID: 3333641165478109681, guid: b1a4e2d8da39ccd4eaa45045daacd2a6, type: 3}
-  iceStunDuration: 2
+  iceStunDuration: 1
   tailAttackTime: 2
   tailProjectileCount: 10
   tailAttackArc: 120
@@ -7332,7 +7332,7 @@ MonoBehaviour:
   stompEffect: {fileID: 400691298}
   crossDuration: 8
   crossChargupTime: 3
-  rageStunTime: 2
+  rageStunTime: 0.5
   crossEffect: {fileID: 1824977043}
   globalVolume: {fileID: 614240165}
   timeBeforeSpawn: 2
@@ -11798,7 +11798,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0010347479}
+  m_AnchoredPosition: {x: 0, y: 0.0010445996}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1262361296
@@ -16642,7 +16642,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1758826602}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999988
+  m_Size: 0.999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -18103,7 +18103,7 @@ MonoBehaviour:
         z: 0.7304658
       Rotation:
         value:
-          x: -0.030437399
+          x: -0.030437395
           y: 0.43016154
           z: 0.05210271
           w: 0.90073293
@@ -18158,9 +18158,9 @@ MonoBehaviour:
       Rotation:
         value:
           x: -0.006308864
-          y: 0.9999089
-          z: 0.0039563105
-          w: -0.01125468
+          y: 0.99990904
+          z: 0.003956311
+          w: -0.011254682
     - Position:
         x: -0.927
         y: 0.09399998
