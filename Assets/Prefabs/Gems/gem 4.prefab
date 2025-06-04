@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -5040600120456553437}
   - component: {fileID: -469270698590415904}
   m_Layer: 0
-  m_Name: LargeTreasure
+  m_Name: gem 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: acae218dd2d407645bd12fd945baa678, type: 2}
+  - {fileID: 2100000, guid: f5f0b6068676eb34bb58f4ba8fc35cb0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,13 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1de790c03d97742b6dd49a6a0abea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupType: 1
-  gemMaterials:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  pickupType: 0
+  gemMaterials: []
   gemPickUpSize: 12
-  worth: 3
+  worth: 1
 --- !u!2083052967 &-5040600120456553437
 VisualEffect:
   m_ObjectHideFlags: 0

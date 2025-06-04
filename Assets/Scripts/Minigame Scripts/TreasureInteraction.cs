@@ -8,8 +8,8 @@ public class TreasureInteraction : MonoBehaviour
     public event Action<int> OnTreasureDelivered;
 
     [Header("Prefabs")]
-    [SerializeField] private Pickupable treasurePrefab;
-    [SerializeField] private Pickupable largeTreasurePrefab;
+    [SerializeField] private Pickupable[] treasurePrefabs;
+    [SerializeField] private Pickupable[] largeTreasurePrefabs;
 
     [Header("Large Gem Settings")]
     [SerializeField, Range(1, 100)] private int spawnChance;
@@ -62,7 +62,7 @@ public class TreasureInteraction : MonoBehaviour
 
             if (roll <= spawnChance)
             {
-                Pickupable largeTreasure = Instantiate(largeTreasurePrefab, holdPoint.position, Quaternion.identity);
+                Pickupable largeTreasure = Instantiate(largeTreasurePrefabs[UnityEngine.Random.Range(0, largeTreasurePrefabs.Length)], holdPoint.position, Quaternion.identity);
                 largeTreasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
                 largeTreasure.SetKinematic(true);
 
@@ -75,7 +75,7 @@ public class TreasureInteraction : MonoBehaviour
             }
             else
             {
-                Pickupable treasure = Instantiate(treasurePrefab, holdPoint.position, Quaternion.identity);
+                Pickupable treasure = Instantiate(treasurePrefabs[UnityEngine.Random.Range(0, treasurePrefabs.Length)], holdPoint.position, Quaternion.identity);
                 treasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
                 treasure.SetKinematic(true);
 
@@ -93,17 +93,23 @@ public class TreasureInteraction : MonoBehaviour
     {
         if (!PauseManager.isPaused)
         {
-            Pickupable droppedTreasure = Instantiate(pickupable, holdPoint.position, Quaternion.identity);
-            droppedTreasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
-            droppedTreasure.SetKinematic(true);
+            SetGem(pickupable, holdPoint.transform.position);
+            pickupable.OnPickupableDespawnedEvent += HandleTreasureDespawned;
+            pickupable.SetKinematic(true);
 
             if (pickupable != null)
             {
-                droppedTreasure.Collect(holdPoint);
-                droppedTreasure.GetComponent<Collider>().enabled = false;
-                collectedPickupable = droppedTreasure;
+                pickupable.Collect(holdPoint);
+                pickupable.GetComponent<Collider>().enabled = false;
+                collectedPickupable = pickupable;
             }
         }
+    }
+
+    private void SetGem(Pickupable gem, Vector3 position)
+    {
+        gem.transform.position = position;
+        gem.transform.rotation = Quaternion.identity;
     }
 
     private void DeliverTreasure()
@@ -111,13 +117,12 @@ public class TreasureInteraction : MonoBehaviour
         if (collectedPickupable != null)
         {
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-            Pickupable spawnPrefab = GetTreasurePrefab(collectedPickupable.PickupType);
-            Pickupable treasure = Instantiate(spawnPrefab, spawnPoint, Quaternion.identity);
-            treasure.SetKinematic(false);
-            treasure.CalculateVelocity(spawnPoint, currentMinecart.transform.position, 1f);
-
+            SetGem(collectedPickupable, spawnPoint);
+            collectedPickupable.SetKinematic(false);
+            collectedPickupable.SetCollider(true);
+            collectedPickupable.transform.SetParent(null, true);
+            collectedPickupable.CalculateVelocity(spawnPoint, currentMinecart.transform.position, 1f);
             OnTreasureDelivered?.Invoke(collectedPickupable.Worth);
-            Destroy(collectedPickupable.gameObject);
             collectedPickupable = null;
         }
     }
@@ -134,22 +139,22 @@ public class TreasureInteraction : MonoBehaviour
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
             {
                 //for some reason if I increase the timeToTarget above 0.6 (whenever I get stunned by bob the gem sinks into the ground).
-                SpawnAnimation(hit, 0.5f, 1f);
+                SpawnAnimation(hit, 0.5f, 1f, collectedPickupable);
             }
-            Destroy(collectedPickupable.gameObject);
             collectedPickupable = null;
         }
     }
 
-    private void SpawnAnimation(NavMeshHit hit, float playerYOffset, float timeToTarget)
+    private void SpawnAnimation(NavMeshHit hit, float playerYOffset, float timeToTarget, Pickupable gem)
     {
         Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + playerYOffset, transform.position.z);
-        Pickupable spawnPrefab = GetTreasurePrefab(collectedPickupable.PickupType);
-        Pickupable treasure = Instantiate(spawnPrefab, spawnPoint, Quaternion.identity);
-        treasure.SetKinematic(false);
-        treasure.SetTrigger(false);
-        treasure.CalculateVelocity(spawnPoint, hit.position, timeToTarget);
-        treasure.DespawnAfter(droppedTreasureDespawnTime);
+        SetGem(gem, spawnPoint);
+        gem.SetCollider(true);
+        gem.SetKinematic(false);
+        gem.SetTrigger(true);
+        gem.transform.SetParent(null, true);
+        gem.CalculateVelocity(spawnPoint, hit.position, timeToTarget);
+        gem.DespawnAfter(droppedTreasureDespawnTime);
     }
 
     //Used to manually drop the treasure infront of the player
@@ -162,12 +167,15 @@ public class TreasureInteraction : MonoBehaviour
             Vector3 spawnPosition = position + dropPosition;
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
             Rigidbody rb = GetComponent<Rigidbody>();
-            Pickupable spawnPrefab = GetTreasurePrefab(collectedPickupable.PickupType);
-            Pickupable treasure = Instantiate(spawnPrefab, spawnPoint, Quaternion.identity);
-            treasure.OnPickupableEnteredMinecartEvent += HandleTreasureEnteredMinecart;
-            treasure.SetKinematic(false);
-            treasure.CalculateVelocity(spawnPoint, spawnPosition + (rb.linearVelocity / 3f), 0.3f);
-            treasure.DespawnAfter(droppedTreasureDespawnTime);
+            SetGem(collectedPickupable, spawnPoint);
+            collectedPickupable.SetCollider(true);
+            collectedPickupable.transform.SetParent(null, true);
+            collectedPickupable.SetKinematic(false);
+            collectedPickupable.OnGroundTouched += HandleOnGroundTouched;
+            collectedPickupable.OnPickupableEnteredMinecartEvent += HandleTreasureEnteredMinecart;
+            collectedPickupable.CalculateVelocity(spawnPoint, spawnPosition + (rb.linearVelocity / 3f), 0.3f);
+            collectedPickupable.DespawnAfter(droppedTreasureDespawnTime);
+            collectedPickupable = null;
         }
     }
 
@@ -176,9 +184,9 @@ public class TreasureInteraction : MonoBehaviour
         switch (type)
         {
             case PickupType.Small:
-                return treasurePrefab;
+                return treasurePrefabs[UnityEngine.Random.Range(0, treasurePrefabs.Length)];
             case PickupType.Large:
-                return largeTreasurePrefab;
+                return largeTreasurePrefabs[UnityEngine.Random.Range(0, largeTreasurePrefabs.Length)];
             default: throw new NotImplementedException(collectedPickupable.PickupType.ToString());
         }
     }
@@ -190,22 +198,22 @@ public class TreasureInteraction : MonoBehaviour
     {
         if (collectedPickupable != null)
         {
-            Destroy(collectedPickupable.gameObject);
             collectedPickupable = null;
         }
     }
 
     //See above
-    public void CollectTreasureDirect(PickupType type)
+    public void CollectTreasureDirect(PickupType type, Pickupable gem)
     {
-        Pickupable spawnPrefab = GetTreasurePrefab(type);
-        Pickupable treasure = Instantiate(spawnPrefab, holdPoint.position, Quaternion.identity);
+        SetGem(gem, holdPoint.transform.position);
+        gem.SetKinematic(true);
+        gem.transform.SetParent(this.transform, true);
 
-        if (treasure != null)
+        if (gem != null)
         {
-            treasure.Collect(holdPoint);
-            treasure.GetComponent<Collider>().enabled = false;
-            collectedPickupable = treasure;
+            gem.Collect(holdPoint);
+            gem.GetComponent<Collider>().enabled = false;
+            collectedPickupable = gem;
         }
     }
 
@@ -235,7 +243,6 @@ public class TreasureInteraction : MonoBehaviour
             {
                 Pickupable pickupable = other.GetComponent<Pickupable>();
                 CollectTreasureFromGround(pickupable);
-                Destroy(other.gameObject);
             }
         }
     }
@@ -279,8 +286,6 @@ public class TreasureInteraction : MonoBehaviour
         else if (collectedPickupable != null)
         {
             DropTreasure();
-            Destroy(collectedPickupable.gameObject);
-            collectedPickupable = null;
         }
     }
 
@@ -293,5 +298,10 @@ public class TreasureInteraction : MonoBehaviour
     private void HandleTreasureEnteredMinecart(Pickupable pickupable, int value)
     {
         OnTreasureDelivered?.Invoke(value);
+    }
+
+    private void HandleOnGroundTouched(Pickupable gem)
+    {
+        gem.OnPickupableEnteredMinecartEvent -= HandleTreasureEnteredMinecart;
     }
 }

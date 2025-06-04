@@ -246,8 +246,9 @@ public class MinigamePlayer : MonoBehaviour
             else if (otherTreasure != null && otherTreasure.IsHoldingItem)
             {
                 Pickupable pickUp = otherTreasure.CollectedPickupable;
+                otherTreasure.CollectedPickupable.transform.SetParent(null, true);
+                TreasureInteraction.CollectTreasureDirect(pickUp.PickupType, pickUp);
                 otherTreasure.DropTreasureInstant();
-                TreasureInteraction.CollectTreasureDirect(pickUp.PickupType);
             }
         }
     }
