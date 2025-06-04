@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public enum ESoundType

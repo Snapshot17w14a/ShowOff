@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Threading;
 using UnityEngine;
 
 public class Minecart : MonoBehaviour
@@ -8,6 +7,13 @@ public class Minecart : MonoBehaviour
     [SerializeField] private int maxGemIntake = 3;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float waitTime = 10f;
+    [SerializeField] private GameObject goldPile;
+    [SerializeField] private Vector3 pileEndPos;
+    [SerializeField] private Vector3 pileEndScl;
+
+    private Vector3 pileStartPos;
+    private Vector3 pileStartScl;
+
     private BoxCollider boxCollider;
 
     private int currentGemAmount = 0;
@@ -21,6 +27,9 @@ public class Minecart : MonoBehaviour
         startPosition = transform.position;
         endPosition = movePoint.transform.position;
         boxCollider = GetComponent<BoxCollider>();
+
+        pileStartPos = goldPile.transform.localPosition;
+        pileStartScl = goldPile.transform.localScale;
     }
 
     public void AddGem()
@@ -32,6 +41,10 @@ public class Minecart : MonoBehaviour
 
         currentGemAmount++;
         float gemLimit = (Mathf.CeilToInt((ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount + 1) / 2) + 1);
+
+        //Change the gold pile height
+        SetFill(currentGemAmount / gemLimit);
+
         Debug.Log($"Gem intake: {gemLimit}");
 
         if (currentGemAmount >= gemLimit)
@@ -39,6 +52,12 @@ public class Minecart : MonoBehaviour
             isFull = true;
             StartCoroutine(MoveCart());
         }
+    }
+
+    private void SetFill(float t)
+    {
+        goldPile.transform.localPosition = Vector3.Lerp(pileStartPos, pileEndPos, t);
+        goldPile.transform.localScale = Vector3.Lerp(pileStartScl, pileEndScl, t);
     }
 
     private IEnumerator MoveCart()
@@ -54,6 +73,7 @@ public class Minecart : MonoBehaviour
         }
 
         yield return new WaitForSeconds(waitTime);
+        SetFill(0);
 
         while (Vector3.Distance(transform.position, startPosition) > 0.1f)
         {
