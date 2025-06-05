@@ -30,7 +30,7 @@ public class BobStompState : BobState
 
     public override void TickState()
     {
-        
+
     }
 
     public override void UnloadState()
@@ -42,7 +42,7 @@ public class BobStompState : BobState
     {
         var players = GameObject.FindObjectsByType<MinigamePlayer>(FindObjectsSortMode.None);
 
-        foreach(var p in players)
+        foreach (var p in players)
         {
             var pos = p.transform.position;
             var dist = pos.magnitude;

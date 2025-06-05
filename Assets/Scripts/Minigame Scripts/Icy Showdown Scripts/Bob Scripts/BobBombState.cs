@@ -30,7 +30,7 @@ public class BobBombState : BobState
 
     public override void UnloadState()
     {
-        
+
     }
 
     public void LaunchBomb(Vector3 start, IcePlatform target, float timeToTarget = 2f)

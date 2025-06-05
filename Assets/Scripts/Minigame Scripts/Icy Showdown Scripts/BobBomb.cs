@@ -39,13 +39,13 @@ public class BobBomb : MonoBehaviour
                     trailEffect.Stop();
                     GetComponent<Rigidbody>().isKinematic = true;
                 }
-            break;
+                break;
             case BombState.WaitingToExplode:
                 if (timer >= explosionCooldown)
                 {
                     Explode();
                 }
-            break;
+                break;
         }
     }
 

@@ -38,7 +38,7 @@ public class PlayerScoreManager : MonoBehaviour
 
         //Changing the UI frame of the winner penguin
         RegisteredPlayer data = ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(player.RegistryID);
-        if(data.isLastWinner)
+        if (data.isLastWinner)
         {
             playerScore.goldenPenguinFrame.SetActive(true);
         }

@@ -1,8 +1,8 @@
 using System.Collections;
+using TMPro;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
-using UnityEngine;
-using TMPro;
 
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class MinigamePlayer : MonoBehaviour

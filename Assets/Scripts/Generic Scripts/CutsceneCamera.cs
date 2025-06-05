@@ -34,7 +34,7 @@ public class CutsceneCamera : MonoBehaviour
     {
         PenguinWalking();
 
-        if (cinemachineSplineDolly.CameraPosition >= (knots - 1) && !finishedCutscene) 
+        if (cinemachineSplineDolly.CameraPosition >= (knots - 1) && !finishedCutscene)
         {
             finishedCutscene = true;
             Invoke(nameof(CutsceneFinished), delayCameraSwap);
@@ -53,7 +53,7 @@ public class CutsceneCamera : MonoBehaviour
         }
 
         //Skips Cutscene (Can assign it to other keybinds, just call this function)
-        if (Input.GetKey(KeyCode.Space) && !cutsceneSkipped) 
+        if (Input.GetKey(KeyCode.Space) && !cutsceneSkipped)
         {
             cutsceneSkipped = true;
             CutsceneFinished();

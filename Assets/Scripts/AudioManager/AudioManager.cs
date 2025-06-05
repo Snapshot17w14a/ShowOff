@@ -73,7 +73,7 @@ public class AudioManager : MonoBehaviour
 
         var group = Instance.audioGroups.Find(g => g.soundType == soundSourceType);
 
-        if(group == null )
+        if (group == null)
         {
             Debug.LogError($"SoundType: {soundSourceType} does not exist!");
             return;
@@ -81,16 +81,17 @@ public class AudioManager : MonoBehaviour
 
         var clip = group.audioClips.Find(c => c.name == name);
 
-        if( clip == null )
+        if (clip == null)
         {
             Debug.LogError($"Sound name: {name} doesn't exist in {group}");
             return;
         }
 
-        if(randomizePitch)
+        if (randomizePitch)
         {
             Instance.sfxSource.pitch = UnityEngine.Random.Range(1f, 3f);
-        } else
+        }
+        else
         {
             Instance.sfxSource.pitch = 1f;
         }

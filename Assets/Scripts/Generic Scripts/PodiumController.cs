@@ -46,7 +46,7 @@ public class PodiumController : MonoBehaviour
         });
 
         //Set the winner's data to have winner as true
-        if (highestScore.isUnique) 
+        if (highestScore.isUnique)
         {
             var winnerData = registry.GetPlayerData(highestScore.id);
             winnerData.isLastWinner = true;

@@ -93,8 +93,8 @@ public class Bob : MonoBehaviour
                 case BobTailState tailState:
                     tailState.Initialize(tailAttackTime, tailProjectileCount, tailAttackArc, tailProjectile, transform, tailProjectileStrength, needleParentTransform);
                     break;
-                case BobIceState iceState: 
-                    iceState.Initialize(transform, iceChargeup, iceBeam, hitEffect, beamLayerMask.value, iceStunDuration); 
+                case BobIceState iceState:
+                    iceState.Initialize(transform, iceChargeup, iceBeam, hitEffect, beamLayerMask.value, iceStunDuration);
                     break;
                 case BobBombState bombState:
                     bombState.Initialize(bombPrefab, bombParentTransform);

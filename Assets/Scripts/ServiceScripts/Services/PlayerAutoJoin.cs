@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
 
@@ -19,7 +18,7 @@ public class PlayerAutoJoin : Service
     public bool AllowJoining
     {
         get => joinAction.enabled;
-        set 
+        set
         {
             if (value) joinAction.Enable();
             else joinAction.Disable();
@@ -144,7 +143,7 @@ public class PlayerAutoJoin : Service
         }
 
         //Store the removed keyboard bindings so we can add it back when a keyboard player leaves
-        if (!removedKeyboardBindings.ContainsKey(bindingGroup)) removedKeyboardBindings.Add(bindingGroup, removedBindings.ToArray());      
+        if (!removedKeyboardBindings.ContainsKey(bindingGroup)) removedKeyboardBindings.Add(bindingGroup, removedBindings.ToArray());
 
         //Return the group (control scheme) of the binding
         return bindingGroup;

@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 //Base class for services
-public abstract class Service 
+public abstract class Service
 {
     public abstract void InitializeService();
 }

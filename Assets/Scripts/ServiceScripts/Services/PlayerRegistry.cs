@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using UnityEngine.InputSystem;
-using UnityEngine;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerRegistry : Service
 {
@@ -110,7 +110,7 @@ public class PlayerRegistry : Service
     /// <returns>True if the device is already in use</returns>
     public bool DoesPlayerWithDeviceExist(InputDevice device)
     {
-        if (device == Keyboard.current && keyboardPlayers < 2) return false; 
+        if (device == Keyboard.current && keyboardPlayers < 2) return false;
         return usedInputDevices.Contains(device);
     }
 

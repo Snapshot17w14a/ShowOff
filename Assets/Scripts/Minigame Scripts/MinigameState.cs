@@ -1,5 +1,5 @@
-using UnityEngine.Events;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class MinigameState : MonoBehaviour
 {

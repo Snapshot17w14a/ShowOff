@@ -1,5 +1,5 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 using UnityEngine.VFX;
 
 public class BobTailState : BobState

@@ -23,7 +23,7 @@ public class TransitionController : MonoBehaviour
     }
 
     public void TransitionOut(string sceneName)
-    {   
+    {
         if (this == null || image == null) return;
         sceneToLoad = sceneName;
         StopAllCoroutines();

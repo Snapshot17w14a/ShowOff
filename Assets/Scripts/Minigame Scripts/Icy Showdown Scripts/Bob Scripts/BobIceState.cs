@@ -1,6 +1,6 @@
-using UnityEngine.VFX;
-using UnityEngine;
 using System;
+using UnityEngine;
+using UnityEngine.VFX;
 
 public class BobIceState : BobState
 {
@@ -51,7 +51,7 @@ public class BobIceState : BobState
     public override void TickState()
     {
         if (!isStateRunning) return;
-        
+
         switch (state)
         {
             case IceState.Idle:

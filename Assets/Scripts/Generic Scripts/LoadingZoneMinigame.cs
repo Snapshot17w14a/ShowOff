@@ -1,10 +1,8 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class LoadingZoneMinigame : MonoBehaviour
 {
@@ -84,7 +82,7 @@ public class LoadingZoneMinigame : MonoBehaviour
             curPlayersReady++;
             players.Add(other.GetComponent<MinigamePlayer>().RegistryID);
         }
-        
+
         if (playerReadyThreshold == curPlayersReady)
         {
             playersReady = true;
@@ -115,11 +113,11 @@ public class LoadingZoneMinigame : MonoBehaviour
         float curPlayers = (float)registeredPlayers;
         playerReadyThreshold = Mathf.Ceil(curPlayers / 2f + 1f);
         RecheckThreshold();
-        
+
 
         allPlayers.Add(player.gameObject);
         allPlayerInputs.Add(player.GetComponent<PlayerInput>());
-                 
+
     }
 
     private void RemovePlayer(int curPlayers)

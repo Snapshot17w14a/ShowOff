@@ -46,7 +46,7 @@ public class IcePlatform : MonoBehaviour
             if (currentRoutine != null) StopCoroutine(currentRoutine);
             currentRoutine = StartCoroutine(FreezeRoutine());
         }
-        
+
         meshCollider.enabled = true;
         meshRenderer.enabled = true;
 

@@ -1,7 +1,7 @@
-using static UnityEditor.EditorGUILayout;
+using System;
 using UnityEditor;
 using UnityEngine;
-using System;
+using static UnityEditor.EditorGUILayout;
 
 [CustomEditor(typeof(IcePlatformManager))]
 public class IcePlatformEditor : Editor

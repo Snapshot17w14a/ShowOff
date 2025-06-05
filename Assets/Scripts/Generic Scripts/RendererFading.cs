@@ -42,7 +42,7 @@ public class RendererFading : MonoBehaviour
     private IEnumerator FadeOut(float seconds, Renderer[] renderers)
     {
         var time = 0f;
-        
+
         while (time < 1f)
         {
             time += Time.deltaTime / seconds;

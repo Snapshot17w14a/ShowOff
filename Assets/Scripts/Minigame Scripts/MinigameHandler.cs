@@ -1,6 +1,6 @@
-using UnityEngine.Events;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MinigameHandler : MonoBehaviour
 {
@@ -51,7 +51,7 @@ public class MinigameHandler : MonoBehaviour
     public void LoadState(MinigameState state)
     {
         StopAllCoroutines();
-        if(currentMinigameState != null) currentMinigameState.UnloadState();
+        if (currentMinigameState != null) currentMinigameState.UnloadState();
         currentMinigameState = state;
         currentMinigameState.LoadState();
         onStateChanged?.Invoke();

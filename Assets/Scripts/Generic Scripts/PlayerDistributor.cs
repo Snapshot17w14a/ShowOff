@@ -17,7 +17,7 @@ public class PlayerDistributor : MonoBehaviour
         {
             if (RegisteredPlayer.IsNull(player)) continue;
 
-            if(player.isLastWinner)
+            if (player.isLastWinner)
             {
                 player.minigamePlayer.ChangeSkin();
             }

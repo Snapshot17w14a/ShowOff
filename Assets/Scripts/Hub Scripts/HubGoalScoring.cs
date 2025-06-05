@@ -1,6 +1,6 @@
-using UnityEngine;
-using TMPro;
 using System.Collections;
+using TMPro;
+using UnityEngine;
 using UnityEngine.VFX;
 
 public class HubGoalScoring : MonoBehaviour
@@ -13,7 +13,7 @@ public class HubGoalScoring : MonoBehaviour
     [SerializeField] private TextMeshPro scoreText;
     [SerializeField] private VisualEffect partyParticle;
     [SerializeField] private AudioSource partySound;
-    private int currentScore; 
+    private int currentScore;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ball"))

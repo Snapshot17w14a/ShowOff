@@ -1,7 +1,7 @@
-using UnityEngine.InputSystem;
-using UnityEngine.Events;
-using UnityEngine;
 using System;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class CreatePlayer : MonoBehaviour
 {
@@ -39,7 +39,7 @@ public class CreatePlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && numPlayers < maxPlayers)
+        if (Input.GetKeyDown(KeyCode.Space) && numPlayers < maxPlayers)
         {
             MinigamePlayer player = ServiceLocator.GetService<PlayerRegistry>().CreatePlayerWithDevice(numPlayers < 2 ? Keyboard.current : gamepads[numPlayers - 2]);
             numPlayers++;
@@ -52,7 +52,7 @@ public class CreatePlayer : MonoBehaviour
     {
         onPlayerJoin?.Invoke();
     }
-    
+
     public void InstantiateAllPlayers()
     {
         ServiceLocator.GetService<PlayerRegistry>().InstantiateAllPlayers();
