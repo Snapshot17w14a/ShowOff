@@ -8,7 +8,6 @@ public class BobRageState : BobState
 {
     private float duration = 0;
     private float chargeUpTime = 0;
-    private float fullDuration = 0;
     private float stunDuration = 0;
     private Transform bobTransform;
     private VisualEffect beamsEffect;
@@ -17,7 +16,6 @@ public class BobRageState : BobState
     private ChromaticAberration chromatic;
     private Camera mainCamera;
 
-    private float time = 0f;
     private float initialAngle = 0f;
     private float targetAngle = 0f;
 
@@ -33,7 +31,6 @@ public class BobRageState : BobState
         layerMask = (int)parameters[5];
         globalVolume = (Volume)parameters[6];
 
-        fullDuration = duration + chargeUpTime;
         mainCamera = Camera.main;
     }
 
@@ -48,40 +45,65 @@ public class BobRageState : BobState
         globalVolume.sharedProfile.TryGet(out chromatic);
 
         isStateRunning = true;
+
+        Scheduler.Instance.DelayExecution(StartRagePhase, chargeUpTime);
     }
 
     public override void TickState()
     {
-        if (!isStateRunning) return;
+        //if (!isStateRunning) return;
 
-        time += Time.deltaTime;
+        //time += Time.deltaTime;
 
-        if (time > chargeUpTime)
-        {
-            Rotate();
-            chromatic.active = true;
-            mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 30f, Time.deltaTime);
-            foreach (var direction in new Vector3[] { bobTransform.forward, bobTransform.right, -bobTransform.forward, -bobTransform.right })
-            {
-                Raycast(direction);
-                IcePlatformManager.Instance.ExecuteForEachPlatform(platform => FreezePlatformInArc(platform, direction));
-            }
-        }
+        //if (time > chargeUpTime)
+        //{
+        //    Rotate();
+        //    chromatic.active = true;
+        //    mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 30f, Time.deltaTime);
+        //    foreach (var direction in new Vector3[] { bobTransform.forward, bobTransform.right, -bobTransform.forward, -bobTransform.right })
+        //    {
+        //        Raycast(direction);
+        //        IcePlatformManager.Instance.ExecuteForEachPlatform(platform => FreezePlatformInArc(platform, direction));
+        //    }
+        //}
 
-        if (time >= fullDuration) isStateRunning = false;
+        ////Lerp the camera fov back to normal and end the state
+        //if (time >= fullDuration)
+        //    Scheduler.Instance.Lerp(t => mainCamera.fieldOfView = Mathf.Lerp(30f, 26.9f, t), 1, () => isStateRunning = false);
     }
 
     public override void UnloadState()
     {
-        time = 0;
         beamsEffect.Stop();
         chromatic.active = false;
         mainCamera.fieldOfView = 26.9f;
     }
 
-    private void Rotate()
+    private void StartRagePhase()
     {
-        bobTransform.eulerAngles = new Vector3(0, Mathf.Lerp(initialAngle, targetAngle, (time - chargeUpTime) / duration), 0);
+        chromatic.active = true;
+        Scheduler.Instance.Lerp(RagePhase, duration, EndAttack);
+    }
+
+    private void RagePhase(float t)
+    {
+        Rotate(t);
+        mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 30f, Time.deltaTime);
+        foreach (var direction in new Vector3[] { bobTransform.forward, bobTransform.right, -bobTransform.forward, -bobTransform.right })
+        {
+            Raycast(direction);
+            IcePlatformManager.Instance.ExecuteForEachPlatform(platform => FreezePlatformInArc(platform, direction));
+        }
+    }
+
+    private void EndAttack()
+    {
+        Scheduler.Instance.Lerp(t => mainCamera.fieldOfView = Mathf.Lerp(30f, 26.9f, t), 1, () => isStateRunning = false);
+    }
+
+    private void Rotate(float t)
+    {
+        bobTransform.eulerAngles = new Vector3(0, Mathf.Lerp(initialAngle, targetAngle, t), 0);
     }
 
     private void Raycast(Vector3 dir)

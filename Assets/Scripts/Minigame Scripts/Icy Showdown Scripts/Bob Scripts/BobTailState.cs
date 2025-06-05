@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class BobTailState : BobState
 {
@@ -11,12 +10,9 @@ public class BobTailState : BobState
     private Transform bobTransform;
     private float needleStrength = 2.5f;
     private Transform needleParentTransform;
-    private VisualEffect stompEffect;
 
     private float timeBetweenProjectiles = 0;
     private int firedProjectileCount = 0;
-
-    private float timer = 0;
 
     public override void Initialize(params object[] parameters)
     {
@@ -36,26 +32,29 @@ public class BobTailState : BobState
         timeBetweenProjectiles = 1 / (float)projectileCount;
 
         isStateRunning = true;
+
+        Scheduler.Instance.Lerp(FireProjectile, attackTime, () => isStateRunning = false);
     }
 
     public override void TickState()
     {
-        if (!isStateRunning) return;
+        //if (!isStateRunning) return;
 
-        timer += Time.deltaTime / attackTime;
-        if (timer >= (firedProjectileCount + 1) * timeBetweenProjectiles) FireProjectile();
+        //timer += Time.deltaTime / attackTime;
+        //if (timer >= (firedProjectileCount + 1) * timeBetweenProjectiles) FireProjectile();
 
-        if (timer >= 1) isStateRunning = false;
+        //if (timer >= 1) isStateRunning = false;
     }
 
     public override void UnloadState()
     {
-        timer = 0;
         firedProjectileCount = 0;
     }
 
-    private void FireProjectile()
+    private void FireProjectile(float t)
     {
+        if (t < (firedProjectileCount + 1) * timeBetweenProjectiles) return;
+
         var dir = NeedleDirection();
 
         GameObject.Instantiate(needlePrefab, new Vector3(0, 1, 0), Quaternion.identity, needleParentTransform).GetComponent<Rigidbody>().AddForce(needleStrength * ((UnityEngine.Random.value * 0.5f) + 0.5f) * dir, ForceMode.Impulse);
@@ -65,18 +64,6 @@ public class BobTailState : BobState
 
     Vector3 NeedleDirection()
     {
-        //var dir = new Vector3(attackArc.x / 2f / 90f, 0, attackArc.y / 2f / 90f);
-
-        //dir.Set(
-        //    UnityEngine.Random.Range(-dir.z, dir.z),
-        //    UnityEngine.Random.Range(-dir.x, dir.x),
-        //    1  
-        //);
-
-        //dir = bobTransform.rotation * dir;
-
-        //return -dir;
-
         var angle = attackArc / 2f;
         var dir = Quaternion.Euler(0, UnityEngine.Random.Range(-angle, angle), 0) * (-bobTransform.forward);
         return dir;

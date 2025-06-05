@@ -80,7 +80,7 @@ public class PlayerAutoJoin : Service
 
         //Delay the adding of actions so that the key press is not processes twice in a frame and joining the player back
         //as soon as they left
-        foreach (var binding in removedKeyboardBindings[bindingGroup]) joinAction.AddBinding(binding);
+        Scheduler.Instance.DelayExecution(() => { foreach (var binding in removedKeyboardBindings[bindingGroup]) joinAction.AddBinding(binding); }, 1f);        
 
         return true;
     }

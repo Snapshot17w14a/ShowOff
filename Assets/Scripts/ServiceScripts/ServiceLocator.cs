@@ -37,7 +37,6 @@ public static class ServiceLocator
     {
         if (!services.ContainsKey(service.GetType())) return false;
         services.Remove(service.GetType());
-        //service.DestroyServiceObject();
         return true;
     }
 

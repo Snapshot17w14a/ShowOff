@@ -31,5 +31,7 @@ public class ServiceConfig : ScriptableObject
 
         PauseManager pauseManager = new();
         ServiceLocator.RegisterService(pauseManager);
+
+        new GameObject("Scheduler").AddComponent<Scheduler>();
     }
 }
