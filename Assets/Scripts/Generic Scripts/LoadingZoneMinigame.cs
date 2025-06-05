@@ -22,13 +22,17 @@ public class LoadingZoneMinigame : MonoBehaviour
     private bool isLoadingMinigame = false;
 
     private List<PlayerInput> allPlayerInputs = new List<PlayerInput>();
+    private List<GameObject> allPlayers = new List<GameObject>();
     private float playerReadyThreshold;
+    SplineAutoDolly.FixedSpeed autodolly;
 
     private void Start()
     {
         ServiceLocator.GetService<PlayerRegistry>().OnPlayerSpawn += AddPlayer;
         ServiceLocator.GetService<PlayerRegistry>().OnPlayerDisconnect += RemovePlayer;
+        autodolly = cinemachineSplineDolly.AutomaticDolly.Method as SplineAutoDolly.FixedSpeed;
     }
+
     private void Update()
     {
         if (playersReady && !isTranstitioning)
@@ -42,13 +46,15 @@ public class LoadingZoneMinigame : MonoBehaviour
                 MainCamera.enabled = false;
                 cutsceneCamera.enabled = true;
                 countDownTimerText.enabled = false;
-
-                var autodolly = cinemachineSplineDolly.AutomaticDolly.Method as SplineAutoDolly.FixedSpeed;
                 autodolly.Speed = 0.5f;
 
                 for (int i = 0; i < allPlayerInputs.Count; i++)
                 {
-                    allPlayerInputs[i].DeactivateInput();
+                    if (allPlayers[i] != null)
+                    {
+                        allPlayerInputs[i].DeactivateInput();
+                        allPlayers[i].transform.Find("Indicator").gameObject.SetActive(false);
+                    }
                 }
             }
         }
@@ -60,7 +66,12 @@ public class LoadingZoneMinigame : MonoBehaviour
                 isLoadingMinigame = true;
                 TransitionController.Instance.TransitionOut(minigameName);
             }
+        }
 
+        //Call this with the player controller idk how to do that
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SkipCustcene();
         }
     }
 
@@ -87,15 +98,23 @@ public class LoadingZoneMinigame : MonoBehaviour
         }
     }
 
+    private void SkipCustcene()
+    {
+        autodolly.Speed = 10f;
+    }
+
     private void AddPlayer(MinigamePlayer player)
     {
+
         int registeredPlayers = ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount;
         float curPlayers = (float)registeredPlayers;
         playerReadyThreshold = Mathf.Ceil(curPlayers / 2f + 1f);
         RecheckThreshold();
+        
 
-        if (!allPlayerInputs.Contains(player.GetComponent<PlayerInput>()))
-            allPlayerInputs.Add(player.GetComponent<PlayerInput>());
+        allPlayers.Add(player.gameObject);
+        allPlayerInputs.Add(player.GetComponent<PlayerInput>());
+                 
     }
 
     private void RemovePlayer(int curPlayers)
