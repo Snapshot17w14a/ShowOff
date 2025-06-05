@@ -18,7 +18,6 @@ public class MinigamePlayer : MonoBehaviour
     [Header("Move settings")]
     [SerializeField] private float turnSpeedMultiplier;
     [SerializeField] private float movementSpeed = 1.0f;
-    [SerializeField] private float gemSlowdownPercentage = 80f;
     [SerializeField] private float walkEffectRate = 10f;
 
     [Header("Stun settings")]

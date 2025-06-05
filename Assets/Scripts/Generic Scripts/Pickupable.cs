@@ -23,9 +23,6 @@ public class Pickupable : MonoBehaviour
     [SerializeField] private int gemPickUpSize = 12;
     [SerializeField] private int worth = 1;
 
-    private float despawnTime;
-    private bool isDespawning;
-
     private Rigidbody rb;
     private new Collider collider;
     private MeshRenderer meshRenderer;
@@ -45,14 +42,12 @@ public class Pickupable : MonoBehaviour
             StopCoroutine(despawnCoroutine);
         }
 
-        isDespawning = true;
         despawnCoroutine = StartCoroutine(DespawnCoroutine(time));
     }
 
     private IEnumerator DespawnCoroutine(float time)
     {
         yield return new WaitForSeconds(time);
-        isDespawning = false;
         OnPickupableDespawnedEvent?.Invoke(this);
         Destroy(gameObject);
     }
@@ -63,7 +58,6 @@ public class Pickupable : MonoBehaviour
         {
             StopCoroutine(despawnCoroutine);
             despawnCoroutine = null;
-            isDespawning = false;
         }
     }
 
@@ -80,7 +74,7 @@ public class Pickupable : MonoBehaviour
 
     private void Despawn()
     {
-        isDespawning = false;
+
         Destroy(gameObject);
         OnPickupableDespawnedEvent?.Invoke(this);
     }

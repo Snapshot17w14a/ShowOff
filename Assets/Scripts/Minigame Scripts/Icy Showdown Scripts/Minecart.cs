@@ -4,7 +4,6 @@ using UnityEngine;
 public class Minecart : MonoBehaviour
 {
     [SerializeField] private GameObject movePoint;
-    [SerializeField] private int maxGemIntake = 3;
     [SerializeField] private float speed = 5f;
     [SerializeField] private float waitTime = 10f;
     [SerializeField] private GameObject goldPile;

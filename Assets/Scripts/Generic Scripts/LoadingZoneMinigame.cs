@@ -4,6 +4,7 @@ using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class LoadingZoneMinigame : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class LoadingZoneMinigame : MonoBehaviour
 
     private List<PlayerInput> allPlayerInputs = new List<PlayerInput>();
     private List<GameObject> allPlayers = new List<GameObject>();
+    private List<int> players = new();
     private float playerReadyThreshold;
     SplineAutoDolly.FixedSpeed autodolly;
 
@@ -80,6 +82,7 @@ public class LoadingZoneMinigame : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             curPlayersReady++;
+            players.Add(other.GetComponent<MinigamePlayer>().RegistryID);
         }
         
         if (playerReadyThreshold == curPlayersReady)
@@ -93,6 +96,8 @@ public class LoadingZoneMinigame : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            players.Remove(other.GetComponent<MinigamePlayer>().RegistryID);
+
             curPlayersReady--;
             RecheckThreshold();
         }
@@ -119,8 +124,10 @@ public class LoadingZoneMinigame : MonoBehaviour
 
     private void RemovePlayer(int curPlayers)
     {
-        float currentPlayers = (float)curPlayers;
-        playerReadyThreshold = Mathf.Ceil(currentPlayers / 2f + 1f);
+        if (players.Contains(curPlayers))
+            curPlayersReady--;
+
+        playerReadyThreshold = Mathf.Ceil((float)curPlayersReady / 2f + 1f);
 
         RecheckThreshold();
     }
