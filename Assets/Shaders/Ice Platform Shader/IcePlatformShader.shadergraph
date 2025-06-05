@@ -684,7 +684,7 @@
     "m_ObjectId": "0088ccac7eee4b22980b6bdd61c12580",
     "m_Title": "Light Specular",
     "m_Position": {
-        "x": -700.0001220703125,
+        "x": -700.0,
         "y": 262.0
     }
 }

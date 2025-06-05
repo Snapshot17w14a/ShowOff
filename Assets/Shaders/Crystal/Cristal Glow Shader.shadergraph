@@ -446,8 +446,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": -4.999988555908203,
-            "y": 220.0
+            "x": -4.999982833862305,
+            "y": 217.99998474121095
         },
         "m_Blocks": [
             {
@@ -649,7 +649,7 @@
         "m_Id": "77ebe1dbd8bc4519a471d18c2b7b56ba"
     },
     "m_AllowMaterialOverride": false,
-    "m_SurfaceType": 1,
+    "m_SurfaceType": 0,
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,

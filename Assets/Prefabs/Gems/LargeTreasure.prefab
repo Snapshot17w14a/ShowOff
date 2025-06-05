@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: acae218dd2d407645bd12fd945baa678, type: 2}
+  - {fileID: 2100000, guid: e68398c72733a9b44b6a4359c9476be2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -153,11 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1de790c03d97742b6dd49a6a0abea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupType: 1
   gemMaterials:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  pickupType: 1
   gemPickUpSize: 12
   worth: 3
 --- !u!2083052967 &-5040600120456553437
