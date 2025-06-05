@@ -1184,7 +1184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnSpeedMultiplier: 10
   movementSpeed: 300
-  gemSlowdownPercentage: 75
   walkEffectRate: 10
   blinkInterval: 0.2
   dashStunDuration: 1
@@ -1221,8 +1220,8 @@ MonoBehaviour:
   - {fileID: 8125225457616235221, guid: 0d349cc0c01835249930fb200ad5fd18, type: 3}
   largeTreasurePrefabs:
   - {fileID: 8125225457616235221, guid: d011e7f1123da6144a05c6ed863df824, type: 3}
-  spawnChance: 1
-  movementSpeedPenalty: 50
+  spawnChance: 10
+  movementSpeedPenalty: 45
   holdPoint: {fileID: 8409386958386833174}
   spriteRenderer: {fileID: 7963251910506268503}
   droppedTreasureDespawnTime: 10
