@@ -14,6 +14,7 @@ public class TreasureInteraction : MonoBehaviour
     [Header("Large Gem Settings")]
     [SerializeField, Range(1, 100)] private int spawnChance;
     [SerializeField, Range(0, 100)] private int movementSpeedPenalty;
+    [SerializeField, Range(1, 5)] private float throwPenalty = 2.5f;
 
     [Header("Other stuff")]
     [SerializeField] private Transform holdPoint;
@@ -163,7 +164,8 @@ public class TreasureInteraction : MonoBehaviour
         if (collectedPickupable != null)
         {
             Vector3 position = transform.position;
-            Vector3 dropPosition = transform.forward / 1.5f;
+            Vector3 dropPosition = transform.forward / (collectedPickupable.Worth > 1f ? throwPenalty : 1.5f);
+
             Vector3 spawnPosition = position + dropPosition;
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
             Rigidbody rb = GetComponent<Rigidbody>();
