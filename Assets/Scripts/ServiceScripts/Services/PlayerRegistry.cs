@@ -16,15 +16,11 @@ public class PlayerRegistry : Service
 
     private int players = 0;
     private int maxPlayers = 0;
-
     private int keyboardPlayers = 0;
 
     public int RegisteredPlayerCount => players;
     public int MaxPlayers => maxPlayers;
-    public RegisteredPlayer[] AllPlayers
-    {
-        get => registeredPlayers;
-    }
+    public RegisteredPlayer[] AllPlayers => registeredPlayers;
 
     /// <summary>
     /// When a player is instantiated, this event is triggered and a reference to the instantiated <see cref="MinigamePlayer"/> is passed as a parameter
@@ -227,7 +223,7 @@ public class PlayerRegistry : Service
         //Reassign the data to the registry;
         registeredPlayers[id] = regPlayer;
 
-        //Trigger the disconnect event to notify about a user disconnecting
+        //Trigger the disconnect event with the id of the disconnected user
         OnPlayerDisconnect?.Invoke(id);
     }
 
