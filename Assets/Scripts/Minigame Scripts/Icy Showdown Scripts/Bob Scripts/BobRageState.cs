@@ -39,9 +39,8 @@ public class BobRageState : BobState
 
     public override void LoadState(params object[] parameters)
     {
-
         initialAngle = bobTransform.eulerAngles.y;
-        targetAngle = initialAngle + Random.Range(0, 2) == 0 ? -360f : 360f;
+        targetAngle = initialAngle + (Random.Range(0, 2) == 0 ? -360f : 360f);
 
         beamsEffect.Reinit();
         beamsEffect.Play();
