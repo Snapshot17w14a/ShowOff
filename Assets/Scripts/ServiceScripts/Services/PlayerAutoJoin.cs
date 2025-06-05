@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 using Debug = UnityEngine.Debug;
 
@@ -78,6 +79,8 @@ public class PlayerAutoJoin : Service
     {
         if (!removedKeyboardBindings.ContainsKey(bindingGroup)) return false;
 
+        //Delay the adding of actions so that the key press is not processes twice in a frame and joining the player back
+        //as soon as they left
         foreach (var binding in removedKeyboardBindings[bindingGroup]) joinAction.AddBinding(binding);
 
         return true;
