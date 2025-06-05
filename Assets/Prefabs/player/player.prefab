@@ -1215,6 +1215,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treasurePrefabs:
   - {fileID: 8125225457616235221, guid: 129612f842b80a04998a3566709dbd7f, type: 3}
+  - {fileID: 8125225457616235221, guid: d5193e924c27b9e468a3467453b2b1c8, type: 3}
+  - {fileID: 8125225457616235221, guid: bbea6a17ad9dc2646b7696703d5f3733, type: 3}
+  - {fileID: 8125225457616235221, guid: 31deb92f03ffac24992aa43fcb192030, type: 3}
+  - {fileID: 8125225457616235221, guid: 0d349cc0c01835249930fb200ad5fd18, type: 3}
   largeTreasurePrefabs:
   - {fileID: 8125225457616235221, guid: d011e7f1123da6144a05c6ed863df824, type: 3}
   spawnChance: 1
