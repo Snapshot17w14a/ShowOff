@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class PauseManager : Service
@@ -27,20 +28,11 @@ public class PauseManager : Service
 
         if (!isPaused && SceneManager.GetActiveScene() != SceneManager.GetSceneByName("HubScene"))
         {
-            Time.timeScale = 0f;
-            isPaused = true;
-            OnPaused?.Invoke(true);
-            pausedByPlayerId = playerId;
-            ServiceLocator.GetService<PlayerAutoJoin>().AllowJoining = false;
+            Pause(playerId);
         }
         else if (playerId == pausedByPlayerId)
         {
-            Time.timeScale = 1f;
-            isPaused = false;
-            OnPaused?.Invoke(false);
-            pausedByPlayerId = -1;
-            ServiceLocator.GetService<PlayerAutoJoin>().AllowJoining = false;
-
+            Unpause();
         }
         else
         {
@@ -48,11 +40,21 @@ public class PauseManager : Service
         }
     }
 
-    public void SetIsPaused()
+    public void Unpause()
     {
         Time.timeScale = 1f;
-        OnPaused?.Invoke(false);
+        isPaused = false;
+        pausedByPlayerId = -1;
         ServiceLocator.GetService<PlayerAutoJoin>().AllowJoining = false;
-        isPaused = !isPaused;
+        OnPaused?.Invoke(false);
+    }
+
+    public void Pause(int playerId)
+    {
+        Time.timeScale = 0f;
+        isPaused = true;
+        ServiceLocator.GetService<PlayerAutoJoin>().AllowJoining = false;
+        pausedByPlayerId = playerId;
+        OnPaused?.Invoke(true);
     }
 }

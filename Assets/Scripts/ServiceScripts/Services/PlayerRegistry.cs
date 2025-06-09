@@ -30,7 +30,7 @@ public class PlayerRegistry : Service
     /// <summary>
     /// When a player is disconnecting this event is triggered and the id of the disconnected player is passed as a parameter
     /// </summary>
-    public event Action<int> OnPlayerDisconnect;
+    public event Action<MinigamePlayer, int> OnPlayerDisconnect;
 
     public override void InitializeService()
     {
@@ -224,7 +224,7 @@ public class PlayerRegistry : Service
         registeredPlayers[id] = regPlayer;
 
         //Trigger the disconnect event with the id of the disconnected user
-        OnPlayerDisconnect?.Invoke(id);
+        OnPlayerDisconnect?.Invoke(regPlayer.minigamePlayer, id);
     }
 
     public int IdOf(MinigamePlayer player) => registeredPlayers.Where(regPlayer => regPlayer.minigamePlayer.Equals(player)).First().id;

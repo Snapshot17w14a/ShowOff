@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine.VFX;
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class MinigamePlayer : MonoBehaviour
 {
+    public event Action<int> OnPlayerPaused;
     public TreasureInteraction TreasureInteraction { get; private set; }
 
     public bool IsStunned => isStunned;
@@ -53,11 +55,14 @@ public class MinigamePlayer : MonoBehaviour
     /// </summary>
     public int RegistryID { get; set; }
 
+    private PlayerInput playerInput;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         meshRenderer = GetComponent<MeshRenderer>();
         TreasureInteraction = GetComponent<TreasureInteraction>();
+        playerInput = GetComponent<PlayerInput>();
 
         dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
     }
@@ -107,6 +112,22 @@ public class MinigamePlayer : MonoBehaviour
     private void OnPause()
     {
         ServiceLocator.GetService<PauseManager>().TogglePause(RegistryID);
+        OnPlayerPaused?.Invoke(RegistryID);
+    }
+
+    public void SetInputEnabled(bool isEnabled)
+    {
+        if (isEnabled)
+        {
+            playerInput.ActivateInput();
+        }
+        else
+        {
+            playerInput.DeactivateInput();
+        }
+
+
+        Debug.LogError($"[{RegistryID}] Set input enabled: {isEnabled}");
     }
 
     public void StunPlayer(float seconds)

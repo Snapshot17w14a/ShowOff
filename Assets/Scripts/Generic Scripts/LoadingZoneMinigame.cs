@@ -120,7 +120,7 @@ public class LoadingZoneMinigame : MonoBehaviour
 
     }
 
-    private void RemovePlayer(int curPlayers)
+    private void RemovePlayer(MinigamePlayer player, int curPlayers)
     {
         if (players.Contains(curPlayers))
             curPlayersReady--;
