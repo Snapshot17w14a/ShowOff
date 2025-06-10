@@ -1227,7 +1227,7 @@ MonoBehaviour:
   - {fileID: 8125225457616235221, guid: d011e7f1123da6144a05c6ed863df824, type: 3}
   spawnChance: 10
   movementSpeedPenalty: 45
-  throwPenalty: 2.5
+  throwPenalty: 1
   holdPoint: {fileID: 8409386958386833174}
   spriteRenderer: {fileID: 7963251910506268503}
   droppedTreasureDespawnTime: 10
