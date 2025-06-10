@@ -68,6 +68,7 @@ public class Scheduler : MonoBehaviour
             yield return null;
         }
 
-        callback?.Invoke();
+        try { callback?.Invoke(); }
+        catch (MissingReferenceException e) { Debug.LogError(e.Message); }
     }
 }

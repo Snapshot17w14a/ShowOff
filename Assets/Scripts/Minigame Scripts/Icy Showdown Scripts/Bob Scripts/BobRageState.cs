@@ -46,42 +46,23 @@ public class BobRageState : BobState
 
         isStateRunning = true;
 
-        Scheduler.Instance.DelayExecution(StartRagePhase, chargeUpTime);
+        Scheduler.Instance.Lerp(t => chromatic.intensity.value = Mathf.Lerp(0, 0.5f, t), chargeUpTime, StartRagePhase);
+        //Scheduler.Instance.DelayExecution(StartRagePhase, chargeUpTime);
     }
 
     public override void TickState()
     {
-        //if (!isStateRunning) return;
-
-        //time += Time.deltaTime;
-
-        //if (time > chargeUpTime)
-        //{
-        //    Rotate();
-        //    chromatic.active = true;
-        //    mainCamera.fieldOfView = Mathf.Lerp(mainCamera.fieldOfView, 30f, Time.deltaTime);
-        //    foreach (var direction in new Vector3[] { bobTransform.forward, bobTransform.right, -bobTransform.forward, -bobTransform.right })
-        //    {
-        //        Raycast(direction);
-        //        IcePlatformManager.Instance.ExecuteForEachPlatform(platform => FreezePlatformInArc(platform, direction));
-        //    }
-        //}
-
-        ////Lerp the camera fov back to normal and end the state
-        //if (time >= fullDuration)
-        //    Scheduler.Instance.Lerp(t => mainCamera.fieldOfView = Mathf.Lerp(30f, 26.9f, t), 1, () => isStateRunning = false);
+        
     }
 
     public override void UnloadState()
     {
         beamsEffect.Stop();
-        chromatic.active = false;
         mainCamera.fieldOfView = 26.9f;
     }
 
     private void StartRagePhase()
     {
-        chromatic.active = true;
         Scheduler.Instance.Lerp(RagePhase, duration, EndAttack);
     }
 
@@ -98,7 +79,14 @@ public class BobRageState : BobState
 
     private void EndAttack()
     {
-        Scheduler.Instance.Lerp(t => mainCamera.fieldOfView = Mathf.Lerp(30f, 26.9f, t), 1, () => isStateRunning = false);
+        Scheduler.Instance.Lerp(
+            t => {
+                mainCamera.fieldOfView = Mathf.Lerp(30f, 26.9f, t);
+                chromatic.intensity.value = Mathf.Lerp(0.5f, 0, t);
+            }, 
+            1, 
+            () => isStateRunning = false
+        );
     }
 
     private void Rotate(float t)
