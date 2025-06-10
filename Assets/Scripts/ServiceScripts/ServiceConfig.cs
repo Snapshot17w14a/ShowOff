@@ -6,7 +6,7 @@ public class ServiceConfig : ScriptableObject
 {
     [Header("PlayerRegistry settings")]
     [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private Color[] playerColors;
+    [SerializeField] private PlayerVisualData[] playerVisualData;
 
     [Header("PlayerAutoJoin settings")]
     [SerializeField] private InputActionAsset inputActions;
@@ -16,7 +16,7 @@ public class ServiceConfig : ScriptableObject
         PlayerRegistry playerRegistry = new()
         {
             playerPrefab = playerPrefab,
-            playerColors = playerColors
+            visualData = playerVisualData
         };
         ServiceLocator.RegisterService(playerRegistry);
 

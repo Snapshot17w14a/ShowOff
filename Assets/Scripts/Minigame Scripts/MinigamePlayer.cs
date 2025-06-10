@@ -15,7 +15,7 @@ public class MinigamePlayer : MonoBehaviour
 
     private Vector2 inputVector = Vector2.zero;
     private new Rigidbody rigidbody;
-    private MeshRenderer meshRenderer;
+    [SerializeField] private MeshRenderer[] playerMeshRenderers;
 
     [Header("Move settings")]
     [SerializeField] private float turnSpeedMultiplier;
@@ -38,7 +38,7 @@ public class MinigamePlayer : MonoBehaviour
     [SerializeField] private VisualEffect walkEffect;
     [SerializeField] private VisualEffect dashEffect;
     [SerializeField] private VisualEffect stunEffect;
-    [SerializeField] private Material gold;
+    [SerializeField] private PlayerVisualData goldVisual;
     [SerializeField] private Material goldDashMaterial;
 
     private bool isDashAvailable = true;
@@ -60,7 +60,6 @@ public class MinigamePlayer : MonoBehaviour
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
-        meshRenderer = GetComponent<MeshRenderer>();
         TreasureInteraction = GetComponent<TreasureInteraction>();
         playerInput = GetComponent<PlayerInput>();
 
@@ -95,12 +94,13 @@ public class MinigamePlayer : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, targetAngle, 0), Time.deltaTime * turnSpeedMultiplier);
     }
 
-    private void OnMove(InputValue value)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        inputVector = value.Get<Vector2>();
+        inputVector = context.ReadValue<Vector2>();
+        //inputVector = value.Get<Vector2>();
     }
 
-    private void OnDash()
+    public void OnDash()
     {
         if (isDashAvailable && !isStunned && !isFlying)
         {
@@ -109,7 +109,7 @@ public class MinigamePlayer : MonoBehaviour
         }
     }
 
-    private void OnPause()
+    public   void OnPause()
     {
         ServiceLocator.GetService<PauseManager>().TogglePause(RegistryID);
         OnPlayerPaused?.Invoke(RegistryID);
@@ -142,20 +142,31 @@ public class MinigamePlayer : MonoBehaviour
 
     public void SetFlightState(bool state) => isFlying = state;
 
-    public void SetPlayerColor(Color color, int playerId)
+    public void SetPlayerColor(PlayerVisualData data, int playerId)
     {
-        foreach (var renderer in spritesToRecolor) renderer.color = new Color(color.r, color.g, color.b, renderer.color.a);
+        foreach (var renderer in spritesToRecolor) renderer.color = new Color(data.color.r, data.color.g, data.color.b, renderer.color.a);
 
-        GetComponent<MeshRenderer>().material.color = color;
+        ForEachPlayerRenderer(r => r.material = data.material);
 
         var textMeshPro = GetComponentInChildren<TextMeshPro>();
-        textMeshPro.color = color;
+        textMeshPro.color = data.color;
         textMeshPro.text = $"P{playerId + 1}";
 
-        dashIndicator.GetComponent<MeshRenderer>().material.SetColor("_ColorCircle", color);
+        dashIndicator.GetComponent<MeshRenderer>().material.SetColor("_ColorCircle", data.color);
 
-        //PlayerScoreManager.Instance.GetPlayerUI(this).SetColor(color);
-        playerColor = color;
+        playerColor = data.color;
+    }
+
+    public void ChangeSkin()
+    {
+        RegisteredPlayer data = ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(RegistryID);
+
+        if (data.isLastWinner)
+        {
+            SetPlayerColor(goldVisual, RegistryID);
+            dashIndicator.GetComponent<MeshRenderer>().material = goldDashMaterial;
+            dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
+        }
     }
 
     private void Dash()
@@ -191,30 +202,10 @@ public class MinigamePlayer : MonoBehaviour
         stunEffect.Play();
         rigidbody.linearVelocity = Vector3.zero;
 
-        float timer = 0;
-        float nextBlinkTime = blinkInterval;
-
-        while (timer < stunSeconds)
-        {
-            timer += Time.deltaTime;
-            if (timer >= nextBlinkTime)
-            {
-                nextBlinkTime += blinkInterval;
-                var currentColor = meshRenderer.material.color;
-                currentColor.a = currentColor.a == 0.5f ? 1f : 0.5f;
-
-                meshRenderer.material.color = currentColor;
-            }
-            yield return new WaitForEndOfFrame();
-        }
+        yield return new WaitForSeconds(stunSeconds);
 
         isStunned = false;
         stunEffect.Stop();
-        var solidColor = meshRenderer.material.color;
-        solidColor.a = 1f;
-        meshRenderer.material.color = solidColor;
-
-        yield return null;
     }
 
     private IEnumerator ResetDashInSeconds(float dashDuration)
@@ -222,20 +213,6 @@ public class MinigamePlayer : MonoBehaviour
         yield return new WaitForSeconds(dashDuration);
 
         isDashing = false;
-    }
-
-    public void ChangeSkin()
-    {
-        RegisteredPlayer data = ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(RegistryID);
-
-        if (data.isLastWinner)
-        {
-            SetPlayerColor(Color.yellow, RegistryID);
-            MeshRenderer renderer = GetComponent<MeshRenderer>();
-            renderer.material = gold;
-            dashIndicator.GetComponent<MeshRenderer>().material = goldDashMaterial;
-            dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -271,5 +248,10 @@ public class MinigamePlayer : MonoBehaviour
                 otherTreasure.DropTreasureInstant();
             }
         }
+    }
+
+    private void ForEachPlayerRenderer(Action<MeshRenderer> function)
+    {
+        foreach (var renderer in playerMeshRenderers) function(renderer);
     }
 }

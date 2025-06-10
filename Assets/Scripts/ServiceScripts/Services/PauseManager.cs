@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseManager : Service
@@ -11,6 +12,10 @@ public class PauseManager : Service
     private int pausedByPlayerId = -1;
 
     private string currentSceneName;
+
+    private EventSystem current;
+
+    private InputSystemUIInputModule currentUIInputModule;
 
     public override void InitializeService()
     {

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 public class TreasureInteraction : MonoBehaviour
@@ -278,8 +279,10 @@ public class TreasureInteraction : MonoBehaviour
         spriteRenderer.gameObject.SetActive(state);
     }
 
-    private void OnGrab()
+    public void OnGrab(InputAction.CallbackContext ctx)
     {
+        if (!ctx.performed) return;
+
         if (isInTreasureZone && collectedPickupable == null && Time.time > pickUpCooldown)
         {
             CollectTreasure();

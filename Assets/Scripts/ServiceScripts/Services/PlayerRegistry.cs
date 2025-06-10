@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerRegistry : Service
 {
     public GameObject playerPrefab;
-    public Color[] playerColors;
+    public PlayerVisualData[] visualData;
 
     private readonly List<InputDevice> usedInputDevices = new();
     private RegisteredPlayer[] registeredPlayers;
@@ -146,7 +146,7 @@ public class PlayerRegistry : Service
         player.GetComponent<PlayerInput>().neverAutoSwitchControlSchemes = true;
 
         //Set the color of the player indicators
-        player.SetPlayerColor(playerColors[id], id);
+        player.SetPlayerColor(visualData[id], id);
 
         //Set the id reference in the minigame player
         player.RegistryID = id;
@@ -168,7 +168,7 @@ public class PlayerRegistry : Service
         player.GetComponent<PlayerInput>().neverAutoSwitchControlSchemes = true;
 
         //Set the color of the player indicators
-        player.SetPlayerColor(playerColors[registeredPlayer.id], registeredPlayer.id);
+        player.SetPlayerColor(visualData[registeredPlayer.id], registeredPlayer.id);
 
         //Set the id reference in the minigame player
         player.RegistryID = registeredPlayer.id;
