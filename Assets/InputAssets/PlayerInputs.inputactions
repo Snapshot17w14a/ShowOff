@@ -156,7 +156,7 @@
                 {
                     "name": "2D Vector",
                     "id": "23daeb25-9ef4-4424-a8c3-6986b95b5f6d",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -209,6 +209,61 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "2D Vector",
+                    "id": "256d1628-6ef4-49d9-97a7-dd36c76f275d",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "d953ce8b-1478-4428-a762-393b40743640",
+                    "path": "<Joystick>/stick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Afterglow",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "1b89f0c6-23fb-4e19-b7dd-ee2e930d2f12",
+                    "path": "<Joystick>/stick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Afterglow",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "d08147be-9bdf-4d39-9a9a-7b1a379d1ce0",
+                    "path": "<Joystick>/stick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Afterglow",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "b099f4b4-c459-4ec3-83f8-a27fe2a3d97d",
+                    "path": "<Joystick>/stick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Afterglow",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "",
                     "id": "b4413e0b-f706-4038-b2a0-9925756305fb",
                     "path": "<Keyboard>/e",
@@ -237,6 +292,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Controller",
+                    "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f10f5034-f56c-4a4f-aa39-490e8989e983",
+                    "path": "<HID::Performance Designed Products Afterglow Wave Wired Controller for Nintendo Switch>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Afterglow",
                     "action": "Grab",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -276,6 +342,17 @@
                 },
                 {
                     "name": "",
+                    "id": "1c35138d-1399-4030-bfd9-d5c954256867",
+                    "path": "<HID::Performance Designed Products Afterglow Wave Wired Controller for Nintendo Switch>/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Afterglow",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "72bfb713-b9f9-414b-8c30-748361d69c9f",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -303,6 +380,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";KeyboardRight",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00f08617-1631-437d-b928-bde5be5a86a4",
+                    "path": "<HID::Performance Designed Products Afterglow Wave Wired Controller for Nintendo Switch>/button10",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Afterglow",
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -339,6 +427,17 @@
             "devices": [
                 {
                     "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Afterglow",
+            "bindingGroup": "Afterglow",
+            "devices": [
+                {
+                    "devicePath": "<HID::Performance Designed Products Afterglow Wave Wired Controller for Nintendo Switch>",
                     "isOptional": false,
                     "isOR": false
                 }

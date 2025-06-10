@@ -108,7 +108,8 @@ public class PlayerAutoJoin : Service
         }
         else
         {
-            player = playerRegistry.CreatePlayerWithDevice(device);
+            var controlScheme = GetGroupForBinding(context.action.bindings[0]);
+            player = playerRegistry.CreatePlayerWithDevice(device, controlScheme: controlScheme);
         }
 
         //Trigger the event with the created player
