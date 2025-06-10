@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -30,16 +31,17 @@ public class PodiumController : MonoBehaviour
         PlayerPrefs.SetInt("DoPodium", 0);
 
         //Get a referene to the PlayerRegistry and get player count
-        var registry = ServiceLocator.GetService<PlayerRegistry>();
-        int playerCount = registry.RegisteredPlayerCount;
+        var playerRegistry = ServiceLocator.GetService<PlayerRegistry>();
+        int playerCount = playerRegistry.RegisteredPlayerCount;
 
         //Get the highest score from the ScoreRegistry
-        PlayerScore highestScore = ServiceLocator.GetService<ScoreRegistry>().HighestScore;
+        var scoreRegistry = ServiceLocator.GetService<ScoreRegistry>();
+        PlayerScore highestScore = scoreRegistry.HighestScore;
         Podium.highestScore = highestScore.score;
         Podium.controller = this;
 
         //Reset all winner flags to false
-        registry.ExecuteForEachPlayerData(data =>
+        playerRegistry.ExecuteForEachPlayerData(data =>
         {
             data.isLastWinner = false;
             return data;
@@ -48,10 +50,10 @@ public class PodiumController : MonoBehaviour
         //Set the winner's data to have winner as true
         if (highestScore.isUnique)
         {
-            var winnerData = registry.GetPlayerData(highestScore.id);
+            var winnerData = playerRegistry.GetPlayerData(highestScore.id);
             winnerData.isLastWinner = true;
             winnerID = highestScore.id;
-            registry.SetPlayerData(winnerData);
+            playerRegistry.SetPlayerData(winnerData);
         }
 
         podiums = new Podium[playerCount];
@@ -59,9 +61,7 @@ public class PodiumController : MonoBehaviour
         //Create a podium for all players
         for (int i = 0; i < playerCount; i++)
         {
-            var podium = CreatePodium(i, registry);
-            podium.Initialize();
-            podiums[i] = podium;
+            podiums[i] = CreatePodium(i, playerRegistry);
         }
 
         //Set the position to center all the podiums
@@ -69,35 +69,48 @@ public class PodiumController : MonoBehaviour
         parentPos.x = -((playerCount + spacing * Mathf.Max(playerCount - 1, 0)) / 2f);
         transform.position = parentPos;
 
+        for (int i = 0; i < podiums.Length; i++)
+        {
+            podiums[i].Initialize(scoreRegistry.ScoreOfPlayer(i) / (float)highestScore.score);
+        }
+
         //Set up the Animation and start it
         targetScore = highestScore.score;
         currentScore = 0;
         OnCountStart?.Invoke();
-        StartCoroutine(AnimatePodiums(new WaitForSeconds(CooldownPerScore)));
+
+        Scheduler.Instance.Lerp(UpdatePodiums, targetScore * CooldownPerScore, AnimatePodiums);
+
+        //StartCoroutine(AnimatePodiums(new WaitForSeconds(CooldownPerScore)));
     }
 
     //Create a podium, set its position based on the index
-    private Podium CreatePodium(int index, PlayerRegistry registry)
+    private Podium CreatePodium(int index, PlayerRegistry playerRegistry)
     {
         var pos = new Vector3(0.5f * (index + 1) + (0.5f + spacing) * index, 0, 0);
         var podium = Instantiate(podiumPrefab, Vector3.zero, Quaternion.identity, transform).GetComponent<Podium>();
         podium.transform.localPosition = pos;
         podium.transform.localScale = new Vector3(1, 0, 1);
-        podium.player = registry.InstantiatePlayerWithId(index);
+        podium.player = playerRegistry.InstantiatePlayerWithId(index);
 
         return podium;
     }
-
-    private IEnumerator AnimatePodiums(YieldInstruction waitCondition)
+    
+    private void UpdatePodiums(float t)
     {
-        while (currentScore <= targetScore)
-        {
-            foreach (var podium in podiums) podium.UpdateScaleAndPosition(currentScore);
+        foreach (var podium in podiums) podium.UpdateLerp(t);
+    }
 
-            currentScore++;
+    private void AnimatePodiums()
+    {
+        //while (currentScore <= targetScore)
+        //{
+        //    foreach (var podium in podiums) podium.UpdateScaleAndPosition(currentScore);
 
-            yield return waitCondition;
-        }
+        //    currentScore++;
+
+        //    yield return waitCondition;
+        //}
 
         CleanUp();
 

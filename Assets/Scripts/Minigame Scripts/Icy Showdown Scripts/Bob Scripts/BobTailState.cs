@@ -55,9 +55,9 @@ public class BobTailState : BobState
     {
         if (t < (firedProjectileCount + 1) * timeBetweenProjectiles) return;
 
-        var dir = NeedleDirection();
-
-        GameObject.Instantiate(needlePrefab, new Vector3(0, 1, 0), Quaternion.identity, needleParentTransform).GetComponent<Rigidbody>().AddForce(needleStrength * ((UnityEngine.Random.value * 0.5f) + 0.5f) * dir, ForceMode.Impulse);
+        GameObject.Instantiate(needlePrefab, new Vector3(0, 1, 0), Quaternion.identity, needleParentTransform)
+            .GetComponent<Rigidbody>()
+            .AddForce(needleStrength * ((UnityEngine.Random.value * 0.5f) + 0.5f) * NeedleDirection(), ForceMode.Impulse);
 
         firedProjectileCount++;
     }

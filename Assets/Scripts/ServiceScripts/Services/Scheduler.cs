@@ -56,14 +56,14 @@ public class Scheduler : MonoBehaviour
         routine();
     }
 
-    private IEnumerator LerpRoutine(Action<float> toLerpFunction, float duration, Action callback)
+    private IEnumerator LerpRoutine(Action<float> functionToLerp, float duration, Action callback)
     {
         float time = 0;
 
         while(time < 1)
         {
             time += Time.deltaTime / duration;
-            toLerpFunction(time);
+            functionToLerp(time);
 
             yield return null;
         }
