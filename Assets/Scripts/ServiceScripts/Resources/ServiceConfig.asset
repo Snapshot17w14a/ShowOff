@@ -13,18 +13,13 @@ MonoBehaviour:
   m_Name: ServiceConfig
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5353790784943384531, guid: 06037a91c951b3d44a50f8da4cf99a49, type: 3}
-  controlSchemes:
-  - KeyboardLeft
-  - KeyboardRight
-  - Controller
-  - Controller
-  playerColors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0.48977518, b: 1, a: 1}
-  - {r: 0, g: 1, b: 0.0027880669, a: 1}
-  - {r: 1, g: 0.98784804, b: 0, a: 1}
-  - {r: 0.57713556, g: 0, b: 1, a: 1}
-  - {r: 1, g: 0.4638403, b: 0, a: 1}
-  - {r: 0, g: 0.98956347, b: 1, a: 1}
-  - {r: 1, g: 0, b: 0.75303125, a: 1}
+  playerVisualData:
+  - {fileID: 11400000, guid: 407284fbd6a3ecd4dbdcdf645ef7c94d, type: 2}
+  - {fileID: 11400000, guid: 2cdb6aff2b29d104b91cfca1395eed0a, type: 2}
+  - {fileID: 11400000, guid: 79f295c874c1be84e8c8ca63bbc85ea9, type: 2}
+  - {fileID: 11400000, guid: e0088ffe02cc63b4cafb9332e18af6e1, type: 2}
+  - {fileID: 11400000, guid: a0c7fcd51eea7c04eb220186ca35f9a3, type: 2}
+  - {fileID: 11400000, guid: 63ec9ad52450bfc42b2f7bc959c7bcd6, type: 2}
+  - {fileID: 11400000, guid: d539eb41d5f63804a84deaf03becd140, type: 2}
+  - {fileID: 11400000, guid: 8a4b7dba1576f894fa9d3beda3a61eda, type: 2}
   inputActions: {fileID: -944628639613478452, guid: 2b1428ed59ecb6447a63d6a59a4cf11e, type: 3}
