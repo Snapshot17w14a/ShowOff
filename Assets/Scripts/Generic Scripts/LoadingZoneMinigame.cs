@@ -32,6 +32,8 @@ public class LoadingZoneMinigame : MonoBehaviour
         ServiceLocator.GetService<PlayerRegistry>().OnPlayerSpawn += AddPlayer;
         ServiceLocator.GetService<PlayerRegistry>().OnPlayerDisconnect += RemovePlayer;
         autodolly = cinemachineSplineDolly.AutomaticDolly.Method as SplineAutoDolly.FixedSpeed;
+
+        playerReadyThreshold = Mathf.Ceil((float)ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount / 2f + 1f);
     }
 
     private void Update()
