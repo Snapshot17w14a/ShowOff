@@ -8,6 +8,7 @@ public class LoadingZoneMinigame : MonoBehaviour
 {
     [SerializeField] private string minigameName;
     [SerializeField] private TextMeshProUGUI countDownTimerText;
+    [SerializeField] private GameObject skipButton;
 
     [SerializeField] private CinemachineSplineDolly cinemachineSplineDolly;
     [SerializeField] private Camera MainCamera;
@@ -47,6 +48,7 @@ public class LoadingZoneMinigame : MonoBehaviour
                 cutsceneCamera.enabled = true;
                 countDownTimerText.enabled = false;
                 autodolly.Speed = 0.5f;
+                skipButton.SetActive(true);
 
                 for (int i = 0; i < allPlayerInputs.Count; i++)
                 {
@@ -68,10 +70,10 @@ public class LoadingZoneMinigame : MonoBehaviour
             }
         }
 
-        //Call this with the player controller idk how to do that
+        //Call this to skip cutscene
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SkipCustcene();
+            OnGrab();
         }
     }
 
@@ -99,11 +101,6 @@ public class LoadingZoneMinigame : MonoBehaviour
             curPlayersReady--;
             RecheckThreshold();
         }
-    }
-
-    private void SkipCustcene()
-    {
-        autodolly.Speed = 10f;
     }
 
     private void AddPlayer(MinigamePlayer player)
@@ -149,5 +146,13 @@ public class LoadingZoneMinigame : MonoBehaviour
     {
         ServiceLocator.GetService<PlayerRegistry>().OnPlayerSpawn -= AddPlayer;
         ServiceLocator.GetService<PlayerRegistry>().OnPlayerDisconnect -= RemovePlayer;
+    }
+
+    private void OnGrab()
+    {
+        if (isTranstitioning)
+        {
+            autodolly.Speed = 10f;
+        }
     }
 }

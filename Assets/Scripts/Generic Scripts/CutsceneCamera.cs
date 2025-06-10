@@ -55,8 +55,7 @@ public class CutsceneCamera : MonoBehaviour
         //Skips Cutscene (Can assign it to other keybinds, just call this function)
         if (Input.GetKey(KeyCode.Space) && !cutsceneSkipped)
         {
-            cutsceneSkipped = true;
-            CutsceneFinished();
+            OnGrab();
         }
     }
 
@@ -95,6 +94,15 @@ public class CutsceneCamera : MonoBehaviour
         if (cinemachineSplineDolly.CameraPosition >= 6)
         {
             penguinAnimScript.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnGrab()
+    {
+        if (!cutsceneSkipped)
+        {
+            cutsceneSkipped = true;
+            CutsceneFinished();
         }
     }
 }
