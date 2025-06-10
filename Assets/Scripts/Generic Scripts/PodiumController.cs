@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,6 +11,7 @@ public class PodiumController : MonoBehaviour
     [SerializeField] private int scorePerSecond;
 
     public int ScorePerSecond => scorePerSecond;
+    public int CurrentScore => currentScore;
     public float CooldownPerScore => 1 / (float)scorePerSecond;
 
     public UnityEvent OnCountStart;
@@ -79,7 +78,7 @@ public class PodiumController : MonoBehaviour
         currentScore = 0;
         OnCountStart?.Invoke();
 
-        Scheduler.Instance.Lerp(UpdatePodiums, targetScore * CooldownPerScore, AnimatePodiums);
+        Scheduler.Instance.Lerp(UpdatePodiums, targetScore * CooldownPerScore, PostAnimation);
 
         //StartCoroutine(AnimatePodiums(new WaitForSeconds(CooldownPerScore)));
     }
@@ -98,20 +97,12 @@ public class PodiumController : MonoBehaviour
     
     private void UpdatePodiums(float t)
     {
+        currentScore = Mathf.RoundToInt(targetScore * t);
         foreach (var podium in podiums) podium.UpdateLerp(t);
     }
 
-    private void AnimatePodiums()
+    private void PostAnimation()
     {
-        //while (currentScore <= targetScore)
-        //{
-        //    foreach (var podium in podiums) podium.UpdateScaleAndPosition(currentScore);
-
-        //    currentScore++;
-
-        //    yield return waitCondition;
-        //}
-
         CleanUp();
 
         if (winnerID != -1)

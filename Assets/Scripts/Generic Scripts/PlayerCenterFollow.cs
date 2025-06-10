@@ -8,8 +8,8 @@ public class PlayerCenterFollow : MonoBehaviour
 
     private List<Transform> playerTransforms;
     private Vector3 initialOffset;
-    private float shakeTime = 0;
-    private float shakeTimer = 0;
+
+    private bool isShaking = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -25,7 +25,7 @@ public class PlayerCenterFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (shakeTimer > 0) CalculateShake();
+        if (isShaking) return;
         else transform.position = Vector3.Slerp(transform.position, AveragePlayerPosition(), Time.deltaTime * sensitivity);
     }
 
@@ -47,12 +47,10 @@ public class PlayerCenterFollow : MonoBehaviour
         return new Vector3(sumX / numTransform, sumY / numTransform, sumZ / numTransform) + initialOffset;
     }
 
-    private void CalculateShake()
+    private void CalculateShake(float t)
     {
-        shakeTimer -= Time.deltaTime;
-
         var offset = (transform.up + transform.right).normalized;
-        float maxShake = Mathf.Lerp(0, shakeAmount, shakeTimer / shakeTime/* * shakeTimer / shakeTime*/);
+        float maxShake = Mathf.Lerp(0, shakeAmount, 1 - t);
 
         offset.Set(
             offset.x * Random.Range(-1f, 1f) * maxShake,
@@ -65,7 +63,12 @@ public class PlayerCenterFollow : MonoBehaviour
 
     public void ShakeCamera(float time)
     {
-        shakeTime = time;
-        shakeTimer = time;
+        isShaking = true;
+        var currentCameraPos = transform.position;
+        Scheduler.Instance.Lerp(
+            t => transform.position = Vector3.Lerp(currentCameraPos, AveragePlayerPosition(), t),
+            0.15f,
+            () => Scheduler.Instance.Lerp(CalculateShake, time, () => isShaking = false)
+        );
     }
 }

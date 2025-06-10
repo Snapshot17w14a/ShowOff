@@ -25,6 +25,8 @@ public class Podium : MonoBehaviour
     private Vector3 startingTextPosition;
     private Vector3 targetTextPosition;
 
+    private float maxLerpTime;
+
     public void Initialize(float progressLimitMult)
     {
         player.transform.rotation = Quaternion.Euler(0, 180f, 0);
@@ -36,66 +38,32 @@ public class Podium : MonoBehaviour
 
         var position = transform.position;
 
-        scoreText.transform.position = position + new Vector3(0, 0, -0.6f);
-        player.transform.position = position;
-
         startingScale = transform.localScale;
-        targetScale = new Vector3(1, maxHeight * progressLimitMult, 1);
+        targetScale = new Vector3(1, maxHeight, 1);
 
         startingPosition = transform.localPosition;
         targetPosition = new Vector3(startingPosition.x, targetScale.y / 2f, startingPosition.z);
 
-        startingTextPosition = position;
+        startingTextPosition = position + new Vector3(0, 0, -0.6f);
         targetTextPosition = position + new Vector3(0, targetScale.y / 2f, -0.6f);
 
         startingPlayerPosition = position;
-        targetPlayerPosition = position + new Vector3(0, (targetScale.y / 2f) + 0.25f, 0);
+        targetPlayerPosition = position + new Vector3(0, targetScale.y + .15f, 0);
+
+        maxLerpTime = progressLimitMult;
     }
-
-    //private void Update()
-    //{
-    //    timer += Mathf.Clamp01(Time.deltaTime * controller.ScorePerSecond);
-
-    //    transform.localPosition = Vector3.Lerp(startingPosition, targetPosition, timer);
-    //    transform.localScale = Vector3.Lerp(startingScale, targetScale, timer);
-    //    player.transform.position = Vector3.Lerp(startingPlayerPosition, targetPlayerPosition, timer);
-    //    scoreText.transform.position = Vector3.Lerp(startingTextPosition, targetTextPosition, timer);
-
-    //}
 
     public void UpdateLerp(float t)
     {
+        if (t >= maxLerpTime) return;
+
+        scoreText.text = controller.CurrentScore.ToString();
+
         transform.localPosition = Vector3.Lerp(startingPosition, targetPosition, t);
         transform.localScale = Vector3.Lerp(startingScale, targetScale, t);
         player.transform.position = Vector3.Lerp(startingPlayerPosition, targetPlayerPosition, t);
         scoreText.transform.position = Vector3.Lerp(startingTextPosition, targetTextPosition, t);
     }
-
-    //public void UpdateScaleAndPosition(int score)
-    //{
-    //    if (score > podiumScoreLimit) return;
-
-    //    timer = 0;
-
-    //    scoreText.text = score.ToString();
-
-    //    var height = maxHeight * (score / (float)highestScore);
-    //    height = score == 0 ? 0 : height;
-
-    //    startingScale = transform.localScale;
-    //    targetScale = new Vector3(1, height, 1);
-
-    //    var localPos = transform.localPosition;
-
-    //    startingPosition = localPos;
-    //    targetPosition = new Vector3(localPos.x, targetScale.y / 2f, localPos.z);
-
-    //    startingTextPosition = scoreText.transform.position;
-    //    targetTextPosition = transform.position + new Vector3(0, targetScale.y / 2f, -0.6f);
-
-    //    startingPlayerPosition = player.transform.position;
-    //    targetPlayerPosition = transform.position + new Vector3(0, (targetScale.y / 2f) + 0.25f, 0);
-    //}
 
     public void SetPlayerInteraction(bool state)
     {
@@ -108,6 +76,6 @@ public class Podium : MonoBehaviour
 
     public void CleanUp()
     {
-        //Destroy(scoreText.gameObject);
+        
     }
 }
