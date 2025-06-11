@@ -254,13 +254,17 @@ public struct RegisteredPlayer
         this.device = device;
         this.minigamePlayer = minigamePlayer;
         isLastWinner = false;
+        winStreak = 0;
     }
 
     public int id;
     public string controlScheme;
     public InputDevice device;
     public MinigamePlayer minigamePlayer;
+
+    //Stats
     public bool isLastWinner;
+    public int winStreak;
 
     public static bool IsNull(RegisteredPlayer registeredPlayer)
     {

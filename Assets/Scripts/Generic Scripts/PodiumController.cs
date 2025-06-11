@@ -77,9 +77,13 @@ public class PodiumController : MonoBehaviour
         parentPos.x = -((playerCount + spacing * Mathf.Max(playerCount - 1, 0)) / 2f);
         transform.position = parentPos;
 
+        //Initialize the podiums, if all players get a score of 0 set the progress limit to 1 to avoid dividing by 0
         for (int i = 0; i < podiums.Length; i++)
         {
-            podiums[i].Initialize(scoreRegistry.ScoreOfPlayer(i) / (float)highestScore.score);
+            if (highestScore.score == 0)
+                podiums[i].Initialize(1);
+            else
+                podiums[i].Initialize(scoreRegistry.ScoreOfPlayer(i) / (float)highestScore.score);
         }
 
         //Set up the Animation and start it
