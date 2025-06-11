@@ -23,6 +23,8 @@ public class TreasureInteraction : MonoBehaviour
     [SerializeField] private float droppedTreasureDespawnTime = 10f;
     [SerializeField] private float pickUpCooldown = 2f;
 
+    [SerializeField] private Animator animator;
+
     public Pickupable CollectedPickupable => collectedPickupable;
     public int MovementSpeedPenalty => movementSpeedPenalty;
 
@@ -295,16 +297,21 @@ public class TreasureInteraction : MonoBehaviour
         if (isInTreasureZone && collectedPickupable == null && Time.time > pickUpCooldown)
         {
             CollectTreasure();
+            animator.SetTrigger("PickUp");
+            animator.SetBool("IsHolding", true);
             pickUpCooldown = Time.time + _pickUpCooldown;
         } else if(nearbyPickable != null && collectedPickupable == null)
         {
             CollectTreasureFromGround(nearbyPickable);
+            animator.SetTrigger("PickUp");
+            animator.SetBool("IsHolding", true);
             nearbyPickable = null;
             EnableButtonIndicator(false);
         }
         else if (collectedPickupable != null)
         {
             DropTreasure();
+            animator.SetBool("IsHolding", false);
         }
     }
 

@@ -15,7 +15,7 @@ public class MinigamePlayer : MonoBehaviour
 
     private Vector2 inputVector = Vector2.zero;
     private new Rigidbody rigidbody;
-    [SerializeField] private MeshRenderer[] playerMeshRenderers;
+    [SerializeField] private SkinnedMeshRenderer[] playerMeshRenderers;
 
     [Header("Move settings")]
     [SerializeField] private float turnSpeedMultiplier;
@@ -37,6 +37,8 @@ public class MinigamePlayer : MonoBehaviour
     [SerializeField] private VisualEffect stunEffect;
     [SerializeField] private PlayerVisualData goldVisual;
     [SerializeField] private Material goldDashMaterial;
+
+    [SerializeField] private Animator animator;
 
     private bool isDashAvailable = true;
     private float dashTimer = 0f;
@@ -72,6 +74,7 @@ public class MinigamePlayer : MonoBehaviour
     private void Update()
     {
         UpdateDashTimer();
+        animator.SetFloat("Magnitude", rigidbody.linearVelocity.sqrMagnitude);
         if (isStunned || isFlying) return;
         UpdateMovement();
         walkEffect.SetFloat("Rate", rigidbody.linearVelocity.magnitude != 0 ? walkEffectRate : 0);
@@ -109,6 +112,7 @@ public class MinigamePlayer : MonoBehaviour
         if (isDashAvailable && !isStunned && !isFlying)
         {
             Dash();
+            animator.SetTrigger("Dash");
             AudioManager.PlaySound(ESoundType.Penguin, "Dash", false, 1f);
         }
     }
@@ -253,7 +257,7 @@ public class MinigamePlayer : MonoBehaviour
         }
     }
 
-    private void ForEachPlayerRenderer(Action<MeshRenderer> function)
+    private void ForEachPlayerRenderer(Action<SkinnedMeshRenderer> function)
     {
         foreach (var renderer in playerMeshRenderers) function(renderer);
     }
