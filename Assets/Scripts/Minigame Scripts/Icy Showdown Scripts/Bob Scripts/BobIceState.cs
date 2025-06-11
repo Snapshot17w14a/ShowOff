@@ -15,6 +15,7 @@ public class BobIceState : BobState
     private VisualEffect beamEffect;
     private GameObject hitEffect;
     private int layerMask;
+    private int pushForce = 40;
     private float stunDuration;
 
     private Quaternion initialRotation;
@@ -125,8 +126,10 @@ public class BobIceState : BobState
             if (hit.collider.CompareTag("Player"))
             {
                 var player = hit.collider.GetComponent<MinigamePlayer>();
-                player.StunPlayer(stunDuration);
-                player.DropTreasure();
+                player.PushPlayer(pushForce);
+                
+/*                player.StunPlayer(stunDuration);
+                player.DropTreasure();*/
             }
             else if (hit.collider.CompareTag("Icicle"))
             {

@@ -15,6 +15,7 @@ public class BobRageState : BobState
     private Volume globalVolume;
     private ChromaticAberration chromatic;
     private Camera mainCamera;
+    private int pushForce = 40;
 
     private float initialAngle = 0f;
     private float targetAngle = 0f;
@@ -101,8 +102,9 @@ public class BobRageState : BobState
             if (hit.collider.CompareTag("Player"))
             {
                 var player = hit.collider.GetComponent<MinigamePlayer>();
-                player.StunPlayer(stunDuration);
-                player.DropTreasure();
+                player.PushPlayer(pushForce);
+/*                player.StunPlayer(stunDuration);
+                player.DropTreasure();*/
             }
             else if (hit.collider.CompareTag("Icicle"))
             {

@@ -94,6 +94,13 @@ public class MinigamePlayer : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, targetAngle, 0), Time.deltaTime * turnSpeedMultiplier);
     }
 
+    public void PushPlayer(int force)
+    {
+        Vector3 direction = transform.position - new Vector3(0, 1, 0);
+        Vector3 dirNormalized = direction.normalized;
+        rigidbody.AddForce(force * Time.deltaTime * dirNormalized, ForceMode.Impulse);
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         inputVector = context.ReadValue<Vector2>();
@@ -125,7 +132,6 @@ public class MinigamePlayer : MonoBehaviour
         {
             playerInput.DeactivateInput();
         }
-
 
         Debug.LogError($"[{RegistryID}] Set input enabled: {isEnabled}");
     }
