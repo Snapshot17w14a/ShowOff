@@ -8,7 +8,7 @@ public class MenuNavigation : MonoBehaviour
     [SerializeField] private GameObject[] buttons;
     [SerializeField] private EventSystem eventSystem;
     public InputActionAsset inputActions;
-    public InputActionAsset joinAction;
+    public InputAction joinAction;
     void Start()
     {
         Initialize();
@@ -37,5 +37,19 @@ public class MenuNavigation : MonoBehaviour
             //If the binding is not skipped add it to the list of bindings
             bindings.Add(currentBindingString);
         }
+
+        //Create an InputAction that will hold the bindings to listen for
+        joinAction = new(
+            name: "JoinAction",
+            binding: "",
+            interactions: "",
+            processors: ""
+        );
+
+        //Add each binding to the joinAction
+        foreach (var binding in bindings) joinAction.AddBinding(binding);
+
+        //Add the method to be called each time any connected device performs an action with any relevant binding
+        joinAction.performed += context => ServiceLocator.GetService<PlayerAutoJoin>().CreatePlayerIfPossible(context);
     }
 }

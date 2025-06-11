@@ -86,7 +86,7 @@ public class PlayerAutoJoin : Service
     }
 
     //Check wether the device performing the action is already assigned with a player, if not create a new player,
-    private void CreatePlayerIfPossible(InputAction.CallbackContext context)
+    public void CreatePlayerIfPossible(InputAction.CallbackContext context)
     {
         InputDevice device = context.control.device;
 
