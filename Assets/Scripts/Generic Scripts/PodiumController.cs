@@ -10,6 +10,8 @@ public class PodiumController : MonoBehaviour
     [SerializeField] private float spacing;
     [SerializeField] private int scorePerSecond;
 
+    [SerializeField] private HubScoreState scoreState;
+
     public int ScorePerSecond => scorePerSecond;
     public int CurrentScore => currentScore;
     public float CooldownPerScore => 1 / (float)scorePerSecond;
@@ -32,6 +34,13 @@ public class PodiumController : MonoBehaviour
         //Get a referene to the PlayerRegistry and get player count
         var playerRegistry = ServiceLocator.GetService<PlayerRegistry>();
         int playerCount = playerRegistry.RegisteredPlayerCount;
+
+        //If there are no players registeresd 
+        if (playerCount == 0)
+        {
+            scoreState.SkipPodiumStage();
+            return;
+        }
 
         //Get the highest score from the ScoreRegistry
         var scoreRegistry = ServiceLocator.GetService<ScoreRegistry>();

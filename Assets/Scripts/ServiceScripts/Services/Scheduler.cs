@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Scheduler : MonoBehaviour
 {
     public static Scheduler Instance { get; private set; }
+
+    private readonly Dictionary<Guid, SchedulerRoutine> runningCoroutines = new();
 
     private void Awake()
     {
@@ -12,22 +15,24 @@ public class Scheduler : MonoBehaviour
         Instance = this;
     }
 
+    //Routine starters***********************************
+
     /// <summary>
     /// Delay the executon of a coroutine <paramref name="routine"/> by <paramref name="delaySeconds"/> seconds
     /// </summary>
     /// <param name="routine">Routine to start when timer is over</param>
-    public void DelayExecution(IEnumerator routine, float delaySeconds)
+    public Guid DelayExecution(IEnumerator routine, float delaySeconds)
     {
-        StartCoroutine(DelayedRoutine(routine, delaySeconds));
+        return DelayExecution(() => StartRoutine(new DelayerRoutine(), routine), delaySeconds);
     }
 
     /// <summary>
     /// Delay the execution of a funtion <paramref name="function"/> by <paramref name="delaySeconds"/> seconds
     /// </summary>
     /// <param name="function">Function to call when timer is over</param>
-    public void DelayExecution(Action function, float delaySeconds)
+    public Guid DelayExecution(Action function, float delaySeconds)
     {
-        StartCoroutine(DelayedRoutine(function, delaySeconds));
+        return StartRoutine(new DelayerRoutine(), function, delaySeconds);
     }
 
     /// <summary>
@@ -35,40 +40,45 @@ public class Scheduler : MonoBehaviour
     /// </summary>
     /// <remarks>This method starts a coroutine to perform the interpolation. The <paramref
     /// name="toLerpFunction"/> is called repeatedly  with interpolated values over the specified duration. Ensure that
-    /// the method is called within a MonoBehaviour context  that supports coroutines.</remarks>
+    /// the method is called within a MonoBehaviour context that supports coroutines.</remarks>
     /// <param name="toLerpFunction">A function that receives the interpolated value, ranging from 0 to 1, during the interpolation process.</param>
     /// <param name="duration">The total duration of the interpolation, in seconds. Must be greater than 0.</param>
     /// <param name="callback">An action to be invoked when the interpolation completes.</param>
-    public void Lerp(Action<float> toLerpFunction, float duration, Action callback = null)
+    public Guid Lerp(Action<float> toLerpFunction, float duration, Action callback = null)
     {
-        StartCoroutine(LerpRoutine(toLerpFunction, duration, callback));
+        return StartRoutine(new LerpRoutine(), toLerpFunction, duration, callback);
     }    
 
-    private IEnumerator DelayedRoutine(IEnumerator routine, float delaySeconds)
+    //Generic fucntions***********************************
+
+    public Guid StartRoutine(SchedulerRoutine routine, params object[] args)
     {
-        yield return new WaitForSeconds(delaySeconds);
-        StartCoroutine(routine);
-    }
+        routine.handle = Guid.NewGuid();
+        routine.coroutineReference = StartCoroutine(routine.Routine(args));
+        runningCoroutines.Add(routine.handle, routine);
 
-    private IEnumerator DelayedRoutine(Action routine, float delaySeconds)
+        Debug.Log($"Creating {routine.GetType()} with Guid {routine.handle}");
+
+        return routine.handle;
+    }
+    
+    public void StopTrackingRoutine(Guid hanlde) => runningCoroutines.Remove(hanlde);
+
+    public void StopRoutine(Guid handle)
     {
-        yield return new WaitForSeconds(delaySeconds);
-        routine();
+        if (!runningCoroutines.ContainsKey(handle)) Debug.LogError($"Routine with Guid {handle} was not found");
+
+        Debug.Log($"Stopping routine {runningCoroutines[handle].GetType()} with Guid {runningCoroutines[handle].handle}");
+
+        StopCoroutine(runningCoroutines[handle].coroutineReference);
+        StopTrackingRoutine(handle);
     }
+}
 
-    private IEnumerator LerpRoutine(Action<float> functionToLerp, float duration, Action callback)
-    {
-        float time = 0;
+public abstract class SchedulerRoutine
+{
+    public Guid handle;
+    public Coroutine coroutineReference;
 
-        while(time < 1)
-        {
-            time += Time.deltaTime / duration;
-            functionToLerp(time);
-
-            yield return null;
-        }
-
-        try { callback?.Invoke(); }
-        catch (MissingReferenceException e) { Debug.LogError(e.Message); }
-    }
+    public abstract IEnumerator Routine(params object[] args);
 }

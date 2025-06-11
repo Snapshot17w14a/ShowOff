@@ -22,9 +22,6 @@ public class MinigamePlayer : MonoBehaviour
     [SerializeField] private float movementSpeed = 1.0f;
     [SerializeField] private float walkEffectRate = 10f;
 
-    [Header("Stun settings")]
-    [SerializeField] private float blinkInterval = 0.33f;
-
     [Header("Dash settings")]
     [SerializeField] private float dashStunDuration = 1f;
     [SerializeField] private float dashCooldown = 5f;

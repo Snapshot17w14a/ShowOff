@@ -16,4 +16,9 @@ public class HubScoreState : MinigameState
         base.UnloadState();
         ((HubDefaultState)nextMinigameState).isAfterPodiums = true;
     }
+
+    public void SkipPodiumStage()
+    {
+        FindFirstObjectByType<MinigameHandler>().LoadState(nextMinigameState);
+    }
 }
