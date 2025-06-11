@@ -48,12 +48,31 @@ public class PodiumController : MonoBehaviour
         Podium.highestScore = highestScore.score;
         Podium.controller = this;
 
-        //Reset all winner flags to false
-        playerRegistry.ExecuteForEachPlayerData(data =>
+        //If there is a unique winner (no tie) increment the win streak, set all others' wind flag to false
+        if (highestScore.isUnique)
         {
-            data.isLastWinner = false;
-            return data;
-        });
+            playerRegistry.ExecuteForEachPlayerData(data =>
+            {
+                if (data.id == highestScore.id)
+                {
+                    winnerID = highestScore.id;
+                    data.winStreak++;
+                }
+                else data.isLastWinner = false;
+                return data;
+            });
+        }
+        //If there are no unique winners reset all winner flags to false, and set the win streak back to 0
+        else
+        {
+            
+            playerRegistry.ExecuteForEachPlayerData(data =>
+            {
+                data.isLastWinner = false;
+                data.winStreak = 0;
+                return data;
+            });
+        }
 
         //Set the winner's data to have winner as true
         if (highestScore.isUnique)
@@ -61,6 +80,7 @@ public class PodiumController : MonoBehaviour
             var winnerData = playerRegistry.GetPlayerData(highestScore.id);
             winnerData.isLastWinner = true;
             winnerID = highestScore.id;
+            winnerData.winStreak++;
             playerRegistry.SetPlayerData(winnerData);
         }
 
