@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd310516bc1005849b613c9e532bface, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: 
-  material: {fileID: 0}
+  material: {fileID: 2100000, guid: 09f48695351ee9748930d19e9c5e4762, type: 2}
   id: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
+  color: {r: 1, g: 0.73973227, b: 0, a: 1}
