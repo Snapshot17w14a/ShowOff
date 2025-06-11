@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class EndingCutscene : MonoBehaviour
 {
     private GameObject[] curPlayers;
-    [SerializeField] private Transform[] jumpToPositions;
+    //[SerializeField] private Transform[] jumpToPositions;
+    [SerializeField] private Transform jumpToPos;
     [SerializeField] private Transform minecartPos;
     [SerializeField] private Transform minecartWalkToPos;
     [SerializeField] private Transform minecartEndPos;
@@ -29,7 +30,7 @@ public class EndingCutscene : MonoBehaviour
 
     private void Update()
     {
-        if (cinemachineSplineDolly.CameraPosition >= 2.1f && !isLoading)
+        if (cinemachineSplineDolly.CameraPosition >= 2f && !isLoading)
         {
             isLoading = true;
             OnLeftCave.Invoke();
@@ -60,8 +61,8 @@ public class EndingCutscene : MonoBehaviour
     private void JumpInMinecart(GameObject curPlayer)
     {
         curPlayer.transform.SetParent(minecartPos);
-        Vector3 yeet = PathCalculator.CalculateRequiredVelocity(curPlayer.transform.position, jumpToPositions[playersInMinecart].position, 0.5f);
-        curPlayer.GetComponent<Rigidbody>().AddForce(yeet * 1.5f, ForceMode.Impulse);
+        Vector3 yeet = PathCalculator.CalculateRequiredVelocity(curPlayer.transform.position, jumpToPos.position, 0.75f);
+        curPlayer.GetComponent<Rigidbody>().AddForce(yeet * 1.35f, ForceMode.Impulse);
         playersInMinecart++;
         Debug.Log("Player in Minecart");
 
