@@ -109,7 +109,7 @@ public class MinigamePlayer : MonoBehaviour
         }
     }
 
-    public   void OnPause()
+    public void OnPause(InputAction.CallbackContext ctx)
     {
         ServiceLocator.GetService<PauseManager>().TogglePause(RegistryID);
         OnPlayerPaused?.Invoke(RegistryID);

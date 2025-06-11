@@ -30,6 +30,7 @@ public class TreasureInteraction : MonoBehaviour
     private float _pickUpCooldown;
     private MinigamePlayer miniGamePlayer;
     private Pickupable collectedPickupable;
+    private Pickupable nearbyPickable;
     private bool isInTreasureZone = false;
     private bool isInCollectionZone = false;
     private Minecart currentMinecart;
@@ -242,10 +243,12 @@ public class TreasureInteraction : MonoBehaviour
 
         if (other.GetComponent<Pickupable>() != null)
         {
+            EnableButtonIndicator(true);
+
             if (!IsPlayerStunned() && collectedPickupable == null)
             {
                 Pickupable pickupable = other.GetComponent<Pickupable>();
-                CollectTreasureFromGround(pickupable);
+                nearbyPickable = pickupable;
             }
         }
     }
@@ -267,6 +270,12 @@ public class TreasureInteraction : MonoBehaviour
             }
             isInCollectionZone = false;
         }
+
+        if(other.GetComponent<Pickupable>() != null)
+        {
+            nearbyPickable = null;
+            EnableButtonIndicator(false);
+        }
     }
 
     private bool IsPlayerStunned()
@@ -287,6 +296,11 @@ public class TreasureInteraction : MonoBehaviour
         {
             CollectTreasure();
             pickUpCooldown = Time.time + _pickUpCooldown;
+        } else if(nearbyPickable != null && collectedPickupable == null)
+        {
+            CollectTreasureFromGround(nearbyPickable);
+            nearbyPickable = null;
+            EnableButtonIndicator(false);
         }
         else if (collectedPickupable != null)
         {

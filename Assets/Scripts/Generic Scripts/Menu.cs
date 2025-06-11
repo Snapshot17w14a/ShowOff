@@ -13,7 +13,6 @@ public class Menu : MonoBehaviour
         playerRegistry = ServiceLocator.GetService<PlayerRegistry>();
         playerRegistry.OnPlayerSpawn += HandlePlayerSpawned;
         playerRegistry.OnPlayerDisconnect += HandlePlayerDisconnected;
-        Debug.LogError($"Menu Awake");
 
         gameObject.SetActive(false);
     }
@@ -63,8 +62,6 @@ public class Menu : MonoBehaviour
 
     private void HandlePlayerSpawned(MinigamePlayer player)
     {
-        Debug.LogError($"Subscribe to player paused");
-
         player.OnPlayerPaused += HandlePlayerPaused;
         players.Add(player);
     }
