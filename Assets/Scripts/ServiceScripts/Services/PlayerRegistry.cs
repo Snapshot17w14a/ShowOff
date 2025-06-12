@@ -147,11 +147,12 @@ public class PlayerRegistry : Service
     {
         //Instantiate the player with the given device, id and choose a free control scheme
         var player = PlayerInput.Instantiate(playerPrefab, playerIndex: id, controlScheme: controlScheme, pairWithDevice: device).GetComponent<MinigamePlayer>();
+        SkinManager skinManager = player.GetComponent<SkinManager>();
 
         player.GetComponent<PlayerInput>().neverAutoSwitchControlSchemes = true;
 
         //Set the color of the player indicators
-        player.SetPlayerColor(visualData[id], id);
+        skinManager.SetPlayerColor(visualData[id], id);
 
         //Set the id reference in the minigame player
         player.RegistryID = id;
@@ -169,11 +170,12 @@ public class PlayerRegistry : Service
     {
         //Instantiate the player with the given device, id and choose a free control scheme
         var player = PlayerInput.Instantiate(playerPrefab, playerIndex: registeredPlayer.id, controlScheme: registeredPlayer.controlScheme, pairWithDevice: registeredPlayer.device).GetComponent<MinigamePlayer>();
+        SkinManager skinManager = player.GetComponent<SkinManager>();
 
         player.GetComponent<PlayerInput>().neverAutoSwitchControlSchemes = true;
 
         //Set the color of the player indicators
-        player.SetPlayerColor(visualData[registeredPlayer.id], registeredPlayer.id);
+        skinManager.SetPlayerColor(visualData[registeredPlayer.id], registeredPlayer.id);
 
         //Set the id reference in the minigame player
         player.RegistryID = registeredPlayer.id;

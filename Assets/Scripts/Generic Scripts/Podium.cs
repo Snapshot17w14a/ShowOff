@@ -32,7 +32,7 @@ public class Podium : MonoBehaviour
         player.transform.rotation = Quaternion.Euler(0, 180f, 0);
         SetPlayerInteraction(false);
 
-        GetComponent<MeshRenderer>().material.color = player.GetComponent<MinigamePlayer>().playerColor;
+        GetComponent<MeshRenderer>().material.color = player.GetComponent<SkinManager>().playerColor;
 
         scoreText = controller.CreateScoreText().GetComponent<TextMeshPro>();
 

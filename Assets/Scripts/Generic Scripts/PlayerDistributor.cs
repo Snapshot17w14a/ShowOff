@@ -19,7 +19,7 @@ public class PlayerDistributor : MonoBehaviour
 
             if (player.isLastWinner)
             {
-                player.minigamePlayer.ChangeSkin();
+                player.minigamePlayer.GetComponent<SkinManager>().ChangeSkin();
             }
 
             var minigamePlayer = player.minigamePlayer;
