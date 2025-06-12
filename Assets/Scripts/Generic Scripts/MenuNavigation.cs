@@ -8,23 +8,18 @@ public class MenuNavigation : MonoBehaviour
     [SerializeField] private GameObject[] buttons;
     [SerializeField] private EventSystem eventSystem;
     public InputActionAsset inputActions;
-    public InputAction joinAction;
+    public InputAction navAction;
+
     void Start()
     {
         Initialize();
         eventSystem.SetSelectedGameObject(buttons[0]);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void Initialize()
     {
         //Create a list to store all binding used to interact with the players
-        List<string> bindings = new();
+        List<InputBinding> bindings = new();
 
         if(inputActions != null)
         {
@@ -37,22 +32,28 @@ public class MenuNavigation : MonoBehaviour
                 if (currentBindingString[0] != '<') continue;
 
                 //If the binding is not skipped add it to the list of bindings
-                bindings.Add(currentBindingString);
+                bindings.Add(binding);
             }
         }
 
         //Create an InputAction that will hold the bindings to listen for
-        joinAction = new(
-            name: "JoinAction",
+        navAction = new(
+            name: "NavAction",
             binding: "",
             interactions: "",
             processors: ""
         );
 
         //Add each binding to the joinAction
-        foreach (var binding in bindings) joinAction.AddBinding(binding);
+        foreach (var binding in bindings) navAction.AddBinding(binding.effectivePath, groups: binding.groups);
 
         //Add the method to be called each time any connected device performs an action with any relevant binding
-        joinAction.performed += context => ServiceLocator.GetService<PlayerAutoJoin>().CreatePlayerIfPossible(context);
+        //navAction.performed += context => NavHandler(context);
+
+        //navAction.Enable();
+    }
+
+    private void NavHandler(InputAction.CallbackContext ctx)
+    {
     }
 }

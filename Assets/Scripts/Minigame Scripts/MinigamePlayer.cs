@@ -15,7 +15,7 @@ public class MinigamePlayer : MonoBehaviour
 
     private Vector2 inputVector = Vector2.zero;
     private new Rigidbody rigidbody;
-    //[SerializeField] private SkinnedMeshRenderer[] playerMeshRenderers;
+    [SerializeField] private SkinnedMeshRenderer[] playerMeshRenderers;
 
     [Header("Move settings")]
     [SerializeField] private float turnSpeedMultiplier;
@@ -27,16 +27,16 @@ public class MinigamePlayer : MonoBehaviour
     [SerializeField] private float dashCooldown = 5f;
     [SerializeField] private float dashDuration = 5f;
     [SerializeField] private float dashForce = 5f;
-    //[SerializeField] private GameObject dashIndicator;
+    [SerializeField] private GameObject dashIndicator;
     private Material dashIndicatorMaterial;
 
     [Header("Color changes")]
-    //[SerializeField] private SpriteRenderer[] spritesToRecolor;
+    [SerializeField] private SpriteRenderer[] spritesToRecolor;
     [SerializeField] private VisualEffect walkEffect;
     [SerializeField] private VisualEffect dashEffect;
     [SerializeField] private VisualEffect stunEffect;
-    //[SerializeField] private PlayerVisualData goldVisual;
-    //[SerializeField] private Material goldDashMaterial;
+    [SerializeField] private PlayerVisualData goldVisual;
+    [SerializeField] private Material goldDashMaterial;
 
     [SerializeField] private Animator animator;
 
@@ -62,7 +62,7 @@ public class MinigamePlayer : MonoBehaviour
         TreasureInteraction = GetComponent<TreasureInteraction>();
         playerInput = GetComponent<PlayerInput>();
 
-        //dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
+        dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
     }
 
     private void Start()
@@ -118,6 +118,8 @@ public class MinigamePlayer : MonoBehaviour
 
     public void OnPause(InputAction.CallbackContext ctx)
     {
+        if (!ctx.performed) return;
+
         ServiceLocator.GetService<PauseManager>().TogglePause(RegistryID);
         OnPlayerPaused?.Invoke(RegistryID);
     }
@@ -148,7 +150,7 @@ public class MinigamePlayer : MonoBehaviour
 
     public void SetFlightState(bool state) => isFlying = state;
 
-/*    public void SetPlayerColor(PlayerVisualData data, int playerId)
+    public void SetPlayerColor(PlayerVisualData data, int playerId)
     {
         foreach (var renderer in spritesToRecolor) renderer.color = new Color(data.color.r, data.color.g, data.color.b, renderer.color.a);
 
@@ -161,9 +163,9 @@ public class MinigamePlayer : MonoBehaviour
         dashIndicator.GetComponent<MeshRenderer>().material.SetColor("_ColorCircle", data.color);
 
         playerColor = data.color;
-    }*/
+    }
 
-/*    public void ChangeSkin()
+    public void ChangeSkin()
     {
         RegisteredPlayer data = ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(RegistryID);
 
@@ -173,7 +175,7 @@ public class MinigamePlayer : MonoBehaviour
             dashIndicator.GetComponent<MeshRenderer>().material = goldDashMaterial;
             dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
         }
-    }*/
+    }
 
     private void Dash()
     {
@@ -257,8 +259,8 @@ public class MinigamePlayer : MonoBehaviour
         }
     }
 
-/*    private void ForEachPlayerRenderer(Action<SkinnedMeshRenderer> function)
+    private void ForEachPlayerRenderer(Action<SkinnedMeshRenderer> function)
     {
         foreach (var renderer in playerMeshRenderers) function(renderer);
-    }*/
+    }
 }
