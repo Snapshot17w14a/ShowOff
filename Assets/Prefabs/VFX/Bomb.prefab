@@ -75,8 +75,8 @@ VisualEffect:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
-            time: 0
-            value: 0
+            time: 0.0018545091
+            value: 0.60192525
             inSlope: 0
             outSlope: 0
             tangentMode: 0
@@ -93,8 +93,8 @@ VisualEffect:
             inWeight: 0.33333334
             outWeight: 0.33366284
           - serializedVersion: 3
-            time: 0.3008614
-            value: -0.0021505356
+            time: 0.3027159
+            value: 0.5997747
             inSlope: -0.03269396
             outSlope: -0.03269396
             tangentMode: 0
@@ -111,8 +111,8 @@ VisualEffect:
             inWeight: 0.33333334
             outWeight: 0.123781554
           - serializedVersion: 3
-            time: 0.5511611
-            value: 0.00017994083
+            time: 0.5530156
+            value: 0.60210526
             inSlope: 0.029504098
             outSlope: 0.029504098
             tangentMode: 0
@@ -129,8 +129,8 @@ VisualEffect:
             inWeight: 0.33333334
             outWeight: 0.24259488
           - serializedVersion: 3
-            time: 0.75268877
-            value: -0.0018254519
+            time: 0.7545433
+            value: 0.6000998
             inSlope: 0.02504301
             outSlope: 0.02504301
             tangentMode: 0
@@ -147,8 +147,8 @@ VisualEffect:
             inWeight: 1
             outWeight: 0.33333334
           - serializedVersion: 3
-            time: 0.9020781
-            value: -0.0009003449
+            time: 0.9039326
+            value: 0.601025
             inSlope: 0.013652937
             outSlope: 0.013652937
             tangentMode: 0
@@ -173,7 +173,7 @@ VisualEffect:
       m_Array: []
     m_NamedObject:
       m_Array:
-      - m_Value: {fileID: -4832075721978788142, guid: cd6327a6967b7cb418f8499c603de3ab, type: 3}
+      - m_Value: {fileID: -3676173500662800493, guid: 90aed7b0d50e9b342bdb2843585c6ccb, type: 3}
         m_Name: Bomb Mesh
         m_Overridden: 1
     m_Bool:
@@ -486,7 +486,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1302111153794041411}
@@ -543,4 +543,4 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7292289800757729587}
-  m_Mesh: {fileID: -4832075721978788142, guid: cd6327a6967b7cb418f8499c603de3ab, type: 3}
+  m_Mesh: {fileID: -3676173500662800493, guid: 90aed7b0d50e9b342bdb2843585c6ccb, type: 3}
