@@ -129,6 +129,7 @@ public class TreasureInteraction : MonoBehaviour
             collectedPickupable.CalculateVelocity(spawnPoint, currentMinecart.transform.position, 1f);
             OnTreasureDelivered?.Invoke(collectedPickupable.Worth);
             collectedPickupable = null;
+            animator.SetBool("IsHolding", false);
         }
     }
 
