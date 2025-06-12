@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7716080
 Transform:
   m_ObjectHideFlags: 0
@@ -3280,7 +3280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223086226}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25945956, y: -0.44938725, z: 0.1382178, w: 0.8435803}
+  m_LocalRotation: {x: 0.113113455, y: -0.60878146, z: 0.08825469, w: 0.7802574}
   m_LocalPosition: {x: -1.3021011, y: 1.8497791, z: -1.4525928}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7427,7 +7427,7 @@ Transform:
   m_GameObject: {fileID: 502607132}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.155, y: 0.803, z: -0}
+  m_LocalPosition: {x: 0.649, y: 1.089, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12554,13 +12554,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884267552}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.043619405, w: 0.9990483}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.019808253, w: 0.99980384}
+  m_LocalPosition: {x: 0, y: -0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1163843649}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.27}
 --- !u!65 &884267554
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12580,8 +12580,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.93173116, y: 0.018368568, z: 1}
-  m_Center: {x: 0.0341342, y: 0.30168715, z: -0.000000023706107}
+  m_Size: {x: 1.5327029, y: 0.01836857, z: 1}
+  m_Center: {x: 0.37731403, y: 0.30168387, z: -0.00000002282484}
 --- !u!1 &885860595
 GameObject:
   m_ObjectHideFlags: 0
@@ -13854,7 +13854,7 @@ Transform:
   m_GameObject: {fileID: 932923548}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.953, y: 0, z: 0}
+  m_LocalPosition: {x: -1.113, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17133,7 +17133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1147629268}
   m_Layer: 0
-  m_Name: MinecartEndPos
+  m_Name: MinecartPosOutside
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17491,7 +17491,7 @@ Transform:
   m_GameObject: {fileID: 1163843648}
   serializedVersion: 2
   m_LocalRotation: {x: -1, y: -0, z: -0, w: -0.0000000754979}
-  m_LocalPosition: {x: 0.065665245, y: 0.95041937, z: -0.3114151}
+  m_LocalPosition: {x: 34.95, y: 0.95041937, z: -0.3114151}
   m_LocalScale: {x: 9.38079, y: 9.38079, z: 19.855652}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17527,8 +17527,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0684806, y: 0.8157337, z: 0.048498187}
-  m_Center: {x: 0.09504905, y: 0.6723925, z: 0.39282605}
+  m_Size: {x: 1.7711567, y: 0.8157337, z: 0.071854636}
+  m_Center: {x: 0.43202657, y: 0.6723925, z: 0.38115376}
 --- !u!65 &1163843651
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17548,8 +17548,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0684806, y: 0.8430777, z: 0.03808614}
-  m_Center: {x: 0.09504905, y: 0.68606454, z: -0.44989556}
+  m_Size: {x: 1.7218285, y: 0.8430777, z: 0.124306016}
+  m_Center: {x: 0.42172298, y: 0.68606454, z: -0.40678686}
 --- !u!65 &1163843652
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17569,8 +17569,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.024822908, y: 0.82944745, z: 0.88601744}
-  m_Center: {x: 0.61687785, y: 0.679249, z: -0.02593241}
+  m_Size: {x: 0.1566184, y: 0.82944745, z: 0.88603765}
+  m_Center: {x: 1.2660155, y: 0.679249, z: -0.02593241}
 --- !u!54 &1163843654
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -19007,6 +19007,7 @@ Transform:
   - {fileID: 2042246047}
   - {fileID: 1409646390}
   - {fileID: 1147629268}
+  - {fileID: 1743723813}
   - {fileID: 1163843649}
   - {fileID: 1416633688}
   m_Father: {fileID: 1620836871}
@@ -20608,8 +20609,8 @@ Transform:
   m_GameObject: {fileID: 1414387548}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.31396645, z: 0}
-  m_LocalScale: {x: 0.44075307, y: 0.21993063, z: 0.21654823}
+  m_LocalPosition: {x: 0.421, y: 0.31396645, z: 0}
+  m_LocalScale: {x: 0.88, y: 0.21993063, z: 0.38578066}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1163843649}
@@ -24713,9 +24714,10 @@ MonoBehaviour:
   jumpToPos: {fileID: 502607133}
   minecartPos: {fileID: 1163843649}
   minecartWalkToPos: {fileID: 932923549}
-  minecartEndPos: {fileID: 1147629268}
+  minecartPosOutisde: {fileID: 1147629268}
+  minecartPosInside: {fileID: 1743723813}
   playerMoveSpeed: 1
-  minecartMoveSpeed: 5
+  minecartMoveSpeed: 0.85
   cameraSpeed: 1
   OnLeftCave:
     m_PersistentCalls:
@@ -26805,6 +26807,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734025367}
   m_Mesh: {fileID: -5741174448488666723, guid: 7940d0cdfea11734da755b4f5298ee16, type: 3}
+--- !u!1 &1743723812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1743723813}
+  m_Layer: 0
+  m_Name: MinecartPosInside
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1743723813
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743723812}
+  serializedVersion: 2
+  m_LocalRotation: {x: -1, y: -0, z: -0, w: -0.0000000754979}
+  m_LocalPosition: {x: 0.64, y: 0.9504267, z: -0.31143674}
+  m_LocalScale: {x: 9.380862, y: 9.380862, z: 19.857029}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1251305522}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1746202921
 GameObject:
   m_ObjectHideFlags: 0
@@ -35678,7 +35711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextMinigameState: {fileID: 1620836870}
-  stateDurationSeconds: 10
+  stateDurationSeconds: 5
   onStateLoaded:
     m_PersistentCalls:
       m_Calls:

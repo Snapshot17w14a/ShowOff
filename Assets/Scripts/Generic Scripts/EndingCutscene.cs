@@ -10,7 +10,8 @@ public class EndingCutscene : MonoBehaviour
     [SerializeField] private Transform jumpToPos;
     [SerializeField] private Transform minecartPos;
     [SerializeField] private Transform minecartWalkToPos;
-    [SerializeField] private Transform minecartEndPos;
+    [SerializeField] private Transform minecartPosOutisde;
+    [SerializeField] private Transform minecartPosInside;
     [SerializeField] private float playerMoveSpeed = 1;
     [SerializeField] private float minecartMoveSpeed = 5;
     [SerializeField] private float cameraSpeed = 0.5f;
@@ -24,7 +25,7 @@ public class EndingCutscene : MonoBehaviour
     private void Start()
     {
         curPlayers = GameObject.FindGameObjectsWithTag("Player");
-        StartCoroutine(RunPlayersOneByOne());
+        StartCoroutine(MoveMinecartInside());
         autodolly = cinemachineSplineDolly.AutomaticDolly.Method as SplineAutoDolly.FixedSpeed;
     }
 
@@ -36,19 +37,34 @@ public class EndingCutscene : MonoBehaviour
             OnLeftCave.Invoke();
         }
     }
+    private IEnumerator MoveMinecartInside()
+    {
+        Debug.Log("Minecart Moving");
+        float timer = 0f;
+        while (timer < minecartMoveSpeed)
+        {
+            float t = timer / minecartMoveSpeed;
+            minecartPos.position = Vector3.Lerp(minecartPosOutisde.position, minecartPosInside.position, t);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        StartCoroutine(RunPlayersOneByOne());
+    }
 
     private IEnumerator RunPlayersOneByOne()
     {
+        Debug.Log("Jump Now;");
         foreach (GameObject player in curPlayers)
         {
-            Vector3 startPos = player.transform.position;
             player.transform.LookAt(minecartPos.position);
             float timer = 0f;
+            Vector3 playerOriginalPos = player.transform.position;
 
             while (timer < playerMoveSpeed)
             {
                 float t = timer / playerMoveSpeed;
-                player.transform.position = Vector3.Lerp(startPos, minecartWalkToPos.position, t);
+                player.transform.position = Vector3.Lerp(playerOriginalPos, minecartWalkToPos.position, t);
                 timer += Time.deltaTime;
                 yield return null;
             }
@@ -61,29 +77,28 @@ public class EndingCutscene : MonoBehaviour
     private void JumpInMinecart(GameObject curPlayer)
     {
         curPlayer.transform.SetParent(minecartPos);
-        Vector3 yeet = PathCalculator.CalculateRequiredVelocity(curPlayer.transform.position, jumpToPos.position, 0.75f);
-        curPlayer.GetComponent<Rigidbody>().AddForce(yeet * 1.35f, ForceMode.Impulse);
+        Vector3 yeet = PathCalculator.CalculateRequiredVelocity(curPlayer.transform.position, jumpToPos.position, 0.65f);
+        curPlayer.GetComponent<Rigidbody>().AddForce(yeet * 1.6f, ForceMode.Impulse);
         playersInMinecart++;
         Debug.Log("Player in Minecart");
 
         if (playersInMinecart == curPlayers.Length)
         {
-            StartCoroutine(MoveMinecart());
+            StartCoroutine(MoveMinecartOutside());
         }
     }
 
-    private IEnumerator MoveMinecart()
+    private IEnumerator MoveMinecartOutside()
     {
         yield return new WaitForSeconds(2);
         Debug.Log("Minecart Moving");
         autodolly.Speed = cameraSpeed;
         float timer = 0f;
-        Vector3 originalPos = minecartPos.position;
 
         while (timer < minecartMoveSpeed)
         {
             float t = timer / minecartMoveSpeed;
-            minecartPos.position = Vector3.Lerp(originalPos, minecartEndPos.position, t);
+            minecartPos.position = Vector3.Lerp(minecartPosInside.position, minecartPosOutisde.position, t);
             timer += Time.deltaTime;
             yield return null;
         }
