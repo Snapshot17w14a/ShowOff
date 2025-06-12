@@ -15,7 +15,7 @@ public class BobRageState : BobState
     private Volume globalVolume;
     private ChromaticAberration chromatic;
     private Camera mainCamera;
-    private int pushForce = 40;
+    private int pushForce = 20;
 
     private float initialAngle = 0f;
     private float targetAngle = 0f;

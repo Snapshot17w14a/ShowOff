@@ -15,7 +15,7 @@ public class BobIceState : BobState
     private VisualEffect beamEffect;
     private GameObject hitEffect;
     private int layerMask;
-    private int pushForce = 40;
+    private int pushForce = 20;
     private float stunDuration;
 
     private Quaternion initialRotation;
