@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour
     {
         playerRegistry = ServiceLocator.GetService<PlayerRegistry>();
         playerRegistry.OnPlayerSpawn += HandlePlayerSpawned;
-        playerRegistry.OnPlayerDisconnect += HandlePlayerDisconnected;
+        playerRegistry.BeforePlayerDisconnect += HandlePlayerDisconnected;
 
         gameObject.SetActive(false);
     }
@@ -20,7 +20,7 @@ public class Menu : MonoBehaviour
     private void OnDestroy()
     {
         playerRegistry.OnPlayerSpawn -= HandlePlayerSpawned;
-        playerRegistry.OnPlayerDisconnect -= HandlePlayerDisconnected;
+        playerRegistry.BeforePlayerDisconnect -= HandlePlayerDisconnected;
 
         foreach (MinigamePlayer player in players)
         {
@@ -66,9 +66,9 @@ public class Menu : MonoBehaviour
         players.Add(player);
     }
 
-    private void HandlePlayerDisconnected(MinigamePlayer player, int disconnectId)
+    private void HandlePlayerDisconnected(MinigamePlayer disconnectingPlayer)
     {
-        player.OnPlayerPaused -= HandlePlayerPaused;
-        players.Remove(player);
+        disconnectingPlayer.OnPlayerPaused -= HandlePlayerPaused;
+        players.Remove(disconnectingPlayer);
     }
 }

@@ -30,7 +30,12 @@ public class PlayerRegistry : Service
     /// <summary>
     /// When a player is disconnecting this event is triggered and the id of the disconnected player is passed as a parameter
     /// </summary>
-    public event Action<MinigamePlayer, int> OnPlayerDisconnect;
+    public event Action<int> OnPlayerDisconnect;
+
+    /// <summary>
+    /// Called before the disconnecting player's Player is destroyed, useful for cleaning up
+    /// </summary>
+    public event Action<MinigamePlayer> BeforePlayerDisconnect;
 
     public override void InitializeService()
     {
@@ -197,6 +202,9 @@ public class PlayerRegistry : Service
         //Get a copy of the player data
         var regPlayer = registeredPlayers[id];
 
+        //Call the event for anything that needs the player's reference before disconnecting
+        BeforePlayerDisconnect?.Invoke(regPlayer.minigamePlayer);
+
         //If the player has a gameobject in the scene destroy it
         if (regPlayer.minigamePlayer != null) GameObject.Destroy(regPlayer.minigamePlayer.gameObject);
 
@@ -224,7 +232,7 @@ public class PlayerRegistry : Service
         registeredPlayers[id] = regPlayer;
 
         //Trigger the disconnect event with the id of the disconnected user
-        OnPlayerDisconnect?.Invoke(regPlayer.minigamePlayer, id);
+        OnPlayerDisconnect?.Invoke(id);
     }
 
     public int IdOf(MinigamePlayer player) => registeredPlayers.Where(regPlayer => regPlayer.minigamePlayer.Equals(player)).First().id;
@@ -236,7 +244,7 @@ public class PlayerRegistry : Service
     public RegisteredPlayer GetPlayerData(int id) => registeredPlayers[id];
 
     /// <summary>
-    /// Set the registry's data with a custom <see cref="RegisteredPlayer"/> struct. Use with caution can easily break things if wrong parameters are used. Use <see cref="PlayerRegistry.GetPlayerData(int)"/> first, change values and then reassign using <see cref="PlayerRegistry.SetPlayerData(RegisteredPlayer)"/>.
+    /// Set the registry's data with a custom <see cref="RegisteredPlayer"/> struct. Use with caution, can easily break things if wrong parameters are used. Use <see cref="PlayerRegistry.GetPlayerData(int)"/> first, change values and then reassign using <see cref="PlayerRegistry.SetPlayerData(RegisteredPlayer)"/>.
     /// </summary>
     /// <param name="playerData">The struct holding the data</param>
     public void SetPlayerData(RegisteredPlayer playerData)

@@ -47,6 +47,8 @@ public class Podium : MonoBehaviour
         startingPlayerPosition = position + new Vector3(0, .15f, 0);
         targetPlayerPosition = position + new Vector3(0, targetScale.y + .15f, 0);
 
+        player.transform.position = startingPlayerPosition;
+
         cloudEffect = GetComponent<VisualEffect>();
         maxLerpTime = progressLimitMult;
     }

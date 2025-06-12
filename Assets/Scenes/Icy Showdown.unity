@@ -1954,11 +1954,11 @@ MonoBehaviour:
   - {fileID: 1703252260036373739}
   eventSystem: {fileID: 1683579575}
   inputActions: {fileID: 0}
-  joinAction:
+  navAction:
     m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 3ec24bad-10c6-414e-a0d7-80ddb99572ff
+    m_Id: 5c7a576e-ad67-45ce-8a77-a3c94ea088c4
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -16984,13 +16984,13 @@ Camera:
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
-  m_FocusDistance: 9999.999
-  m_FocalLength: 20.78461
+  m_FocusDistance: 10
+  m_FocalLength: 13.858139
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
   m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
+  m_SensorSize: {x: 21.946, y: 16.002}
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -16998,11 +16998,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.099999994
-  far clip plane: 999.99994
+  near clip plane: 0.3
+  far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
-  orthographic size: 0.24
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -17026,8 +17026,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139261527}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.030119132, y: -0.018338513, z: -0.0005526839, w: 0.99937797}
-  m_LocalPosition: {x: 0, y: 0, z: -0.4289999}
+  m_LocalRotation: {x: 0.25945956, y: -0.44938725, z: 0.1382178, w: 0.8435803}
+  m_LocalPosition: {x: -1.4821012, y: 1.1757791, z: 3.0214071}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24659,8 +24659,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634748208}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.030119132, y: -0.018338513, z: -0.0005526839, w: 0.99937797}
-  m_LocalPosition: {x: 0.18, y: 0.674, z: -4.903}
+  m_LocalRotation: {x: 0.25945956, y: -0.44938725, z: 0.1382178, w: 0.8435803}
+  m_LocalPosition: {x: -1.3021011, y: 1.8497791, z: -1.4525928}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24816,11 +24816,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.099999994
-  far clip plane: 999.99994
+  near clip plane: 0.3
+  far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
-  orthographic size: 0.24
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -31048,10 +31048,10 @@ MonoBehaviour:
         z: 0.67443067
       Rotation:
         value:
-          x: 0.10451602
-          y: -0.08490327
-          z: 0.002291924
-          w: 0.99088985
+          x: 0.104516
+          y: -0.08490325
+          z: 0.0022919243
+          w: 0.9908898
     - Position:
         x: -0.15300001
         y: -0.19500002
@@ -35678,7 +35678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextMinigameState: {fileID: 1620836870}
-  stateDurationSeconds: 120
+  stateDurationSeconds: 10
   onStateLoaded:
     m_PersistentCalls:
       m_Calls:
@@ -41200,5 +41200,4 @@ SceneRoots:
   - {fileID: 928308427}
   - {fileID: 1708799817}
   - {fileID: 17984771}
-  - {fileID: 1473462907}
   - {fileID: 1224696168}

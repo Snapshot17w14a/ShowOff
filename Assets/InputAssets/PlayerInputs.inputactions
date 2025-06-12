@@ -402,9 +402,27 @@
             "id": "b1016149-9e1d-480d-9dac-0c968665edf9",
             "actions": [
                 {
-                    "name": "Navigate",
+                    "name": "NavUp",
                     "type": "Button",
-                    "id": "4e666de9-6bf8-4aea-96fc-b91877e7a6f3",
+                    "id": "b4b460b8-7e14-455b-bb65-e02ef50ebb9a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NavDown",
+                    "type": "Button",
+                    "id": "eb1d3a59-d7c5-4ca0-aa67-ba1c1a7557f6",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Confirm",
+                    "type": "Button",
+                    "id": "fc65b18f-b41e-4297-8508-3e46ae2139f2",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -414,45 +432,100 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "b0b49714-94ab-40b7-b74e-85088ececddd",
+                    "id": "41d12a33-b998-44a8-9df8-cffc827a0f0f",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardLeft",
+                    "action": "NavUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb2e4226-2c1b-45bb-84d2-06fe0f0799e9",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardRight",
+                    "action": "NavUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f3768c0-9a43-4b27-ba0e-ba763c202f87",
                     "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Controller",
-                    "action": "Navigate",
+                    "action": "NavUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "a8c1506d-0bcd-4009-a44b-1903d9ac91f3",
+                    "id": "ded80955-83b7-4d65-a028-d27348abf5db",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardLeft",
+                    "action": "NavDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "851ac492-0406-45cb-8725-649136c8b6cb",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";KeyboardRight",
+                    "action": "NavDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26146e57-c76d-43d3-a0a9-742160116bcb",
                     "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Navigate",
+                    "groups": ";Controller",
+                    "action": "NavDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "52e6fbd3-640e-4b0e-8adb-339f0c5811a3",
-                    "path": "<Gamepad>/leftStick/right",
+                    "id": "18ac64f2-87a1-4e83-b98a-eab42a32e1fa",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Navigate",
+                    "groups": ";KeyboardLeft",
+                    "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "d5b20981-36ae-4e99-aa21-a6c78d97ef7f",
-                    "path": "<Gamepad>/leftStick/left",
+                    "id": "f2c8880f-5256-4a9f-9d75-15414609f8bc",
+                    "path": "<Keyboard>/numpad0",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Navigate",
+                    "groups": ";KeyboardRight",
+                    "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "afa29095-9a6a-44d2-a65c-5dc1d4258abd",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

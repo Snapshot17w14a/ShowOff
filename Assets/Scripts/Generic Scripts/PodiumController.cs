@@ -111,9 +111,8 @@ public class PodiumController : MonoBehaviour
         currentScore = 0;
         OnCountStart?.Invoke();
 
+        //Start the lerping with the scheduler
         Scheduler.Instance.Lerp(UpdatePodiums, targetScore * CooldownPerScore, PostAnimation);
-
-        //StartCoroutine(AnimatePodiums(new WaitForSeconds(CooldownPerScore)));
     }
 
     //Create a podium, set its position based on the index

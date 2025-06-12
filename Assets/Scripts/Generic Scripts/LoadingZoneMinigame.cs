@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,19 +22,21 @@ public class LoadingZoneMinigame : MonoBehaviour
     private bool isTranstitioning = false;
     private bool isLoadingMinigame = false;
 
-    private List<PlayerInput> allPlayerInputs = new List<PlayerInput>();
-    private List<GameObject> allPlayers = new List<GameObject>();
-    private List<int> players = new();
+    private List<MinigamePlayer> readyPlayers;
     private float playerReadyThreshold;
     SplineAutoDolly.FixedSpeed autodolly;
 
     private void Start()
     {
-        ServiceLocator.GetService<PlayerRegistry>().OnPlayerSpawn += AddPlayer;
-        ServiceLocator.GetService<PlayerRegistry>().OnPlayerDisconnect += RemovePlayer;
+        var registry = ServiceLocator.GetService<PlayerRegistry>();
+
+        registry.OnPlayerSpawn += AddPlayer;
+        registry.BeforePlayerDisconnect += RemovePlayer;
         autodolly = cinemachineSplineDolly.AutomaticDolly.Method as SplineAutoDolly.FixedSpeed;
 
-        playerReadyThreshold = Mathf.Ceil((float)ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount / 2f + 1f);
+        readyPlayers = new(registry.MaxPlayers);
+
+        playerReadyThreshold = Mathf.Ceil((float)registry.RegisteredPlayerCount / 2f + 1f);
     }
 
     private void Update()
@@ -52,14 +55,11 @@ public class LoadingZoneMinigame : MonoBehaviour
                 autodolly.Speed = 0.5f;
                 skipButton.SetActive(true);
 
-                for (int i = 0; i < allPlayerInputs.Count; i++)
+                ServiceLocator.GetService<PlayerRegistry>().ExecuteForEachPlayer(player =>
                 {
-                    if (allPlayers[i] != null)
-                    {
-                        allPlayerInputs[i].DeactivateInput();
-                        allPlayers[i].transform.Find("Indicator").gameObject.SetActive(false);
-                    }
-                }
+                    player.transform.Find("Indicator").gameObject.SetActive(false);
+                    player.GetComponent<PlayerInput>().DeactivateInput();
+                });
             }
         }
 
@@ -82,12 +82,9 @@ public class LoadingZoneMinigame : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
-            curPlayersReady++;
-            players.Add(other.GetComponent<MinigamePlayer>().RegistryID);
-        }
+            readyPlayers.Add(other.GetComponent<MinigamePlayer>());
 
-        if (playerReadyThreshold == curPlayersReady)
+        if (playerReadyThreshold == readyPlayers.Count)
         {
             playersReady = true;
             countDownTimerText.enabled = true;
@@ -98,33 +95,24 @@ public class LoadingZoneMinigame : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            players.Remove(other.GetComponent<MinigamePlayer>().RegistryID);
-
-            curPlayersReady--;
+            readyPlayers.Remove(other.GetComponent<MinigamePlayer>());
             RecheckThreshold();
         }
     }
 
     private void AddPlayer(MinigamePlayer player)
     {
-
         int registeredPlayers = ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount;
         float curPlayers = (float)registeredPlayers;
         playerReadyThreshold = Mathf.Ceil(curPlayers / 2f + 1f);
         RecheckThreshold();
-
-
-        allPlayers.Add(player.gameObject);
-        allPlayerInputs.Add(player.GetComponent<PlayerInput>());
-
     }
 
-    private void RemovePlayer(MinigamePlayer player, int curPlayers)
+    private void RemovePlayer(MinigamePlayer disconnectingPlayer)
     {
-        if (players.Contains(curPlayers))
-            curPlayersReady--;
+        if (readyPlayers.Contains(disconnectingPlayer)) readyPlayers.Remove(disconnectingPlayer);
 
-        playerReadyThreshold = Mathf.Ceil((float)curPlayersReady / 2f + 1f);
+        playerReadyThreshold = Mathf.Ceil((float)readyPlayers.Count / 2f + 1f);
 
         RecheckThreshold();
     }
@@ -147,7 +135,7 @@ public class LoadingZoneMinigame : MonoBehaviour
     private void OnDisable()
     {
         ServiceLocator.GetService<PlayerRegistry>().OnPlayerSpawn -= AddPlayer;
-        ServiceLocator.GetService<PlayerRegistry>().OnPlayerDisconnect -= RemovePlayer;
+        ServiceLocator.GetService<PlayerRegistry>().BeforePlayerDisconnect -= RemovePlayer;
     }
 
     private void OnGrab()
