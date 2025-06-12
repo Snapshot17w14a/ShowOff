@@ -113,7 +113,6 @@ public class MinigamePlayer : MonoBehaviour
         {
             Dash();
             animator.SetTrigger("Dash");
-            AudioManager.PlaySound(ESoundType.Penguin, "Dash", false, 1f);
         }
     }
 
