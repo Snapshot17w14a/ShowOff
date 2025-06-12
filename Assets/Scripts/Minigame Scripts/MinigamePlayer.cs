@@ -74,7 +74,7 @@ public class MinigamePlayer : MonoBehaviour
     private void Update()
     {
         UpdateDashTimer();
-        animator.SetFloat("Magnitude", rigidbody.linearVelocity.sqrMagnitude);
+        animator.SetFloat("Magnitude", inputVector.magnitude);
         if (isStunned || isFlying) return;
         UpdateMovement();
         walkEffect.SetFloat("Rate", rigidbody.linearVelocity.magnitude != 0 ? walkEffectRate : 0);
