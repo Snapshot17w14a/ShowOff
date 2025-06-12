@@ -503,7 +503,8 @@ AnimatorState:
   m_Transitions:
   - {fileID: -7187142321508591126}
   - {fileID: 1381072823180742854}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 5805145797819950350}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -622,6 +623,22 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &5805145797819950350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b4a5a803f7dc4340a2aa373055cdc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: 1
+  soundName: Dash
+  volume: 1
+  randomizePitch: 1
 --- !u!1102 &7022887268245607398
 AnimatorState:
   serializedVersion: 6
