@@ -119,7 +119,7 @@ public class PodiumController : MonoBehaviour
     //Create a podium, set its position based on the index
     private Podium CreatePodium(int index, PlayerRegistry playerRegistry)
     {
-        var pos = new Vector3(0.5f * (index + 1) + (0.5f + spacing) * index, 0, 0);
+        var pos = new Vector3(0.5f * (index + 1) + (0.5f + spacing) * index, -0.3f, 0);
         var podium = Instantiate(podiumPrefab, Vector3.zero, Quaternion.identity, transform).GetComponent<Podium>();
         podium.transform.localPosition = pos;
         podium.transform.localScale = new Vector3(1, 0, 1);

@@ -63,7 +63,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public static void PlaySound(ESoundType soundSourceType, string name, bool randomizePitch, float volume = 1f)
+    public static void PlaySound(ESoundType soundSourceType, string name, bool randomizePitch, float pitch, float volume = 1f)
     {
         if (Instance == null)
         {
@@ -93,7 +93,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Instance.sfxSource.pitch = 1f;
+            Instance.sfxSource.pitch = pitch;
         }
 
         Instance.sfxSource.PlayOneShot(clip.clip, volume);
