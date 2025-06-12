@@ -35786,7 +35786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextMinigameState: {fileID: 1620836870}
-  stateDurationSeconds: 10
+  stateDurationSeconds: 120
   onStateLoaded:
     m_PersistentCalls:
       m_Calls:

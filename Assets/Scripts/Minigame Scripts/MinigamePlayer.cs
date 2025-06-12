@@ -205,6 +205,7 @@ public class MinigamePlayer : MonoBehaviour
     private IEnumerator StunRoutine(float stunSeconds)
     {
         isStunned = true;
+        animator.SetBool("IsHolding", false);
         stunEffect.Play();
         rigidbody.linearVelocity = Vector3.zero;
 
