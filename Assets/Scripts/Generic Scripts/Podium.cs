@@ -1,12 +1,15 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class Podium : MonoBehaviour
 {
     [HideInInspector] public MinigamePlayer player;
 
     [SerializeField] private float maxHeight;
+
+    private VisualEffect cloudEffect;
 
     public static int highestScore = 0;
     public static PodiumController controller;
@@ -41,9 +44,10 @@ public class Podium : MonoBehaviour
         startingTextPosition = position + new Vector3(0, 0, -0.6f);
         targetTextPosition = position + new Vector3(0, targetScale.y / 2f, -0.6f);
 
-        startingPlayerPosition = position;
+        startingPlayerPosition = position + new Vector3(0, .15f, 0);
         targetPlayerPosition = position + new Vector3(0, targetScale.y + .15f, 0);
 
+        cloudEffect = GetComponent<VisualEffect>();
         maxLerpTime = progressLimitMult;
     }
 
@@ -56,6 +60,8 @@ public class Podium : MonoBehaviour
         transform.localScale = Vector3.Lerp(startingScale, targetScale, t);
         player.transform.position = Vector3.Lerp(startingPlayerPosition, targetPlayerPosition, t);
         scoreText.transform.position = Vector3.Lerp(startingTextPosition, targetTextPosition, t);
+
+        //cloudEffect.SetFloat("Y Scale Value", transform.localScale.y);
     }
 
     public void SetPlayerInteraction(bool state)
