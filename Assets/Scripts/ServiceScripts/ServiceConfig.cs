@@ -7,6 +7,7 @@ public class ServiceConfig : ScriptableObject
     [Header("PlayerRegistry settings")]
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private PlayerVisualData[] playerVisualData;
+    [SerializeField] GameObject audioManager;
 
     [Header("PlayerAutoJoin settings")]
     [SerializeField] private InputActionAsset inputActions;
@@ -33,5 +34,6 @@ public class ServiceConfig : ScriptableObject
         ServiceLocator.RegisterService(pauseManager);
 
         new GameObject("Scheduler").AddComponent<Scheduler>();
+        Instantiate(audioManager);
     }
 }

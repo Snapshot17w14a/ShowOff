@@ -638,6 +638,7 @@ MonoBehaviour:
   sound: 1
   soundName: Dash
   volume: 1
+  pitch: 1
   randomizePitch: 1
 --- !u!1102 &7022887268245607398
 AnimatorState:
