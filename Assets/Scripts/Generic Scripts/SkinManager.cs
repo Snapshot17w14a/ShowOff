@@ -35,11 +35,11 @@ public class SkinManager : MonoBehaviour
             SetPlayerColor(goldVisual, RegistryID);
             dashIndicator.GetComponent<MeshRenderer>().material = goldDashMaterial;
             dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
-            AddCrown();
+            EnableCrown();
         }
     }
 
-    private void AddCrown()
+    private void EnableCrown()
     {
 
     }

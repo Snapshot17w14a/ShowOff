@@ -995,6 +995,7 @@ GameObject:
   - component: {fileID: -2730527039040381327}
   - component: {fileID: 1228121129382461837}
   - component: {fileID: 7865321752991679214}
+  - component: {fileID: 8761931463609222332}
   m_Layer: 6
   m_Name: player
   m_TagString: Player
@@ -1249,6 +1250,36 @@ MonoBehaviour:
   droppedTreasureDespawnTime: 10
   pickUpCooldown: 2
   animator: {fileID: 4784228274020326679}
+--- !u!114 &8761931463609222332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5353790784943384531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e651e13c43b868348b39eea2d547d5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMeshRenderers:
+  - {fileID: 183705040690660452}
+  - {fileID: 8849933419975370029}
+  - {fileID: 623957373308974850}
+  - {fileID: 8132155310477921041}
+  - {fileID: 1308026303338219589}
+  - {fileID: 4201018770951227378}
+  - {fileID: 231064746699504594}
+  - {fileID: 4283658996424988150}
+  - {fileID: 8077978230981856497}
+  spritesToRecolor:
+  - {fileID: 9121208996895523616}
+  - {fileID: 1905895023603013796}
+  dashIndicator: {fileID: 4324543987656939266}
+  goldVisual: {fileID: 11400000, guid: 9248afa3eec9ebf4f9f623730c6e720c, type: 2}
+  goldDashMaterial: {fileID: 2100000, guid: c5fcb69e09ac3a44a99fdd7084cc2cee, type: 2}
+  crown: {fileID: 919132149155446097, guid: a1762096d9eda284ab740ab836bb6f14, type: 3}
+  playerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &5535706631090650821
 GameObject:
   m_ObjectHideFlags: 0
