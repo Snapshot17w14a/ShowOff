@@ -13,9 +13,6 @@ public class Podium : MonoBehaviour
 
     private TextMeshPro scoreText;
 
-    private Vector3 startingPosition;
-    private Vector3 targetPosition;
-
     private Vector3 startingScale;
     private Vector3 targetScale;
 
@@ -41,9 +38,6 @@ public class Podium : MonoBehaviour
         startingScale = transform.localScale;
         targetScale = new Vector3(1, maxHeight, 1);
 
-        startingPosition = transform.localPosition;
-        targetPosition = new Vector3(startingPosition.x, targetScale.y / 2f, startingPosition.z);
-
         startingTextPosition = position + new Vector3(0, 0, -0.6f);
         targetTextPosition = position + new Vector3(0, targetScale.y / 2f, -0.6f);
 
@@ -55,11 +49,10 @@ public class Podium : MonoBehaviour
 
     public void UpdateLerp(float t)
     {
-        if (t >= maxLerpTime) return;
+        if (t > maxLerpTime) return;
 
         scoreText.text = controller.CurrentScore.ToString();
 
-        transform.localPosition = Vector3.Lerp(startingPosition, targetPosition, t);
         transform.localScale = Vector3.Lerp(startingScale, targetScale, t);
         player.transform.position = Vector3.Lerp(startingPlayerPosition, targetPlayerPosition, t);
         scoreText.transform.position = Vector3.Lerp(startingTextPosition, targetTextPosition, t);
