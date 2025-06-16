@@ -39,10 +39,7 @@ public class SkinManager : MonoBehaviour
             SetPlayerColor(goldVisual, RegistryID);
             dashIndicator.GetComponent<MeshRenderer>().material = goldDashMaterial;
             dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
-            if(data.winStreak >= winStreakActivation)
-            {
-                EnableCrown(true);
-            }
+            EnableCrown(true);
         }
     }
 
