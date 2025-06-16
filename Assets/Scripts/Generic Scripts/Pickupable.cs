@@ -87,12 +87,18 @@ public class Pickupable : MonoBehaviour
             OnGroundTouched?.Invoke(this);
         }
 
-        if (other.GetComponent<Minecart>() != null)
+        else if (other.GetComponent<Minecart>() != null)
         {
             Minecart minecart = other.GetComponent<Minecart>();
             minecart.AddGem();
             OnPickupableEnteredMinecartEvent?.Invoke(this, worth);
             Despawn();
+        }
+
+        else if (other.CompareTag("IcePlatform"))
+        {
+            SetKinematic(true);
+            OnGroundTouched?.Invoke(this);
         }
     }
 

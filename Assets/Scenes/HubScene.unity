@@ -2430,9 +2430,9 @@ GameObject:
   m_Component:
   - component: {fileID: 451266149}
   - component: {fileID: 451266148}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: IcePlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
