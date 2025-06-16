@@ -13,8 +13,8 @@ public class PodiumTester : MonoBehaviour
 
         var scoreReg = ServiceLocator.GetService<ScoreRegistry>();
 
-        scoreReg.AddScore(0, Random.Range(0, 100));
-        scoreReg.AddScore(1, Random.Range(0, 100));
+        scoreReg.AddScore(0, Random.Range(0, 4));
+        scoreReg.AddScore(1, Random.Range(0, 10));
 
         PlayerPrefs.SetInt("DoPodium", 1);
     }

@@ -15,7 +15,7 @@ public class SkinManager : MonoBehaviour
     private Material dashIndicatorMaterial;
 
     public Color playerColor;
-    public int RegistryID { get; set; }
+    public int RegistryID { get; private set; }
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class SkinManager : MonoBehaviour
 
     private void Start()
     {
-        ServiceLocator.GetService<ScoreRegistry>().AddPlayer(RegistryID);
+        RegistryID = GetComponent<MinigamePlayer>().RegistryID;
     }
 
     public void ChangeSkin()
