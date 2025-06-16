@@ -138,7 +138,7 @@ public class PlayerRegistry : Service
     {
         for (int i = 0; i < registeredPlayers.Length; i++)
         {
-            if (RegisteredPlayer.IsNull(registeredPlayers[i])) continue;
+            //if (RegisteredPlayer.IsNull(registeredPlayers[i])) continue;
             registeredPlayers[i] = function(registeredPlayers[i]);
         }
     }
