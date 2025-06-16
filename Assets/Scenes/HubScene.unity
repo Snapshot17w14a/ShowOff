@@ -10777,13 +10777,13 @@ MonoBehaviour:
   OnCameraReady:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 1078915040}
+        m_TargetAssemblyTypeName: PodiumController, Assembly-CSharp
+        m_MethodName: StartPodiumAnimation
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -14364,7 +14364,7 @@ MonoBehaviour:
         value:
           x: 0.008258809
           y: -0.0013840065
-          z: 0.000008361487
+          z: 0.000008361159
           w: 0.99996495
     - Position:
         x: -0.09431954
@@ -14382,7 +14382,7 @@ MonoBehaviour:
         value:
           x: 0.013472298
           y: -0.0006872277
-          z: -0.000012110138
+          z: -0.000012110468
           w: 0.99990904
     - Position:
         x: -0.0026825666

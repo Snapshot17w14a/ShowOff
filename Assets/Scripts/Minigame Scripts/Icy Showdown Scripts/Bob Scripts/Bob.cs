@@ -62,6 +62,7 @@ public class Bob : MonoBehaviour
     [SerializeField] private GameObject iciclePrefab;
     [SerializeField] private int minIcicleCount;
     [SerializeField] private int maxIcicleCount;
+    [SerializeField] private VisualEffect startEffect;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onStateChange;
@@ -109,7 +110,7 @@ public class Bob : MonoBehaviour
                     rageState.Initialize(crossDuration, transform, crossEffect, crossChargupTime, rageStunTime, beamLayerMask.value, globalVolume);
                     break;
                 case BobStarState starState:
-                    starState.Initialize(timeBeforeSpawn, iciclePrefab, minIcicleCount, maxIcicleCount);
+                    starState.Initialize(timeBeforeSpawn, iciclePrefab, minIcicleCount, maxIcicleCount, startEffect);
                     break;
             }
         }

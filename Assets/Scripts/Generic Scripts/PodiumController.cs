@@ -1,6 +1,5 @@
-using Unity.VisualScripting;
-using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine;
 
 public class PodiumController : MonoBehaviour
 {
@@ -57,6 +56,7 @@ public class PodiumController : MonoBehaviour
                 if (data.id == highestScore.id)
                 {
                     winnerID = highestScore.id;
+                    data.isLastWinner = true;
                     data.winStreak++;
                 }
                 else
@@ -79,15 +79,7 @@ public class PodiumController : MonoBehaviour
             });
         }
 
-        //Set the winner's data to have winner as true
-        if (highestScore.isUnique)
-        {
-            var winnerData = playerRegistry.GetPlayerData(highestScore.id);
-            winnerData.isLastWinner = true;
-            winnerID = highestScore.id;
-            playerRegistry.SetPlayerData(winnerData);
-        }
-
+        //Create the podium array with the player count
         podiums = new Podium[playerCount];
 
         //Create a podium for all players

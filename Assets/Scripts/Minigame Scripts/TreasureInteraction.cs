@@ -49,15 +49,6 @@ public class TreasureInteraction : MonoBehaviour
         _pickUpCooldown = pickUpCooldown;
     }
 
-    private void Update()
-    {
-        if (isInCollectionZone && collectedPickupable != null)
-        {
-            DeliverTreasure();
-            isInCollectionZone = false;
-        }
-    }
-
     private void CollectTreasure()
     {
         if (!PauseManager.IsPaused)
@@ -301,13 +292,18 @@ public class TreasureInteraction : MonoBehaviour
             animator.SetTrigger("PickUp");
             animator.SetBool("IsHolding", true);
             pickUpCooldown = Time.time + _pickUpCooldown;
-        } else if(nearbyPickable != null && collectedPickupable == null)
+        } 
+        else if(nearbyPickable != null && collectedPickupable == null)
         {
             CollectTreasureFromGround(nearbyPickable);
             animator.SetTrigger("PickUp");
             animator.SetBool("IsHolding", true);
             nearbyPickable = null;
             EnableButtonIndicator(false);
+        }
+        else if (isInCollectionZone && collectedPickupable != null) {
+            DeliverTreasure();
+            isInCollectionZone = false;
         }
         else if (collectedPickupable != null)
         {
