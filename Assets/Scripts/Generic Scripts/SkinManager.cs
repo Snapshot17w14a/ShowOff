@@ -9,7 +9,8 @@ public class SkinManager : MonoBehaviour
     [SerializeField] private GameObject dashIndicator;
     [SerializeField] private PlayerVisualData goldVisual;
     [SerializeField] private Material goldDashMaterial;
-    [SerializeField] private GameObject crownPrefab;
+    [SerializeField] private GameObject crownParent;
+    [SerializeField] private GameObject crown;
 
     private Material dashIndicatorMaterial;
 
@@ -35,19 +36,19 @@ public class SkinManager : MonoBehaviour
             SetPlayerColor(goldVisual, RegistryID);
             dashIndicator.GetComponent<MeshRenderer>().material = goldDashMaterial;
             dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
-            EnableCrown();
+            EnableCrown(true);
         }
     }
 
-    private void EnableCrown()
+    private void EnableCrown(bool state)
     {
-        Instantiate(crownPrefab, new Vector3(transform.position.x, transform.position.y + 0.275f, transform.position.z), transform.localRotation, transform);
+        crown.gameObject.SetActive(state);
     }
 
     public void SetPlayerColor(PlayerVisualData data, int playerId)
     {
         foreach (var renderer in spritesToRecolor) renderer.color = new Color(data.color.r, data.color.g, data.color.b, renderer.color.a);
-
+        EnableCrown(false);
         ForEachPlayerRenderer(r => r.material = data.material);
 
         var textMeshPro = GetComponentInChildren<TextMeshPro>();
