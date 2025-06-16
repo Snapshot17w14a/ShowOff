@@ -62,10 +62,10 @@ public class PodiumController : MonoBehaviour
                 return data;
             });
         }
+
         //If there are no unique winners reset all winner flags to false, and set the win streak back to 0
         else
         {
-            
             playerRegistry.ExecuteForEachPlayerData(data =>
             {
                 data.isLastWinner = false;

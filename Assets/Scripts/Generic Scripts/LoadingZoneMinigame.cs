@@ -15,7 +15,6 @@ public class LoadingZoneMinigame : MonoBehaviour
     [SerializeField] private Camera MainCamera;
     [SerializeField] private Camera cutsceneCamera;
 
-    private int curPlayersReady;
     private float countdownTimer = 3;
     private bool playersReady;
 
@@ -125,7 +124,7 @@ public class LoadingZoneMinigame : MonoBehaviour
         countdownTimer = 3;
         countDownTimerText.enabled = false;
 
-        if (playerReadyThreshold == curPlayersReady)
+        if (playerReadyThreshold == readyPlayers.Count)
         {
             playersReady = true;
             countDownTimerText.enabled = true;

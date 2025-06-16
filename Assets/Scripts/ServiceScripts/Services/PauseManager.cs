@@ -1,21 +1,18 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.UI;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PauseManager : Service
 {
-    public Action<bool> OnPaused;
-    public static bool isPaused { get; private set; } = false;
+    public Action<bool, int> OnPaused;
+    public static bool IsPaused { get; private set; } = false;
+
+    public InputDevice PauseingUserDevice => ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(pausedByPlayerId).device;
 
     private int pausedByPlayerId = -1;
 
     private string currentSceneName;
-
-    private EventSystem current;
-
-    private InputSystemUIInputModule currentUIInputModule;
 
     public override void InitializeService()
     {
@@ -31,7 +28,7 @@ public class PauseManager : Service
             return;
         }
 
-        if (!isPaused && SceneManager.GetActiveScene() != SceneManager.GetSceneByName("HubScene"))
+        if (!IsPaused && SceneManager.GetActiveScene() != SceneManager.GetSceneByName("HubScene"))
         {
             Pause(playerId);
         }
@@ -47,19 +44,21 @@ public class PauseManager : Service
 
     public void Unpause()
     {
+        OnPaused?.Invoke(false, pausedByPlayerId);
         Time.timeScale = 1f;
-        isPaused = false;
+        IsPaused = false;
         pausedByPlayerId = -1;
         ServiceLocator.GetService<PlayerAutoJoin>().AllowJoining = false;
-        OnPaused?.Invoke(false);
+        ServiceLocator.GetService<PlayerRegistry>().ExecuteForEachPlayer(player => player.SetInputEnabled(true));
     }
 
     public void Pause(int playerId)
     {
         Time.timeScale = 0f;
-        isPaused = true;
+        IsPaused = true;
         ServiceLocator.GetService<PlayerAutoJoin>().AllowJoining = false;
+        ServiceLocator.GetService<PlayerRegistry>().ExecuteForEachPlayer(player => player.SetInputEnabled(false));
         pausedByPlayerId = playerId;
-        OnPaused?.Invoke(true);
+        OnPaused?.Invoke(true, playerId);
     }
 }

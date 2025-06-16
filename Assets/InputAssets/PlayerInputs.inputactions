@@ -465,6 +465,17 @@
                 },
                 {
                     "name": "",
+                    "id": "67cbfe35-2342-4ade-876a-57666c827c2a",
+                    "path": "<Joystick>/stick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Afterglow",
+                    "action": "NavUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ded80955-83b7-4d65-a028-d27348abf5db",
                     "path": "<Keyboard>/s",
                     "interactions": "",
@@ -498,6 +509,17 @@
                 },
                 {
                     "name": "",
+                    "id": "f9e2b96e-0122-4e68-b5a8-28e67f8debae",
+                    "path": "<Joystick>/stick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Afterglow",
+                    "action": "NavDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "18ac64f2-87a1-4e83-b98a-eab42a32e1fa",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -525,6 +547,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Controller",
+                    "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "537813e1-663d-4f58-a916-cda120315653",
+                    "path": "<HID::Performance Designed Products Afterglow Wave Wired Controller for Nintendo Switch>/button2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Afterglow",
                     "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false

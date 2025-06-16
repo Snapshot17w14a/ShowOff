@@ -3,17 +3,16 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private GameObject pauseUI;
+
     void Start()
     {
         ServiceLocator.GetService<PauseManager>().OnPaused += HandleOnPaused;
     }
 
-    private void HandleOnPaused(bool isPaused)
+    private void HandleOnPaused(bool isPaused, int playerId)
     {
         if (pauseUI != null)
-        {
-            pauseUI.gameObject.SetActive(isPaused);
-        }
+            pauseUI.SetActive(isPaused);
     }
 
     private void OnDestroy()

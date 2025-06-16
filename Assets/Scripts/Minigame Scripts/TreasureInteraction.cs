@@ -60,7 +60,7 @@ public class TreasureInteraction : MonoBehaviour
 
     private void CollectTreasure()
     {
-        if (!PauseManager.isPaused)
+        if (!PauseManager.IsPaused)
         {
 
             int roll = UnityEngine.Random.Range(1, 101);
@@ -96,7 +96,7 @@ public class TreasureInteraction : MonoBehaviour
 
     private void CollectTreasureFromGround(Pickupable pickupable)
     {
-        if (!PauseManager.isPaused)
+        if (!PauseManager.IsPaused)
         {
             SetGem(pickupable, holdPoint.transform.position);
             pickupable.OnPickupableDespawnedEvent += HandleTreasureDespawned;
