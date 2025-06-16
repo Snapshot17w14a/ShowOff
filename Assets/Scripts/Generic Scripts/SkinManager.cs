@@ -9,7 +9,7 @@ public class SkinManager : MonoBehaviour
     [SerializeField] private GameObject dashIndicator;
     [SerializeField] private PlayerVisualData goldVisual;
     [SerializeField] private Material goldDashMaterial;
-    [SerializeField] private GameObject crown;
+    [SerializeField] private GameObject crownPrefab;
 
     private Material dashIndicatorMaterial;
 
@@ -41,7 +41,7 @@ public class SkinManager : MonoBehaviour
 
     private void EnableCrown()
     {
-
+        Instantiate(crownPrefab, new Vector3(transform.position.x, transform.position.y + 0.275f, transform.position.z), transform.localRotation, transform);
     }
 
     public void SetPlayerColor(PlayerVisualData data, int playerId)

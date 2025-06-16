@@ -1114,21 +1114,17 @@ MonoBehaviour:
     m_ActionId: b6281ca9-b8e9-428d-a5c6-e0713ad5681b
     m_ActionName: 'Player/Pause[/Keyboard/escape,/Keyboard/0]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 4e666de9-6bf8-4aea-96fc-b91877e7a6f3
-    m_ActionName: UI/Navigate
+      m_Calls: []
+    m_ActionId: b4b460b8-7e14-455b-bb65-e02ef50ebb9a
+    m_ActionName: 'UI/NavUp[/Keyboard/w,/Keyboard/upArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eb1d3a59-d7c5-4ca0-aa67-ba1c1a7557f6
+    m_ActionName: 'UI/NavDown[/Keyboard/s,/Keyboard/downArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fc65b18f-b41e-4297-8508-3e46ae2139f2
+    m_ActionName: 'UI/Confirm[/Keyboard/e,/Keyboard/numpad0]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player
@@ -1278,7 +1274,8 @@ MonoBehaviour:
   dashIndicator: {fileID: 4324543987656939266}
   goldVisual: {fileID: 11400000, guid: 9248afa3eec9ebf4f9f623730c6e720c, type: 2}
   goldDashMaterial: {fileID: 2100000, guid: c5fcb69e09ac3a44a99fdd7084cc2cee, type: 2}
-  crown: {fileID: 919132149155446097, guid: a1762096d9eda284ab740ab836bb6f14, type: 3}
+  crownPrefab: {fileID: 4242259806362056159, guid: dce74192db407d14eb79e7646ca283f0, type: 3}
+  crownYOffset: 1
   playerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &5535706631090650821
 GameObject:
