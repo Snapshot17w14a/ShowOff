@@ -210,6 +210,7 @@ public class TreasureInteraction : MonoBehaviour
         if (gem != null)
         {
             gem.Collect(holdPoint);
+            animator.SetBool("IsHolding", true);
             gem.GetComponent<Collider>().enabled = false;
             collectedPickupable = gem;
         }
@@ -229,6 +230,7 @@ public class TreasureInteraction : MonoBehaviour
             if (minecart != null)
             {
                 currentMinecart = minecart;
+                EnableButtonIndicator(true);
             }
 
             isInCollectionZone = true;
@@ -262,6 +264,7 @@ public class TreasureInteraction : MonoBehaviour
             if (minecart != null && minecart == currentMinecart)
             {
                 currentMinecart = null;
+                EnableButtonIndicator(false);
             }
             isInCollectionZone = false;
             EnableButtonIndicator(false);
