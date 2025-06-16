@@ -134,8 +134,6 @@ public class MinigamePlayer : MonoBehaviour
         {
             playerInput.DeactivateInput();
         }
-
-        Debug.LogError($"[{RegistryID}] Set input enabled: {isEnabled}");
     }
 
     public void StunPlayer(float seconds)

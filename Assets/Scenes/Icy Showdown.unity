@@ -1783,7 +1783,7 @@ MonoBehaviour:
   - {fileID: 1703252260036373740}
   - {fileID: 1703252260036373739}
   eventSystem: {fileID: 1683579575}
-  inputActions: {fileID: 0}
+  inputActions: {fileID: -944628639613478452, guid: 2b1428ed59ecb6447a63d6a59a4cf11e, type: 3}
 --- !u!4 &131028099
 Transform:
   m_ObjectHideFlags: 0
