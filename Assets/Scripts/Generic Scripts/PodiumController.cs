@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -113,8 +114,11 @@ public class PodiumController : MonoBehaviour
         targetScore = highestScore.score;
         currentScore = 0;
         OnCountStart?.Invoke();
+    }
 
-        //Start the lerping with the scheduler
+    public void StartPodiumAnimation()
+    {
+        // Start the lerping with the scheduler
         Scheduler.Instance.Lerp(UpdatePodiums, targetScore * CooldownPerScore, PostAnimation);
     }
 
