@@ -208,21 +208,6 @@ MonoBehaviour:
     - model: {fileID: 114063133802684794}
       id: 0
       isStickyNote: 0
-    - model: {fileID: 8926484042661614570}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614590}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614539}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614549}
-      id: 0
-      isStickyNote: 0
-    - model: {fileID: 8926484042661614615}
-      id: 0
-      isStickyNote: 0
   stickyNoteInfos: []
   categories: []
   uiBounds:
@@ -2462,7 +2447,7 @@ MonoBehaviour:
   m_OutputSlots: []
   m_Disabled: 0
   m_ActivationSlot: {fileID: 8926484042661614595}
-  repeat: 1
+  repeat: 0
   spawnMode: 0
   delayMode: 0
 --- !u!114 &8926484042661614593
