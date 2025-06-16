@@ -224,10 +224,9 @@ public class TreasureInteraction : MonoBehaviour
             EnableButtonIndicator(true);
         }
 
-        if (other.GetComponent<CollectionZone>() != null)
+        else if (other.GetComponent<CollectionZone>() != null)
         {
-            Minecart minecart = other.GetComponent<Minecart>();
-            if (minecart != null)
+            if (other.TryGetComponent<Minecart>(out var minecart))
             {
                 currentMinecart = minecart;
                 EnableButtonIndicator(true);
@@ -238,7 +237,7 @@ public class TreasureInteraction : MonoBehaviour
         }
 
 
-        if (other.GetComponent<Pickupable>() != null)
+        else if (other.GetComponent<Pickupable>() != null)
         {
             EnableButtonIndicator(true);
 
@@ -258,7 +257,7 @@ public class TreasureInteraction : MonoBehaviour
             EnableButtonIndicator(false);
         }
 
-        if (other.GetComponent<CollectionZone>() != null)
+        else if (other.GetComponent<CollectionZone>() != null)
         {
             Minecart minecart = other.GetComponent<Minecart>();
             if (minecart != null && minecart == currentMinecart)
@@ -270,7 +269,7 @@ public class TreasureInteraction : MonoBehaviour
             EnableButtonIndicator(false);
         }
 
-        if(other.GetComponent<Pickupable>() != null)
+        else if(other.GetComponent<Pickupable>() != null)
         {
             nearbyPickable = null;
             EnableButtonIndicator(false);

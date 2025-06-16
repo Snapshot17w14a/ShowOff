@@ -8103,8 +8103,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176737523}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10976851, y: 0.0007288563, z: -0.0000804919, w: 0.9939569}
-  m_LocalPosition: {x: -1.1503861, y: 60.185135, z: -63.77203}
+  m_LocalRotation: {x: 0.5022367, y: 0.0013264613, z: -0.00077041204, w: 0.86472887}
+  m_LocalPosition: {x: -0.04054181, y: 11.727008, z: -6.915655}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12586,8 +12586,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645914231}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10976851, y: 0.0007288563, z: -0.0000804919, w: 0.9939569}
-  m_LocalPosition: {x: -1.1503861, y: 34.195137, z: -63.77203}
+  m_LocalRotation: {x: 0.5022367, y: 0.0013264613, z: -0.00077041204, w: 0.86472887}
+  m_LocalPosition: {x: -0.04054181, y: -14.262992, z: -6.915655}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17890,7 +17890,6 @@ GameObject:
   - component: {fileID: 3469287837570098747}
   - component: {fileID: 1711813855721689841}
   - component: {fileID: 3469287837570098748}
-  - component: {fileID: 3469287837570098749}
   m_Layer: 11
   m_Name: Wall
   m_TagString: Untagged
@@ -17973,27 +17972,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6329158148709259305, guid: 7f31f1b1c6e0f0443810b1e55ec51eb9, type: 3}
---- !u!65 &3469287837570098749
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149109338916}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 18.94541, y: 12.500334, z: 0.15766536}
-  m_Center: {x: 0.632138, y: 6.653546, z: -1.6501298}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
