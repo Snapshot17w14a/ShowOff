@@ -232,6 +232,7 @@ public class TreasureInteraction : MonoBehaviour
             }
 
             isInCollectionZone = true;
+            EnableButtonIndicator(true);
         }
 
 
@@ -263,6 +264,7 @@ public class TreasureInteraction : MonoBehaviour
                 currentMinecart = null;
             }
             isInCollectionZone = false;
+            EnableButtonIndicator(false);
         }
 
         if(other.GetComponent<Pickupable>() != null)

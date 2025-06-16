@@ -18,16 +18,11 @@ public class SkinManager : MonoBehaviour
     private Material dashIndicatorMaterial;
 
     public Color playerColor;
-    public int RegistryID { get; private set; }
+    public int RegistryID => GetComponent<MinigamePlayer>().RegistryID; 
 
     private void Awake()
     {
         dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
-    }
-
-    private void Start()
-    {
-        RegistryID = GetComponent<MinigamePlayer>().RegistryID;
     }
 
     public void ChangeSkin()
