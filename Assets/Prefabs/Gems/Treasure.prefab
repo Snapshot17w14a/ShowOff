@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a1de790c03d97742b6dd49a6a0abea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupType: 0
   gemMaterials: []
+  pickupType: 0
   gemPickUpSize: 12
   worth: 1
 --- !u!2083052967 &-5040600120456553437
@@ -184,8 +184,11 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0, y: 1, z: 0.07073355, w: 0}
+      - m_Value: {x: 4, y: 0, z: 0, w: 0}
         m_Name: Color of star
+        m_Overridden: 1
+      - m_Value: {x: 4, y: 0, z: 0, w: 0}
+        m_Name: Color of gem
         m_Overridden: 1
     m_Uint:
       m_Array: []
