@@ -58,7 +58,11 @@ public class PodiumController : MonoBehaviour
                     winnerID = highestScore.id;
                     data.winStreak++;
                 }
-                else data.isLastWinner = false;
+                else
+                {
+                    data.isLastWinner = false;
+                    data.winStreak = 0;
+                }
                 return data;
             });
         }
@@ -80,7 +84,6 @@ public class PodiumController : MonoBehaviour
             var winnerData = playerRegistry.GetPlayerData(highestScore.id);
             winnerData.isLastWinner = true;
             winnerID = highestScore.id;
-            winnerData.winStreak++;
             playerRegistry.SetPlayerData(winnerData);
         }
 
