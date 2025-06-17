@@ -10692,7 +10692,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 9454eb3f02e14654d81c82035c7e9881, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 46fc434f8ef7f7c4ebec4d3d8f6639ae, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &787999233
 GameObject:
@@ -34652,7 +34652,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 458fb257f393ac849ade881f09355289, type: 2}
+  - {fileID: 2100000, guid: 65c80ca0fab98f249b69cfdd1fddf26d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
