@@ -8,6 +8,7 @@ public class HubGoalScoring : MonoBehaviour
     [Header("Ball")]
     [SerializeField] private Vector3 ballRespawnPosition;
     [SerializeField] private GameObject ballPrefab;
+    private bool hasScored;
 
     [Header("Assign Please")]
     [SerializeField] private TextMeshPro scoreText;
@@ -16,7 +17,7 @@ public class HubGoalScoring : MonoBehaviour
     private int currentScore;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ball"))
+        if (other.CompareTag("Ball") && !hasScored)
         {
             currentScore++;
             scoreText.text = currentScore.ToString();
@@ -27,6 +28,7 @@ public class HubGoalScoring : MonoBehaviour
             if (partySound)
                 partySound.Play();
 
+            hasScored = true;
             StartCoroutine(RespawnBall(other.gameObject));
         }
     }
@@ -36,5 +38,6 @@ public class HubGoalScoring : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Destroy(curBall);
         Instantiate(ballPrefab, ballRespawnPosition, Quaternion.identity);
+        hasScored = false;
     }
 }
