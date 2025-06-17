@@ -5,6 +5,8 @@ public class Icicle : MonoBehaviour
     private new Rigidbody rigidbody;
     private IcicleShadow shadow;
 
+    [SerializeField] private Material[] crystalMaterials;
+
     private float initialY;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -13,6 +15,7 @@ public class Icicle : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         initialY = transform.position.y;
         shadow = GetComponentInChildren<IcicleShadow>();
+        GetComponentInChildren<MeshRenderer>().material = crystalMaterials[Random.Range(0, crystalMaterials.Length)];
     }
 
     private void Update()
