@@ -21,7 +21,7 @@ public class PlayerScoreUI : MonoBehaviour
         minigamePlayer = player;
         treasureInteraction.OnTreasureDelivered += OnTreasureDelivered;
         UpdateText();
-        SetColor(player.playerColor);
+        SetColor(player.GetComponent<SkinManager>().playerColor);
     }
 
     private void OnDestroy()
