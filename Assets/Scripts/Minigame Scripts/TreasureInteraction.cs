@@ -229,11 +229,10 @@ public class TreasureInteraction : MonoBehaviour
             if (other.TryGetComponent<Minecart>(out var minecart))
             {
                 currentMinecart = minecart;
-                EnableButtonIndicator(true);
+                if (collectedPickupable != null) EnableButtonIndicator(true);
             }
 
             isInCollectionZone = true;
-            EnableButtonIndicator(true);
         }
 
 
@@ -263,8 +262,8 @@ public class TreasureInteraction : MonoBehaviour
             if (minecart != null && minecart == currentMinecart)
             {
                 currentMinecart = null;
-                EnableButtonIndicator(false);
             }
+
             isInCollectionZone = false;
             EnableButtonIndicator(false);
         }
@@ -308,6 +307,7 @@ public class TreasureInteraction : MonoBehaviour
         else if (isInCollectionZone && collectedPickupable != null) {
             DeliverTreasure();
             isInCollectionZone = false;
+            EnableButtonIndicator(false);
         }
         else if (collectedPickupable != null)
         {
