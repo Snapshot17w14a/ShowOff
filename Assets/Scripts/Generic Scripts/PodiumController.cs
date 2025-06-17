@@ -1,5 +1,6 @@
 using UnityEngine.Events;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PodiumController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PodiumController : MonoBehaviour
     [SerializeField] private int scorePerSecond;
 
     [SerializeField] private HubScoreState scoreState;
+
+    [SerializeField] private GameObject goldVFX;
 
     public int ScorePerSecond => scorePerSecond;
     public int CurrentScore => currentScore;
@@ -137,7 +140,11 @@ public class PodiumController : MonoBehaviour
         CleanUp();
 
         if (winnerID != -1)
-            ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(winnerID).minigamePlayer.GetComponent<SkinManager>().ChangeSkin();
+        {
+            Scheduler.Instance.DelayExecution(() => ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(winnerID).minigamePlayer.GetComponent<SkinManager>().ChangeSkin(), 2f);
+            var effectObj = Instantiate(goldVFX, podiums[winnerID].player.transform.position, Quaternion.identity);
+            Destroy(effectObj, 4f);
+        }
 
         OnCountEnd?.Invoke();
 
