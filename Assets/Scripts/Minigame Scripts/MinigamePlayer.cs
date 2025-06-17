@@ -77,7 +77,7 @@ public class MinigamePlayer : MonoBehaviour
         animator.SetFloat("Magnitude", inputVector.magnitude);
         if (isStunned || isFlying) return;
         UpdateMovement();
-        walkEffect.SetFloat("Rate", rigidbody.linearVelocity.magnitude != 0 ? walkEffectRate : 0);
+        walkEffect.SetFloat("Rate", rigidbody.linearVelocity.magnitude > 0.3 ? walkEffectRate : 0);
     }
 
     private void UpdateMovement()

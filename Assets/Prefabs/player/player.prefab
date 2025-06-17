@@ -805,7 +805,7 @@ VisualEffect:
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: e7356e5a839aa764cb846e2f5d8a47d3, type: 3}
   m_InitialEventName: 
-  m_InitialEventNameOverriden: 1
+  m_InitialEventNameOverriden: 0
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -1397,6 +1397,7 @@ MonoBehaviour:
   goldDashMaterial: {fileID: 2100000, guid: c5fcb69e09ac3a44a99fdd7084cc2cee, type: 2}
   crownParent: {fileID: 184946239372790122}
   crown: {fileID: 3884575772678680956}
+  winStreakActivation: 5
   playerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &5535706631090650821
 GameObject:
