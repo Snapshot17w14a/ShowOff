@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class HubMinecart : MonoBehaviour
 {
