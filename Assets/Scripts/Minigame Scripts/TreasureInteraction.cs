@@ -319,6 +319,10 @@ public class TreasureInteraction : MonoBehaviour
     {
         pickupable.OnPickupableEnteredMinecartEvent -= HandleTreasureEnteredMinecart;
         pickupable.OnPickupableDespawnedEvent -= HandleTreasureDespawned;
+        if(!isInCollectionZone || !isInTreasureZone)
+        {
+            EnableButtonIndicator(false);
+        }
     }
 
     private void HandleTreasureEnteredMinecart(Pickupable pickupable, int value)
