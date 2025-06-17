@@ -6342,7 +6342,8 @@ Transform:
   m_LocalPosition: {x: 0.25, y: -39.065, z: 7.32}
   m_LocalScale: {x: 1, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 794366675}
   m_Father: {fileID: 1255430335}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &769720325
@@ -6450,6 +6451,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 12.146164, y: 0.51951027, z: 9.372277}
   m_Center: {x: 1.6423397, y: -0.24025142, z: 1.1751474}
+--- !u!1 &794366674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 794366675}
+  - component: {fileID: 794366676}
+  m_Layer: 0
+  m_Name: MinecartProtection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &794366675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794366674}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.97267467, w: 0.23217236}
+  m_LocalPosition: {x: 8.36, y: 0.384, z: -1.08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 769720323}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -153.15}
+--- !u!65 &794366676
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794366674}
+  m_Material: {fileID: 13400000, guid: 193480bd0fa31be4ab09d63528adcdeb, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7020057, y: 0.0797554, z: 4.3764224}
+  m_Center: {x: 2.798868, y: -1.3657062, z: 3.91}
 --- !u!1 &800800076
 GameObject:
   m_ObjectHideFlags: 0
@@ -7209,7 +7263,7 @@ MonoBehaviour:
   rotatePoint: {fileID: 720290885}
   minecartSpeed: 20
   minecartSpeedIncrease: 10
-  minecartMaxSpeed: 120
+  minecartMaxSpeed: 500
   scoreText: {fileID: 1354838412}
 --- !u!1001 &903289877
 PrefabInstance:
