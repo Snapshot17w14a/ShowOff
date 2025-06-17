@@ -36,6 +36,7 @@ public class LoadingZoneMinigame : MonoBehaviour
         readyPlayers = new(registry.MaxPlayers);
 
         playerReadyThreshold = Mathf.Ceil((float)registry.RegisteredPlayerCount / 2f + 1f);
+        AudioManager.PlayMusic(ESoundType.Music, "MUSIC_HUB", 0.5f);
     }
 
     private void Update()

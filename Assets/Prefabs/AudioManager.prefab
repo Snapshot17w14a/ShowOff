@@ -54,6 +54,10 @@ MonoBehaviour:
     audioClips:
     - name: Cart
       clip: {fileID: 8300000, guid: 13bb1d4a028bdb045ad933643b93c68c, type: 3}
+    - name: MUSIC_HUB
+      clip: {fileID: 8300000, guid: cd46fe83cb38e6641a7340029cea409f, type: 3}
+    - name: MUSIC_GAME
+      clip: {fileID: 8300000, guid: 342c3864e23cb954bbaba8cd2189544b, type: 3}
 --- !u!82 &5071268876409205001
 AudioSource:
   m_ObjectHideFlags: 0

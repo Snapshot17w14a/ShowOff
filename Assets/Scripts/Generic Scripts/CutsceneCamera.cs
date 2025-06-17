@@ -28,6 +28,7 @@ public class CutsceneCamera : MonoBehaviour
     {
         //Debug.Log(cinemachineSplineDolly.Spline.Splines[0].Count);
         knots = cinemachineSplineDolly.Spline.Splines[0].Count;
+        AudioManager.PlayMusic(ESoundType.Music, "MUSIC_GAME", 0.0f); //Just stop the music here when you start
     }
 
     private void Update()
@@ -80,6 +81,7 @@ public class CutsceneCamera : MonoBehaviour
         MainCamera.enabled = true;
 
         OnCameraReady?.Invoke();
+        AudioManager.PlayMusic(ESoundType.Music, "MUSIC_GAME", 0.5f);
     }
 
     private void PenguinWalking()
