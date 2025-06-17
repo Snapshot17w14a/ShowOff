@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Minecart : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Minecart : MonoBehaviour
     [SerializeField] private GameObject goldPile;
     [SerializeField] private Vector3 pileEndPos;
     [SerializeField] private Vector3 pileEndScl;
+    [SerializeField] private VisualEffect deliverEffect;
 
     private Vector3 pileStartPos;
     private Vector3 pileStartScl;
@@ -37,6 +39,8 @@ public class Minecart : MonoBehaviour
         {
             return;
         }
+
+        deliverEffect.Play();
 
         currentGemAmount++;
         float gemLimit = (Mathf.CeilToInt((ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount + 1) / 2) + 1);
