@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 2639033466691116276}
   - component: {fileID: 2075441672812279975}
   - component: {fileID: 6131083310988593123}
-  - component: {fileID: 9216366888153645904}
   - component: {fileID: 8125225457616235221}
   - component: {fileID: -5040600120456553437}
   - component: {fileID: -469270698590415904}
   - component: {fileID: -6373864952172160183}
   - component: {fileID: -8221114265271408635}
+  - component: {fileID: 4888320454363151703}
   m_Layer: 0
   m_Name: gem 4
   m_TagString: Untagged
@@ -92,29 +92,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &9216366888153645904
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3176043196019988747}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.1
-  m_Height: 0.05385826
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: -0.01}
 --- !u!114 &8125225457616235221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +108,9 @@ MonoBehaviour:
   pickupType: 0
   gemPickUpSize: 12
   worth: 1
+  groundedCollider: {fileID: -6373864952172160183}
+  flyingCollider: {fileID: 4888320454363151703}
+  targetMinecart: {fileID: 0}
 --- !u!2083052967 &-5040600120456553437
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -269,3 +249,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &4888320454363151703
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3176043196019988747}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.04
+  m_Center: {x: 0, y: 0, z: 0}

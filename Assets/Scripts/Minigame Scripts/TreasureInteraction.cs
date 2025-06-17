@@ -115,7 +115,7 @@ public class TreasureInteraction : MonoBehaviour
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
             SetGem(collectedPickupable, spawnPoint);
             collectedPickupable.SetKinematic(false);
-            collectedPickupable.SetCollider(false);
+            collectedPickupable.SetCollider(ColliderState.Flying, false);
             collectedPickupable.transform.SetParent(null, true);
             collectedPickupable.CalculateVelocity(spawnPoint, currentMinecart.transform.position, 1f);
             collectedPickupable.targetMinecart = currentMinecart;
@@ -123,7 +123,7 @@ public class TreasureInteraction : MonoBehaviour
             Scheduler.Instance.DelayExecution(() =>
             {
                 collectedPickupable.targetMinecart.AddGem();
-                Destroy(collectedPickupable);
+                Destroy(collectedPickupable.gameObject);
                 collectedPickupable = null;
             }, 1f);
 
@@ -153,9 +153,9 @@ public class TreasureInteraction : MonoBehaviour
     {
         Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + playerYOffset, transform.position.z);
         SetGem(gem, spawnPoint);
-        gem.SetCollider(true);
+        gem.SetCollider(ColliderState.Flying, true);
         gem.SetKinematic(false);
-        gem.SetTrigger(true);
+        gem.SetTrigger(ColliderState.Flying, true);
         gem.transform.SetParent(null, true);
         gem.CalculateVelocity(spawnPoint, hit.position, timeToTarget);
         gem.DespawnAfter(droppedTreasureDespawnTime);
@@ -173,7 +173,7 @@ public class TreasureInteraction : MonoBehaviour
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
             Rigidbody rb = GetComponent<Rigidbody>();
             SetGem(collectedPickupable, spawnPoint);
-            collectedPickupable.SetCollider(true);
+            collectedPickupable.SetCollider(ColliderState.Flying, true);
             collectedPickupable.transform.SetParent(null, true);
             collectedPickupable.SetKinematic(false);
             collectedPickupable.OnGroundTouched += HandleOnGroundTouched;

@@ -2803,9 +2803,9 @@ MonoBehaviour:
         z: 0
       Rotation:
         value:
-          x: -0.21990824
-          y: 0
-          z: 0.19127591
+          x: -0.21990827
+          y: 0.000000001947183
+          z: 0.19127594
           w: 0.9565845
     m_MetaData:
     - Mode: 2
@@ -4920,6 +4920,140 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317209101}
   m_Mesh: {fileID: 4745755003119913554, guid: 34d9fadbb003acb48a27a141fa68825b, type: 3}
+--- !u!1 &326421089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 326421090}
+  - component: {fileID: 326421092}
+  - component: {fileID: 326421091}
+  m_Layer: 0
+  m_Name: GemCollector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &326421090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326421089}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3607885401905374681}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &326421091
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326421089}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7, y: 5, z: 10}
+  m_Center: {x: 0, y: -2, z: 0}
+--- !u!114 &326421092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326421089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c1043de1d2d9240b6f265cb21e52d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentMinecart: {fileID: 7541321137125719422}
+--- !u!1 &330129048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 330129049}
+  - component: {fileID: 330129051}
+  - component: {fileID: 330129050}
+  m_Layer: 0
+  m_Name: GemCollector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &330129049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330129048}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.000000075497894, y: -1, z: 0.00000011324684, w: -0.0000000754979}
+  m_LocalPosition: {x: 1.2, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6043263465120840746}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &330129050
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330129048}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7, y: 5, z: 10}
+  m_Center: {x: 0, y: -2, z: 0}
+--- !u!114 &330129051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330129048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c1043de1d2d9240b6f265cb21e52d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentMinecart: {fileID: 7514817254814124627}
 --- !u!1 &332066005
 GameObject:
   m_ObjectHideFlags: 0
@@ -30511,10 +30645,10 @@ MonoBehaviour:
         z: 0.67443067
       Rotation:
         value:
-          x: 0.104516
-          y: -0.08490325
-          z: 0.0022919243
-          w: 0.9908898
+          x: 0.10451602
+          y: -0.08490327
+          z: 0.002291924
+          w: 0.99088985
     - Position:
         x: -0.15300001
         y: -0.19500002
@@ -34541,6 +34675,7 @@ Transform:
   - {fileID: 666601260}
   - {fileID: 533652858}
   - {fileID: 590060533}
+  - {fileID: 326421090}
   m_Father: {fileID: 3601921444749038441}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &3623443975698034608
@@ -36697,6 +36832,7 @@ Transform:
   - {fileID: 279390678}
   - {fileID: 344629313}
   - {fileID: 1476561972}
+  - {fileID: 330129049}
   m_Father: {fileID: 3601921444749038441}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6082515893298119638

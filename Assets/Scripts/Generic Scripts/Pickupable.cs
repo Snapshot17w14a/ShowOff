@@ -8,6 +8,12 @@ public enum PickupType
     Large
 }
 
+public enum ColliderState
+{
+    Flying,
+    Grounded
+}
+
 public class Pickupable : MonoBehaviour
 {
     public event Action<Pickupable> OnPickupableDespawnedEvent;
@@ -23,8 +29,10 @@ public class Pickupable : MonoBehaviour
     [SerializeField] private int gemPickUpSize = 12;
     [SerializeField] private int worth = 1;
 
+    [SerializeField] private Collider groundedCollider;
+    [SerializeField] private Collider flyingCollider;
+
     private Rigidbody rb;
-    private new Collider collider;
     private MeshRenderer meshRenderer;
     private Coroutine despawnCoroutine;
 
@@ -33,7 +41,6 @@ public class Pickupable : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        collider = GetComponent<Collider>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
@@ -72,6 +79,7 @@ public class Pickupable : MonoBehaviour
         //This is fucking ugly, but I was over it making it work with math
         transform.localScale = new Vector3(gemPickUpSize, gemPickUpSize, gemPickUpSize);
         gameObject.transform.localPosition = Vector3.zero;
+        groundedCollider.enabled = false;
     }
 
     private void Despawn()
@@ -87,6 +95,8 @@ public class Pickupable : MonoBehaviour
         {
             SetKinematic(true);
             OnGroundTouched?.Invoke(this);
+            flyingCollider.enabled = false;
+            groundedCollider.enabled = true;
         }
 
         else if (other.TryGetComponent<GemCollector>(out var gemCollector))
@@ -95,19 +105,13 @@ public class Pickupable : MonoBehaviour
             OnPickupableEnteredMinecartEvent?.Invoke(this, worth);
             Despawn();
         }
-
-        else if (other.CompareTag("IcePlatform"))
-        {
-            SetKinematic(true);
-            OnGroundTouched?.Invoke(this);
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-
         SetKinematic(true);
-        collider.isTrigger = true;
+        flyingCollider.enabled = false;
+        groundedCollider.enabled = true;
     }
 
     public void CalculateVelocity(Vector3 spawnPoint, Vector3 position, float speed)
@@ -120,14 +124,30 @@ public class Pickupable : MonoBehaviour
         rb.isKinematic = state;
     }
 
-    public void SetTrigger(bool state)
+    public void SetTrigger(ColliderState collider, bool state)
     {
-        collider.isTrigger = state;
+        switch (collider)
+        {
+            case ColliderState.Flying:
+                flyingCollider.isTrigger = state;
+                break;
+            case ColliderState.Grounded:
+                groundedCollider.isTrigger = state;
+                break;
+        }
     }
 
-    public void SetCollider(bool state)
+    public void SetCollider(ColliderState collider, bool state)
     {
-        collider.enabled = state;
+        switch (collider)
+        {
+            case ColliderState.Flying:
+                flyingCollider.enabled = state;
+                break;
+            case ColliderState.Grounded:
+                groundedCollider.enabled = state;
+                break;
+        }
     }
 
     public void SetRandomMaterial()
