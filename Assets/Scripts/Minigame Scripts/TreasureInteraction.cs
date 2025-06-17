@@ -224,20 +224,15 @@ public class TreasureInteraction : MonoBehaviour
             EnableButtonIndicator(true);
         }
 
-        else if (other.GetComponent<CollectionZone>() != null)
+        if (other.TryGetComponent<Minecart>(out var minecart))
         {
-            if (other.TryGetComponent<Minecart>(out var minecart))
+            currentMinecart = minecart;
+            if (collectedPickupable != null)
             {
-                currentMinecart = minecart;
-                if(collectedPickupable != null)
-                {
-                    EnableButtonIndicator(true);
-                }
+                EnableButtonIndicator(true);
             }
-
             isInCollectionZone = true;
         }
-
 
         else if (other.GetComponent<Pickupable>() != null)
         {
@@ -271,7 +266,7 @@ public class TreasureInteraction : MonoBehaviour
             EnableButtonIndicator(false);
         }
 
-        else if(other.GetComponent<Pickupable>() != null)
+        else if (other.GetComponent<Pickupable>() != null)
         {
             nearbyPickable = null;
             EnableButtonIndicator(false);
@@ -298,8 +293,8 @@ public class TreasureInteraction : MonoBehaviour
             animator.SetTrigger("PickUp");
             animator.SetBool("IsHolding", true);
             pickUpCooldown = Time.time + _pickUpCooldown;
-        } 
-        else if(nearbyPickable != null && collectedPickupable == null)
+        }
+        else if (nearbyPickable != null && collectedPickupable == null)
         {
             CollectTreasureFromGround(nearbyPickable);
             animator.SetTrigger("PickUp");
@@ -307,7 +302,8 @@ public class TreasureInteraction : MonoBehaviour
             nearbyPickable = null;
             EnableButtonIndicator(false);
         }
-        else if (isInCollectionZone && collectedPickupable != null) {
+        else if (isInCollectionZone && collectedPickupable != null)
+        {
             DeliverTreasure();
             isInCollectionZone = false;
             EnableButtonIndicator(false);

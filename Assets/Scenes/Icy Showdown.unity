@@ -2803,9 +2803,9 @@ MonoBehaviour:
         z: 0
       Rotation:
         value:
-          x: -0.21990827
-          y: 0.000000001947183
-          z: 0.19127594
+          x: -0.21990824
+          y: 0
+          z: 0.19127591
           w: 0.9565845
     m_MetaData:
     - Mode: 2
@@ -30380,10 +30380,10 @@ MonoBehaviour:
         z: 0.67443067
       Rotation:
         value:
-          x: 0.10451602
-          y: -0.08490327
-          z: 0.002291924
-          w: 0.99088985
+          x: 0.104516
+          y: -0.08490325
+          z: 0.0022919243
+          w: 0.9908898
     - Position:
         x: -0.15300001
         y: -0.19500002
@@ -32461,7 +32461,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6043263465120840746}
   - component: {fileID: 7514817254814124625}
-  - component: {fileID: 7514817254814124626}
   - component: {fileID: 7514817254814124627}
   m_Layer: 0
   m_Name: Cart.001
@@ -38669,18 +38668,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 14, y: 4.1643467, z: 25}
   m_Center: {x: 0, y: -9.185484e-16, z: -0.25259593}
---- !u!114 &7514817254814124626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441327442300781969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac62dfd1d85e6a24bad30126ee25477e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7514817254814124627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38709,7 +38696,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3607885401905374681}
   - component: {fileID: 7541321137125719420}
-  - component: {fileID: 7541321137125719421}
   - component: {fileID: 7541321137125719422}
   m_Layer: 0
   m_Name: Cart
@@ -38739,18 +38725,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 14, y: 4.1643467, z: 25}
   m_Center: {x: 0, y: -9.185484e-16, z: -0.25259593}
---- !u!114 &7541321137125719421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7541321137125719419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac62dfd1d85e6a24bad30126ee25477e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7541321137125719422
 MonoBehaviour:
   m_ObjectHideFlags: 0
