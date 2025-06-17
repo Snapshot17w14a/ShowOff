@@ -1323,7 +1323,7 @@ MonoBehaviour:
   - {fileID: 8077978230981856497}
   turnSpeedMultiplier: 10
   movementSpeed: 300
-  walkEffectRate: 10
+  walkEffectRate: 3
   dashStunDuration: 1
   dashCooldown: 5
   dashDuration: 0.5
