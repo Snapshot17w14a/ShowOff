@@ -229,7 +229,10 @@ public class TreasureInteraction : MonoBehaviour
             if (other.TryGetComponent<Minecart>(out var minecart))
             {
                 currentMinecart = minecart;
-                if (collectedPickupable != null) EnableButtonIndicator(true);
+                if(collectedPickupable != null)
+                {
+                    EnableButtonIndicator(true);
+                }
             }
 
             isInCollectionZone = true;
