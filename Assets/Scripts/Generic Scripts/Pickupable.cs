@@ -91,7 +91,7 @@ public class Pickupable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<IcePlatform>() != null)
+        if (other.GetComponent<IcePlatform>() != null || other.CompareTag("IcePlatform"))
         {
             SetKinematic(true);
             OnGroundTouched?.Invoke(this);
