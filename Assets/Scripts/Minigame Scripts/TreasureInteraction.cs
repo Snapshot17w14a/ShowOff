@@ -115,11 +115,18 @@ public class TreasureInteraction : MonoBehaviour
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
             SetGem(collectedPickupable, spawnPoint);
             collectedPickupable.SetKinematic(false);
-            collectedPickupable.SetCollider(true);
+            collectedPickupable.SetCollider(false);
             collectedPickupable.transform.SetParent(null, true);
             collectedPickupable.CalculateVelocity(spawnPoint, currentMinecart.transform.position, 1f);
+            collectedPickupable.targetMinecart = currentMinecart;
             OnTreasureDelivered?.Invoke(collectedPickupable.Worth);
-            collectedPickupable = null;
+            Scheduler.Instance.DelayExecution(() =>
+            {
+                collectedPickupable.targetMinecart.AddGem();
+                Destroy(collectedPickupable);
+                collectedPickupable = null;
+            }, 1f);
+
             animator.SetBool("IsHolding", false);
         }
     }

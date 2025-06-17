@@ -28,6 +28,8 @@ public class Pickupable : MonoBehaviour
     private MeshRenderer meshRenderer;
     private Coroutine despawnCoroutine;
 
+    public Minecart targetMinecart;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -87,13 +89,11 @@ public class Pickupable : MonoBehaviour
             OnGroundTouched?.Invoke(this);
         }
 
-        else if (other.GetComponent<Minecart>() != null)
+        else if (other.TryGetComponent<GemCollector>(out var gemCollector))
         {
-            Minecart minecart = other.GetComponent<Minecart>();
-            minecart.AddGem();
+            gemCollector.parentMinecart.AddGem();
             OnPickupableEnteredMinecartEvent?.Invoke(this, worth);
             Despawn();
-
         }
 
         else if (other.CompareTag("IcePlatform"))
