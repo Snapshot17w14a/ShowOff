@@ -144,4 +144,9 @@ public class LoadingZoneMinigame : MonoBehaviour
             autodolly.Speed = 10f;
         }
     }
+
+    private void OnEnable()
+    {
+        playerReadyThreshold = Mathf.Ceil((float)ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount / 2f + 1f);
+    }
 }
