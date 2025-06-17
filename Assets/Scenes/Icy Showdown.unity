@@ -7231,6 +7231,8 @@ GameObject:
   - component: {fileID: 533652858}
   - component: {fileID: 533652860}
   - component: {fileID: 533652861}
+  - component: {fileID: 533652862}
+  - component: {fileID: 533652863}
   m_Layer: 0
   m_Name: Minecart
   m_TagString: Untagged
@@ -7303,6 +7305,39 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9500189, y: 1.0014435, z: 0.48655596}
+  m_Center: {x: 8.3760016e-10, y: 0.47886914, z: -0.004967805}
+--- !u!114 &533652862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533652857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4771294d475084c8f3b7bbddf405b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &533652863
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533652857}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -16777,13 +16812,13 @@ Camera:
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
-  m_FocusDistance: 9999.999
-  m_FocalLength: 20.78461
+  m_FocusDistance: 10
+  m_FocalLength: 13.858139
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
   m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
+  m_SensorSize: {x: 21.946, y: 16.002}
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -16791,11 +16826,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.099999994
-  far clip plane: 999.99994
+  near clip plane: 0.3
+  far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
-  orthographic size: 0.24
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -16819,8 +16854,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139261527}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.030119132, y: -0.018338513, z: -0.0005526839, w: 0.99937797}
-  m_LocalPosition: {x: 0, y: 0, z: -0.4289999}
+  m_LocalRotation: {x: 0.113113455, y: -0.60878146, z: 0.08825469, w: 0.7802574}
+  m_LocalPosition: {x: -1.4821012, y: 1.1757791, z: 3.0214071}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24453,8 +24488,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634748208}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.030119132, y: -0.018338513, z: -0.0005526839, w: 0.99937797}
-  m_LocalPosition: {x: 0.18, y: 0.674, z: -4.903}
+  m_LocalRotation: {x: 0.113113455, y: -0.60878146, z: 0.08825469, w: 0.7802574}
+  m_LocalPosition: {x: -1.3021011, y: 1.8497791, z: -1.4525928}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24611,11 +24646,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.099999994
-  far clip plane: 999.99994
+  near clip plane: 0.3
+  far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
-  orthographic size: 0.24
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -32461,6 +32496,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6043263465120840746}
   - component: {fileID: 7514817254814124625}
+  - component: {fileID: 7514817254814124628}
   - component: {fileID: 7514817254814124627}
   m_Layer: 0
   m_Name: Cart.001
@@ -38686,6 +38722,18 @@ MonoBehaviour:
   goldPile: {fileID: 159993857}
   pileEndPos: {x: 0, y: 0.48, z: 0}
   pileEndScl: {x: 0.18, y: 0.18, z: 0.18}
+--- !u!114 &7514817254814124628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441327442300781969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac62dfd1d85e6a24bad30126ee25477e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7541321137125719419
 GameObject:
   m_ObjectHideFlags: 0
@@ -38696,6 +38744,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3607885401905374681}
   - component: {fileID: 7541321137125719420}
+  - component: {fileID: 7541321137125719423}
   - component: {fileID: 7541321137125719422}
   m_Layer: 0
   m_Name: Cart
@@ -38743,6 +38792,18 @@ MonoBehaviour:
   goldPile: {fileID: 1434412544}
   pileEndPos: {x: 0, y: 0.52, z: 0}
   pileEndScl: {x: 0.18, y: 0.18, z: 0.18}
+--- !u!114 &7541321137125719423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7541321137125719419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac62dfd1d85e6a24bad30126ee25477e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7735539676887813573
 MonoBehaviour:
   m_ObjectHideFlags: 0

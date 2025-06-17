@@ -89,7 +89,6 @@ public class Pickupable : MonoBehaviour
 
         else if (other.GetComponent<Minecart>() != null)
         {
-
             Minecart minecart = other.GetComponent<Minecart>();
             minecart.AddGem();
             OnPickupableEnteredMinecartEvent?.Invoke(this, worth);
