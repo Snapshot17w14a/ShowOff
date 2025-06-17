@@ -12,6 +12,13 @@ public class HubMinecart : MonoBehaviour
     [SerializeField] private TextMeshPro scoreText;
     private int currentScore;
 
+    private VisualEffect firework;
+
+    private void Start()
+    {
+        firework = GetComponent<VisualEffect>();
+    }
+
     private void Update()
     {
         transform.RotateAround(rotatePoint.transform.position, Vector3.up, minecartSpeed * Time.deltaTime);
@@ -28,6 +35,8 @@ public class HubMinecart : MonoBehaviour
             if (minecartSpeed < minecartMaxSpeed)
             {
                 minecartSpeed += minecartSpeedIncrease;
+                firework.SetFloat("ParticleCount", currentScore);
+                firework.Play();
             }
         }
     }
