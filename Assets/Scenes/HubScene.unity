@@ -896,7 +896,10 @@ VisualEffect:
     m_NamedObject:
       m_Array: []
     m_Bool:
-      m_Array: []
+      m_Array:
+      - m_Value: 0
+        m_Name: Throw Star particle
+        m_Overridden: 1
 --- !u!1 &155676553
 GameObject:
   m_ObjectHideFlags: 0
