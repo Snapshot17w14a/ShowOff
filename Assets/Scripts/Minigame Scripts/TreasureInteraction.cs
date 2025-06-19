@@ -322,7 +322,7 @@ public class TreasureInteraction : MonoBehaviour
             nearbyPickable = null;
             EnableButtonIndicator(false);
         }
-        else if (isInCollectionZone && collectedPickupable != null)
+        else if (isInCollectionZone && collectedPickupable != null && !currentMinecart.IsFull)
         {
             DeliverTreasure();
             isInCollectionZone = false;

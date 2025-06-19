@@ -23,6 +23,8 @@ public class Minecart : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 endPosition;
 
+    public bool IsFull => isFull;
+
     void Start()
     {
         startPosition = transform.position;
