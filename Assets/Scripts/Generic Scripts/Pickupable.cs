@@ -101,7 +101,7 @@ public class Pickupable : MonoBehaviour
 
         else if (other.TryGetComponent<GemCollector>(out var gemCollector))
         {
-            if (targetMinecart.IsFull)
+            if (gemCollector.parentMinecart.IsFull)
             {
                 Despawn();
                 return;
