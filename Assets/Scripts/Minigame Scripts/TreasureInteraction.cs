@@ -47,6 +47,7 @@ public class TreasureInteraction : MonoBehaviour
     private void Start()
     {
         _pickUpCooldown = pickUpCooldown;
+        EventBus<PickupCollected>.OnEvent += RemoveNearbyGem;
     }
 
     private void CollectTreasure()
@@ -225,6 +226,15 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
+    private void RemoveNearbyGem(PickupCollected collected)
+    {
+        if (nearbyPickable = collected.pickup)
+        {
+            nearbyPickable = null;
+            EnableButtonIndicator(false);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<TreasureZone>() != null)
@@ -255,6 +265,13 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        var gem = other.GetComponent<Pickupable>();
+        nearbyPickable = gem;
+        EnableButtonIndicator(gem != null);
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<TreasureZone>() != null)
@@ -275,7 +292,7 @@ public class TreasureInteraction : MonoBehaviour
             EnableButtonIndicator(false);
         }
 
-        else if (other.GetComponent<Pickupable>() != null)
+        else if (other.TryGetComponent<Pickupable>(out var gem))
         {
             nearbyPickable = null;
             EnableButtonIndicator(false);
@@ -342,5 +359,10 @@ public class TreasureInteraction : MonoBehaviour
     private void HandleOnGroundTouched(Pickupable gem)
     {
         gem.OnPickupableEnteredMinecartEvent -= HandleTreasureEnteredMinecart;
+    }
+
+    private void OnDisable()
+    {
+        EventBus<PickupCollected>.OnEvent -= RemoveNearbyGem;
     }
 }

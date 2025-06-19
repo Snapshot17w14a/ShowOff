@@ -80,6 +80,7 @@ public class Pickupable : MonoBehaviour
         transform.localScale = new Vector3(gemPickUpSize, gemPickUpSize, gemPickUpSize);
         gameObject.transform.localPosition = Vector3.zero;
         groundedCollider.enabled = false;
+        EventBus<PickupCollected>.RaiseEvent(new PickupCollected(this));
     }
 
     private void Despawn()
