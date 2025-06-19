@@ -126,15 +126,13 @@ public class TreasureInteraction : MonoBehaviour
 
             var deliveredPickup = collectedPickupable;
             collectedPickupable = null;
+            animator.SetBool("IsHolding", false);
 
             Scheduler.Instance.DelayExecution(() =>
             {
                 deliveredPickup.targetMinecart.AddGem();
                 Destroy(deliveredPickup.gameObject);
             }, 1f);
-
-
-            animator.SetBool("IsHolding", false);
         }
     }
 
