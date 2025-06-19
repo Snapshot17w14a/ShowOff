@@ -171,7 +171,7 @@ public class TreasureInteraction : MonoBehaviour
     }
 
     //Used to manually drop the treasure infront of the player
-    private void DropTreasure()
+    public void DropTreasure()
     {
         if (collectedPickupable != null)
         {
@@ -368,7 +368,7 @@ public class TreasureInteraction : MonoBehaviour
         }
         else if (collectedPickupable != null)
         {
-            DropTreasure();
+            animator.SetTrigger("Throw");
             animator.SetBool("IsHolding", false);
         }
     }

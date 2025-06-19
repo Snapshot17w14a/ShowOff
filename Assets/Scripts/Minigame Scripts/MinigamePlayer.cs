@@ -147,11 +147,6 @@ public class MinigamePlayer : MonoBehaviour
         StartCoroutine(StunRoutine(seconds));
     }
 
-    public void DropTreasure()
-    {
-        TreasureInteraction.DropTreasureRandom();
-    }
-
     public void SetFlightState(bool state) => isFlying = state;
 
     private void Dash()

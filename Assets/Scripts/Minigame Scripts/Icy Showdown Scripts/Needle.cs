@@ -26,7 +26,7 @@ public class Needle : MonoBehaviour
         {
             var player = other.GetComponent<MinigamePlayer>();
             player.StunPlayer(stunDuration);
-            player.DropTreasure();
+            player.TreasureInteraction.DropTreasureRandom();
         }
         else if (other.gameObject.CompareTag("IcePlatform"))
         {

@@ -15,7 +15,7 @@ public class PlayerReposition : MonoBehaviour
         {
             var playerScript = other.GetComponent<MinigamePlayer>();
             playerScript.SetFlightState(true);
-            playerScript.DropTreasure();
+            playerScript.TreasureInteraction.DropTreasureRandom();
             playerScript.StunPlayer(stunDuration);
 
             var rb = other.GetComponent<Rigidbody>();
