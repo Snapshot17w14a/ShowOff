@@ -1416,7 +1416,7 @@ MonoBehaviour:
   movementSpeed: 300
   walkEffectRate: 3
   dashStunDuration: 1
-  dashCooldown: 5
+  dashCooldown: 4
   dashDuration: 0.5
   dashForce: 3
   dashIndicator: {fileID: 4324543987656939266}
@@ -1452,7 +1452,7 @@ MonoBehaviour:
   spawnChance: 10
   movementSpeedPenalty: 45
   throwPenalty: 1
-  holdPoint: {fileID: 8409386958386833174}
+  holdPoint: {fileID: 7137753459134923790}
   inputIndicator: {fileID: 7963251910506268503}
   inputIndicatorCooldown: {fileID: 3906026381504218933}
   droppedTreasureDespawnTime: 10
@@ -1478,7 +1478,7 @@ MonoBehaviour:
   dashIndicator: {fileID: 4324543987656939266}
   goldVisual: {fileID: 11400000, guid: 9248afa3eec9ebf4f9f623730c6e720c, type: 2}
   goldDashMaterial: {fileID: 2100000, guid: c5fcb69e09ac3a44a99fdd7084cc2cee, type: 2}
-  crownParent: {fileID: 0}
+  crownParent: {fileID: 1187854101995322667}
   crown: {fileID: 3884575772678680956}
   winStreakActivation: 5
   playerColor: {r: 0, g: 0, b: 0, a: 0}
@@ -1634,6 +1634,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1187854101995322667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1269844062387579372, guid: 0b33dbbb831395f4283991997bc3aaa9, type: 3}
+  m_PrefabInstance: {fileID: 136092538144281799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2144467569541893124 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7196239188909877053, guid: 0b33dbbb831395f4283991997bc3aaa9, type: 3}
