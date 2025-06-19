@@ -11,8 +11,6 @@ public class BobStarState : BobState
     private int maxCount;
     private VisualEffect starEffect;
 
-    private float time = 0;
-
     public override void Initialize(params object[] parameters)
     {
         if (parameters.Length != 5) throw new Exception("Provided parameters array length was not 4");
@@ -29,32 +27,33 @@ public class BobStarState : BobState
         isStateRunning = true;
         starEffect.Reinit();
         starEffect.Play();
+
+        Scheduler.Instance.DelayExecution(() => SpawnIcicles(Random.Range(minCount, maxCount + 1)), timeTillSpawn);
     }
 
     public override void TickState()
     {
-        time += Time.deltaTime;
-
-        if (time >= timeTillSpawn) SpawnIcicles(Random.Range(minCount, maxCount + 1));
     }
 
     public override void UnloadState()
     {
-        time = 0;
     }
 
     private void SpawnIcicles(int count)
     {
         for (int i = 0; i < count; i++)
         {
-            var randDir = Random.insideUnitCircle;
-            var dir = new Vector3(randDir.x, 0, randDir.y);
-            var pos = dir * 2;
-            pos.y = 10f;
+            Scheduler.Instance.DelayExecution(() =>
+            {
+                var randDir = Random.insideUnitCircle;
+                var dir = new Vector3(randDir.x, 0, randDir.y);
+                var pos = dir * 2;
+                pos.y = 10f;
 
-            GameObject.Instantiate(iciclePrefab, pos, Quaternion.identity);
+                GameObject.Instantiate(iciclePrefab, pos, Quaternion.identity);
+
+                if (i == count) isStateRunning = false;
+            }, i * 0.4f);
         }
-
-        isStateRunning = false;
     }
 }
