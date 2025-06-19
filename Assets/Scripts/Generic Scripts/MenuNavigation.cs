@@ -44,7 +44,6 @@ public class MenuNavigation : MonoBehaviour
         //For each action create an input action and add the bindings for that action
         foreach (var binding in bindings)
         {
-            Debug.Log(binding.action);
             if (!inputForAction.ContainsKey(binding.action))
                 inputForAction.Add(binding.action, new InputAction(name: binding.action));
 

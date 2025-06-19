@@ -1428,6 +1428,7 @@ MonoBehaviour:
   goldVisual: {fileID: 11400000, guid: 9248afa3eec9ebf4f9f623730c6e720c, type: 2}
   goldDashMaterial: {fileID: 2100000, guid: c5fcb69e09ac3a44a99fdd7084cc2cee, type: 2}
   animator: {fileID: 8772290917872782716}
+  smoothingMultiplier: 2
   playerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &7865321752991679214
 MonoBehaviour:

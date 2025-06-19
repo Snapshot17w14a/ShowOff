@@ -151,6 +151,9 @@ public class TreasureInteraction : MonoBehaviour
                 //for some reason if I increase the timeToTarget above 0.6 (whenever I get stunned by bob the gem sinks into the ground).
                 SpawnAnimation(hit, 0.5f, 1f, collectedPickupable);
             }
+
+            collectedPickupable.parentInteration = null;
+
             collectedPickupable = null;
         }
     }

@@ -31,18 +31,18 @@ public class MinigamePlayer : MonoBehaviour
     private Material dashIndicatorMaterial;
 
     [Header("Color changes")]
-    [SerializeField] private SpriteRenderer[] spritesToRecolor;
     [SerializeField] private VisualEffect walkEffect;
     [SerializeField] private VisualEffect dashEffect;
     [SerializeField] private VisualEffect stunEffect;
-    [SerializeField] private PlayerVisualData goldVisual;
-    [SerializeField] private Material goldDashMaterial;
 
     public Animator GetPlayerAnimator => animator;
     [SerializeField] private Animator animator;
 
     private bool isDashAvailable = true;
     private float dashTimer = 0f;
+
+    [SerializeField] private float smoothingMultiplier;
+    private float smootedMoveVector = 0;
 
     private bool isStunned = false;
     private bool isFlying = false;
@@ -75,10 +75,16 @@ public class MinigamePlayer : MonoBehaviour
     private void Update()
     {
         UpdateDashTimer();
-        animator.SetFloat("Magnitude", inputVector.magnitude);
+        UpdateSmoothednputVector(inputVector.magnitude);
+        animator.SetFloat("Magnitude", smootedMoveVector);
         if (isStunned || isFlying) return;
         UpdateMovement();
         walkEffect.SetFloat("Rate", rigidbody.linearVelocity.magnitude > 0.3 ? walkEffectRate : 0);
+    }
+
+    private void UpdateSmoothednputVector(float magnitude)
+    {
+        smootedMoveVector = Mathf.Lerp(smootedMoveVector, magnitude, Time.deltaTime * smoothingMultiplier);
     }
 
     private void UpdateMovement()
@@ -105,7 +111,6 @@ public class MinigamePlayer : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         inputVector = context.ReadValue<Vector2>();
-        //inputVector = value.Get<Vector2>();
     }
 
     public void OnDash()
@@ -148,33 +153,6 @@ public class MinigamePlayer : MonoBehaviour
     }
 
     public void SetFlightState(bool state) => isFlying = state;
-
-    public void SetPlayerColor(PlayerVisualData data, int playerId)
-    {
-        foreach (var renderer in spritesToRecolor) renderer.color = new Color(data.color.r, data.color.g, data.color.b, renderer.color.a);
-
-        ForEachPlayerRenderer(r => r.material = data.material);
-
-        var textMeshPro = GetComponentInChildren<TextMeshPro>();
-        textMeshPro.color = data.color;
-        textMeshPro.text = $"P{playerId + 1}";
-
-        dashIndicator.GetComponent<MeshRenderer>().material.SetColor("_ColorCircle", data.color);
-
-        playerColor = data.color;
-    }
-
-    public void ChangeSkin()
-    {
-        RegisteredPlayer data = ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(RegistryID);
-
-        if (data.isLastWinner)
-        {
-            SetPlayerColor(goldVisual, RegistryID);
-            dashIndicator.GetComponent<MeshRenderer>().material = goldDashMaterial;
-            dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
-        }
-    }
 
     private void Dash()
     {
