@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e0088ffe02cc63b4cafb9332e18af6e1, type: 2}
   - {fileID: 11400000, guid: a0c7fcd51eea7c04eb220186ca35f9a3, type: 2}
   - {fileID: 11400000, guid: 63ec9ad52450bfc42b2f7bc959c7bcd6, type: 2}
-  - {fileID: 11400000, guid: d539eb41d5f63804a84deaf03becd140, type: 2}
   - {fileID: 11400000, guid: 8a4b7dba1576f894fa9d3beda3a61eda, type: 2}
+  - {fileID: 11400000, guid: d539eb41d5f63804a84deaf03becd140, type: 2}
   audioManager: {fileID: 1664802784380770019, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
   inputActions: {fileID: -944628639613478452, guid: 2b1428ed59ecb6447a63d6a59a4cf11e, type: 3}
