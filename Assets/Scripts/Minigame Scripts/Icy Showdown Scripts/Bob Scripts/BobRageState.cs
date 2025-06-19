@@ -103,7 +103,8 @@ public class BobRageState : BobState
             {
                 var player = hit.collider.GetComponent<MinigamePlayer>();
                 player.PushPlayer(pushForce);
-/*                player.StunPlayer(stunDuration);
+                player.GetPlayerAnimator.SetTrigger("Hit");
+                /*player.StunPlayer(stunDuration);
                 player.DropTreasure();*/
             }
             else if (hit.collider.CompareTag("Icicle"))

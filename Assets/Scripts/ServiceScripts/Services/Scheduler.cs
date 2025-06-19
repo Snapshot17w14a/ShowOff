@@ -23,7 +23,7 @@ public class Scheduler : MonoBehaviour
     /// <param name="routine">Routine to start when timer is over</param>
     public Guid DelayExecution(IEnumerator routine, float delaySeconds)
     {
-        return DelayExecution(() => StartRoutine(new DelayerRoutine(), routine), delaySeconds);
+        return StartRoutine(new DelayerRoutine(routine, delaySeconds));
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public class Scheduler : MonoBehaviour
     /// <param name="function">Function to call when timer is over</param>
     public Guid DelayExecution(Action function, float delaySeconds)
     {
-        return StartRoutine(new DelayerRoutine(), function, delaySeconds);
+        return StartRoutine(new DelayerRoutine(function, delaySeconds));
     }
 
     /// <summary>
@@ -46,15 +46,15 @@ public class Scheduler : MonoBehaviour
     /// <param name="callback">An action to be invoked when the interpolation completes.</param>
     public Guid Lerp(Action<float> toLerpFunction, float duration, Action callback = null)
     {
-        return StartRoutine(new LerpRoutine(), toLerpFunction, duration, callback);
+        return StartRoutine(new LerpRoutine(toLerpFunction, duration, callback));
     }    
 
     //Generic fucntions***********************************
 
-    public Guid StartRoutine(SchedulerRoutine routine, params object[] args)
+    public Guid StartRoutine(SchedulerRoutine routine)
     {
         routine.handle = Guid.NewGuid();
-        routine.coroutineReference = StartCoroutine(routine.Routine(args));
+        routine.coroutineReference = StartCoroutine(routine.Routine());
         runningCoroutines.Add(routine.handle, routine);
 
         Debug.Log($"Creating {routine.GetType()} with Guid {routine.handle}");
@@ -66,7 +66,11 @@ public class Scheduler : MonoBehaviour
 
     public void StopRoutine(Guid handle)
     {
-        if (!runningCoroutines.ContainsKey(handle)) Debug.LogError($"Routine with Guid {handle} was not found");
+        if (!runningCoroutines.ContainsKey(handle))
+        {
+            Debug.LogError($"Routine with Guid {handle} was not found");
+            return;
+        }
 
         Debug.Log($"Stopping routine {runningCoroutines[handle].GetType()} with Guid {runningCoroutines[handle].handle}");
 
@@ -80,5 +84,5 @@ public abstract class SchedulerRoutine
     public Guid handle;
     public Coroutine coroutineReference;
 
-    public abstract IEnumerator Routine(params object[] args);
+    public abstract IEnumerator Routine();
 }

@@ -126,6 +126,7 @@ public class BobIceState : BobState
             if (hit.collider.CompareTag("Player"))
             {
                 var player = hit.collider.GetComponent<MinigamePlayer>();
+                player.GetComponent<Animator>().SetTrigger("Hit");
                 player.PushPlayer(pushForce);
                 
 /*                player.StunPlayer(stunDuration);

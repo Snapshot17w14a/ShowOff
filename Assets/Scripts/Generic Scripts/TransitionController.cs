@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,8 @@ public class TransitionController : MonoBehaviour
     private static TransitionController instance;
     public static TransitionController Instance => instance;
 
+    private Guid routineGuid;
+
     private void Awake()
     {
         if (instance != null) Destroy(gameObject);
@@ -22,24 +25,38 @@ public class TransitionController : MonoBehaviour
         SceneManager.sceneLoaded += TransitionIn;
     }
 
+    private void OnDestroy()
+    {
+        if (instance == this) instance = null;
+        SceneManager.sceneLoaded -= TransitionIn;
+    }
+
     public void TransitionOut(string sceneName)
     {
-        if (this == null || image == null) return;
         sceneToLoad = sceneName;
-        StopAllCoroutines();
-        StartCoroutine(Transition(true));
+        if (routineGuid != Guid.Empty) Scheduler.Instance.StopRoutine(routineGuid);
+        routineGuid = Scheduler.Instance.Lerp(LerpAlpha, 1, () =>
+        {
+            SceneManager.LoadScene(sceneToLoad);
+            routineGuid = Guid.Empty;
+        });
     }
 
     public void TransitionIn(Scene scene, LoadSceneMode sceneLoadMode)
     {
         if (this == null || image == null) return;
-        StopAllCoroutines();
-        StartCoroutine(Transition(false));
+        if (routineGuid != Guid.Empty) Scheduler.Instance.StopRoutine(routineGuid);
+        Scheduler.Instance.Lerp(t => LerpAlpha(1 - t), 1f, () => routineGuid = Guid.Empty);
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    private void LerpAlpha(float t)
+    {
+        image.color = new Color(0, 0, 0, t);
     }
 
     private IEnumerator Transition(bool isOutTransition)

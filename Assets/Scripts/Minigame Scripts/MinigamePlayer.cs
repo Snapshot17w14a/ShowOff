@@ -38,6 +38,7 @@ public class MinigamePlayer : MonoBehaviour
     [SerializeField] private PlayerVisualData goldVisual;
     [SerializeField] private Material goldDashMaterial;
 
+    public Animator GetPlayerAnimator => animator;
     [SerializeField] private Animator animator;
 
     private bool isDashAvailable = true;
@@ -206,12 +207,14 @@ public class MinigamePlayer : MonoBehaviour
     {
         isStunned = true;
         animator.SetBool("IsHolding", false);
+        animator.SetTrigger("Stun");
         stunEffect.Play();
         rigidbody.linearVelocity = Vector3.zero;
 
         yield return new WaitForSeconds(stunSeconds);
 
         isStunned = false;
+        animator.SetTrigger("StunOver");
         stunEffect.Stop();
     }
 
