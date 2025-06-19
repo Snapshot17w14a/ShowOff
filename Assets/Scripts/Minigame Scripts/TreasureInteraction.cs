@@ -226,6 +226,7 @@ public class TreasureInteraction : MonoBehaviour
         {
             gem.Collect(holdPoint);
             animator.SetBool("IsHolding", true);
+            animator.SetTrigger("Steal");
             gem.GetComponent<Collider>().enabled = false;
             collectedPickupable = gem;
         }
