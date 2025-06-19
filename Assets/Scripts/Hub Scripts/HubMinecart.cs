@@ -12,12 +12,8 @@ public class HubMinecart : MonoBehaviour
     [SerializeField] private TextMeshPro scoreText;
     private int currentScore;
 
-    private VisualEffect firework;
-
-    private void Start()
-    {
-        firework = GetComponent<VisualEffect>();
-    }
+    [SerializeField] private VisualEffect firework;
+    [SerializeField] private VisualEffect goldenShine;
 
     private void Update()
     {
@@ -29,15 +25,25 @@ public class HubMinecart : MonoBehaviour
         if (other.gameObject.GetComponent<Pickupable>())
         {
             Destroy(other.gameObject);
-            currentScore++;
-            scoreText.text = currentScore.ToString();
 
-            if (minecartSpeed < minecartMaxSpeed)
+            if (other.gameObject.GetComponent<Pickupable>().PickupType == PickupType.Large)
             {
-                minecartSpeed += minecartSpeedIncrease;
-                firework.SetFloat("ParticleCount", currentScore);
-                firework.Play();
+                currentScore += 3;
+                if (minecartSpeed < minecartMaxSpeed)
+                    minecartSpeed += minecartSpeedIncrease * 3;
             }
+            else
+            {
+                currentScore++;
+                if (minecartSpeed < minecartMaxSpeed)
+                    minecartSpeed += minecartSpeedIncrease;
+            }
+       
+            scoreText.text = currentScore.ToString();
+            goldenShine.Play();
+            firework.SetFloat("ParticleCount", currentScore);
+            firework.Play();
+            
         }
     }
 }
