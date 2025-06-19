@@ -92,6 +92,8 @@ public class TreasureInteraction : MonoBehaviour
             SetGem(pickupable, holdPoint.transform.position);
             pickupable.OnPickupableDespawnedEvent += HandleTreasureDespawned;
             pickupable.SetKinematic(true);
+            pickupable.SetCollider(ColliderState.Flying, false);
+            pickupable.SetCollider(ColliderState.Grounded, false);
 
             if (pickupable != null)
             {
