@@ -123,12 +123,16 @@ public class TreasureInteraction : MonoBehaviour
             collectedPickupable.CalculateVelocity(spawnPoint, currentMinecart.transform.position, 1f);
             collectedPickupable.targetMinecart = currentMinecart;
             OnTreasureDelivered?.Invoke(collectedPickupable.Worth);
+
+            var deliveredPickup = collectedPickupable;
+            collectedPickupable = null;
+
             Scheduler.Instance.DelayExecution(() =>
             {
-                collectedPickupable.targetMinecart.AddGem();
-                Destroy(collectedPickupable.gameObject);
-                collectedPickupable = null;
+                deliveredPickup.targetMinecart.AddGem();
+                Destroy(deliveredPickup.gameObject);
             }, 1f);
+
 
             animator.SetBool("IsHolding", false);
         }
