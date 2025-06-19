@@ -179,8 +179,7 @@ public class TreasureInteraction : MonoBehaviour
             collectedPickupable.SetCollider(ColliderState.Flying, true);
             collectedPickupable.transform.SetParent(null, true);
             collectedPickupable.SetKinematic(false);
-            collectedPickupable.OnGroundTouched += HandleOnGroundTouched;
-            collectedPickupable.OnPickupableEnteredMinecartEvent += HandleTreasureEnteredMinecart;
+            collectedPickupable.parentInteration = this;
             collectedPickupable.CalculateVelocity(spawnPoint, spawnPosition + (rb.linearVelocity / 3f), 0.3f);
             collectedPickupable.DespawnAfter(droppedTreasureDespawnTime);
             collectedPickupable = null;
@@ -265,13 +264,6 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        var gem = other.GetComponent<Pickupable>();
-        nearbyPickable = gem;
-        EnableButtonIndicator(gem != null);
-    }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<TreasureZone>() != null)
@@ -292,7 +284,7 @@ public class TreasureInteraction : MonoBehaviour
             EnableButtonIndicator(false);
         }
 
-        else if (other.TryGetComponent<Pickupable>(out var gem))
+        else if (other.GetComponent<Pickupable>())
         {
             nearbyPickable = null;
             EnableButtonIndicator(false);
@@ -343,7 +335,6 @@ public class TreasureInteraction : MonoBehaviour
 
     private void HandleTreasureDespawned(Pickupable pickupable)
     {
-        pickupable.OnPickupableEnteredMinecartEvent -= HandleTreasureEnteredMinecart;
         pickupable.OnPickupableDespawnedEvent -= HandleTreasureDespawned;
         if(!isInCollectionZone || !isInTreasureZone)
         {
@@ -351,14 +342,9 @@ public class TreasureInteraction : MonoBehaviour
         }
     }
 
-    private void HandleTreasureEnteredMinecart(Pickupable pickupable, int value)
+    public void HandleTreasureEnteredMinecart(Pickupable pickupable, int value)
     {
         OnTreasureDelivered?.Invoke(value);
-    }
-
-    private void HandleOnGroundTouched(Pickupable gem)
-    {
-        gem.OnPickupableEnteredMinecartEvent -= HandleTreasureEnteredMinecart;
     }
 
     private void OnDisable()

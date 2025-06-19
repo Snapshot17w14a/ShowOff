@@ -17,7 +17,6 @@ public enum ColliderState
 public class Pickupable : MonoBehaviour
 {
     public event Action<Pickupable> OnPickupableDespawnedEvent;
-    public event Action<Pickupable, int> OnPickupableEnteredMinecartEvent;
     public event Action<Pickupable> OnGroundTouched;
 
     public PickupType PickupType => pickupType;
@@ -37,6 +36,7 @@ public class Pickupable : MonoBehaviour
     private Coroutine despawnCoroutine;
 
     public Minecart targetMinecart;
+    public TreasureInteraction parentInteration;
 
     private void Awake()
     {
@@ -95,7 +95,6 @@ public class Pickupable : MonoBehaviour
         if (other.GetComponent<IcePlatform>() != null || other.CompareTag("IcePlatform"))
         {
             SetKinematic(true);
-            OnGroundTouched?.Invoke(this);
             flyingCollider.enabled = false;
             groundedCollider.enabled = true;
         }
@@ -103,7 +102,7 @@ public class Pickupable : MonoBehaviour
         else if (other.TryGetComponent<GemCollector>(out var gemCollector))
         {
             gemCollector.parentMinecart.AddGem();
-            OnPickupableEnteredMinecartEvent?.Invoke(this, worth);
+            parentInteration.HandleTreasureEnteredMinecart(this, worth);
             Despawn();
         }
     }
