@@ -722,7 +722,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 15221c7ca1672114fa82a0aa45adf271, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1422,7 +1422,6 @@ MonoBehaviour:
   dashIndicator: {fileID: 4324543987656939266}
   spritesToRecolor:
   - {fileID: 9121208996895523616}
-  - {fileID: 1905895023603013796}
   walkEffect: {fileID: 8682700338727768244}
   dashEffect: {fileID: 7455305759139401211}
   stunEffect: {fileID: 8779098865699672147}
@@ -1474,7 +1473,6 @@ MonoBehaviour:
   - {fileID: 6925383502078571462}
   spritesToRecolor:
   - {fileID: 9121208996895523616}
-  - {fileID: 1905895023603013796}
   dashIndicator: {fileID: 4324543987656939266}
   goldVisual: {fileID: 11400000, guid: 9248afa3eec9ebf4f9f623730c6e720c, type: 2}
   goldDashMaterial: {fileID: 2100000, guid: c5fcb69e09ac3a44a99fdd7084cc2cee, type: 2}
