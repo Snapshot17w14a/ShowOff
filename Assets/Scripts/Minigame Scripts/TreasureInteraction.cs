@@ -19,7 +19,8 @@ public class TreasureInteraction : MonoBehaviour
 
     [Header("Other stuff")]
     [SerializeField] private Transform holdPoint;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer inputIndicator;
+    [SerializeField] private SpriteRenderer inputIndicatorCooldown;
     [SerializeField] private float droppedTreasureDespawnTime = 10f;
     [SerializeField] private float pickUpCooldown = 2f;
 
@@ -241,7 +242,10 @@ public class TreasureInteraction : MonoBehaviour
         if (other.GetComponent<TreasureZone>() != null)
         {
             isInTreasureZone = true;
-            EnableButtonIndicator(true);
+            if (collectedPickupable == null)
+            {
+                EnableButtonIndicator(true);
+            }
         }
 
         if (other.TryGetComponent<Minecart>(out var minecart))
@@ -256,10 +260,9 @@ public class TreasureInteraction : MonoBehaviour
 
         else if (other.GetComponent<Pickupable>() != null)
         {
-            EnableButtonIndicator(true);
-
             if (!IsPlayerStunned() && collectedPickupable == null)
             {
+                EnableButtonIndicator(true);
                 Pickupable pickupable = other.GetComponent<Pickupable>();
                 nearbyPickable = pickupable;
             }
@@ -300,8 +303,40 @@ public class TreasureInteraction : MonoBehaviour
 
     private void EnableButtonIndicator(bool state)
     {
-        spriteRenderer.gameObject.SetActive(state);
+        if (!state)
+        {
+            inputIndicator.gameObject.SetActive(false);
+            inputIndicatorCooldown.gameObject.SetActive(false);
+            return;
+        }
+
+        if (isInTreasureZone)
+        {
+            if (Time.time > pickUpCooldown)
+            {
+                inputIndicator.gameObject.SetActive(true);
+                inputIndicatorCooldown.gameObject.SetActive(false);
+            }
+            else
+            {
+                inputIndicator.gameObject.SetActive(false);
+                inputIndicatorCooldown.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            if (Time.time > pickUpCooldown)
+            {
+                inputIndicator.gameObject.SetActive(true);
+            }
+            else
+            {
+                inputIndicator.gameObject.SetActive(false);
+                inputIndicatorCooldown.gameObject.SetActive(false);
+            }
+        }
     }
+
 
     public void OnGrab(InputAction.CallbackContext ctx)
     {
@@ -338,7 +373,7 @@ public class TreasureInteraction : MonoBehaviour
     private void HandleTreasureDespawned(Pickupable pickupable)
     {
         pickupable.OnPickupableDespawnedEvent -= HandleTreasureDespawned;
-        if(!isInCollectionZone || !isInTreasureZone)
+        if (!isInCollectionZone || !isInTreasureZone)
         {
             EnableButtonIndicator(false);
         }
