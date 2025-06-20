@@ -36,6 +36,7 @@ public class Icicle : MonoBehaviour
         {
             GetComponent<Collider>().isTrigger = false;
             rigidbody.isKinematic = true;
+            Camera.main.GetComponent<PlayerCenterFollow>().ShakeCamera(0.39f);
 
             transform.parent = other.transform;
 
