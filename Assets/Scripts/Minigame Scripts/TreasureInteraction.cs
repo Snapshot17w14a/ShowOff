@@ -55,35 +55,30 @@ public class TreasureInteraction : MonoBehaviour
     {
         if (!PauseManager.IsPaused)
         {
-
             int roll = UnityEngine.Random.Range(1, 101);
 
             if (roll <= spawnChance)
             {
-                Pickupable largeTreasure = Instantiate(largeTreasurePrefabs[UnityEngine.Random.Range(0, largeTreasurePrefabs.Length)], holdPoint.position, Quaternion.identity);
-                largeTreasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
-                largeTreasure.SetKinematic(true);
-
-                if (largeTreasure != null)
-                {
-                    largeTreasure.Collect(holdPoint);
-                    largeTreasure.GetComponent<Collider>().enabled = false;
-                    collectedPickupable = largeTreasure;
-                }
+                SpawnTreasure(largeTreasurePrefabs);
             }
             else
             {
-                Pickupable treasure = Instantiate(treasurePrefabs[UnityEngine.Random.Range(0, treasurePrefabs.Length)], holdPoint.position, Quaternion.identity);
-                treasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
-                treasure.SetKinematic(true);
-
-                if (treasure != null)
-                {
-                    treasure.Collect(holdPoint);
-                    treasure.GetComponent<Collider>().enabled = false;
-                    collectedPickupable = treasure;
-                }
+                SpawnTreasure(treasurePrefabs);
             }
+        }
+    }
+
+    private void SpawnTreasure(Pickupable[] pickables)
+    {
+        Pickupable treasure = Instantiate(pickables[UnityEngine.Random.Range(0, treasurePrefabs.Length)], holdPoint.position, Quaternion.identity);
+        treasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
+        treasure.SetKinematic(true);
+
+        if (treasure != null)
+        {
+            treasure.Collect(holdPoint);
+            treasure.GetComponent<Collider>().enabled = false;
+            collectedPickupable = treasure;
         }
     }
 

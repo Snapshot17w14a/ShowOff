@@ -17065,13 +17065,13 @@ Camera:
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 13.858139
+  m_FocusDistance: 9999.999
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
   m_Anamorphism: 0
-  m_SensorSize: {x: 21.946, y: 16.002}
+  m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -17079,11 +17079,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.099999994
+  far clip plane: 999.99994
   field of view: 60.000004
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 0.24
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -17107,8 +17107,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139261527}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.113113455, y: -0.60878146, z: 0.08825469, w: 0.7802574}
-  m_LocalPosition: {x: -1.4821012, y: 1.1757791, z: 3.0214071}
+  m_LocalRotation: {x: -0.030119132, y: -0.018338513, z: -0.0005526839, w: 0.99937797}
+  m_LocalPosition: {x: 0, y: 0, z: -0.4289999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25033,8 +25033,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634748208}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.113113455, y: -0.60878146, z: 0.08825469, w: 0.7802574}
-  m_LocalPosition: {x: -1.3021011, y: 1.8497791, z: -1.4525928}
+  m_LocalRotation: {x: -0.030119132, y: -0.018338513, z: -0.0005526839, w: 0.99937797}
+  m_LocalPosition: {x: 0.18, y: 0.674, z: -4.903}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25191,11 +25191,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.099999994
+  far clip plane: 999.99994
   field of view: 60.000004
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 0.24
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -33556,6 +33556,54 @@ PrefabInstance:
     - target: {fileID: 1664802784380770019, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
       propertyPath: m_Name
       value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776292330102562044, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
+      propertyPath: audioGroups.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776292330102562044, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
+      propertyPath: audioGroups.Array.data[2].soundType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776292330102562044, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
+      propertyPath: audioGroups.Array.data[1].audioClips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776292330102562044, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
+      propertyPath: audioGroups.Array.data[2].audioClips.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776292330102562044, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
+      propertyPath: audioGroups.Array.data[1].audioClips.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: cd46fe83cb38e6641a7340029cea409f, type: 3}
+    - target: {fileID: 7776292330102562044, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
+      propertyPath: audioGroups.Array.data[1].audioClips.Array.data[0].name
+      value: Hub
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776292330102562044, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
+      propertyPath: audioGroups.Array.data[2].audioClips.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 13bb1d4a028bdb045ad933643b93c68c, type: 3}
+    - target: {fileID: 7776292330102562044, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
+      propertyPath: audioGroups.Array.data[2].audioClips.Array.data[0].name
+      value: Bomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776292330102562044, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
+      propertyPath: audioGroups.Array.data[2].audioClips.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: cd46fe83cb38e6641a7340029cea409f, type: 3}
+    - target: {fileID: 7776292330102562044, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
+      propertyPath: audioGroups.Array.data[2].audioClips.Array.data[1].name
+      value: Stomp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776292330102562044, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
+      propertyPath: audioGroups.Array.data[2].audioClips.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 342c3864e23cb954bbaba8cd2189544b, type: 3}
+    - target: {fileID: 7776292330102562044, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
+      propertyPath: audioGroups.Array.data[2].audioClips.Array.data[2].name
+      value: Laser
       objectReference: {fileID: 0}
     - target: {fileID: 8699114057203551245, guid: 55a714f1538344d4b80fee9d9898845e, type: 3}
       propertyPath: m_LocalPosition.x
