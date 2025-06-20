@@ -19,9 +19,12 @@ public class BobBomb : MonoBehaviour
     private BombState state = BombState.Flying;
     private float timer = 0;
 
+    private Rigidbody rb;
+
     private void Start()
     {
         bombExplosion.SetFloat("Lifetime", explosionCooldown + flightTime);
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -32,12 +35,14 @@ public class BobBomb : MonoBehaviour
         switch (state)
         {
             case BombState.Flying:
+                transform.up = rb.linearVelocity.normalized;
+
                 if (timer >= flightTime)
                 {
                     timer -= flightTime;
                     state = BombState.WaitingToExplode;
                     trailEffect.Stop();
-                    GetComponent<Rigidbody>().isKinematic = true;
+                    rb.isKinematic = true;
                 }
                 break;
             case BombState.WaitingToExplode:

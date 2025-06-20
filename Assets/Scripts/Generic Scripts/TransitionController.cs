@@ -28,10 +28,10 @@ public class TransitionController : MonoBehaviour
         SceneManager.sceneLoaded -= TransitionIn;
     }
 
-    public void TransitionOut(string sceneName, float duration = 1)
+    public void TransitionOut(string sceneName)
     {
         if (routineGuid != Guid.Empty) Scheduler.Instance.StopRoutine(routineGuid);
-        routineGuid = Scheduler.Instance.Lerp(LerpAlpha, duration, () =>
+        routineGuid = Scheduler.Instance.Lerp(LerpAlpha, 1, () =>
         {
             SceneManager.LoadScene(sceneName);
             routineGuid = Guid.Empty;
