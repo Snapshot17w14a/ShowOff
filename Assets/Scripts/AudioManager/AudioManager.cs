@@ -132,4 +132,10 @@ public class AudioManager : MonoBehaviour
         Instance.musicSource.volume = volume;
         Instance.musicSource.Play();
     }
+
+    public static void StopMusic()
+    {
+        Instance.musicSource.volume = 0f;
+        Instance.musicSource.Stop();
+    }
 }
