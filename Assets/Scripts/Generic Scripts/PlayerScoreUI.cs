@@ -7,6 +7,10 @@ public class PlayerScoreUI : MonoBehaviour
     [SerializeField] private Image[] imagesToRecolor;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] public GameObject goldenPenguinFrame;
+
+    [SerializeField] private float increasedFontSize;
+    private float initialFontSize;
+
     private TreasureInteraction treasureInteraction;
 
     private MinigamePlayer Player => minigamePlayer;
@@ -22,6 +26,7 @@ public class PlayerScoreUI : MonoBehaviour
         treasureInteraction.OnTreasureDelivered += OnTreasureDelivered;
         UpdateText();
         SetColor(player.GetComponent<SkinManager>().playerColor);
+        initialFontSize = scoreText.fontSize;
     }
 
     private void OnDestroy()
@@ -34,6 +39,13 @@ public class PlayerScoreUI : MonoBehaviour
         score += points;
         ServiceLocator.GetService<ScoreRegistry>().AddScore(minigamePlayer, points);
         UpdateText();
+        Scheduler.Instance.Lerp(t =>
+        {
+            scoreText.fontSize = Mathf.Lerp(initialFontSize, increasedFontSize, t * t);
+        }, 0.25f, () => Scheduler.Instance.Lerp(t =>
+        {
+            scoreText.fontSize = Mathf.Lerp(increasedFontSize, initialFontSize, t * t);
+        }, 0.25f));
     }
 
     private void UpdateText()
