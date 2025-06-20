@@ -1448,7 +1448,7 @@ MonoBehaviour:
   - {fileID: 8125225457616235221, guid: d011e7f1123da6144a05c6ed863df824, type: 3}
   spawnChance: 10
   movementSpeedPenalty: 45
-  throwPenalty: 1
+  throwPenalty: 2.5
   holdPoint: {fileID: 7137753459134923790}
   inputIndicator: {fileID: 7963251910506268503}
   inputIndicatorCooldown: {fileID: 3906026381504218933}
