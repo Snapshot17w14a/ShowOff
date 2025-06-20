@@ -41,18 +41,6 @@ public class CutsceneCamera : MonoBehaviour
             Invoke(nameof(CutsceneFinished), delayCameraSwap);
         }
 
-        if (isTransitioning)
-        {
-            transitionProgress += Time.deltaTime / transitionDuration;
-            cutsceneCamera.fieldOfView = Mathf.Lerp(60, 27, transitionProgress);
-            cutsceneCamera.transform.SetPositionAndRotation(Vector3.Lerp(startPos, MainCamera.transform.position, transitionProgress),
-                                                            Quaternion.Lerp(startRot, MainCamera.transform.rotation, transitionProgress));
-            if (transitionProgress >= 1)
-            {
-                GameReadyToStart();
-            }
-        }
-
         //Skips Cutscene (Can assign it to other keybinds, just call this function)
         if (Input.GetKey(KeyCode.Space) && !cutsceneSkipped)
         {
@@ -69,8 +57,15 @@ public class CutsceneCamera : MonoBehaviour
         startPos = cutsceneCamera.transform.position;
         startRot = cutsceneCamera.transform.rotation;
 
-        isTransitioning = true;
+        Scheduler.Instance.Lerp(LerpCamera, transitionDuration, GameReadyToStart);
         transitionProgress = 0.0f;
+    }
+
+    private void LerpCamera(float t)
+    {
+        cutsceneCamera.fieldOfView = Mathf.Lerp(60, 27, t);
+        cutsceneCamera.transform.SetPositionAndRotation(Vector3.Lerp(startPos, MainCamera.transform.position, t),
+                                                        Quaternion.Lerp(startRot, MainCamera.transform.rotation, t));
     }
 
     public void GameReadyToStart()
@@ -86,7 +81,6 @@ public class CutsceneCamera : MonoBehaviour
 
     private void PenguinWalking()
     {
-
         if (cinemachineSplineDolly.CameraPosition >= 2f && !penguinAnimScript.IsAnimating)
         {
             penguinAnimScript.gameObject.SetActive(true);

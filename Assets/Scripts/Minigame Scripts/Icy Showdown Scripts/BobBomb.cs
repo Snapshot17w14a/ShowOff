@@ -32,7 +32,7 @@ public class BobBomb : MonoBehaviour
         switch (state)
         {
             case BombState.Flying:
-                transform.Rotate(transform.forward * Time.deltaTime * 180, Space.Self);
+                transform.Rotate(180 * Time.deltaTime * transform.forward, Space.Self);
                 if (timer >= flightTime)
                 {
                     timer -= flightTime;
