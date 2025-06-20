@@ -70,7 +70,7 @@ public class TreasureInteraction : MonoBehaviour
 
     private void SpawnTreasure(Pickupable[] pickables)
     {
-        Pickupable treasure = Instantiate(pickables[UnityEngine.Random.Range(0, treasurePrefabs.Length)], holdPoint.position, Quaternion.identity);
+        Pickupable treasure = Instantiate(pickables[UnityEngine.Random.Range(0, pickables.Length)], holdPoint.position, Quaternion.identity);
         treasure.OnPickupableDespawnedEvent += HandleTreasureDespawned;
         treasure.SetKinematic(true);
 
