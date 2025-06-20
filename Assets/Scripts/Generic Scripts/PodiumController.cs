@@ -120,10 +120,10 @@ public class PodiumController : MonoBehaviour
     //Create a podium, set its position based on the index
     private Podium CreatePodium(int index, PlayerRegistry playerRegistry)
     {
-        var pos = new Vector3(0.5f * (index + 1) + (0.5f + spacing) * index, -0.3f, 0);
+        var pos = new Vector3(0.5f * (index + 1) + (0.5f + spacing) * index, -0.2f, 0);
         var podium = Instantiate(podiumPrefab, Vector3.zero, Quaternion.identity, transform).GetComponent<Podium>();
         podium.transform.localPosition = pos;
-        podium.transform.localScale = new Vector3(1, 0, 1);
+        podium.transform.localScale = new Vector3(1, 0.1f, 1);
         podium.player = playerRegistry.InstantiatePlayerWithId(index);
 
         return podium;
@@ -139,16 +139,23 @@ public class PodiumController : MonoBehaviour
     {
         CleanUp();
 
+        foreach (var podium in podiums) podium.player.GetPlayerAnimator.SetTrigger(podium.player.RegistryID == winnerID ? "Win" : "Lose");
+
         if (winnerID != -1)
         {
-            Scheduler.Instance.DelayExecution(() => ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(winnerID).minigamePlayer.GetComponent<SkinManager>().ChangeSkin(), 2f);
             var effectObj = Instantiate(goldVFX, podiums[winnerID].player.transform.position, Quaternion.identity);
             Destroy(effectObj, 4f);
         }
 
-        OnCountEnd?.Invoke();
+        Scheduler.Instance.DelayExecution(() =>
+        {
+            if (winnerID != -1)
+                ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(winnerID).minigamePlayer.GetComponent<SkinManager>().ChangeSkin();
 
-        foreach (var podium in podiums) podium.SetPlayerInteraction(true);
+            OnCountEnd?.Invoke();
+            foreach (var podium in podiums) podium.SetPlayerInteraction(true);
+
+        }, 2f);
 
         Podium.highestScore = -1;
     }
