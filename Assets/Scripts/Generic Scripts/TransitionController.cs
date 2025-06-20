@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,8 +7,6 @@ public class TransitionController : MonoBehaviour
 {
     [SerializeField] private float lerpSpeed;
 
-    private string sceneToLoad;
-    private float lerpValue = 1;
     private Image image;
 
     private static TransitionController instance;
@@ -31,22 +28,36 @@ public class TransitionController : MonoBehaviour
         SceneManager.sceneLoaded -= TransitionIn;
     }
 
-    public void TransitionOut(string sceneName)
+    public void TransitionOut(string sceneName, float duration = 1)
     {
-        sceneToLoad = sceneName;
         if (routineGuid != Guid.Empty) Scheduler.Instance.StopRoutine(routineGuid);
-        routineGuid = Scheduler.Instance.Lerp(LerpAlpha, 1, () =>
+        routineGuid = Scheduler.Instance.Lerp(LerpAlpha, duration, () =>
         {
-            SceneManager.LoadScene(sceneToLoad);
+            SceneManager.LoadScene(sceneName);
             routineGuid = Guid.Empty;
         });
     }
 
     public void TransitionIn(Scene scene, LoadSceneMode sceneLoadMode)
     {
-        if (this == null || image == null) return;
         if (routineGuid != Guid.Empty) Scheduler.Instance.StopRoutine(routineGuid);
         Scheduler.Instance.Lerp(t => LerpAlpha(1 - t), 1f, () => routineGuid = Guid.Empty);
+    }
+
+    public void TransitionOut(float duration = 1, Action callback = null)
+    {
+        if (routineGuid != Guid.Empty) Scheduler.Instance.StopRoutine(routineGuid);
+        routineGuid = Scheduler.Instance.Lerp(LerpAlpha, duration, () =>
+        {
+            routineGuid = Guid.Empty;
+            callback?.Invoke();
+        });
+    }
+
+    public void TransitionIn(float duration = 1, Action callback = null)
+    {
+        if (routineGuid != Guid.Empty) Scheduler.Instance.StopRoutine(routineGuid);
+        Scheduler.Instance.Lerp(t => LerpAlpha(1 - t), duration, () => { routineGuid = Guid.Empty; callback?.Invoke(); });
     }
 
     public void QuitGame()
@@ -57,22 +68,5 @@ public class TransitionController : MonoBehaviour
     private void LerpAlpha(float t)
     {
         image.color = new Color(0, 0, 0, t);
-    }
-
-    private IEnumerator Transition(bool isOutTransition)
-    {
-        Color imageColor = image.color;
-        lerpValue = isOutTransition ? 0f : 1f;
-
-        while (lerpValue >= 0 && lerpValue <= 1)
-        {
-            imageColor.a = Mathf.Clamp01(Mathf.Lerp(0f, 1f, lerpValue));
-            image.color = imageColor;
-            lerpValue += isOutTransition ? Time.deltaTime * lerpSpeed : -(Time.deltaTime * lerpSpeed);
-            yield return new WaitForEndOfFrame();
-        }
-
-        if (isOutTransition) SceneManager.LoadScene(sceneToLoad);
-        yield return null;
     }
 }

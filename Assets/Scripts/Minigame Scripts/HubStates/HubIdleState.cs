@@ -5,6 +5,7 @@ public class HubIdleState : MinigameState
 {
     [SerializeField] private VideoPlayer idleVideoPlayer;
     [SerializeField] private VideoClip[] clips;
+    private bool isTransitioning = false;
 
     public override void LoadState()
     {
@@ -16,10 +17,16 @@ public class HubIdleState : MinigameState
     public override void TickState()
     {
         base.TickState();
-        if (Input.anyKey)
+        if (Input.anyKey && !isTransitioning)
         {
-            idleVideoPlayer.Pause();
-            FindFirstObjectByType<MinigameHandler>().LoadState(nextMinigameState);
+            isTransitioning = true;
+            TransitionController.Instance.TransitionOut(1f, () =>
+            {
+                isTransitioning = false;
+                idleVideoPlayer.Pause();
+                FindFirstObjectByType<MinigameHandler>().LoadState(nextMinigameState);
+                TransitionController.Instance.TransitionIn(1f);
+            });
         }
     }
 

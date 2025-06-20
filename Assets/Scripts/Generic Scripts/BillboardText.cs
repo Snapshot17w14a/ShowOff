@@ -6,13 +6,11 @@ public class BillboardText : MonoBehaviour
 
     private void Start()
     {
-        cameraTransform = GameObject.FindWithTag("MainCamera").transform;
+        cameraTransform = Camera.main.transform;
     }
 
     private void Update()
     {
-        //transform.LookAt(cameraTransform, Vector3.up);
-        //transform.rotation *= Quaternion.Euler(0, 180, 0);
         transform.forward = cameraTransform.forward;
     }
 }

@@ -7,6 +7,7 @@ public class IdleTimer : MonoBehaviour
 
     [SerializeField] private float maxIdleTime = 30;
     private float idleTime;
+    private bool isTransitioning = false;
 
     void Update()
     {
@@ -14,10 +15,16 @@ public class IdleTimer : MonoBehaviour
 
         if (Input.anyKey) idleTime = 0;
 
-        if (idleTime >= maxIdleTime)
+        if (idleTime >= maxIdleTime && !isTransitioning)
         {
-            idleTime = 0;
-            handler.LoadState(idleState);
+            isTransitioning = true;
+            TransitionController.Instance.TransitionOut(1f, () =>
+            {
+                idleTime = 0;
+                isTransitioning = false;
+                handler.LoadState(idleState);
+                TransitionController.Instance.TransitionIn(1f);
+            });
         }
     }
 }
