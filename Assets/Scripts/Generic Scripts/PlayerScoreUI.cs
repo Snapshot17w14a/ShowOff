@@ -1,9 +1,12 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerScoreUI : MonoBehaviour
 {
+    public event Action OnEvaluateScore;
+
     [SerializeField] private Image[] imagesToRecolor;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] public GameObject goldenPenguinFrame;
@@ -46,6 +49,7 @@ public class PlayerScoreUI : MonoBehaviour
         {
             scoreText.fontSize = Mathf.Lerp(increasedFontSize, initialFontSize, t * t);
         }, 0.25f));
+        OnEvaluateScore?.Invoke();
     }
 
     private void UpdateText()
