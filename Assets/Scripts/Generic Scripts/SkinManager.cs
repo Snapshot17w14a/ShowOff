@@ -12,9 +12,6 @@ public class SkinManager : MonoBehaviour
     [SerializeField] private GameObject crownParent;
     [SerializeField] private GameObject crown;
 
-    [Header("Crown Win Streak")]
-    [SerializeField] private int winStreakActivation = 5;
-
     private Material dashIndicatorMaterial;
 
     public Color playerColor;

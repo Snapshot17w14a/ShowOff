@@ -17,7 +17,6 @@ public enum ColliderState
 public class Pickupable : MonoBehaviour
 {
     public event Action<Pickupable> OnPickupableDespawnedEvent;
-    public event Action<Pickupable> OnGroundTouched;
 
     public PickupType PickupType => pickupType;
     public int Worth => worth;

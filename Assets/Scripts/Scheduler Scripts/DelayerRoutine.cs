@@ -42,10 +42,6 @@ public class DelayerRoutine : SchedulerRoutine
                 break;
         }
 
-        //if (callback is Action func) func();
-        //else if (callback is SchedulerRoutine routine) Scheduler.Instance.StartCoroutine(routine.Routine());
-        //else if (callback is IEnumerator coroutine) Scheduler.Instance.StartCoroutine(coroutine);
-
         Scheduler.Instance.StopRoutine(handle);
     }
 }

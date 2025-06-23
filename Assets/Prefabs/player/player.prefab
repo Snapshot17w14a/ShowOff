@@ -978,13 +978,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3791513727478344312}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000036554408, y: -0.000000003026798, z: 0.000000029802319, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6129999, z: 0}
-  m_LocalScale: {x: 1.65, y: 1.6499996, z: 1.6499996}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: -0.0959, y: -0, z: -0.0127}
+  m_LocalScale: {x: 0.41250005, y: 0.41249993, z: 0.41249985}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 4209962564444964806}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 3543722362957807584}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!2083052967 &3410616514454491358
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -994,8 +994,8 @@ VisualEffect:
   m_GameObject: {fileID: 3791513727478344312}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 0c27ad604e4d09c4a99e75dff5daa00f, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -1003,10 +1003,10 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 0.05
+      - m_Value: 0.1
         m_Name: Sphere Position
         m_Overridden: 1
-      - m_Value: -0.63
+      - m_Value: -0.5
         m_Name: Ground pos
         m_Overridden: 1
     m_Vector2f:
@@ -1363,7 +1363,6 @@ Transform:
   - {fileID: 8168982726825879632}
   - {fileID: 4956540841461979980}
   - {fileID: 1378918158433204141}
-  - {fileID: 3229069456307273290}
   - {fileID: 462118192665768748}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1545,6 +1544,7 @@ MonoBehaviour:
   walkEffect: {fileID: 8682700338727768244}
   dashEffect: {fileID: 7455305759139401211}
   stunEffect: {fileID: 8779098865699672147}
+  cryEffect: {fileID: 3410616514454491358}
   animator: {fileID: 3614758691830726619}
   smoothingMultiplier: 2
   playerColor: {r: 0, g: 0, b: 0, a: 0}
@@ -1862,6 +1862,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -5706434802582885593, guid: 0b33dbbb831395f4283991997bc3aaa9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3229069456307273290}
     - targetCorrespondingSourceObject: {fileID: -5706434802582885593, guid: 0b33dbbb831395f4283991997bc3aaa9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4513479537726172102}

@@ -48,7 +48,6 @@ public class BobRageState : BobState
         isStateRunning = true;
 
         Scheduler.Instance.Lerp(t => chromatic.intensity.value = Mathf.Lerp(0, 0.5f, t), chargeUpTime, StartRagePhase);
-        //Scheduler.Instance.DelayExecution(StartRagePhase, chargeUpTime);
     }
 
     public override void TickState()

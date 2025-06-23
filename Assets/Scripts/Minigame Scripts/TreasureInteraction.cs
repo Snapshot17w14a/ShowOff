@@ -365,6 +365,7 @@ public class TreasureInteraction : MonoBehaviour
         else if (collectedPickupable != null)
         {
             animator.SetTrigger("Throw");
+            DropTreasure();
             animator.SetBool("IsHolding", false);
         }
     }

@@ -139,7 +139,12 @@ public class PodiumController : MonoBehaviour
     {
         CleanUp();
 
-        foreach (var podium in podiums) podium.player.GetPlayerAnimator.SetTrigger(podium.player.RegistryID == winnerID ? "Win" : "Lose");
+        foreach (var podium in podiums)
+        {
+            bool isWinner = podium.player.RegistryID == winnerID;
+            podium.player.GetPlayerAnimator.SetTrigger(isWinner ? "Win" : "Lose");
+            podium.player.IsCrying = !isWinner;
+        }
 
         if (winnerID != -1)
         {

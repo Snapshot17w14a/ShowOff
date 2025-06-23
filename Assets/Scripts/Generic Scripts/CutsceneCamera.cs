@@ -14,8 +14,6 @@ public class CutsceneCamera : MonoBehaviour
     [SerializeField] private Camera cutsceneCamera;
     [SerializeField] private CutsceneAnimation penguinAnimScript;
 
-    private bool isTransitioning = false;
-    private float transitionProgress = 0.0f;
     private bool finishedCutscene;
     private Vector3 startPos;
     private Quaternion startRot;
@@ -58,7 +56,6 @@ public class CutsceneCamera : MonoBehaviour
         startRot = cutsceneCamera.transform.rotation;
 
         Scheduler.Instance.Lerp(LerpCamera, transitionDuration, GameReadyToStart);
-        transitionProgress = 0.0f;
     }
 
     private void LerpCamera(float t)
@@ -71,7 +68,6 @@ public class CutsceneCamera : MonoBehaviour
     public void GameReadyToStart()
     {
         Debug.Log("Camera Ready to Play");
-        isTransitioning = false;
         cutsceneCamera.enabled = false;
         MainCamera.enabled = true;
 
