@@ -14,6 +14,8 @@ public class CutsceneCamera : MonoBehaviour
     [SerializeField] private Camera cutsceneCamera;
     [SerializeField] private CutsceneAnimation penguinAnimScript;
 
+    private bool isTransitioning = false;
+    private float transitionProgress = 0.0f;
     private bool finishedCutscene;
     private Vector3 startPos;
     private Quaternion startRot;
@@ -26,7 +28,7 @@ public class CutsceneCamera : MonoBehaviour
     {
         //Debug.Log(cinemachineSplineDolly.Spline.Splines[0].Count);
         knots = cinemachineSplineDolly.Spline.Splines[0].Count;
-        AudioManager.PlayMusic(ESoundType.Music, "MUSIC_GAME", 0.0f); //Just stop the music here when you start
+        AudioManager.StopMusic();
     }
 
     private void Update()
@@ -56,6 +58,7 @@ public class CutsceneCamera : MonoBehaviour
         startRot = cutsceneCamera.transform.rotation;
 
         Scheduler.Instance.Lerp(LerpCamera, transitionDuration, GameReadyToStart);
+        transitionProgress = 0.0f;
     }
 
     private void LerpCamera(float t)
@@ -68,11 +71,12 @@ public class CutsceneCamera : MonoBehaviour
     public void GameReadyToStart()
     {
         Debug.Log("Camera Ready to Play");
+        isTransitioning = false;
         cutsceneCamera.enabled = false;
         MainCamera.enabled = true;
 
         OnCameraReady?.Invoke();
-        AudioManager.PlayMusic(ESoundType.Music, "MUSIC_GAME", 0.5f);
+        AudioManager.PlayMusic(ESoundType.Music, "Icy_Showdown", 0.3f);
     }
 
     private void PenguinWalking()

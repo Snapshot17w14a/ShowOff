@@ -34,16 +34,6 @@ public class MinigamePlayer : MonoBehaviour
     [SerializeField] private VisualEffect walkEffect;
     [SerializeField] private VisualEffect dashEffect;
     [SerializeField] private VisualEffect stunEffect;
-    [SerializeField] private VisualEffect cryEffect;
-
-    public bool IsCrying { set
-        {
-            if (value)
-                cryEffect.Play();
-            else
-                cryEffect.Stop();
-        } 
-    }
 
     public Animator GetPlayerAnimator => animator;
     [SerializeField] private Animator animator;
@@ -218,32 +208,23 @@ public class MinigamePlayer : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (!isDashing || !collision.gameObject.CompareTag("Player")) return;
-        CheckForStun(collision);
-    }
-
     private void OnCollisionStay(Collision collision)
     {
         if (!isDashing || !collision.gameObject.CompareTag("Player")) return;
-        CheckForStun(collision);
-    }
 
-    private void CheckForStun(Collision collision)
-    {
         MinigamePlayer otherPlayer = collision.gameObject.GetComponent<MinigamePlayer>();
 
-        if (otherPlayer.isStunned) return;
-
-        otherPlayer.StunPlayer(dashStunDuration);
-        TreasureInteraction otherTreasure = otherPlayer.TreasureInteraction;
-
-        if (otherTreasure != null && otherTreasure.IsHoldingItem && this.TreasureInteraction != null && this.TreasureInteraction.IsHoldingItem)
+        if (otherPlayer != null && otherPlayer != this)
         {
-            if (TreasureInteraction && TreasureInteraction.IsHoldingItem)
+            otherPlayer.StunPlayer(dashStunDuration);
+            AudioManager.PlaySound(ESoundType.Penguin, "Player_Hit", false, 1f, 0.5f);
+            TreasureInteraction otherTreasure = otherPlayer.TreasureInteraction;
+
+            if (otherTreasure != null && otherTreasure.IsHoldingItem && this.TreasureInteraction != null && this.TreasureInteraction.IsHoldingItem)
+            {
                 otherTreasure.DropTreasureRandom();
-            else
+            }
+            else if (otherTreasure != null && otherTreasure.IsHoldingItem)
             {
                 Pickupable pickUp = otherTreasure.CollectedPickupable;
                 otherTreasure.CollectedPickupable.transform.SetParent(null, true);
@@ -251,5 +232,10 @@ public class MinigamePlayer : MonoBehaviour
                 otherTreasure.DropTreasureInstant();
             }
         }
+    }
+
+    private void ForEachPlayerRenderer(Action<SkinnedMeshRenderer> function)
+    {
+        foreach (var renderer in playerMeshRenderers) function(renderer);
     }
 }

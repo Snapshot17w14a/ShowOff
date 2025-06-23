@@ -60,10 +60,13 @@ public class TreasureInteraction : MonoBehaviour
             if (roll <= spawnChance)
             {
                 SpawnTreasure(largeTreasurePrefabs);
+                AudioManager.PlaySound(ESoundType.Penguin, "Grab_Gem_Big", false, 1f, 1f);
             }
             else
             {
                 SpawnTreasure(treasurePrefabs);
+                AudioManager.PlaySound(ESoundType.Penguin, "Grab_Gem", false, 1f, 1f);
+
             }
         }
     }
@@ -365,7 +368,6 @@ public class TreasureInteraction : MonoBehaviour
         else if (collectedPickupable != null)
         {
             animator.SetTrigger("Throw");
-            DropTreasure();
             animator.SetBool("IsHolding", false);
         }
     }

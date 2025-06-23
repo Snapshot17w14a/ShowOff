@@ -50,14 +50,28 @@ MonoBehaviour:
     audioClips:
     - name: Dash
       clip: {fileID: 8300000, guid: 2e84b6c3a445597498186c804076bcef, type: 3}
+    - name: Fall_In_Water
+      clip: {fileID: 8300000, guid: 6a07a653dcc32fd44accd8a1521a800a, type: 3}
+    - name: Grab_Gem
+      clip: {fileID: 8300000, guid: a3513fcec051e224ca9b815a865b1c49, type: 3}
+    - name: Grab_Gem_Big
+      clip: {fileID: 8300000, guid: 054dc9467c02d8843b0c4162521363e4, type: 3}
+    - name: Player_Hit
+      clip: {fileID: 8300000, guid: bcca59b5c335a1a40b95f35ea0897450, type: 3}
+    - name: Throw_Gem
+      clip: {fileID: 8300000, guid: ec30a310707c70644ae98fd64678a988, type: 3}
   - soundType: 2
     audioClips:
-    - name: Cart
-      clip: {fileID: 8300000, guid: 13bb1d4a028bdb045ad933643b93c68c, type: 3}
-    - name: MUSIC_HUB
-      clip: {fileID: 8300000, guid: cd46fe83cb38e6641a7340029cea409f, type: 3}
-    - name: MUSIC_GAME
+    - name: Icy_Showdown
       clip: {fileID: 8300000, guid: 342c3864e23cb954bbaba8cd2189544b, type: 3}
+    - name: Hub
+      clip: {fileID: 8300000, guid: cd46fe83cb38e6641a7340029cea409f, type: 3}
+  - soundType: 0
+    audioClips:
+    - name: Bomb
+      clip: {fileID: 8300000, guid: a9032d6b2b3ec2f4ea046e8de4053168, type: 3}
+    - name: Stomp
+      clip: {fileID: 8300000, guid: 1e37df28f14689541a78204ce882f8a9, type: 3}
 --- !u!82 &5071268876409205001
 AudioSource:
   m_ObjectHideFlags: 0
