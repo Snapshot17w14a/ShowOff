@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
@@ -15,7 +14,6 @@ public class MinigamePlayer : MonoBehaviour
 
     private Vector2 inputVector = Vector2.zero;
     private new Rigidbody rigidbody;
-    [SerializeField] private SkinnedMeshRenderer[] playerMeshRenderers;
 
     [Header("Move settings")]
     [SerializeField] private float turnSpeedMultiplier;
