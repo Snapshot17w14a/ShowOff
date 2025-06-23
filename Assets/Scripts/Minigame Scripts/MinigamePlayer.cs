@@ -32,6 +32,19 @@ public class MinigamePlayer : MonoBehaviour
     [SerializeField] private VisualEffect walkEffect;
     [SerializeField] private VisualEffect dashEffect;
     [SerializeField] private VisualEffect stunEffect;
+    [SerializeField] private VisualEffect cryEffect;
+
+    public bool IsCrying
+    {
+        set
+        {
+            if (value)
+                cryEffect.Play();
+            else
+                cryEffect.Stop();
+        }
+    }
+
 
     public Animator GetPlayerAnimator => animator;
     [SerializeField] private Animator animator;
