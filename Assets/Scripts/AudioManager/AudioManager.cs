@@ -63,7 +63,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public static void PlaySound(ESoundType soundSourceType, string name, bool randomizePitch, float pitch, float volume = 1f)
+    public static void PlaySound(ESoundType soundSourceType, string name, bool randomizePitch, float pitch = 1f, float volume = 1f)
     {
         if (Instance == null)
         {

@@ -60,12 +60,12 @@ public class TreasureInteraction : MonoBehaviour
             if (roll <= spawnChance)
             {
                 SpawnTreasure(largeTreasurePrefabs);
-                AudioManager.PlaySound(ESoundType.Penguin, "Grab_Gem_Big", false, 1f, 1f);
+                AudioManager.PlaySound(ESoundType.Penguin, "Grab_Gem_Big", false);
             }
             else
             {
                 SpawnTreasure(treasurePrefabs);
-                AudioManager.PlaySound(ESoundType.Penguin, "Grab_Gem", false, 1f, 1f);
+                AudioManager.PlaySound(ESoundType.Penguin, "Grab_Gem", false);
 
             }
         }
@@ -100,6 +100,15 @@ public class TreasureInteraction : MonoBehaviour
                 pickupable.Collect(holdPoint);
                 pickupable.GetComponent<Collider>().enabled = false;
                 collectedPickupable = pickupable;
+                if (collectedPickupable.Worth > 1)
+                {
+                    AudioManager.PlaySound(ESoundType.Penguin, "Grab_Gem_Big", false);
+                }
+                else
+                {
+                    AudioManager.PlaySound(ESoundType.Penguin, "Grab_Gem", false);
+
+                }
             }
         }
     }
