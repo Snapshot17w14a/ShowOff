@@ -219,23 +219,31 @@ public class MinigamePlayer : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!isDashing || !collision.gameObject.CompareTag("Player")) return;
+        CheckForStun(collision);
+    }
+
     private void OnCollisionStay(Collision collision)
     {
         if (!isDashing || !collision.gameObject.CompareTag("Player")) return;
+        CheckForStun(collision);
+    }
 
+    private void CheckForStun(Collision collision)
+    {
         MinigamePlayer otherPlayer = collision.gameObject.GetComponent<MinigamePlayer>();
 
-        if (otherPlayer != null && otherPlayer != this)
-        {
-            otherPlayer.StunPlayer(dashStunDuration);
-            AudioManager.PlaySound(ESoundType.Penguin, "Player_Hit", false, 1f, 0.5f);
-            TreasureInteraction otherTreasure = otherPlayer.TreasureInteraction;
+        otherPlayer.StunPlayer(dashStunDuration);
+        AudioManager.PlaySound(ESoundType.Penguin, "Player_Hit", false, 1f, 0.5f);
+        TreasureInteraction otherTreasure = otherPlayer.TreasureInteraction;
 
-            if (otherTreasure != null && otherTreasure.IsHoldingItem && this.TreasureInteraction != null && this.TreasureInteraction.IsHoldingItem)
-            {
+        if (otherTreasure != null && otherTreasure.IsHoldingItem)
+        {
+            if (TreasureInteraction && TreasureInteraction.IsHoldingItem)
                 otherTreasure.DropTreasureRandom();
-            }
-            else if (otherTreasure != null && otherTreasure.IsHoldingItem)
+            else
             {
                 Pickupable pickUp = otherTreasure.CollectedPickupable;
                 otherTreasure.CollectedPickupable.transform.SetParent(null, true);
