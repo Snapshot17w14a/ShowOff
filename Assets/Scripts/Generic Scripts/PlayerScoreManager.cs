@@ -6,7 +6,6 @@ public class PlayerScoreManager : MonoBehaviour
     [SerializeField] private Transform scoreParent;
     [SerializeField] private PlayerScoreUI scorePrefab;
     [SerializeField] private Material gold;
-    [SerializeField] private GameObject fireAnimation;
     [SerializeField] private int fireAnimationNumber = 3;
 
     private Dictionary<MinigamePlayer, PlayerScoreUI> scores = new();
@@ -40,7 +39,6 @@ public class PlayerScoreManager : MonoBehaviour
     private void GenerateScoreUI(MinigamePlayer player)
     {
          playerScore = Instantiate(scorePrefab, scoreParent);
-
         //Changing the UI frame of the winner penguin
         RegisteredPlayer data = ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(player.RegistryID);
         if (data.isLastWinner)
@@ -59,23 +57,18 @@ public class PlayerScoreManager : MonoBehaviour
         if (scores.Count < 2) return;
 
         List<int> allScores = new();
+        List<KeyValuePair<MinigamePlayer, PlayerScoreUI>> sorted = new(scores);
+        sorted.Sort((a, b) => b.Value.Score.CompareTo(a.Value.Score));
 
-        foreach (var kvp in scores)
+        int topScore = sorted[0].Value.Score;
+        int secondScore = sorted[1].Value.Score;
+
+        bool shouldEnableFire = topScore - secondScore >= fireAnimationNumber;
+        for (int i = 0; i < sorted.Count; i++)
         {
-            allScores.Add(kvp.Value.Score);
-        }
-
-        allScores.Sort((a, b) => b.CompareTo(a));
-
-        int topScore = allScores[0];
-        int secondScore = allScores[1];
-
-        if(topScore - secondScore >= fireAnimationNumber)
-        {
-            fireAnimation.SetActive(true);
-        } else
-        {
-            fireAnimation.SetActive(false);
+            var playerUI = sorted[i].Value;
+            bool enableFire = (i == 0 && shouldEnableFire);
+            playerUI.fireAnimation.SetActive(enableFire);
         }
     }
 

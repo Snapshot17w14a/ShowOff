@@ -10,6 +10,8 @@ public class PlayerScoreUI : MonoBehaviour
     [SerializeField] private Image[] imagesToRecolor;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] public GameObject goldenPenguinFrame;
+    [SerializeField] public GameObject fireAnimation;
+
 
     [SerializeField] private float increasedFontSize;
     private float initialFontSize;
