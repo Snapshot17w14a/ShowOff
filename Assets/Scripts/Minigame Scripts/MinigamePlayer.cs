@@ -244,9 +244,4 @@ public class MinigamePlayer : MonoBehaviour
             }
         }
     }
-
-    private void ForEachPlayerRenderer(Action<SkinnedMeshRenderer> function)
-    {
-        foreach (var renderer in playerMeshRenderers) function(renderer);
-    }
 }
