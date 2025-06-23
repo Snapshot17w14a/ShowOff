@@ -68,7 +68,6 @@ public class Minecart : MonoBehaviour
     private IEnumerator MoveCart()
     {
         isMoving = true;
-        boxCollider.enabled = false;
 
         while (Vector3.Distance(transform.position, endPosition) > 0.1f)
         {
@@ -80,7 +79,6 @@ public class Minecart : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         SetFill(0);
 
-        boxCollider.enabled = true;
         currentGemAmount = 0;
         isFull = false;
 
