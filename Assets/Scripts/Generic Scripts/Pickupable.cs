@@ -106,7 +106,10 @@ public class Pickupable : MonoBehaviour
                 return;
             }
             gemCollector.parentMinecart.AddGem();
-            parentInteration.HandleTreasureEnteredMinecart(this, worth);
+            if(parentInteration != null)
+            {
+                parentInteration.HandleTreasureEnteredMinecart(this, worth);
+            }
             Despawn();
         }
     }
