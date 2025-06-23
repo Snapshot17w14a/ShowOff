@@ -2462,7 +2462,7 @@ Transform:
   m_GameObject: {fileID: 2428338005237860914}
   serializedVersion: 2
   m_LocalRotation: {x: 0.111302786, y: 0.45721537, z: 0.35442188, w: 0.8080538}
-  m_LocalPosition: {x: 0.024618149, y: -0.024354696, z: 0.65733117}
+  m_LocalPosition: {x: 0.024618149, y: -0.033, z: 0.642}
   m_LocalScale: {x: 0.0032226942, y: 0.003222694, z: 0.0032226942}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2992,7 +2992,7 @@ Transform:
   m_GameObject: {fileID: 3203335680535259790}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23973463, y: 0.79601896, z: 0.28733346, w: 0.47573176}
-  m_LocalPosition: {x: 0.8728471, y: 0.028564122, z: 0.8412793}
+  m_LocalPosition: {x: 0.8728471, y: -0.004, z: 0.8412793}
   m_LocalScale: {x: 0.0028391266, y: 0.002839126, z: 0.0028391269}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3907,7 +3907,7 @@ Transform:
   m_GameObject: {fileID: 3913010396595058238}
   serializedVersion: 2
   m_LocalRotation: {x: -0.32499436, y: -0.74536, z: 0.19620131, w: 0.54801655}
-  m_LocalPosition: {x: 0.85928524, y: 0.031564124, z: -0.80541605}
+  m_LocalPosition: {x: 0.899, y: 0.024, z: -0.785}
   m_LocalScale: {x: 0.0032226937, y: 0.0032226942, z: 0.0032226946}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4187,7 +4187,7 @@ Transform:
   m_GameObject: {fileID: 4297965009220769156}
   serializedVersion: 2
   m_LocalRotation: {x: 0.28557083, y: 0.8749081, z: 0.35711887, w: -0.15953447}
-  m_LocalPosition: {x: 1.2630804, y: 0.04656412, z: 0.5996755}
+  m_LocalPosition: {x: 1.237, y: 0.019, z: 0.5996755}
   m_LocalScale: {x: 0.0024842299, y: 0.0024842285, z: 0.00248423}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8846,7 +8846,7 @@ Transform:
   m_GameObject: {fileID: 7685663614863685232}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3581226, y: 0.8236575, z: -0.09874934, w: -0.4284683}
-  m_LocalPosition: {x: 1.224274, y: 0.04456412, z: -0.5963506}
+  m_LocalPosition: {x: 1.249, y: -0.002, z: -0.53}
   m_LocalScale: {x: 0.0032226944, y: 0.0032226937, z: 0.0032226942}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10196,7 +10196,7 @@ Transform:
   m_GameObject: {fileID: 8642680965339311353}
   serializedVersion: 2
   m_LocalRotation: {x: 0.23332918, y: 0.63247645, z: 0.29945597, w: 0.67517203}
-  m_LocalPosition: {x: 0.4034207, y: -0.011435879, z: 0.84018046}
+  m_LocalPosition: {x: 0.4034207, y: -0.02, z: 0.84018046}
   m_LocalScale: {x: 0.003222695, y: 0.0032226937, z: 0.0032226949}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10282,7 +10282,7 @@ Transform:
   m_GameObject: {fileID: 8769074412963989436}
   serializedVersion: 2
   m_LocalRotation: {x: -0.32349858, y: -0.46217585, z: 0.2863863, w: 0.7744192}
-  m_LocalPosition: {x: 0.4736812, y: 0.02157665, z: -0.84514135}
+  m_LocalPosition: {x: 0.4736812, y: 0.02157665, z: -0.848}
   m_LocalScale: {x: 0.0028391257, y: 0.0028391245, z: 0.0028391257}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11493,7 +11493,7 @@ PrefabInstance:
     - target: {fileID: 8151843875095633928, guid: 2d40147812e53aa4cb5f3ab913e3dec7, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -5661533773211258500, guid: 9e7b23d8c61a397459d53262aa2f5681, type: 3}
+      objectReference: {fileID: -5661533773211258500, guid: ef86bbc4bd950d741820a1ca84ff807a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11657,7 +11657,7 @@ PrefabInstance:
     - target: {fileID: 4157434996238391344, guid: 565900d3b02a76547b598cc1b3324237, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -2296903094631279848, guid: 9e7b23d8c61a397459d53262aa2f5681, type: 3}
+      objectReference: {fileID: -2296903094631279848, guid: 14d6ae95d235f0f49a46fce1bb42731d, type: 3}
     - target: {fileID: 7906677757302046651, guid: 565900d3b02a76547b598cc1b3324237, type: 3}
       propertyPath: m_Name
       value: Crystal (4)
@@ -11904,6 +11904,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 17.064
       objectReference: {fileID: 0}
+    - target: {fileID: 4157434996238391344, guid: 565900d3b02a76547b598cc1b3324237, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -2296903094631279848, guid: 14d6ae95d235f0f49a46fce1bb42731d, type: 3}
     - target: {fileID: 7906677757302046651, guid: 565900d3b02a76547b598cc1b3324237, type: 3}
       propertyPath: m_Name
       value: Crystal (10)
