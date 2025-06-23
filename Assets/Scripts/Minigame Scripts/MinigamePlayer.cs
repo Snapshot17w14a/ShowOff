@@ -218,22 +218,32 @@ public class MinigamePlayer : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!isDashing || !collision.gameObject.CompareTag("Player")) return;
+        CheckForStun(collision);
+    }
+
     private void OnCollisionStay(Collision collision)
     {
         if (!isDashing || !collision.gameObject.CompareTag("Player")) return;
+        CheckForStun(collision);
+    }
 
+    private void CheckForStun(Collision collision)
+    {
         MinigamePlayer otherPlayer = collision.gameObject.GetComponent<MinigamePlayer>();
 
-        if (otherPlayer != null && otherPlayer != this)
-        {
-            otherPlayer.StunPlayer(dashStunDuration);
-            TreasureInteraction otherTreasure = otherPlayer.TreasureInteraction;
+        if (otherPlayer.isStunned) return;
 
-            if (otherTreasure != null && otherTreasure.IsHoldingItem && this.TreasureInteraction != null && this.TreasureInteraction.IsHoldingItem)
-            {
+        otherPlayer.StunPlayer(dashStunDuration);
+        TreasureInteraction otherTreasure = otherPlayer.TreasureInteraction;
+
+        if (otherTreasure != null && otherTreasure.IsHoldingItem && this.TreasureInteraction != null && this.TreasureInteraction.IsHoldingItem)
+        {
+            if (TreasureInteraction && TreasureInteraction.IsHoldingItem)
                 otherTreasure.DropTreasureRandom();
-            }
-            else if (otherTreasure != null && otherTreasure.IsHoldingItem)
+            else
             {
                 Pickupable pickUp = otherTreasure.CollectedPickupable;
                 otherTreasure.CollectedPickupable.transform.SetParent(null, true);
@@ -241,10 +251,5 @@ public class MinigamePlayer : MonoBehaviour
                 otherTreasure.DropTreasureInstant();
             }
         }
-    }
-
-    private void ForEachPlayerRenderer(Action<SkinnedMeshRenderer> function)
-    {
-        foreach (var renderer in playerMeshRenderers) function(renderer);
     }
 }
