@@ -8425,8 +8425,8 @@ MonoBehaviour:
   minecartSpeedIncrease: 10
   minecartMaxSpeed: 250
   scoreText: {fileID: 1354838412}
-  firework: {fileID: 0}
-  goldenShine: {fileID: 0}
+  firework: {fileID: 994343610}
+  goldenShine: {fileID: 145317341}
 --- !u!1001 &903289877
 PrefabInstance:
   m_ObjectHideFlags: 0
