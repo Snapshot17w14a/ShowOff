@@ -1003,10 +1003,10 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: -0.1
+      - m_Value: 0.05
         m_Name: Sphere Position
         m_Overridden: 1
-      - m_Value: -0.5
+      - m_Value: -0.63
         m_Name: Ground pos
         m_Overridden: 1
     m_Vector2f:
