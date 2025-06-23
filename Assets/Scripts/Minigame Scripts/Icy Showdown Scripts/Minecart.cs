@@ -45,7 +45,7 @@ public class Minecart : MonoBehaviour
         deliverEffect.Play();
 
         currentGemAmount++;
-        float gemLimit = (Mathf.CeilToInt((ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount + 1) / 2) + 1);
+        float gemLimit = (Mathf.CeilToInt((Services.Get<PlayerRegistry>().RegisteredPlayerCount + 1) / 2) + 1);
 
         //Change the gold pile height
         SetFill(currentGemAmount / gemLimit);

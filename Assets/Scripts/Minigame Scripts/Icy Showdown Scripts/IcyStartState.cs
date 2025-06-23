@@ -4,7 +4,7 @@ public class IcyStartState : MinigameState
     public override void UnloadState()
     {
         base.UnloadState();
-        ServiceLocator.GetService<PlayerAutoJoin>().AllowJoining = true;
+        Services.Get<PlayerAutoJoin>().AllowJoining = true;
     }
 #endif
 

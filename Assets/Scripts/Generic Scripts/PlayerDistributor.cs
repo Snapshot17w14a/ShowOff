@@ -6,7 +6,7 @@ public class PlayerDistributor : MonoBehaviour
 
     public void InstantiatePlayersInCircle(float radius)
     {
-        var playerRegistry = ServiceLocator.GetService<PlayerRegistry>();
+        var playerRegistry = Services.Get<PlayerRegistry>();
         playerRegistry.InstantiateAllPlayers();
 
         int playerCount = playerRegistry.RegisteredPlayerCount;

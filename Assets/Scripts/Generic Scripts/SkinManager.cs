@@ -27,7 +27,7 @@ public class SkinManager : MonoBehaviour
 
     public void ChangeSkin()
     {
-        RegisteredPlayer data = ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(RegistryID);
+        RegisteredPlayer data = Services.Get<PlayerRegistry>().GetPlayerData(RegistryID);
 
         if (data.isLastWinner)
         {

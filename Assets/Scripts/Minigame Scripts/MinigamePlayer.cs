@@ -68,7 +68,7 @@ public class MinigamePlayer : MonoBehaviour
 
     private void Start()
     {
-        ServiceLocator.GetService<ScoreRegistry>().AddPlayer(RegistryID);
+        Services.Get<ScoreRegistry>().AddPlayer(RegistryID);
     }
 
     // Update is called once per frame
@@ -126,7 +126,7 @@ public class MinigamePlayer : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        ServiceLocator.GetService<PauseManager>().TogglePause(RegistryID);
+        Services.Get<PauseManager>().TogglePause(RegistryID);
         OnPlayerPaused?.Invoke(RegistryID);
     }
 

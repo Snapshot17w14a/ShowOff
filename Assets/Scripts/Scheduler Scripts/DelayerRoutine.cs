@@ -29,9 +29,22 @@ public class DelayerRoutine : SchedulerRoutine
     {
         yield return new WaitForSeconds(delaySeconds);
 
-        if (callback is Action func) func();
-        else if (callback is SchedulerRoutine routine) Scheduler.Instance.StartCoroutine(routine.Routine());
-        else if (callback is IEnumerator coroutine) Scheduler.Instance.StartCoroutine(coroutine);
+        switch (callback)
+        {
+            case Action action:
+                action();
+                break;
+            case SchedulerRoutine schedulerRoutine:
+                Scheduler.Instance.StartCoroutine(schedulerRoutine.Routine());
+                break;
+            case IEnumerator coroutine:
+                Scheduler.Instance.StartCoroutine(coroutine);
+                break;
+        }
+
+        //if (callback is Action func) func();
+        //else if (callback is SchedulerRoutine routine) Scheduler.Instance.StartCoroutine(routine.Routine());
+        //else if (callback is IEnumerator coroutine) Scheduler.Instance.StartCoroutine(coroutine);
 
         Scheduler.Instance.StopRoutine(handle);
     }

@@ -62,8 +62,6 @@ public class Podium : MonoBehaviour
         transform.localScale = Vector3.Lerp(startingScale, targetScale, t);
         player.transform.position = Vector3.Lerp(startingPlayerPosition, targetPlayerPosition, t);
         scoreText.transform.position = Vector3.Lerp(startingTextPosition, targetTextPosition, t);
-
-        //cloudEffect.SetFloat("Y Scale Value", transform.localScale.y);
     }
 
     public void SetPlayerInteraction(bool state)
@@ -73,10 +71,5 @@ public class Podium : MonoBehaviour
 
         if (state) input.ActivateInput();
         else input.DeactivateInput();
-    }
-
-    public void CleanUp()
-    {
-        
     }
 }

@@ -6,7 +6,7 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
-        ServiceLocator.GetService<PauseManager>().OnPaused += HandleOnPaused;
+        Services.Get<PauseManager>().OnPaused += HandleOnPaused;
     }
 
     private void HandleOnPaused(bool isPaused, int playerId)
@@ -17,6 +17,6 @@ public class UIController : MonoBehaviour
 
     private void OnDestroy()
     {
-        ServiceLocator.GetService<PauseManager>().OnPaused -= HandleOnPaused;
+        Services.Get<PauseManager>().OnPaused -= HandleOnPaused;
     }
 }

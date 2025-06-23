@@ -53,12 +53,12 @@ public class MenuNavigation : MonoBehaviour
         //Add the method to be called each time any connected device performs an action with any relevant binding
         foreach(var inputAction in inputForAction.Values) inputAction.started += context => NavHandler(context);
 
-        ServiceLocator.GetService<PauseManager>().OnPaused += SetActive;
+        Services.Get<PauseManager>().OnPaused += SetActive;
     }
 
     private void NavHandler(InputAction.CallbackContext ctx)
     {
-        if (ctx.control.device != ServiceLocator.GetService<PauseManager>().PauseingUserDevice) return;
+        if (ctx.control.device != Services.Get<PauseManager>().PauseingUserDevice) return;
 
         var kvp = GetKvpOfInput(ctx.action);
 
@@ -86,7 +86,7 @@ public class MenuNavigation : MonoBehaviour
 
     private void OnDisable()
     {
-        ServiceLocator.GetService<PauseManager>().OnPaused -= SetActive;
+        Services.Get<PauseManager>().OnPaused -= SetActive;
     }
 
     private KeyValuePair<string, InputAction> GetKvpOfInput(InputAction action) => inputForAction.Where(kvp => kvp.Value == action).First();

@@ -3,10 +3,7 @@ using UnityEngine;
 using UnityEngine.VFX;
 
 public class BobIceState : BobState
-{
-    private enum IceState { ChargeUp, Firing, Idle };
-
-    private readonly float chargeupTime = 2;
+{    private readonly float chargeupTime = 2;
     private readonly float attackSeconds = 2;
     private readonly float attackAngle = 90;
 
@@ -16,26 +13,22 @@ public class BobIceState : BobState
     private GameObject hitEffect;
     private int layerMask;
     private int pushForce = 20;
-    private float stunDuration;
 
     private Quaternion initialRotation;
     private Quaternion targetRotation;
     private float turnMultiplier;
-    private float time = 0;
 
-    private IceState state = IceState.Idle;
     private GameObject instantiatedHitEffect;
 
     public override void Initialize(params object[] parameters)
     {
-        if (parameters.Length != 6) throw new Exception("Provided parameters array length was not 6");
+        if (parameters.Length != 5) throw new Exception("Provided parameters array length was not 6");
 
         bobTransform = (Transform)parameters[0];
         chargeUpEffect = (VisualEffect)parameters[1];
         beamEffect = (VisualEffect)parameters[2];
         hitEffect = (GameObject)parameters[3];
         layerMask = (int)parameters[4];
-        stunDuration = (float)parameters[5];
     }
 
     public override void LoadState(params object[] parameters)
@@ -43,38 +36,18 @@ public class BobIceState : BobState
         ChoseTargetRotation();
 
         isStateRunning = true;
-
-        //Set up ChargeUp state
-        state = IceState.ChargeUp;
         chargeUpEffect.Play();
+
+        Scheduler.Instance.DelayExecution(ChargeUp, chargeupTime);
     }
 
     public override void TickState()
     {
-        if (!isStateRunning) return;
 
-        switch (state)
-        {
-            case IceState.Idle:
-                return;
-            case IceState.ChargeUp:
-                ChargeUp();
-                break;
-            case IceState.Firing:
-                Fire();
-                break;
-        }
-
-        if (state == IceState.Firing && time >= 1)
-        {
-            isStateRunning = false;
-            beamEffect.Stop();
-        }
     }
 
     public override void UnloadState()
     {
-        time = 0;
         instantiatedHitEffect.GetComponent<VisualEffect>().Stop();
         GameObject.Destroy(instantiatedHitEffect, 0.5f);
     }
@@ -88,25 +61,24 @@ public class BobIceState : BobState
 
     private void ChargeUp()
     {
-        time += Time.deltaTime / chargeupTime;
-        if (time >= 1)
+        chargeUpEffect.Stop();
+        beamEffect.Play();
+
+        Camera.main.GetComponent<PlayerCenterFollow>().ShakeCamera(attackSeconds);
+
+        instantiatedHitEffect = GameObject.Instantiate(hitEffect);
+
+        Scheduler.Instance.Lerp(Fire, attackSeconds, () =>
         {
-            time = 0;
-            state = IceState.Firing;
-            chargeUpEffect.Stop();
-            beamEffect.Play();
-
-            Camera.main.GetComponent<PlayerCenterFollow>().ShakeCamera(attackSeconds);
-
-            instantiatedHitEffect = GameObject.Instantiate(hitEffect);
-        }
+            isStateRunning = false;
+            beamEffect.Stop();
+        });
     }
 
-    private void Fire()
+    private void Fire(float t)
     {
-        time += Time.deltaTime / attackSeconds;
         RaycastAndHitParticle();
-        bobTransform.rotation = Quaternion.Lerp(initialRotation, targetRotation, time);
+        bobTransform.rotation = Quaternion.Lerp(initialRotation, targetRotation, t);
         IcePlatformManager.Instance.ExecuteForEachPlatform(FreezePlatformInArc);
     }
 
@@ -128,9 +100,6 @@ public class BobIceState : BobState
                 var player = hit.collider.GetComponent<MinigamePlayer>();
                 player.GetPlayerAnimator.SetTrigger("Hit");
                 player.PushPlayer(pushForce);
-                
-/*                player.StunPlayer(stunDuration);
-                player.DropTreasure();*/
             }
             else if (hit.collider.CompareTag("Icicle"))
             {

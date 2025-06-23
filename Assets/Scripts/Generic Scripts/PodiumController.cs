@@ -35,7 +35,7 @@ public class PodiumController : MonoBehaviour
         PlayerPrefs.SetInt("DoPodium", 0);
 
         //Get a referene to the PlayerRegistry and get player count
-        var playerRegistry = ServiceLocator.GetService<PlayerRegistry>();
+        var playerRegistry = Services.Get<PlayerRegistry>();
         int playerCount = playerRegistry.RegisteredPlayerCount;
 
         //If there are no players registeresd 
@@ -46,7 +46,7 @@ public class PodiumController : MonoBehaviour
         }
 
         //Get the highest score from the ScoreRegistry
-        var scoreRegistry = ServiceLocator.GetService<ScoreRegistry>();
+        var scoreRegistry = Services.Get<ScoreRegistry>();
         PlayerScore highestScore = scoreRegistry.HighestScore;
         Podium.highestScore = highestScore.score;
         Podium.controller = this;
@@ -150,7 +150,7 @@ public class PodiumController : MonoBehaviour
         Scheduler.Instance.DelayExecution(() =>
         {
             if (winnerID != -1)
-                ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(winnerID).minigamePlayer.GetComponent<SkinManager>().ChangeSkin();
+                Services.Get<PlayerRegistry>().GetPlayerData(winnerID).minigamePlayer.GetComponent<SkinManager>().ChangeSkin();
 
             OnCountEnd?.Invoke();
             foreach (var podium in podiums) podium.SetPlayerInteraction(true);
@@ -170,7 +170,6 @@ public class PodiumController : MonoBehaviour
     {
         foreach (var podium in podiums)
         {
-            podium.CleanUp();
             Destroy(podium);
         }
     }

@@ -8,7 +8,7 @@ public class ScorePopulator : MonoBehaviour
 
     public void PopulateScoreBoard()
     {
-        var scores = ServiceLocator.GetService<ScoreRegistry>().GetStoredScores();
+        var scores = Services.Get<ScoreRegistry>().GetStoredScores();
 
         var sortedScores = scores.OrderByDescending(score => score.score).ToArray();
 

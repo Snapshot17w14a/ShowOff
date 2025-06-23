@@ -9,8 +9,6 @@ public class CameraLerp : MonoBehaviour
 
     private Vector3 initialPosition;
     private Quaternion initialRotation;
-    private bool isLerpingAllowed = false;
-    private float time = 0;
 
     private void Awake()
     {
@@ -18,26 +16,14 @@ public class CameraLerp : MonoBehaviour
         initialRotation = transform.rotation;
     }
 
-    private void Update()
-    {
-        if (!isLerpingAllowed) return;
-
-        time += Time.deltaTime / duration;
-        var delayedTime = Mathf.Max(0, time - delay);
-
-        transform.SetPositionAndRotation(Vector3.Lerp(startTransform.position, initialPosition, delayedTime), Quaternion.Lerp(startTransform.rotation, initialRotation, delayedTime));
-
-        if (delayedTime >= 1f)
-        {
-            isLerpingAllowed = false;
-            swap.SetActive(true);
-        }
-    }
-
     public void StartLerping()
     {
-        time = 0;
-        isLerpingAllowed = true;
-        swap.SetActive(false);
+        Scheduler.Instance.DelayExecution(() =>
+        {
+            Scheduler.Instance.Lerp(t =>
+            {
+                transform.SetPositionAndRotation(Vector3.Lerp(startTransform.position, initialPosition, t), Quaternion.Lerp(startTransform.rotation, initialRotation, t));
+            }, duration, () => swap.SetActive(true));
+        }, delay);
     }
 }

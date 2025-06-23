@@ -57,14 +57,14 @@ public class MinigameHandler : MonoBehaviour
         onStateChanged?.Invoke();
     }
 
-    public void InstantiateAllPlayers() => ServiceLocator.GetService<PlayerRegistry>().InstantiateAllPlayers();
+    public void InstantiateAllPlayers() => Services.Get<PlayerRegistry>().InstantiateAllPlayers();
 
-    public void WipeScoreData() => ServiceLocator.GetService<ScoreRegistry>().WipeData();
+    public void WipeScoreData() => Services.Get<ScoreRegistry>().WipeData();
 
     private void OnDestroy() => Instance = null;
 
     public void SetAutoJoinStatus(bool status)
     {
-        ServiceLocator.GetService<PlayerAutoJoin>().AllowJoining = status;
+        Services.Get<PlayerAutoJoin>().AllowJoining = status;
     }
 }

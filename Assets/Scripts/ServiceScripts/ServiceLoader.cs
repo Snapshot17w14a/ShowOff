@@ -20,6 +20,6 @@ public static class ServiceLoader
     public static void InitializeServices()
     {
         //Tell the service locator to initialize all services
-        ServiceLocator.InitializeServices();
+        Services.InitializeServices();
     }
 }

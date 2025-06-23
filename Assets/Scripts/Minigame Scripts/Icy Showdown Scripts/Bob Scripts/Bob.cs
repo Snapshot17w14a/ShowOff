@@ -33,7 +33,6 @@ public class Bob : MonoBehaviour
     [SerializeField] private VisualEffect iceChargeup;
     [SerializeField] private VisualEffect iceBeam;
     [SerializeField] private GameObject hitEffect;
-    [SerializeField] private float iceStunDuration;
 
     [Header("Tail state settings")]
     [SerializeField] private float tailAttackTime;
@@ -95,7 +94,7 @@ public class Bob : MonoBehaviour
                     tailState.Initialize(tailAttackTime, tailProjectileCount, tailAttackArc, tailProjectile, transform, tailProjectileStrength, needleParentTransform);
                     break;
                 case BobIceState iceState:
-                    iceState.Initialize(transform, iceChargeup, iceBeam, hitEffect, beamLayerMask.value, iceStunDuration);
+                    iceState.Initialize(transform, iceChargeup, iceBeam, hitEffect, beamLayerMask.value);
                     break;
                 case BobBombState bombState:
                     bombState.Initialize(bombPrefab, bombParentTransform);

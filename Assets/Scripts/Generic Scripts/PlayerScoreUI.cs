@@ -42,7 +42,7 @@ public class PlayerScoreUI : MonoBehaviour
     private void OnTreasureDelivered(int points)
     {
         score += points;
-        ServiceLocator.GetService<ScoreRegistry>().AddScore(minigamePlayer, points);
+        Services.Get<ScoreRegistry>().AddScore(minigamePlayer, points);
         UpdateText();
         Scheduler.Instance.Lerp(t =>
         {

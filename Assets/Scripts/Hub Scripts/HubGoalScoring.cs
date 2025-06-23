@@ -1,4 +1,3 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -15,9 +14,12 @@ public class HubGoalScoring : MonoBehaviour
     [SerializeField] private VisualEffect partyParticle;
     [SerializeField] private AudioSource partySound;
     private int currentScore;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ball") && !hasScored)
+        if (hasScored) return;
+
+        if (other.CompareTag("Ball"))
         {
             currentScore++;
             scoreText.text = currentScore.ToString();
@@ -29,15 +31,12 @@ public class HubGoalScoring : MonoBehaviour
                 partySound.Play();
 
             hasScored = true;
-            StartCoroutine(RespawnBall(other.gameObject));
+            Scheduler.Instance.DelayExecution(() =>
+            {
+                Destroy(other.gameObject);
+                Instantiate(ballPrefab, ballRespawnPosition, Quaternion.identity);
+                hasScored = false;
+            }, 1f);
         }
-    }
-
-    private IEnumerator RespawnBall(GameObject curBall)
-    {
-        yield return new WaitForSeconds(1f);
-        Destroy(curBall);
-        Instantiate(ballPrefab, ballRespawnPosition, Quaternion.identity);
-        hasScored = false;
     }
 }

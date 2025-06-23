@@ -217,7 +217,7 @@ public class PlayerRegistry : Service
         if (regPlayer.device == Keyboard.current)
         {
             keyboardPlayers--;
-            ServiceLocator.GetService<PlayerAutoJoin>().AddBackKeyboardBindings(regPlayer.controlScheme);
+            Services.Get<PlayerAutoJoin>().AddBackKeyboardBindings(regPlayer.controlScheme);
         }
 
         //Push the id of the disconnected player to allow it to he used again

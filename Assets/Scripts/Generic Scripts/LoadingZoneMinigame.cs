@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,7 +26,7 @@ public class LoadingZoneMinigame : MonoBehaviour
 
     private void Start()
     {
-        var registry = ServiceLocator.GetService<PlayerRegistry>();
+        var registry = Services.Get<PlayerRegistry>();
 
         registry.OnPlayerSpawn += AddPlayer;
         registry.BeforePlayerDisconnect += RemovePlayer;
@@ -55,7 +54,7 @@ public class LoadingZoneMinigame : MonoBehaviour
                 autodolly.Speed = 0.5f;
                 skipButton.SetActive(true);
 
-                ServiceLocator.GetService<PlayerRegistry>().ExecuteForEachPlayer(player =>
+                Services.Get<PlayerRegistry>().ExecuteForEachPlayer(player =>
                 {
                     player.transform.Find("Indicator").gameObject.SetActive(false);
                     player.GetComponent<PlayerInput>().DeactivateInput();
@@ -102,7 +101,7 @@ public class LoadingZoneMinigame : MonoBehaviour
 
     private void AddPlayer(MinigamePlayer player)
     {
-        int registeredPlayers = ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount;
+        int registeredPlayers = Services.Get<PlayerRegistry>().RegisteredPlayerCount;
         float curPlayers = (float)registeredPlayers;
         playerReadyThreshold = Mathf.Ceil(curPlayers / 2f + 1f);
         RecheckThreshold();
@@ -134,8 +133,8 @@ public class LoadingZoneMinigame : MonoBehaviour
 
     private void OnDisable()
     {
-        ServiceLocator.GetService<PlayerRegistry>().OnPlayerSpawn -= AddPlayer;
-        ServiceLocator.GetService<PlayerRegistry>().BeforePlayerDisconnect -= RemovePlayer;
+        Services.Get<PlayerRegistry>().OnPlayerSpawn -= AddPlayer;
+        Services.Get<PlayerRegistry>().BeforePlayerDisconnect -= RemovePlayer;
     }
 
     private void OnGrab()
@@ -148,6 +147,6 @@ public class LoadingZoneMinigame : MonoBehaviour
 
     private void OnEnable()
     {
-        playerReadyThreshold = Mathf.Ceil((float)ServiceLocator.GetService<PlayerRegistry>().RegisteredPlayerCount / 2f + 1f);
+        playerReadyThreshold = Mathf.Ceil((float)Services.Get<PlayerRegistry>().RegisteredPlayerCount / 2f + 1f);
     }
 }

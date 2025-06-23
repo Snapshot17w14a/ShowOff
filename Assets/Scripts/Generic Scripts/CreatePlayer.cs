@@ -41,7 +41,7 @@ public class CreatePlayer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && numPlayers < maxPlayers)
         {
-            MinigamePlayer player = ServiceLocator.GetService<PlayerRegistry>().CreatePlayerWithDevice(numPlayers < 2 ? Keyboard.current : gamepads[numPlayers - 2]);
+            MinigamePlayer player = Services.Get<PlayerRegistry>().CreatePlayerWithDevice(numPlayers < 2 ? Keyboard.current : gamepads[numPlayers - 2]);
             numPlayers++;
             OnPlayerSpawn?.Invoke(player);
         }
@@ -55,6 +55,6 @@ public class CreatePlayer : MonoBehaviour
 
     public void InstantiateAllPlayers()
     {
-        ServiceLocator.GetService<PlayerRegistry>().InstantiateAllPlayers();
+        Services.Get<PlayerRegistry>().InstantiateAllPlayers();
     }
 }

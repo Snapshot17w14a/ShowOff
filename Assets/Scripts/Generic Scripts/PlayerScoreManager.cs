@@ -26,12 +26,12 @@ public class PlayerScoreManager : MonoBehaviour
         Debug.Assert(scoreParent != null);
         Debug.Assert(scorePrefab != null);
 
-        ServiceLocator.GetService<PlayerRegistry>().OnPlayerSpawn += GenerateScoreUI;
+        Services.Get<PlayerRegistry>().OnPlayerSpawn += GenerateScoreUI;
     }
 
     private void OnDestroy()
     {
-        ServiceLocator.GetService<PlayerRegistry>().OnPlayerSpawn -= GenerateScoreUI;
+        Services.Get<PlayerRegistry>().OnPlayerSpawn -= GenerateScoreUI;
         playerScore.OnEvaluateScore -= ToggleFireUIAnimation;
 
     }
@@ -40,7 +40,7 @@ public class PlayerScoreManager : MonoBehaviour
     {
          playerScore = Instantiate(scorePrefab, scoreParent);
         //Changing the UI frame of the winner penguin
-        RegisteredPlayer data = ServiceLocator.GetService<PlayerRegistry>().GetPlayerData(player.RegistryID);
+        RegisteredPlayer data = Services.Get<PlayerRegistry>().GetPlayerData(player.RegistryID);
         if (data.isLastWinner)
         {
             playerScore.goldenPenguinFrame.SetActive(true);

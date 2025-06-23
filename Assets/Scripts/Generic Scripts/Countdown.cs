@@ -34,7 +34,7 @@ public class Countdown : MonoBehaviour
         if (!isCountdownStarted) return;
         currentSeconds -= Time.deltaTime;
         var numString = Mathf.RoundToInt(currentSeconds).ToString();
-        countdownText.text = numString == "0" ? "GO!" : numString;
+        countdownText.text = numString;
         if (currentSeconds <= 0)
         {
             onContdownEnd?.Invoke();

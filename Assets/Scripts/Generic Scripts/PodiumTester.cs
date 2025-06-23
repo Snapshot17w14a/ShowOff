@@ -7,11 +7,11 @@ public class PodiumTester : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        var registry = ServiceLocator.GetService<PlayerRegistry>();
+        var registry = Services.Get<PlayerRegistry>();
         registry.CreatePlayerWithDevice(Keyboard.current);
         registry.CreatePlayerWithDevice(Keyboard.current);
 
-        var scoreReg = ServiceLocator.GetService<ScoreRegistry>();
+        var scoreReg = Services.Get<ScoreRegistry>();
 
         scoreReg.AddScore(0, Random.Range(0, 4));
         scoreReg.AddScore(1, Random.Range(0, 10));

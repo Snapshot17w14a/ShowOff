@@ -4,7 +4,6 @@ using UnityEngine;
 public class BobIdleState : BobState
 {
     private float idleSeconds;
-    private float time = 0;
 
     private Quaternion initialRotation;
     private Quaternion targetRotation;
@@ -24,22 +23,18 @@ public class BobIdleState : BobState
         ChooseRandomAngle();
 
         isStateRunning = true;
+
+        Scheduler.Instance.Lerp(t => bobTransform.rotation = Quaternion.Slerp(initialRotation, targetRotation, t), idleSeconds, () => isStateRunning = false);
     }
 
     public override void TickState()
     {
-        if (!isStateRunning) return;
-
-        time += Time.deltaTime / idleSeconds;
-        bobTransform.rotation = Quaternion.Slerp(initialRotation, targetRotation, time);
-
-        if (time >= 1) isStateRunning = false;
     }
 
     public override void UnloadState()
     {
-        time = 0;
     }
+
 
     private void ChooseRandomAngle()
     {

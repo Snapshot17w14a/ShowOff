@@ -91,7 +91,7 @@ public class PlayerAutoJoin : Service
         InputDevice device = context.control.device;
 
         //Get a reference to the player registry
-        var playerRegistry = ServiceLocator.GetService<PlayerRegistry>();
+        var playerRegistry = Services.Get<PlayerRegistry>();
 
         //If a player with the given device already exists ignore it
         if (playerRegistry.DoesPlayerWithDeviceExist(device)) return;

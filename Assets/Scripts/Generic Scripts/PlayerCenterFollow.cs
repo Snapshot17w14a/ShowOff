@@ -14,12 +14,17 @@ public class PlayerCenterFollow : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        PlayerRegistry registry = ServiceLocator.GetService<PlayerRegistry>();
+        PlayerRegistry registry = Services.Get<PlayerRegistry>();
 
         playerTransforms = new(registry.MaxPlayers);
-        registry.OnPlayerSpawn += player => playerTransforms.Add(player.transform);
+        registry.OnPlayerSpawn += AddPlayerTransform;
 
         initialOffset = transform.position;
+    }
+
+    private void OnDestroy()
+    {
+        Services.Get<PlayerRegistry>().OnPlayerSpawn -= AddPlayerTransform;
     }
 
     // Update is called once per frame
@@ -71,4 +76,6 @@ public class PlayerCenterFollow : MonoBehaviour
             () => Scheduler.Instance.Lerp(CalculateShake, time, () => isShaking = false)
         );
     }
+
+    private void AddPlayerTransform(MinigamePlayer player) => playerTransforms.Add(player.transform);
 }

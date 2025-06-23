@@ -19,7 +19,7 @@ public class LerpRoutine : SchedulerRoutine
     {
         float time = 0;
 
-        while (time < 1)
+        while (time <= 1)
         {
             time += Time.deltaTime / duration;
             toLerpFunction(time);

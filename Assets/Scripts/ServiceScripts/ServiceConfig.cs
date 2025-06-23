@@ -19,19 +19,19 @@ public class ServiceConfig : ScriptableObject
             playerPrefab = playerPrefab,
             visualData = playerVisualData
         };
-        ServiceLocator.RegisterService(playerRegistry);
+        Services.RegisterService(playerRegistry);
 
         PlayerAutoJoin playerAutoJoin = new()
         {
             inputActions = inputActions
         };
-        ServiceLocator.RegisterService(playerAutoJoin);
+        Services.RegisterService(playerAutoJoin);
 
         ScoreRegistry scoreRegistry = new();
-        ServiceLocator.RegisterService(scoreRegistry);
+        Services.RegisterService(scoreRegistry);
 
         PauseManager pauseManager = new();
-        ServiceLocator.RegisterService(pauseManager);
+        Services.RegisterService(pauseManager);
 
         new GameObject("Scheduler").AddComponent<Scheduler>();
         Instantiate(audioManager);

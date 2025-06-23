@@ -36,7 +36,7 @@ public class RendererFading : MonoBehaviour
     public void FadeAllChildOut(float fadeSeconds, float delay)
     {
         if (renderers.Count == 0) GetRenderersRecursively(transform);
-        StartCoroutine(DelayExecution(FadeOut(fadeSeconds, renderers.ToArray()), delay));
+        Scheduler.Instance.DelayExecution(FadeOut(fadeSeconds, renderers.ToArray()), delay);
     }
 
     private IEnumerator FadeOut(float seconds, Renderer[] renderers)
@@ -56,11 +56,5 @@ public class RendererFading : MonoBehaviour
 
             yield return null;
         }
-    }
-
-    private IEnumerator DelayExecution(IEnumerator routine, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        StartCoroutine(routine);
     }
 }

@@ -14,7 +14,7 @@ public class HubParkourFinish : MonoBehaviour
         {
             curPlayers++;
             isPlayerOnMinecart = true;
-            Invoke("ShowLolo", 1);
+            Invoke(nameof(ShowLolo), 1);
         }
     }
 

@@ -5,19 +5,19 @@ public class Menu : MonoBehaviour
 {
     public void Continue()
     {
-        ServiceLocator.GetService<PauseManager>().Unpause();
+        Services.Get<PauseManager>().Unpause();
     }
 
     public void Restart()
     {
-        ServiceLocator.GetService<PauseManager>().Unpause();
+        Services.Get<PauseManager>().Unpause();
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
 
     public void GoToHub()
     {
-        ServiceLocator.GetService<PauseManager>().Unpause();
+        Services.Get<PauseManager>().Unpause();
         SceneManager.LoadScene("HubScene");
     }
 }

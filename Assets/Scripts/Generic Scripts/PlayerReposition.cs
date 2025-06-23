@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,19 +43,13 @@ public class PlayerReposition : MonoBehaviour
             colliderDampeningPair.Add(collider, rb.linearDamping);
             rb.linearDamping = 0;
 
-            StartCoroutine(ResetPlayerCollider(collider, flightDuration - 0.1f));
+            Scheduler.Instance.DelayExecution(() =>
+            {
+                collider.enabled = true;
+                collider.GetComponent<MinigamePlayer>().SetFlightState(false);
+                collider.GetComponent<Rigidbody>().linearDamping = colliderDampeningPair[collider];
+                colliderDampeningPair.Remove(collider);
+            }, flightDuration - 0.1f);
         }
-    }
-
-    private IEnumerator ResetPlayerCollider(Collider colliderToReset, float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-
-        colliderToReset.enabled = true;
-        colliderToReset.GetComponent<MinigamePlayer>().SetFlightState(false);
-        colliderToReset.GetComponent<Rigidbody>().linearDamping = colliderDampeningPair[colliderToReset];
-        colliderDampeningPair.Remove(colliderToReset);
-
-        yield return null;
     }
 }
