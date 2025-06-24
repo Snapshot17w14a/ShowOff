@@ -1,6 +1,8 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 
 public class SkinManager : MonoBehaviour
 {
@@ -52,7 +54,19 @@ public class SkinManager : MonoBehaviour
 
         dashIndicator.GetComponent<MeshRenderer>().material.SetColor("_ColorCircle", data.color);
 
+        SetDualshockColor(data, playerId);
+
         playerColor = data.color;
+    }
+
+    private void SetDualshockColor(PlayerVisualData data, int playerId)
+    {
+        InputDevice inputDevie = GetComponent<PlayerInput>().devices[0];
+
+        if (inputDevie is DualShockGamepad dualshock)
+        {
+            dualshock.SetLightBarColor(data.color);
+        }
     }
 
     private void ForEachPlayerRenderer(Action<SkinnedMeshRenderer> function)

@@ -377,8 +377,15 @@ public class TreasureInteraction : MonoBehaviour
         else if (collectedPickupable != null)
         {
             animator.SetTrigger("Throw");
-            DropTreasure();
             animator.SetBool("IsHolding", false);
+            DropTreasure();
+
+            InputDevice inputDevice = miniGamePlayer.PlayerInput.devices[0];
+            if (inputDevice is Gamepad inputController)
+            {
+                inputController.SetMotorSpeeds(0.5f, 0f);
+                Scheduler.Instance.DelayExecution(() => inputController.SetMotorSpeeds(0, 0), 1f);
+            }
         }
     }
 

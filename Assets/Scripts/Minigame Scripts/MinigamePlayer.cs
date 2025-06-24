@@ -61,6 +61,8 @@ public class MinigamePlayer : MonoBehaviour
 
     public Color playerColor;
 
+    public PlayerInput PlayerInput { get; private set; }
+
     /// <summary>
     /// The id of the player in the PlayerRegistry
     /// </summary>
@@ -80,6 +82,7 @@ public class MinigamePlayer : MonoBehaviour
     private void Start()
     {
         Services.Get<ScoreRegistry>().AddPlayer(RegistryID);
+        PlayerInput = GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
