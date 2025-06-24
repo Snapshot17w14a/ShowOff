@@ -5785,7 +5785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc083e4d56be1746b7fa17150615d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialMinigameState: {fileID: 4230930453622720980}
+  initialMinigameState: {fileID: 906880321}
   onStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6170,7 +6170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &906880321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6600,11 +6600,11 @@ PrefabInstance:
       value: Crown
       objectReference: {fileID: 0}
     - target: {fileID: 8442510506162454399, guid: a1762096d9eda284ab740ab836bb6f14, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 036a09f60111b5e408206be3e9fd7989, type: 2}
     - target: {fileID: 8442510506162454399, guid: a1762096d9eda284ab740ab836bb6f14, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: f5f0b6068676eb34bb58f4ba8fc35cb0, type: 2}
     m_RemovedComponents: []
@@ -6671,7 +6671,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024233209}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -9260,7 +9260,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 686915813186682155, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3415298888954229509, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
       propertyPath: m_Name
@@ -10777,7 +10777,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4157524182732408741, guid: 40ddc3b11ec36dd44b225592b9c631e1, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 5be4d49366ae6d94d916cd1e27644776, type: 2}
     - target: {fileID: 919132149155446097, guid: 40ddc3b11ec36dd44b225592b9c631e1, type: 3}
@@ -12296,8 +12296,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634748208}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.23028623, y: -0.49400848, z: 0.13755406, w: 0.8270446}
-  m_LocalPosition: {x: -1.3021011, y: 1.8497791, z: -1.4525928}
+  m_LocalRotation: {x: -0.020483429, y: -0.012463308, z: -0.00025536466, w: 0.9997125}
+  m_LocalPosition: {x: 0.18, y: 0.674, z: -7.218}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12454,11 +12454,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.099999994
+  far clip plane: 999.99994
   field of view: 60.000004
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 0.24
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -14425,7 +14425,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: aa571af82985b994ab64430d7de9eb40, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f49faaf0488c2704f9c20e43bc1d4ba3, type: 2}
     - target: {fileID: 919132149155446097, guid: aa571af82985b994ab64430d7de9eb40, type: 3}
@@ -15456,10 +15456,10 @@ MonoBehaviour:
         z: 0.847824
       Rotation:
         value:
-          x: 0.124603495
-          y: -0.20442887
+          x: 0.1246035
+          y: -0.20442893
           z: 0.053355623
-          w: 0.96945137
+          w: 0.9694514
     - Position:
         x: -0.407
         y: -0.01700002
@@ -18617,7 +18617,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextMinigameState: {fileID: 1620836870}
-  stateDurationSeconds: 5
+  stateDurationSeconds: 120
   onStateLoaded:
     m_PersistentCalls:
       m_Calls:
