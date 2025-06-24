@@ -11832,11 +11832,11 @@ Transform:
   m_GameObject: {fileID: 1168140831}
   serializedVersion: 2
   m_LocalRotation: {x: -0.99999994, y: -0, z: -0, w: 0.00040522218}
-  m_LocalPosition: {x: 0.57, y: 22.28, z: 0.14}
+  m_LocalPosition: {x: 1.3089328, y: -15.585772, z: 8.009514}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1255430335}
   m_LocalEulerAnglesHint: {x: -179.954, y: 0, z: 0}
 --- !u!1 &1176737523
 GameObject:
@@ -12805,6 +12805,7 @@ Transform:
   - {fileID: 480546202}
   - {fileID: 1864747730}
   - {fileID: 422959088}
+  - {fileID: 1168140835}
   m_Father: {fileID: 1955875612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1273101747
@@ -19206,7 +19207,6 @@ GameObject:
   - component: {fileID: 1832056723}
   - component: {fileID: 1832056722}
   - component: {fileID: 1832056721}
-  - component: {fileID: 1832056724}
   m_Layer: 0
   m_Name: LoadZone
   m_TagString: Untagged
@@ -19253,6 +19253,31 @@ MonoBehaviour:
   cinemachineSplineDolly: {fileID: 676171287}
   MainCamera: {fileID: 1787448009}
   cutsceneCamera: {fileID: 1176737525}
+  skipInput:
+    m_Name: Skip Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1e50096b-9463-4eff-a1a0-3de47ffa533c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b65919ba-af49-4c94-9d69-6046de266960
+      m_Path: <Gamepad>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Skip Input
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 8de934d0-e598-4ea1-9729-d0a326ea1efd
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Skip Input
+      m_Flags: 0
+    m_Flags: 0
 --- !u!4 &1832056723
 Transform:
   m_ObjectHideFlags: 0
@@ -19268,36 +19293,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1809726264}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1832056724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832056720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 2b1428ed59ecb6447a63d6a59a4cf11e, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &1842187502
 GameObject:
   m_ObjectHideFlags: 0
@@ -23750,3 +23745,6 @@ SceneRoots:
   - {fileID: 318194415}
   - {fileID: 897397647}
   - {fileID: 1168140835}
+  - {fileID: 174203197}
+  - {fileID: 1787799724}
+  - {fileID: 1008819945}

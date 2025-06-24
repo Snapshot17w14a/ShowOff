@@ -5257,7 +5257,6 @@ GameObject:
   m_Component:
   - component: {fileID: 781979955}
   - component: {fileID: 781979956}
-  - component: {fileID: 781979957}
   m_Layer: 0
   m_Name: CutsceneCamera
   m_TagString: Untagged
@@ -5301,6 +5300,31 @@ MonoBehaviour:
   MainCamera: {fileID: 1116519834}
   cutsceneCamera: {fileID: 1139261529}
   penguinAnimScript: {fileID: 2038071993}
+  skipInput:
+    m_Name: Skip Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 3240484a-6fb3-42f6-8080-14c00bf78d25
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 82486e08-3912-4522-9998-01de29a512ac
+      m_Path: <Gamepad>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Skip Input
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 768c73c3-2695-457c-bc22-bc8b0f87fd02
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Skip Input
+      m_Flags: 0
+    m_Flags: 0
   OnCameraReady:
     m_PersistentCalls:
       m_Calls:
@@ -5316,36 +5340,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &781979957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781979954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 2b1428ed59ecb6447a63d6a59a4cf11e, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &787391174
 GameObject:
   m_ObjectHideFlags: 0

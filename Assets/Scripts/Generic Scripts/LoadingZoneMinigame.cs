@@ -14,6 +14,8 @@ public class LoadingZoneMinigame : MonoBehaviour
     [SerializeField] private Camera MainCamera;
     [SerializeField] private Camera cutsceneCamera;
 
+    [SerializeField] private InputAction skipInput;
+
     private float countdownTimer = 3;
     private bool playersReady;
 
@@ -36,6 +38,9 @@ public class LoadingZoneMinigame : MonoBehaviour
 
         playerReadyThreshold = Mathf.Ceil((float)registry.RegisteredPlayerCount / 2f + 1f);
         AudioManager.PlayMusic(ESoundType.Music, "Icy_Showdown", 0.3f);
+
+        skipInput.performed += SkipCutscene;
+        skipInput.Enable();
     }
 
     private void Update()
@@ -69,12 +74,6 @@ public class LoadingZoneMinigame : MonoBehaviour
                 isLoadingMinigame = true;
                 TransitionController.Instance.TransitionOut(minigameName);
             }
-        }
-
-        //Call this to skip cutscene
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            OnGrab();
         }
     }
 
@@ -135,9 +134,10 @@ public class LoadingZoneMinigame : MonoBehaviour
     {
         Services.Get<PlayerRegistry>().OnPlayerSpawn -= AddPlayer;
         Services.Get<PlayerRegistry>().BeforePlayerDisconnect -= RemovePlayer;
+        skipInput.performed -= SkipCutscene;
     }
 
-    private void OnGrab()
+    private void SkipCutscene(InputAction.CallbackContext ctx)
     {
         if (isTranstitioning)
         {

@@ -238,6 +238,8 @@ public class MinigamePlayer : MonoBehaviour
     {
         MinigamePlayer otherPlayer = collision.gameObject.GetComponent<MinigamePlayer>();
 
+        if (otherPlayer.IsStunned) return;
+
         otherPlayer.StunPlayer(dashStunDuration);
         AudioManager.PlaySound(ESoundType.Penguin, "Player_Hit", false, 1f, 0.5f);
         TreasureInteraction otherTreasure = otherPlayer.TreasureInteraction;

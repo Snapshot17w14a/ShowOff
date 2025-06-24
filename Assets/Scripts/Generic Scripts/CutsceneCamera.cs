@@ -1,6 +1,7 @@
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class CutsceneCamera : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class CutsceneCamera : MonoBehaviour
     [SerializeField] private Camera MainCamera;
     [SerializeField] private Camera cutsceneCamera;
     [SerializeField] private CutsceneAnimation penguinAnimScript;
+
+    [SerializeField] private InputAction skipInput;
 
     private bool finishedCutscene;
     private Vector3 startPos;
@@ -27,6 +30,9 @@ public class CutsceneCamera : MonoBehaviour
         //Debug.Log(cinemachineSplineDolly.Spline.Splines[0].Count);
         knots = cinemachineSplineDolly.Spline.Splines[0].Count;
         AudioManager.StopMusic();
+
+        skipInput.performed += SkipCutscene;
+        skipInput.Enable();
     }
 
     private void Update()
@@ -37,12 +43,6 @@ public class CutsceneCamera : MonoBehaviour
         {
             finishedCutscene = true;
             Invoke(nameof(CutsceneFinished), delayCameraSwap);
-        }
-
-        //Skips Cutscene (Can assign it to other keybinds, just call this function)
-        if (Input.GetKey(KeyCode.Space) && !cutsceneSkipped)
-        {
-            OnGrab();
         }
     }
 
@@ -89,7 +89,7 @@ public class CutsceneCamera : MonoBehaviour
         }
     }
 
-    private void OnGrab()
+    private void SkipCutscene(InputAction.CallbackContext ctx)
     {
         if (!cutsceneSkipped)
         {
