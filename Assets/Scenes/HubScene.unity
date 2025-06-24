@@ -16937,8 +16937,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645914231}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10976851, y: 0.0007288563, z: -0.0000804919, w: 0.9939569}
-  m_LocalPosition: {x: -1.1503861, y: 34.195137, z: -63.77203}
+  m_LocalRotation: {x: 0.5022367, y: 0.0013264613, z: -0.00077041204, w: 0.86472887}
+  m_LocalPosition: {x: -0.04054181, y: -14.262992, z: -6.915655}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17203,8 +17203,8 @@ MonoBehaviour:
         z: 1.8144974
       Rotation:
         value:
-          x: 0.097861275
-          y: 0.22699755
+          x: 0.09786127
+          y: 0.22699758
           z: 0.8929545
           w: -0.37620142
     - Position:
@@ -20551,7 +20551,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1955875612}
   - component: {fileID: 1955875611}
-  - component: {fileID: 1955875613}
   m_Layer: 0
   m_Name: HubScoreState
   m_TagString: Untagged
@@ -20595,7 +20594,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   fadeOutSeconds: 2
-  fader: {fileID: 1955875613}
 --- !u!4 &1955875612
 Transform:
   m_ObjectHideFlags: 0
@@ -20621,18 +20619,6 @@ Transform:
   - {fileID: 1255430335}
   m_Father: {fileID: 529830770}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1955875613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955875610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c98a277e71e2f43a57e4fa7fd3739c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1960650524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e9a84bacc1bd09245adf74951179f12b, type: 3}
