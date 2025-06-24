@@ -53,7 +53,7 @@ Material:
     m_Floats:
     - _Clip_Threshold: 1
     - _Dither_Offset: 1
-    - _Dither_Range: 1
+    - _Dither_Range: 0.3
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:

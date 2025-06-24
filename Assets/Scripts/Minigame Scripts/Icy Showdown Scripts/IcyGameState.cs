@@ -4,4 +4,10 @@ public class IcyGameState : MinigameState
     {
         base.TickState();
     }
+
+    public override void UnloadState()
+    {
+        base.UnloadState();
+        Scheduler.Instance.StopAllRoutines();
+    }
 }

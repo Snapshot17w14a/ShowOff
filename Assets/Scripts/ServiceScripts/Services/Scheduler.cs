@@ -77,6 +77,16 @@ public class Scheduler : MonoBehaviour
         StopCoroutine(runningCoroutines[handle].coroutineReference);
         StopTrackingRoutine(handle);
     }
+
+    public void StopAllRoutines()
+    {
+        foreach(var routine in runningCoroutines.Values)
+        {
+            StopCoroutine(routine.coroutineReference);
+        }
+
+        runningCoroutines.Clear();
+    }
 }
 
 public abstract class SchedulerRoutine

@@ -358,6 +358,7 @@ public class TreasureInteraction : MonoBehaviour
             CollectTreasure();
             animator.SetTrigger("PickUp");
             animator.SetBool("IsHolding", true);
+            RumbleController();
             pickUpCooldown = Time.time + _pickUpCooldown;
         }
         else if (nearbyPickable != null && collectedPickupable == null)
@@ -365,6 +366,7 @@ public class TreasureInteraction : MonoBehaviour
             CollectTreasureFromGround(nearbyPickable);
             animator.SetTrigger("PickUp");
             animator.SetBool("IsHolding", true);
+            RumbleController();
             nearbyPickable = null;
             EnableButtonIndicator(false);
         }
@@ -379,13 +381,16 @@ public class TreasureInteraction : MonoBehaviour
             animator.SetTrigger("Throw");
             animator.SetBool("IsHolding", false);
             DropTreasure();
+        }
+    }
 
-            InputDevice inputDevice = miniGamePlayer.PlayerInput.devices[0];
-            if (inputDevice is Gamepad inputController)
-            {
-                inputController.SetMotorSpeeds(0.5f, 0f);
-                Scheduler.Instance.DelayExecution(() => inputController.SetMotorSpeeds(0, 0), 1f);
-            }
+    private void RumbleController()
+    {
+        InputDevice inputDevice = miniGamePlayer.PlayerInput.devices[0];
+        if (inputDevice is Gamepad inputController)
+        {
+            inputController.SetMotorSpeeds(0.5f, 0f);
+            Scheduler.Instance.DelayExecution(() => inputController.SetMotorSpeeds(0, 0), 1f);
         }
     }
 

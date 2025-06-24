@@ -20,7 +20,7 @@ public class PlayerRegistry : Service
 
     public int RegisteredPlayerCount => players;
     public int MaxPlayers => maxPlayers;
-    public RegisteredPlayer[] AllPlayers => registeredPlayers;
+    public Span<RegisteredPlayer> AllPlayers => registeredPlayers;
 
     /// <summary>
     /// When a player is instantiated, this event is triggered and a reference to the instantiated <see cref="MinigamePlayer"/> is passed as a parameter
