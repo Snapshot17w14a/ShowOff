@@ -76,6 +76,7 @@ public class IcePlatform : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             Destroy(transform.GetChild(i).gameObject);
+            AudioManager.PlaySound(ESoundType.Environment, "Platform_Break", false);
         }
 
         if (currentRoutine != null) StopCoroutine(currentRoutine);

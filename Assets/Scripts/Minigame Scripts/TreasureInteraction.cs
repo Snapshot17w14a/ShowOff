@@ -146,6 +146,7 @@ public class TreasureInteraction : MonoBehaviour
             {
                 deliveredPickup.targetMinecart.AddGem();
                 Destroy(deliveredPickup.gameObject);
+                AudioManager.PlaySound(ESoundType.Environment, "Minecart_Delivery", false);
             }, 1f);
         }
     }

@@ -50,7 +50,6 @@ public class LoadingZoneMinigame : MonoBehaviour
         {
             countdownTimer -= Time.deltaTime;
             countDownTimerText.text = countdownTimer.ToString("F0");
-
             if (countdownTimer <= 0 && !isTranstitioning)
             {
                 isTranstitioning = true;
@@ -87,6 +86,7 @@ public class LoadingZoneMinigame : MonoBehaviour
         {
             playersReady = true;
             countDownTimerText.enabled = true;
+            AudioManager.PlaySound(ESoundType.Other, "CountDown_Hub", false);
         }
     }
 
@@ -96,6 +96,7 @@ public class LoadingZoneMinigame : MonoBehaviour
         {
             readyPlayers.Remove(other.GetComponent<MinigamePlayer>());
             RecheckThreshold();
+            AudioManager.StopSound();
         }
     }
 
