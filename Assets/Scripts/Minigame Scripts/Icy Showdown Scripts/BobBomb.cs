@@ -55,6 +55,7 @@ public class BobBomb : MonoBehaviour
         onBombExplode();
         targetPlatform.BreakPlatform();
         transform.GetChild(0).transform.SetParent(transform.parent);
+        AudioManager.PlaySound(ESoundType.Bob, "Bomb", false);
         Destroy(gameObject);
     }
 }

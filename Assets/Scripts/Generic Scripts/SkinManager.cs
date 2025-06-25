@@ -14,15 +14,8 @@ public class SkinManager : MonoBehaviour
     [SerializeField] private GameObject crownParent;
     [SerializeField] private GameObject crown;
 
-    private Material dashIndicatorMaterial;
-
     public Color playerColor;
     public int RegistryID => GetComponent<MinigamePlayer>().RegistryID; 
-
-    private void Awake()
-    {
-        dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
-    }
 
     public void ChangeSkin()
     {
@@ -32,14 +25,14 @@ public class SkinManager : MonoBehaviour
         {
             SetPlayerColor(goldVisual, RegistryID);
             dashIndicator.GetComponent<MeshRenderer>().material = goldDashMaterial;
-            dashIndicatorMaterial = dashIndicator.GetComponent<MeshRenderer>().material;
+            GetComponent<MinigamePlayer>().SetDashIndicatorMaterial(dashIndicator.GetComponent<MeshRenderer>().material);
             EnableCrown(true);
         }
     }
 
     private void EnableCrown(bool state)
     {
-        crown.gameObject.SetActive(state);
+        crown.SetActive(state);
     }
 
     public void SetPlayerColor(PlayerVisualData data, int playerId)
