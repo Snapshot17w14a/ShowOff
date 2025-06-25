@@ -49,6 +49,8 @@ public class MinigamePlayer : MonoBehaviour
     public Animator GetPlayerAnimator => animator;
     [SerializeField] private Animator animator;
 
+    public bool IsDashing => isDashing;
+
     private bool isDashAvailable = true;
     private float dashTimer = 0f;
 

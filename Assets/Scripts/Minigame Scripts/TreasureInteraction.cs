@@ -15,7 +15,13 @@ public class TreasureInteraction : MonoBehaviour
     [Header("Large Gem Settings")]
     [SerializeField, Range(1, 100)] private int spawnChance;
     [SerializeField, Range(0, 100)] private int movementSpeedPenalty;
-    [SerializeField, Range(1, 5)] private float throwPenalty = 2.5f;
+    [SerializeField, Range(1, 5)] private float bigGemthrowPenalty = 2.5f;
+
+    [Header("Regular Gem Settings")]
+    [SerializeField, Range(1, 5)] private float regularGemThrowPenalty = 1.5f;
+    [SerializeField, Range(1, 10)] private float velocityThrowPenalty = 3f;
+    [SerializeField, Range(1, 10)] private float dashVelocityPenalty = 6f;
+
 
     [Header("Other stuff")]
     [SerializeField] private Transform holdPoint;
@@ -183,7 +189,7 @@ public class TreasureInteraction : MonoBehaviour
         if (collectedPickupable != null)
         {
             Vector3 position = transform.position;
-            Vector3 dropPosition = transform.forward / (collectedPickupable.Worth > 1f ? throwPenalty : 1.5f);
+            Vector3 dropPosition = transform.forward / (collectedPickupable.Worth > 1f ? bigGemthrowPenalty : regularGemThrowPenalty);
 
             Vector3 spawnPosition = position + dropPosition;
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
@@ -193,7 +199,8 @@ public class TreasureInteraction : MonoBehaviour
             collectedPickupable.transform.SetParent(null, true);
             collectedPickupable.SetKinematic(false);
             collectedPickupable.parentInteration = this;
-            collectedPickupable.CalculateVelocity(spawnPoint, spawnPosition + (rb.linearVelocity / 3f), 0.3f);
+            collectedPickupable.CalculateVelocity(spawnPoint, spawnPosition + 
+                (rb.linearVelocity / (GetComponent<MinigamePlayer>().IsDashing ? dashVelocityPenalty : velocityThrowPenalty)), 0.3f);
             collectedPickupable.DespawnAfter(droppedTreasureDespawnTime);
             collectedPickupable = null;
         }
