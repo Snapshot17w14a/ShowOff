@@ -264,4 +264,6 @@ public class MinigamePlayer : MonoBehaviour
             }
         }
     }
+
+    public void SetDashIndicatorMaterial(Material material) => dashIndicatorMaterial = material;
 }

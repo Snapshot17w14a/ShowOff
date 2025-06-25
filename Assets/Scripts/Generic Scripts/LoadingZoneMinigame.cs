@@ -155,6 +155,7 @@ public class LoadingZoneMinigame : MonoBehaviour
     private void AfterDisconnect(int id)
     {
         CalcThreshold();
+        RecheckThreshold();
     }
 
     private void OnEnable()
