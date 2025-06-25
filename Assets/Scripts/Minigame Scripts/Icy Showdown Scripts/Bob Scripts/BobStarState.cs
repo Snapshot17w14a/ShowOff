@@ -27,6 +27,7 @@ public class BobStarState : BobState
         isStateRunning = true;
         starEffect.Reinit();
         starEffect.Play();
+        AudioManager.PlaySound(ESoundType.Bob, "Tail_Star_Shoot", false);
 
         Scheduler.Instance.DelayExecution(() => SpawnIcicles(Random.Range(minCount, maxCount + 1)), timeTillSpawn);
     }
@@ -41,7 +42,6 @@ public class BobStarState : BobState
 
     private void SpawnIcicles(int count)
     {
-        AudioManager.PlaySound(ESoundType.Bob, "Tail_Star_Shoot", false);
         for (int i = 0; i < count; i++)
         {
             Scheduler.Instance.DelayExecution(() =>
