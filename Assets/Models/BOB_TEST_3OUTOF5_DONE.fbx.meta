@@ -1,0 +1,969 @@
+fileFormatVersion: 2
+guid: 6c2b4f917e351ad4884535331a82c92d
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Intro
+      takeName: Take 001
+      internalID: 1827226128182048838
+      firstFrame: 10
+      lastFrame: 130
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      internalID: -998496362607748373
+      firstFrame: 200
+      lastFrame: 224
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Stomp
+      takeName: Take 001
+      internalID: 3060872287085348379
+      firstFrame: 230
+      lastFrame: 254
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Needle
+      takeName: Take 001
+      internalID: 6641085478485924818
+      firstFrame: 260
+      lastFrame: 284
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ChargeUp
+      takeName: Take 001
+      internalID: -5059006814000262888
+      firstFrame: 290
+      lastFrame: 314
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Beam
+      takeName: Take 001
+      internalID: 6234510843852800090
+      firstFrame: 314
+      lastFrame: 338
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: QuadChargeup
+      takeName: Take 001
+      internalID: -6788666626592393668
+      firstFrame: 340
+      lastFrame: 364
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: QuadBeam
+      takeName: Take 001
+      internalID: 1702301948168947093
+      firstFrame: 364
+      lastFrame: 388
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 10
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: BOB_TEST_3OUTOF5_DONE(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bob
+      parentName: BOB_TEST_3OUTOF5_DONE(Clone)
+      position: {x: -0.08738066, y: -25.66095, z: 18.222563}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.01, y: 0.01, z: 0.01}
+    - name: Hips
+      parentName: BOB_TEST_3OUTOF5_DONE(Clone)
+      position: {x: -0.027812859, y: 0.24728641, z: -0.0035605952}
+      rotation: {x: 0.42491087, y: 0.4601471, z: 0.5140188, w: 0.5860889}
+      scale: {x: 0.01, y: 0.01, z: 0.01}
+    - name: Leg_L
+      parentName: Hips
+      position: {x: 2.277434, y: 7.9484634, z: 2.7368784}
+      rotation: {x: -0.015927164, y: -0.53782326, z: 0.12178609, w: 0.8340627}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
+    - name: Knee_L
+      parentName: Leg_L
+      position: {x: -3.647122, y: 0.8276326, z: 13.880865}
+      rotation: {x: -0.008218859, y: -0.26362497, z: -0.018477634, w: 0.9644133}
+      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+    - name: Feet_L
+      parentName: Knee_L
+      position: {x: 5.850639, y: -1.3447814, z: 16.576809}
+      rotation: {x: -0.38297108, y: 0.6118189, z: 0.52502465, w: 0.45095462}
+      scale: {x: 1.0000005, y: 1.0000004, z: 1.0000006}
+    - name: Toe_L_L
+      parentName: Feet_L
+      position: {x: 4.43001, y: 2.5316243, z: 2.2813282}
+      rotation: {x: -0.0000000921973, y: -0.000000016312697, z: 0.000000045030802, w: 1}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000006}
+    - name: Toe_L_L_END
+      parentName: Toe_L_L
+      position: {x: 6.390889, y: -1.915823, z: -0.17168444}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Toe_B_L
+      parentName: Feet_L
+      position: {x: -3.4842997, y: -0.9537291, z: -1.8827683}
+      rotation: {x: -0.0000000921973, y: -0.000000016312697, z: 0.000000045030802, w: 1}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000006}
+    - name: Toe_B_L_END
+      parentName: Toe_B_L
+      position: {x: -3.3371665, y: 0.91299105, z: 0.31839934}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Toe_R_L
+      parentName: Feet_L
+      position: {x: 5.5871515, y: -1.6109127, z: 1.1833309}
+      rotation: {x: -0.0000000921973, y: -0.000000016312697, z: 0.000000045030802, w: 1}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000006}
+    - name: Toe_R_L_END
+      parentName: Toe_R_L
+      position: {x: 6.024425, y: -2.5309768, z: 0.09259716}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Leg_R
+      parentName: Hips
+      position: {x: 2.2774148, y: -7.9484634, z: 2.736895}
+      rotation: {x: 0.000075981014, y: 0.8666844, z: 0.07771807, w: 0.49276572}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: Knee_R
+      parentName: Leg_R
+      position: {x: 3.6471, y: 0.09424886, z: -13.8808}
+      rotation: {x: -0.083991006, y: -0.24988979, z: 0.009371622, w: 0.9645791}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Feet_R
+      parentName: Knee_R
+      position: {x: -5.8506002, y: 1.34478, z: -16.57686}
+      rotation: {x: 0.47131035, y: 0.56847405, z: -0.29999316, w: 0.6039106}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1}
+    - name: Toe_R_R
+      parentName: Feet_R
+      position: {x: -4.407364, y: -2.0339582, z: -0.9518209}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Toe_R_R_END
+      parentName: Toe_R_R
+      position: {x: -7.578083, y: 0.034769863, z: -0.16748562}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Toe_B_R
+      parentName: Feet_R
+      position: {x: 3.4306254, y: 1.1726083, z: 2.5072775}
+      rotation: {x: -0.000000057363646, y: 0.000000061583705, z: -0.000000044703484, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: Toe_B_R_END
+      parentName: Toe_B_R
+      position: {x: 3.473797, y: 0.10158396, z: -0.5259503}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Toe_L_R
+      parentName: Feet_R
+      position: {x: -3.818048, y: 0.8987748, z: -3.3152761}
+      rotation: {x: -0.000000057363646, y: 0.000000061583705, z: -0.000000044703484, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: Toe_L_R_END
+      parentName: Toe_L_R
+      position: {x: -7.346266, y: 1.4833683, z: -0.19695702}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tail_1
+      parentName: Hips
+      position: {x: -13.289986, y: -1.3877788e-16, z: -0.0000049570244}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tail_2
+      parentName: Tail_1
+      position: {x: -14.016467, y: 0.37618673, z: 0.0000049570244}
+      rotation: {x: -0, y: -0, z: -0, w: -1}
+      scale: {x: 0.9999999, y: 1, z: 0.9999999}
+    - name: Tail_3
+      parentName: Tail_2
+      position: {x: -12.100139, y: -2.220446e-15, z: -0.23770496}
+      rotation: {x: -0, y: -0, z: -0, w: -1}
+      scale: {x: 1, y: 1.0000001, z: 1.0000004}
+    - name: Tail_END
+      parentName: Tail_3
+      position: {x: -11.227177, y: 0.064217344, z: 0.18768205}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Body
+      parentName: Hips
+      position: {x: 16.002937, y: 0, z: -4.440892e-15}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Bottom_1
+      parentName: Body
+      position: {x: 11.114625, y: -3.6145535, z: -10.393291}
+      rotation: {x: -0.06161037, y: 0.70441765, z: -0.38690114, w: -0.59186786}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: Spike_Bottom_1_2_END
+      parentName: Spike_Bottom_1
+      position: {x: -6.8841133, y: -3.608225e-15, z: -2.7755576e-16}
+      rotation: {x: 0, y: 0, z: 5.5372373e-15, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Bottom_2
+      parentName: Body
+      position: {x: 12.584978, y: 4.9076695, z: -10.630342}
+      rotation: {x: -0.1349059, y: 0.20215657, z: -0.95613706, w: 0.16350862}
+      scale: {x: 1, y: 1.0000001, z: 1.0000004}
+    - name: Spike_Bottom_2_2
+      parentName: Spike_Bottom_2
+      position: {x: -4.0829697, y: 6.6610734e-16, z: 6.9112e-16}
+      rotation: {x: -0.000000029802326, y: 0.63026005, z: -0.00000014901163, w: 0.7763842}
+      scale: {x: 0.99999994, y: 1.0000001, z: 0.99999994}
+    - name: Spike_Bottom_2_3_END
+      parentName: Spike_Bottom_2_2
+      position: {x: -5.7654734, y: 4.718448e-15, z: 1.3877788e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Bottom_4
+      parentName: Body
+      position: {x: 7.606715, y: 9.829387, z: 5.164928}
+      rotation: {x: -0.16572809, y: 0.6795778, z: -0.56621313, w: 0.43601704}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: Spike_Bottom_4_2
+      parentName: Spike_Bottom_4
+      position: {x: -3.8087058, y: -3.737661e-16, z: 7.775002e-16}
+      rotation: {x: 0.000000067055225, y: -0.08735216, z: 0.00000013411045, w: 0.99617755}
+      scale: {x: 1.0000001, y: 1.0000002, z: 0.99999994}
+    - name: Spike_Bottom_4_3_END
+      parentName: Spike_Bottom_4_2
+      position: {x: -5.124651, y: 8.500145e-16, z: -1.6653345e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Bottom_3
+      parentName: Body
+      position: {x: 8.282543, y: 9.904801, z: -1.9972194}
+      rotation: {x: -0.50832576, y: 0.49153322, z: -0.53433806, w: 0.46312296}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: Spike_Bottom_3_END
+      parentName: Spike_Bottom_3
+      position: {x: -6.994895, y: 6.9906307e-15, z: 1.689045}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Bottom_5
+      parentName: Body
+      position: {x: 13.641826, y: 8.264236, z: 8.296675}
+      rotation: {x: -0.06704515, y: 0.70392114, z: -0.45913535, w: 0.5377683}
+      scale: {x: 0.99999976, y: 0.9999999, z: 1}
+    - name: Spike_Bottom_5_2_END
+      parentName: Spike_Bottom_5
+      position: {x: -5.1570315, y: -5.551115e-16, z: -2.7755576e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Buttom_7
+      parentName: Body
+      position: {x: 13.76899, y: 1.5670586, z: 10.1407585}
+      rotation: {x: -0.55339766, y: 0.44017172, z: -0.6661982, w: -0.23702316}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: Spike_Buttom_7_2_END
+      parentName: Spike_Buttom_7
+      position: {x: -4.679846, y: -1.5369632, z: 2.5220966}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Bottom_6
+      parentName: Body
+      position: {x: 13.4332285, y: 6.1262836, z: 7.6282625}
+      rotation: {x: 0.07558642, y: -0.045159265, z: 0.9517447, w: 0.29398903}
+      scale: {x: 1.0000001, y: 1, z: 1.0000002}
+    - name: Spike_Bottom_6_2
+      parentName: Spike_Bottom_6
+      position: {x: -4.584398, y: -2.1027894, z: -0.20985828}
+      rotation: {x: 0.00000004097819, y: 0.32739094, z: -0.000000040046867, w: -0.94488895}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: Spike_Bottom_6_3_END
+      parentName: Spike_Bottom_6_2
+      position: {x: -3.9930282, y: -2.6020852e-16, z: -1.9071116e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Buttom_8
+      parentName: Body
+      position: {x: 14.900881, y: -3.9488497, z: 8.523942}
+      rotation: {x: -0.2712519, y: 0.20642579, z: -0.9398393, w: 0.022647485}
+      scale: {x: 0.9999999, y: 1, z: 1}
+    - name: Spike_Buttom_8_2
+      parentName: Spike_Buttom_8
+      position: {x: -3.7910619, y: 3.2139257e-16, z: -4.2446446e-16}
+      rotation: {x: -0.000000026077032, y: -0.36759162, z: -0.000000007450581, w: 0.9299873}
+      scale: {x: 0.99999994, y: 0.9999999, z: 0.9999999}
+    - name: Spike_Buttom_8_3_END
+      parentName: Spike_Buttom_8_2
+      position: {x: -5.1427927, y: 1.9428903e-15, z: -4.3021142e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Buttom_10
+      parentName: Body
+      position: {x: 7.7823825, y: -9.355581, z: 5.9118176}
+      rotation: {x: 0.2132211, y: 0.18700111, z: -0.8652796, w: -0.4133504}
+      scale: {x: 0.99999976, y: 0.99999976, z: 0.99999976}
+    - name: Spike_Buttom_10_2
+      parentName: Spike_Buttom_10
+      position: {x: -3.7184925, y: -1.5477764e-16, z: 1.5469007e-16}
+      rotation: {x: -0.00000011175871, y: 0.13204639, z: 0.00000010430813, w: 0.99124354}
+      scale: {x: 0.99999994, y: 1.0000002, z: 1.0000002}
+    - name: Spike_Buttom_10_3_END
+      parentName: Spike_Buttom_10_2
+      position: {x: -4.9148445, y: -3.5388359e-15, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Buttom_9
+      parentName: Body
+      position: {x: 11.727278, y: -5.8144, z: 9.7368965}
+      rotation: {x: 0.6214583, y: 0.337327, z: -0.7069233, w: 0.016107947}
+      scale: {x: 1.0000001, y: 1.0000004, z: 0.9999999}
+    - name: Spike_Buttom_9_2_END
+      parentName: Spike_Buttom_9
+      position: {x: -6.05774, y: -2.6367797e-15, z: -2.7755576e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Buttom_11
+      parentName: Body
+      position: {x: 8.757888, y: -10.5472555, z: 0.0039989264}
+      rotation: {x: 0.48202148, y: 0.51735413, z: -0.51489925, w: -0.48464295}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Spike_Buttom_11_2_END
+      parentName: Spike_Buttom_11
+      position: {x: -5.5061064, y: -1.2985015e-16, z: -6.730727e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Buttom_12
+      parentName: Body
+      position: {x: 5.440192, y: -9.652117, z: -5.887601}
+      rotation: {x: 0.32731488, y: 0.62678945, z: -0.46491775, w: -0.53277713}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Buttom_12_2_END
+      parentName: Spike_Buttom_12
+      position: {x: -3.6893215, y: 3.9031278e-16, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Buttom_13
+      parentName: Body
+      position: {x: 6.447671, y: 7.6350594, z: -9.769997}
+      rotation: {x: -0.38919923, y: 0.4902766, z: -0.77135956, w: 0.11470559}
+      scale: {x: 0.99999976, y: 0.9999998, z: 0.99999976}
+    - name: Spike_Buttom_13_2
+      parentName: Spike_Buttom_13
+      position: {x: -3.573584, y: -3.7006145e-17, z: 5.704436e-16}
+      rotation: {x: -0.0000000144355, y: -0.055416107, z: 0.000000007450581, w: 0.9984634}
+      scale: {x: 1.0000002, y: 0.9999999, z: 1.0000001}
+    - name: Spike_Buttom_13_3_END
+      parentName: Spike_Buttom_13_2
+      position: {x: -7.084858, y: 3.400058e-15, z: 4.1633363e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Bottom_14
+      parentName: Body
+      position: {x: 11.226987, y: -9.365874, z: -3.1124506}
+      rotation: {x: -0.14795154, y: 0.82278454, z: -0.5478431, w: -0.03168434}
+      scale: {x: 1, y: 0.9999999, z: 0.9999998}
+    - name: Spike_Bottom_14_2
+      parentName: Spike_Bottom_14
+      position: {x: -4.647905, y: -4.4599525e-16, z: -8.528161e-16}
+      rotation: {x: 0.000000059604645, y: -0.322519, z: -0.000000052154064, w: 0.946563}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Spike_Bottom_14_3_END
+      parentName: Spike_Bottom_14_2
+      position: {x: -5.289717, y: 2.7755576e-16, z: -1.3877788e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Middle_1
+      parentName: Body
+      position: {x: 3.6371253, y: -0.007257169, z: -12.064646}
+      rotation: {x: -0.28787118, y: 0.64585614, z: -0.6271038, w: -0.3267123}
+      scale: {x: 0.99999994, y: 1, z: 1.0000001}
+    - name: Spike_Middle_1_2_END
+      parentName: Spike_Middle_1
+      position: {x: -6.05772, y: 1.6653345e-15, z: 9.367507e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Middle_2
+      parentName: Body
+      position: {x: -0.013195048, y: 1.9659293, z: -10.518569}
+      rotation: {x: -0.666983, y: 0.23480575, z: -0.6794562, w: 0.19580412}
+      scale: {x: 0.9999998, y: 1, z: 0.99999976}
+    - name: Spike_Middle_2_2_END
+      parentName: Spike_Middle_2
+      position: {x: -4.2515187, y: -4.02239e-16, z: -3.469447e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Middle_4
+      parentName: Body
+      position: {x: 2.505937, y: 11.064238, z: 3.55894}
+      rotation: {x: -0.27847904, y: 0.7221712, z: -0.51869524, w: 0.36314398}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: Spike_Middle_4_2
+      parentName: Spike_Middle_4
+      position: {x: -3.2959948, y: 5.852408e-16, z: -7.7430395e-16}
+      rotation: {x: -0.000000007450581, y: 0.022186875, z: -0.000000014901161, w: 0.9997539}
+      scale: {x: 1.0000001, y: 1.0000001, z: 0.9999999}
+    - name: Spike_Middle_4_3_END
+      parentName: Spike_Middle_4_2
+      position: {x: -4.2899756, y: -1.5352303e-15, z: 5.6551985e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Middle_3
+      parentName: Body
+      position: {x: -2.1927485, y: 10.684437, z: -3.9137878}
+      rotation: {x: -0.3542888, y: 0.6119473, z: -0.685416, w: 0.17379555}
+      scale: {x: 0.9999999, y: 1, z: 1}
+    - name: Spike_Middle_3_2_END
+      parentName: Spike_Middle_3
+      position: {x: -6.8438253, y: -1.3877788e-16, z: -2.7755576e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Middle_5
+      parentName: Body
+      position: {x: 1.9423306, y: 1.3041025, z: 10.131682}
+      rotation: {x: 0.1553281, y: 0.86914283, z: -0.31277853, w: 0.35019082}
+      scale: {x: 1, y: 1, z: 0.9999998}
+    - name: Spike_Middle_5_2
+      parentName: Spike_Middle_5
+      position: {x: -3.3908832, y: 2.8420203e-16, z: -7.598872e-17}
+      rotation: {x: 0.000000014901161, y: -0.032533616, z: -0.00000009313226, w: 0.9994707}
+      scale: {x: 1, y: 1.0000004, z: 1.0000001}
+    - name: Spike_Middle_5_3_END
+      parentName: Spike_Middle_5_2
+      position: {x: -4.7261906, y: -2.0816682e-16, z: -7.0776718e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Middle_7
+      parentName: Body
+      position: {x: 3.502718, y: -11.637069, z: 3.8864012}
+      rotation: {x: 0.32627234, y: 0.580397, z: -0.71444863, w: -0.21505557}
+      scale: {x: 0.99999994, y: 0.9999997, z: 0.99999994}
+    - name: Spike_Middle_7_2
+      parentName: Spike_Middle_7
+      position: {x: -2.7333293, y: 8.120215e-17, z: 6.793324e-16}
+      rotation: {x: 0.000000037252903, y: 0.12901911, z: -0.000000059604645, w: 0.9916422}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1}
+    - name: Spike_Middle_7_3_END
+      parentName: Spike_Middle_7_2
+      position: {x: -3.641268, y: 5.7245875e-16, z: 2.7755576e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Middle_6
+      parentName: Body
+      position: {x: 1.2117888, y: -10.417062, z: 7.143502}
+      rotation: {x: 0.5808346, y: 0.4032755, z: -0.6474743, w: -0.28421307}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000006}
+    - name: Spike_Middle_6_2_END
+      parentName: Spike_Middle_6
+      position: {x: -4.13118, y: 2.8622937e-16, z: -5.551115e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Top_1
+      parentName: Body
+      position: {x: -6.7991405, y: -6.806382, z: -6.315698}
+      rotation: {x: 0.23248991, y: 0.66779375, z: -0.30371806, w: -0.63855726}
+      scale: {x: 1.0000004, y: 1, z: 1.0000001}
+    - name: Spike_Top_1_2_END
+      parentName: Spike_Top_1
+      position: {x: -4.763164, y: -2.2117724e-16, z: 2.0816682e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Top_2
+      parentName: Body
+      position: {x: -8.34161, y: -1.3287152, z: -9.094854}
+      rotation: {x: -0.08999427, y: 0.7013566, z: -0.52853787, w: -0.4697315}
+      scale: {x: 0.9999999, y: 1, z: 1.0000001}
+    - name: Spike_Top_2_2_END
+      parentName: Spike_Top_2
+      position: {x: -4.8938155, y: -7.101524e-16, z: 0.4427785}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Fang_R1
+      parentName: Body
+      position: {x: 12.84855, y: -7.8828316, z: 1.468322}
+      rotation: {x: 0.11563644, y: 0.101964876, z: -0.9698006, w: 0.1889929}
+      scale: {x: 1, y: 1.0000002, z: 1.0000004}
+    - name: Fang_R2
+      parentName: Fang_R1
+      position: {x: -6.220014, y: -3.5234008e-15, z: 3.1717005e-15}
+      rotation: {x: 0.000000035390254, y: -0.5707902, z: -0.000000090338276, w: 0.82109594}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1.0000004}
+    - name: Fang_R3
+      parentName: Fang_R2
+      position: {x: -4.646324, y: 0.8754051, z: 0.5992296}
+      rotation: {x: -5.32907e-15, y: -0, z: 1.7763566e-15, w: 1}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000004}
+    - name: Fang_R4_END
+      parentName: Fang_R3
+      position: {x: -6.3352227, y: -0.8754051, z: -0.5992296}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Fang_L1
+      parentName: Body
+      position: {x: 13.376161, y: 8.219908, z: 2.3548496}
+      rotation: {x: 0.27832538, y: 0.80833423, z: -0.13408363, w: 0.50115097}
+      scale: {x: 0.99999976, y: 1, z: 0.9999999}
+    - name: Fang_L2
+      parentName: Fang_L1
+      position: {x: -4.3441825, y: -1.424038e-15, z: -0.16867194}
+      rotation: {x: -0.086932, y: -0.08054306, z: 0.13837503, w: 0.98326397}
+      scale: {x: 1, y: 1.0000001, z: 1.0000002}
+    - name: Fang_L3
+      parentName: Fang_L2
+      position: {x: -5.8083487, y: 1.3828541, z: -0.71730375}
+      rotation: {x: -0.0034815893, y: -0.13877872, z: -0.19881232, w: 0.9701557}
+      scale: {x: 1.0000004, y: 1, z: 1.0000001}
+    - name: Fang_L4_END
+      parentName: Fang_L3
+      position: {x: -6.093896, y: -1.3828541, z: 1.0720073}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair_Bottom_2
+      parentName: Body
+      position: {x: 5.456937, y: 9.5629225, z: 1.1852341}
+      rotation: {x: -0.03574437, y: 0.97952396, z: -0.19620493, w: 0.027547866}
+      scale: {x: 0.99999964, y: 0.9999999, z: 1}
+    - name: Hair_Bottom_2_2
+      parentName: Hair_Bottom_2
+      position: {x: -5.171795, y: 1.6594235e-15, z: -4.3505362e-16}
+      rotation: {x: 0.0000000037252899, y: 0.17413707, z: -0.000000029802319, w: 0.9847214}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1}
+    - name: Hair_Bottom_2_3_END
+      parentName: Hair_Bottom_2_2
+      position: {x: -6.9536295, y: -9.714451e-16, z: 2.6367797e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair_Top_4
+      parentName: Body
+      position: {x: 4.7036753, y: 8.134632, z: -6.0137773}
+      rotation: {x: -0.016803414, y: 0.4556767, z: -0.88761497, w: 0.0649313}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000004}
+    - name: Hair_Top_4_2
+      parentName: Hair_Top_4
+      position: {x: -7.433689, y: -7.656248e-16, z: -2.6145448e-16}
+      rotation: {x: -0.000000008265488, y: 0.35937986, z: -0.00000006798655, w: 0.9331914}
+      scale: {x: 0.9999999, y: 1.0000002, z: 0.9999998}
+    - name: Hair_Top_4_3_END
+      parentName: Hair_Top_4_2
+      position: {x: -7.5589504, y: 0, z: -1.3877788e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair_Bottom_1
+      parentName: Body
+      position: {x: 8.07286, y: -7.173095, z: 5.7914777}
+      rotation: {x: -0.059919715, y: 0.98560894, z: -0.15011632, w: 0.04949534}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: Hair_Bottom_1_2
+      parentName: Hair_Bottom_1
+      position: {x: -7.1558547, y: 5.5558437e-16, z: 1.1682341e-15}
+      rotation: {x: -0.015852202, y: 0.19900943, z: 0.003219566, w: 0.9798641}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair_Bottom_1_3_END
+      parentName: Hair_Bottom_1_2
+      position: {x: -8.382808, y: -3.8857806e-15, z: 5.308254e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair_Top_2
+      parentName: Body
+      position: {x: 8.6700325, y: -1.9531101, z: -9.755173}
+      rotation: {x: 0.07806767, y: 0.99489796, z: -0.061841223, w: -0.016099187}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair_Top_2_2
+      parentName: Hair_Top_2
+      position: {x: -5.6514845, y: 2.4826557e-16, z: 9.4557425e-17}
+      rotation: {x: -0.000000034458935, y: 0.18024352, z: -0.000000029802322, w: 0.983622}
+      scale: {x: 0.9999998, y: 1, z: 1.0000002}
+    - name: Hair_Top_2_3_END
+      parentName: Hair_Top_2_2
+      position: {x: -6.2330437, y: 3.6429193e-15, z: -5.5250943e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair_Top_3
+      parentName: Body
+      position: {x: 5.5159974, y: 0.8552578, z: -11.304379}
+      rotation: {x: 0.018090399, y: 0.12327007, z: -0.9918097, w: 0.028120311}
+      scale: {x: 1, y: 1.0000002, z: 1.0000002}
+    - name: Hair_Top_3_2
+      parentName: Hair_Top_3
+      position: {x: -11.758164, y: -3.264244e-16, z: -3.2918856e-15}
+      rotation: {x: 0.000000021827873, y: 0.5998593, z: 0.000000049127266, w: 0.8001056}
+      scale: {x: 1.0000004, y: 0.99999994, z: 1.0000004}
+    - name: Hair_Top_3_3_END
+      parentName: Hair_Top_3_2
+      position: {x: -5.0569563, y: 4.9960036e-15, z: 1.925543e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Hair_Top_1
+      parentName: Body
+      position: {x: 2.7312853, y: -6.9978275, z: -7.3529816}
+      rotation: {x: -0.08386983, y: 0.97067124, z: -0.2229608, w: -0.032430172}
+      scale: {x: 0.99999976, y: 1, z: 0.99999976}
+    - name: Hair_Top_1_2
+      parentName: Hair_Top_1
+      position: {x: -9.946335, y: 4.452704e-16, z: -1.2952872e-15}
+      rotation: {x: -0.000000029802322, y: -0.29178828, z: 0.000000029802322, w: 0.956483}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000004}
+    - name: Hair_Top_1_3_END
+      parentName: Hair_Top_1_2
+      position: {x: -7.7329006, y: 1.110223e-15, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Top_3
+      parentName: Body
+      position: {x: -6.6892314, y: 6.022832, z: -7.8181224}
+      rotation: {x: -0.5904875, y: 0.38900453, z: -0.7012605, w: 0.09074017}
+      scale: {x: 1.0000001, y: 0.99999994, z: 1}
+    - name: Spike_Top_3_2_END
+      parentName: Spike_Top_3
+      position: {x: -4.649997, y: -6.2450045e-16, z: -1.3877788e-16}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Top_5
+      parentName: Body
+      position: {x: -4.7956533, y: 4.111443, z: 8.04247}
+      rotation: {x: -0.141417, y: 0.69282126, z: -0.37052074, w: 0.6022578}
+      scale: {x: 0.99999976, y: 1.0000001, z: 0.99999976}
+    - name: Spike_Top_5_2_END
+      parentName: Spike_Top_5
+      position: {x: -5.833745, y: -0.6000189, z: -1.3526522}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Top_4
+      parentName: Body
+      position: {x: -5.727661, y: 8.807203, z: 4.8549075}
+      rotation: {x: -0.2537474, y: 0.66000926, z: -0.48072708, w: 0.51855713}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: Spike_Top_4_2_END
+      parentName: Spike_Top_4
+      position: {x: -4.3703027, y: -1.2190219, z: 2.1709793e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Spike_Top_6
+      parentName: Body
+      position: {x: -5.3780537, y: -4.9608407, z: 7.559765}
+      rotation: {x: 0.5802357, y: 0.40413678, z: -0.6873125, w: -0.16613707}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: Spike_Top_6_2_END
+      parentName: Spike_Top_6
+      position: {x: -4.249471, y: -4.8572257e-16, z: -1.5265567e-15}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Head
+      parentName: Body
+      position: {x: 12.091161, y: 0, z: -2.220446e-15}
+      rotation: {x: -0.053445064, y: 0.6324496, z: 0.13964392, w: 0.76003337}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tongue1
+      parentName: Head
+      position: {x: 5.5818405, y: 0.37618673, z: 0.43254274}
+      rotation: {x: -0.00713922, y: 0.040644642, z: -0.011036213, w: 0.9990872}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tongue2
+      parentName: Tongue1
+      position: {x: 11.254524, y: 1.9060836, z: -0.2605214}
+      rotation: {x: 0.0038820973, y: 0.036296967, z: 0.09212939, w: 0.9950778}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tongue3
+      parentName: Tongue2
+      position: {x: 13.508812, y: -1.4448211, z: -4.440892e-15}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tongue_Tip_3
+      parentName: Tongue3
+      position: {x: 1.4231868, y: -3.8939867, z: 3.2933412}
+      rotation: {x: -0.7541459, y: 0.48580903, z: -0.11578948, w: 0.42643452}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tongue_Tip_3_END
+      parentName: Tongue_Tip_3
+      position: {x: 2.195742, y: -2.5118728, z: 1.8366799}
+      rotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tongue_Tip_2
+      parentName: Tongue3
+      position: {x: 1.3508663, y: 3.2543244, z: 0.7766737}
+      rotation: {x: -0.20705928, y: 0.7330188, z: -0.64109284, w: 0.09386089}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: Tongue_Tip_2_END
+      parentName: Tongue_Tip_2
+      position: {x: -3.2612362, y: -0.59964967, z: 1.1951191}
+      rotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tongue_Tip_1
+      parentName: Tongue3
+      position: {x: 1.7358875, y: -0.09560365, z: -4.387258}
+      rotation: {x: -0.1948061, y: 0.16358887, z: -0.68714225, w: 0.6805328}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Tongue_Tip_1_END
+      parentName: Tongue_Tip_1
+      position: {x: 0.13934216, y: 3.5888543, z: 1.3832588}
+      rotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 10
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

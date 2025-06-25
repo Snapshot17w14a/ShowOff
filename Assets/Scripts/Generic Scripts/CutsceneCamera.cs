@@ -97,4 +97,9 @@ public class CutsceneCamera : MonoBehaviour
             CutsceneFinished();
         }
     }
+
+    private void OnDestroy()
+    {
+        skipInput.performed -= SkipCutscene;
+    }
 }
