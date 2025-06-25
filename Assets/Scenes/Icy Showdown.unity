@@ -1030,9 +1030,9 @@ MonoBehaviour:
         z: 0
       Rotation:
         value:
-          x: -0.21990824
-          y: 0
-          z: 0.19127591
+          x: -0.21990827
+          y: 0.000000001947183
+          z: 0.19127594
           w: 0.9565845
     m_MetaData:
     - Mode: 2
@@ -7240,11 +7240,11 @@ PrefabInstance:
       value: Crown
       objectReference: {fileID: 0}
     - target: {fileID: 8442510506162454399, guid: a1762096d9eda284ab740ab836bb6f14, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 036a09f60111b5e408206be3e9fd7989, type: 2}
     - target: {fileID: 8442510506162454399, guid: a1762096d9eda284ab740ab836bb6f14, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: f5f0b6068676eb34bb58f4ba8fc35cb0, type: 2}
     m_RemovedComponents: []
@@ -8526,13 +8526,13 @@ Camera:
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 13.858139
+  m_FocusDistance: 9999.999
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
   m_Anamorphism: 0
-  m_SensorSize: {x: 21.946, y: 16.002}
+  m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -8540,11 +8540,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.099999994
+  far clip plane: 999.99994
   field of view: 60.000004
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 0.24
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -8568,8 +8568,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139261527}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.113113455, y: -0.60878146, z: 0.08825469, w: 0.7802574}
-  m_LocalPosition: {x: -1.4821012, y: 1.1757791, z: 3.0214071}
+  m_LocalRotation: {x: -0.020483429, y: -0.012463308, z: -0.00025536466, w: 0.9997125}
+  m_LocalPosition: {x: 0, y: 0, z: -2.744}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11780,7 +11780,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4157524182732408741, guid: 40ddc3b11ec36dd44b225592b9c631e1, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 5be4d49366ae6d94d916cd1e27644776, type: 2}
     - target: {fileID: 919132149155446097, guid: 40ddc3b11ec36dd44b225592b9c631e1, type: 3}
@@ -13299,8 +13299,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634748208}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.113113455, y: -0.60878146, z: 0.08825469, w: 0.7802574}
-  m_LocalPosition: {x: -1.3021011, y: 1.8497791, z: -1.4525928}
+  m_LocalRotation: {x: -0.020483429, y: -0.012463308, z: -0.00025536466, w: 0.9997125}
+  m_LocalPosition: {x: 0.18, y: 0.674, z: -7.218}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13457,11 +13457,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.099999994
+  far clip plane: 999.99994
   field of view: 60.000004
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 0.24
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -15549,7 +15549,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: aa571af82985b994ab64430d7de9eb40, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f49faaf0488c2704f9c20e43bc1d4ba3, type: 2}
     - target: {fileID: 919132149155446097, guid: aa571af82985b994ab64430d7de9eb40, type: 3}
@@ -16701,10 +16701,10 @@ MonoBehaviour:
         z: 0.847824
       Rotation:
         value:
-          x: 0.1246035
-          y: -0.20442893
+          x: 0.124603495
+          y: -0.20442887
           z: 0.053355623
-          w: 0.9694514
+          w: 0.96945137
     - Position:
         x: -0.407
         y: -0.01700002
