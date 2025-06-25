@@ -5972,6 +5972,15 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Skip Input
       m_Flags: 0
+    - m_Name: 
+      m_Id: 216a21b8-e491-45a8-be29-ad8fbdbd6df7
+      m_Path: <HID::Performance Designed Products Afterglow Wave Wired Controller
+        for Nintendo Switch>/button2
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Skip Input
+      m_Flags: 0
     m_Flags: 0
   OnCameraReady:
     m_PersistentCalls:
