@@ -8,7 +8,7 @@ public enum GameDifficulty
 
 public static class DifficultyManager
 {
-    private static GameDifficulty currentDifficulty = GameDifficulty.Easy;
+    private static GameDifficulty currentDifficulty = GameDifficulty.Normal;
 
     public static void SwitchDifficulty()
     {

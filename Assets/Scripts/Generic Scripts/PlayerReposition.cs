@@ -6,6 +6,8 @@ public class PlayerReposition : MonoBehaviour
     [SerializeField] private float flightDuration;
     [SerializeField] private float stunDuration;
 
+    [SerializeField] private GameObject waterEffectPrefab;
+
     private Dictionary<Collider, float> colliderDampeningPair = new();
 
     private void OnTriggerEnter(Collider other)
@@ -20,6 +22,7 @@ public class PlayerReposition : MonoBehaviour
             }
             playerScript.StunPlayer(stunDuration);
             AudioManager.PlaySound(ESoundType.Penguin, "Fall_In_Water", false, 1f, 0.3f);
+            Destroy(Instantiate(waterEffectPrefab, other.transform.position, Quaternion.identity), 1f);
 
             var rb = other.GetComponent<Rigidbody>();
 
