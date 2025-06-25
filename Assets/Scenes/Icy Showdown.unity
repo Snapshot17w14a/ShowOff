@@ -1030,9 +1030,9 @@ MonoBehaviour:
         z: 0
       Rotation:
         value:
-          x: -0.21990827
-          y: 0.000000001947183
-          z: 0.19127594
+          x: -0.21990824
+          y: 0
+          z: 0.19127591
           w: 0.9565845
     m_MetaData:
     - Mode: 2
@@ -8526,13 +8526,13 @@ Camera:
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
-  m_FocusDistance: 9999.999
-  m_FocalLength: 20.78461
+  m_FocusDistance: 10
+  m_FocalLength: 13.858139
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
   m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
+  m_SensorSize: {x: 21.946, y: 16.002}
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -8540,11 +8540,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.099999994
-  far clip plane: 999.99994
+  near clip plane: 0.3
+  far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
-  orthographic size: 0.24
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -8568,8 +8568,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139261527}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.020483429, y: -0.012463308, z: -0.00025536466, w: 0.9997125}
-  m_LocalPosition: {x: 0, y: 0, z: -2.744}
+  m_LocalRotation: {x: 0.23028623, y: -0.49400848, z: 0.13755406, w: 0.8270446}
+  m_LocalPosition: {x: -1.4821012, y: 1.1757791, z: 3.0214071}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13299,8 +13299,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634748208}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.020483429, y: -0.012463308, z: -0.00025536466, w: 0.9997125}
-  m_LocalPosition: {x: 0.18, y: 0.674, z: -7.218}
+  m_LocalRotation: {x: 0.23028623, y: -0.49400848, z: 0.13755406, w: 0.8270446}
+  m_LocalPosition: {x: -1.3021011, y: 1.8497791, z: -1.4525928}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13457,11 +13457,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.099999994
-  far clip plane: 999.99994
+  near clip plane: 0.3
+  far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
-  orthographic size: 0.24
+  orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -16701,10 +16701,10 @@ MonoBehaviour:
         z: 0.847824
       Rotation:
         value:
-          x: 0.124603495
-          y: -0.20442887
+          x: 0.1246035
+          y: -0.20442893
           z: 0.053355623
-          w: 0.96945137
+          w: 0.9694514
     - Position:
         x: -0.407
         y: -0.01700002

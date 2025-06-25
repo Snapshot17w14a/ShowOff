@@ -30,13 +30,14 @@ public class LoadingZoneMinigame : MonoBehaviour
     {
         var registry = Services.Get<PlayerRegistry>();
 
-        registry.OnPlayerSpawn += AddPlayer;
-        registry.BeforePlayerDisconnect += RemovePlayer;
+        registry.OnPlayerRegistered += AddPlayer;
+        registry.OnBeforePlayerDisconnect += RemovePlayer;
+        registry.OnAfterPlayerDisconnect += AfterDisconnect;
         autodolly = cinemachineSplineDolly.AutomaticDolly.Method as SplineAutoDolly.FixedSpeed;
 
         readyPlayers = new(registry.MaxPlayers);
 
-        playerReadyThreshold = Mathf.Ceil((float)registry.RegisteredPlayerCount / 2f + 1f);
+        CalcThreshold();
         AudioManager.PlayMusic(ESoundType.Music, "Icy_Showdown", 0.3f);
 
         skipInput.performed += SkipCutscene;
@@ -98,11 +99,9 @@ public class LoadingZoneMinigame : MonoBehaviour
         }
     }
 
-    private void AddPlayer(MinigamePlayer player)
+    private void AddPlayer(int id)
     {
-        int registeredPlayers = Services.Get<PlayerRegistry>().RegisteredPlayerCount;
-        float curPlayers = (float)registeredPlayers;
-        playerReadyThreshold = Mathf.Ceil(curPlayers / 2f + 1f);
+        CalcThreshold();
         RecheckThreshold();
     }
 
@@ -110,9 +109,14 @@ public class LoadingZoneMinigame : MonoBehaviour
     {
         if (readyPlayers.Contains(disconnectingPlayer)) readyPlayers.Remove(disconnectingPlayer);
 
-        playerReadyThreshold = Mathf.Ceil((float)readyPlayers.Count / 2f + 1f);
-
         RecheckThreshold();
+    }
+
+    private void CalcThreshold()
+    {
+        int registeredPlayers = Services.Get<PlayerRegistry>().RegisteredPlayerCount;
+        float curPlayers = registeredPlayers;
+        playerReadyThreshold = Mathf.Ceil(curPlayers / 2f);
     }
 
     private void RecheckThreshold()
@@ -132,8 +136,10 @@ public class LoadingZoneMinigame : MonoBehaviour
 
     private void OnDisable()
     {
-        Services.Get<PlayerRegistry>().OnPlayerSpawn -= AddPlayer;
-        Services.Get<PlayerRegistry>().BeforePlayerDisconnect -= RemovePlayer;
+        var registry = Services.Get<PlayerRegistry>();
+        registry.OnPlayerRegistered -= AddPlayer;
+        registry.OnBeforePlayerDisconnect -= RemovePlayer;
+        registry.OnAfterPlayerDisconnect -= AfterDisconnect;
         skipInput.performed -= SkipCutscene;
     }
 
@@ -145,8 +151,13 @@ public class LoadingZoneMinigame : MonoBehaviour
         }
     }
 
+    private void AfterDisconnect(int id)
+    {
+        CalcThreshold();
+    }
+
     private void OnEnable()
     {
-        playerReadyThreshold = Mathf.Ceil((float)Services.Get<PlayerRegistry>().RegisteredPlayerCount / 2f + 1f);
+        CalcThreshold();
     }
 }

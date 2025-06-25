@@ -2,8 +2,8 @@ public class IcyStartState : MinigameState
 {
     public override void UnloadState()
     {
-#if UNITY_EDITOR
         base.UnloadState();
+#if UNITY_EDITOR
         Services.Get<PlayerAutoJoin>().AllowJoining = true;
 #endif
     }
