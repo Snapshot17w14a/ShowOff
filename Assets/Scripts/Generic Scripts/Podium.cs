@@ -1,15 +1,12 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.VFX;
 
 public class Podium : MonoBehaviour
 {
     [HideInInspector] public MinigamePlayer player;
 
     [SerializeField] private float maxHeight;
-
-    private VisualEffect cloudEffect;
 
     public static int highestScore = 0;
     public static PodiumController controller;
@@ -32,7 +29,7 @@ public class Podium : MonoBehaviour
         player.transform.rotation = Quaternion.Euler(0, 180f, 0);
         SetPlayerInteraction(false);
 
-        GetComponent<MeshRenderer>().material.color = player.GetComponent<SkinManager>().playerColor;
+        GetComponent<MeshRenderer>().material.SetColor("_Base_color", player.GetComponent<SkinManager>().playerColor);
 
         scoreText = controller.CreateScoreText().GetComponent<TextMeshPro>();
 
@@ -49,7 +46,6 @@ public class Podium : MonoBehaviour
 
         player.transform.position = startingPlayerPosition;
 
-        cloudEffect = GetComponent<VisualEffect>();
         maxLerpTime = progressLimitMult;
     }
 

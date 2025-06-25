@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -56,6 +57,8 @@ public class MinigameHandler : MonoBehaviour
         currentMinigameState.LoadState();
         onStateChanged?.Invoke();
     }
+
+    public void SpecialUnload(Func<MinigameState, MinigameState> unloadFunction) => currentMinigameState = unloadFunction(currentMinigameState);
 
     public void InstantiateAllPlayers() => Services.Get<PlayerRegistry>().InstantiateAllPlayers();
 

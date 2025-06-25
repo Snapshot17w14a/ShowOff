@@ -1,12 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HubScoreState : MinigameState
 {
-    [SerializeField] private float fadeOutSeconds = 2f;
+    [SerializeField] private List<Material> ditherMaterials;
+    [SerializeField] private GameObject cloudPlatform;
 
     public override void LoadState()
     {
         base.LoadState();
+        foreach (var m in ditherMaterials) m.SetFloat("_Strength", 1);
     }
 
     public override void UnloadState()
@@ -17,6 +20,21 @@ public class HubScoreState : MinigameState
 
     public void SkipPodiumStage()
     {
-        FindFirstObjectByType<MinigameHandler>().LoadState(nextMinigameState);
+        Scheduler.Instance.Lerp(t =>
+        {
+            foreach (var m in ditherMaterials) m.SetFloat("_Strength", 1 - t);
+        }, 2f, () => {
+            FindFirstObjectByType<MinigameHandler>().LoadState(nextMinigameState);
+            Scheduler.Instance.DelayExecution(() =>
+            {
+                foreach (var m in ditherMaterials) m.SetFloat("_Strength", 1);
+            }, 4f);
+        });
+        
+    }
+
+    public void AddMaterial(Material ditherMaterial)
+    {
+        ditherMaterials.Add(ditherMaterial);
     }
 }

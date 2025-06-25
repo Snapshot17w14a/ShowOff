@@ -55,7 +55,7 @@ public class EndingMinecart : MonoBehaviour
         {
             var player = players[i].minigamePlayer;
             if (i != 0)
-                Scheduler.Instance.DelayExecution(() => LerpPlayerToMinecart(player), (playerWalkTime + playerJumpTime) * player.RegistryID);
+                Scheduler.Instance.DelayExecution(() => LerpPlayerToMinecart(player), playerWalkTime * player.RegistryID);
             else
                 LerpPlayerToMinecart(player);
         }
@@ -67,12 +67,13 @@ public class EndingMinecart : MonoBehaviour
 
         Scheduler.Instance.Lerp(t => {
             player.transform.position = Vector3.Lerp(initialPlayerPos, jumpPoint.position, t);
+            player.transform.LookAt(jumpPoint);
         }, 
         playerWalkTime, 
         () => {
             JumpPlayer(player);
             if (player.RegistryID == playerCount - 1)
-                Scheduler.Instance.DelayExecution(LeaveArena, playerJumpTime + 1f);
+                Scheduler.Instance.DelayExecution(LeaveArena, playerJumpTime + .3f);
         });
     }
 
@@ -82,11 +83,13 @@ public class EndingMinecart : MonoBehaviour
         var rb = player.GetComponent<Rigidbody>();
         rb.linearDamping = 0;
         rb.linearVelocity = force;
+        player.GetPlayerAnimator.SetTrigger("Stun");
         Scheduler.Instance.DelayExecution(() =>
         {
             rb.isKinematic = true;
             player.transform.SetParent(minecart.transform);
             player.transform.position = playerSitPositions[player.RegistryID].position;
+            player.GetPlayerAnimator.SetTrigger("StunOver");
         }, playerJumpTime);
     }
 

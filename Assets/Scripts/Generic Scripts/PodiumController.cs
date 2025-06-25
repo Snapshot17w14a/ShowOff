@@ -1,12 +1,13 @@
 using UnityEngine.Events;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class PodiumController : MonoBehaviour
 {
     [SerializeField] private GameObject podiumPrefab;
     [SerializeField] private GameObject scoreTextPrefab;
     [SerializeField] private Transform scoreTextParent;
+
+    [SerializeField] private float timeBeforeStateChenge;
 
     [SerializeField] private float spacing;
     [SerializeField] private int scorePerSecond;
@@ -125,6 +126,7 @@ public class PodiumController : MonoBehaviour
         podium.transform.localPosition = pos;
         podium.transform.localScale = new Vector3(1, 0.1f, 1);
         podium.player = playerRegistry.InstantiatePlayerWithId(index);
+        scoreState.AddMaterial(podium.GetComponent<MeshRenderer>().material);
 
         return podium;
     }
@@ -159,6 +161,11 @@ public class PodiumController : MonoBehaviour
 
             OnCountEnd?.Invoke();
             foreach (var podium in podiums) podium.SetPlayerInteraction(true);
+
+            Scheduler.Instance.DelayExecution(() =>
+            {
+                scoreState.SkipPodiumStage();
+            }, timeBeforeStateChenge);
 
         }, 2f);
 
