@@ -18,6 +18,7 @@ public class CameraLerp : MonoBehaviour
 
     public void StartLerping()
     {
+        transform.SetPositionAndRotation(startTransform.position, startTransform.rotation);
         Scheduler.Instance.DelayExecution(() =>
         {
             Scheduler.Instance.Lerp(t =>

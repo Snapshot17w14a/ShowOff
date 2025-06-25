@@ -6,6 +6,8 @@ public class HubScoreState : MinigameState
     [SerializeField] private List<Material> ditherMaterials;
     [SerializeField] private GameObject cloudPlatform;
 
+    [SerializeField] private CameraLerp defaultCameraLerp;
+
     public override void LoadState()
     {
         base.LoadState();
@@ -16,6 +18,7 @@ public class HubScoreState : MinigameState
     {
         base.UnloadState();
         ((HubDefaultState)nextMinigameState).isAfterPodiums = true;
+        defaultCameraLerp.StartLerping();
     }
 
     public void SkipPodiumStage()

@@ -13,10 +13,5 @@ public class HubDefaultState : MinigameState
         base.LoadState();
         if (PlayerPrefs.GetInt("DoPodium", 0) == 1) FindFirstObjectByType<MinigameHandler>().LoadState(scoreState);
         else if (!isAfterPodiums) distributor.InstantiatePlayersInCircle(1);
-        else
-        {
-            mainCamera.GetComponent<CameraLerp>().StartLerping();
-            isAfterPodiums = false;
-        }
     }
 }
