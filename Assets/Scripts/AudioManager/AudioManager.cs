@@ -7,6 +7,8 @@ public enum ESoundType
     Bob,
     Penguin,
     Music,
+    Environment,
+    Other,
 }
 
 [RequireComponent(typeof(AudioSource))]
@@ -135,7 +137,11 @@ public class AudioManager : MonoBehaviour
 
     public static void StopMusic()
     {
-        Instance.musicSource.volume = 0f;
         Instance.musicSource.Stop();
+    }
+
+    public static void StopSound()
+    {
+        Instance.sfxSource.Stop();
     }
 }

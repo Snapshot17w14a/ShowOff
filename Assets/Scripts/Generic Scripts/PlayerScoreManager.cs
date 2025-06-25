@@ -32,8 +32,11 @@ public class PlayerScoreManager : MonoBehaviour
     private void OnDestroy()
     {
         Services.Get<PlayerRegistry>().OnPlayerSpawn -= GenerateScoreUI;
-        playerScore.OnEvaluateScore -= ToggleFireUIAnimation;
+        if(playerScore != null)
+        {
+            playerScore.OnEvaluateScore -= ToggleFireUIAnimation;
 
+        }
     }
 
     private void GenerateScoreUI(MinigamePlayer player)

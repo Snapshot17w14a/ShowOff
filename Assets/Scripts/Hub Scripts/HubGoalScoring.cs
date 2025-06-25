@@ -27,6 +27,8 @@ public class HubGoalScoring : MonoBehaviour
             if (partyParticle)
                 partyParticle.Play();
 
+            AudioManager.PlaySound(ESoundType.Other, "Goal", false);
+
             if (partySound)
                 partySound.Play();
 

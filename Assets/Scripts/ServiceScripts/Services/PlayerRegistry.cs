@@ -28,14 +28,19 @@ public class PlayerRegistry : Service
     public event Action<MinigamePlayer> OnPlayerSpawn;
 
     /// <summary>
-    /// When a player is disconnecting this event is triggered and the id of the disconnected player is passed as a parameter
+    /// Triggered when a player is registered, and stored into the registered players array
     /// </summary>
-    public event Action<int> OnPlayerDisconnect;
+    public event Action<int> OnPlayerRegistered;
+
+    /// <summary>
+    /// After a player is disconnected this event is triggered and the id of the disconnected player is passed as a parameter
+    /// </summary>
+    public event Action<int> OnAfterPlayerDisconnect;
 
     /// <summary>
     /// Called before the disconnecting player's Player is destroyed, useful for cleaning up
     /// </summary>
-    public event Action<MinigamePlayer> BeforePlayerDisconnect;
+    public event Action<MinigamePlayer> OnBeforePlayerDisconnect;
 
     public override void InitializeService()
     {
@@ -72,6 +77,9 @@ public class PlayerRegistry : Service
         //Add it to the array and increment the number of players
         registeredPlayers[id] = regPlayer;
         players++;
+
+        //Trigger the registered event
+        OnPlayerRegistered?.Invoke(id);
 
         return regPlayer.minigamePlayer;
     }
@@ -205,7 +213,7 @@ public class PlayerRegistry : Service
         var regPlayer = registeredPlayers[id];
 
         //Call the event for anything that needs the player's reference before disconnecting
-        BeforePlayerDisconnect?.Invoke(regPlayer.minigamePlayer);
+        OnBeforePlayerDisconnect?.Invoke(regPlayer.minigamePlayer);
 
         //If the player has a gameobject in the scene destroy it
         if (regPlayer.minigamePlayer != null) GameObject.Destroy(regPlayer.minigamePlayer.gameObject);
@@ -234,7 +242,7 @@ public class PlayerRegistry : Service
         registeredPlayers[id] = regPlayer;
 
         //Trigger the disconnect event with the id of the disconnected user
-        OnPlayerDisconnect?.Invoke(id);
+        OnAfterPlayerDisconnect?.Invoke(id);
     }
 
     public int IdOf(MinigamePlayer player) => registeredPlayers.Where(regPlayer => regPlayer.minigamePlayer.Equals(player)).First().id;

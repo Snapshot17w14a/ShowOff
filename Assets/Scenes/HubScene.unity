@@ -12152,8 +12152,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176737523}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10976851, y: 0.0007288563, z: -0.0000804919, w: 0.9939569}
-  m_LocalPosition: {x: -1.1503861, y: 60.185135, z: -63.77203}
+  m_LocalRotation: {x: 0.5022367, y: 0.0013264613, z: -0.00077041204, w: 0.86472887}
+  m_LocalPosition: {x: -0.04054181, y: 11.727008, z: -6.915655}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17364,8 +17364,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645914231}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10976851, y: 0.0007288563, z: -0.0000804919, w: 0.9939569}
-  m_LocalPosition: {x: -1.1503861, y: 34.195137, z: -63.77203}
+  m_LocalRotation: {x: 0.5022367, y: 0.0013264613, z: -0.00077041204, w: 0.86472887}
+  m_LocalPosition: {x: -0.04054181, y: -14.262992, z: -6.915655}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19149,6 +19149,7 @@ MonoBehaviour:
   distributor: {fileID: 731245418}
   mainCamera: {fileID: 1787448009}
   isAfterPodiums: 0
+  volume: {fileID: 1088407345}
 --- !u!4 &1809726264
 Transform:
   m_ObjectHideFlags: 0

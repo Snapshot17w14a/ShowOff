@@ -106,7 +106,8 @@ public class Pickupable : MonoBehaviour
                 return;
             }
             gemCollector.parentMinecart.AddGem();
-            if(parentInteration != null)
+            AudioManager.PlaySound(ESoundType.Environment, "Minecart_Delivery", false);
+            if (parentInteration != null)
             {
                 parentInteration.HandleTreasureEnteredMinecart(this, worth);
             }
