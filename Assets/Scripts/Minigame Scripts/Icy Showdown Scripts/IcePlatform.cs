@@ -42,6 +42,7 @@ public class IcePlatform : MonoBehaviour
         {
             freezeEffect.Reinit();
             freezeEffect.Play();
+            AudioManager.PlaySound(ESoundType.Environment, "Ice_Regrowing", false);
 
             if (currentRoutine != null) StopCoroutine(currentRoutine);
             currentRoutine = StartCoroutine(FreezeRoutine());

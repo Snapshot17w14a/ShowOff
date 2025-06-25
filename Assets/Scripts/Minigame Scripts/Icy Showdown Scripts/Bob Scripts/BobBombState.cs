@@ -48,8 +48,6 @@ public class BobBombState : BobState
 
         //Calculate the reguired velocity reach the target in timeToTarget time
         rb.linearVelocity = PathCalculator.CalculateRequiredVelocity(start, target.transform.position, timeToTarget);
-        AudioManager.PlaySound(ESoundType.Bob, "Bomb_Throw", false);
-        AudioManager.PlaySound(ESoundType.Bob, "Bomb", false);
     }
 
     private void BombCallback()
