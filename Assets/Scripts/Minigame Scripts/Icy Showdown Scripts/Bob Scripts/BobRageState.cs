@@ -42,6 +42,7 @@ public class BobRageState : BobState
 
         beamsEffect.Reinit();
         beamsEffect.Play();
+        AudioManager.PlaySound(ESoundType.Bob, "Quad_Lasers", false);
 
         globalVolume.sharedProfile.TryGet(out chromatic);
 
@@ -74,7 +75,6 @@ public class BobRageState : BobState
         {
             Raycast(direction);
             IcePlatformManager.Instance.ExecuteForEachPlatform(platform => FreezePlatformInArc(platform, direction));
-            AudioManager.PlaySound(ESoundType.Bob, "Quad_Lasers", false);
         }
     }
 

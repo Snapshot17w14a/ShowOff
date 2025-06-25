@@ -22,6 +22,7 @@ public class BobStompState : BobState
         isStateRunning = true;
         KnockBackPlayers();
         stompEffect.Play();
+        AudioManager.PlaySound(ESoundType.Bob, "Stomp", false);
         IcePlatformManager.Instance.BreakBrittlePlatforms();
         Camera.main.GetComponent<PlayerCenterFollow>().ShakeCamera(1f);
 
@@ -56,7 +57,6 @@ public class BobStompState : BobState
                 {
                     p.GetComponent<Rigidbody>().AddForce(pos.normalized * knockbackForce, ForceMode.Impulse);
                 }
-                AudioManager.PlaySound(ESoundType.Bob, "Stomp", false);
             }
         }
     }
