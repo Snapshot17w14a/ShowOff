@@ -154,17 +154,14 @@ public class PodiumController : MonoBehaviour
             Destroy(effectObj, 4f);
         }
 
-        Scheduler.Instance.DelayExecution(() =>
-        {
+        Scheduler.Instance.DelayExecution(() => {
             if (winnerID != -1)
                 Services.Get<PlayerRegistry>().GetPlayerData(winnerID).minigamePlayer.GetComponent<SkinManager>().ChangeSkin();
 
             OnCountEnd?.Invoke();
             foreach (var podium in podiums) podium.SetPlayerInteraction(true);
 
-            Scheduler.Instance.DelayExecution(() =>
-            {
-                Services.Get<PlayerRegistry>().ExecuteForEachPlayer(player => player.GetPlayerAnimator.SetTrigger("EndDance"));
+            Scheduler.Instance.DelayExecution(() => {
                 scoreState.SkipPodiumStage();
             }, timeBeforeStateChenge);
 

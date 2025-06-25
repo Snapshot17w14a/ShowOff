@@ -28,6 +28,8 @@ public class HubScoreState : MinigameState
             foreach (var m in ditherMaterials) m.SetFloat("_Strength", 1 - t);
         }, 2f, () => {
             FindFirstObjectByType<MinigameHandler>().LoadState(nextMinigameState);
+            Services.Get<PlayerRegistry>().ExecuteForEachPlayer(player => player.GetPlayerAnimator.SetTrigger("Stun"));
+            defaultCameraLerp.callback = () => Services.Get<PlayerRegistry>().ExecuteForEachPlayer(player => player.GetPlayerAnimator.SetTrigger("StunOver"));
             Scheduler.Instance.DelayExecution(() =>
             {
                 foreach (var m in ditherMaterials) m.SetFloat("_Strength", 1);
