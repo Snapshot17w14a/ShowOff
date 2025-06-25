@@ -115,7 +115,7 @@ public class MinigamePlayer : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, targetAngle, 0), Time.deltaTime * turnSpeedMultiplier);
     }
 
-    public void PushPlayer(int force)
+    public void PushPlayer(float force)
     {
         Vector3 direction = transform.position - new Vector3(0, 1, 0);
         Vector3 dirNormalized = direction.normalized;
@@ -246,14 +246,19 @@ public class MinigamePlayer : MonoBehaviour
 
         if (otherTreasure != null && otherTreasure.IsHoldingItem)
         {
-            if (TreasureInteraction && TreasureInteraction.IsHoldingItem)
-                otherTreasure.DropTreasureRandom();
-            else
+            if(!DifficultyManager.IsEasyMode())
             {
-                Pickupable pickUp = otherTreasure.CollectedPickupable;
-                otherTreasure.CollectedPickupable.transform.SetParent(null, true);
-                TreasureInteraction.CollectTreasureDirect(pickUp.PickupType, pickUp);
-                otherTreasure.DropTreasureInstant();
+                if (TreasureInteraction && TreasureInteraction.IsHoldingItem)
+                {
+                    otherTreasure.DropTreasureRandom();
+                }
+                else
+                {
+                    Pickupable pickUp = otherTreasure.CollectedPickupable;
+                    otherTreasure.CollectedPickupable.transform.SetParent(null, true);
+                    TreasureInteraction.CollectTreasureDirect(pickUp.PickupType, pickUp);
+                    otherTreasure.DropTreasureInstant();
+                }
             }
         }
     }

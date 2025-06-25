@@ -12,7 +12,7 @@ public class BobIceState : BobState
     private VisualEffect beamEffect;
     private GameObject hitEffect;
     private int layerMask;
-    private int pushForce = 20;
+    private float pushForce = 20;
 
     private Quaternion initialRotation;
     private Quaternion targetRotation;
@@ -99,7 +99,7 @@ public class BobIceState : BobState
             {
                 var player = hit.collider.GetComponent<MinigamePlayer>();
                 player.GetPlayerAnimator.SetTrigger("Hit");
-                player.PushPlayer(pushForce);
+                player.PushPlayer(DifficultyManager.IsEasyMode() ? pushForce * 0.75f : pushForce);
             }
             else if (hit.collider.CompareTag("Icicle"))
             {

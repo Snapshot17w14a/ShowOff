@@ -44,7 +44,8 @@ public class IcePlatformManager : MonoBehaviour
     private void SelectWaitTime()
     {
         timer = 0;
-        currentWaitTime = Random.Range(minSeconds, maxSeconds);
+        currentWaitTime = DifficultyManager.IsEasyMode() ? Random.Range(minSeconds * 2f, maxSeconds * 2f) : Random.Range(minSeconds, maxSeconds);
+        Debug.LogError($"min{minSeconds} , max{maxSeconds}");
     }
 
     public void BreakBrittlePlatforms()

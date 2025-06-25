@@ -49,7 +49,14 @@ public class BobStompState : BobState
 
             if (dist < knockbackRange)
             {
-                p.GetComponent<Rigidbody>().AddForce(pos.normalized * knockbackForce, ForceMode.Impulse);
+                if(DifficultyManager.IsEasyMode())
+                {
+                    p.GetComponent<Rigidbody>().AddForce(pos.normalized * (knockbackForce / 2), ForceMode.Impulse);
+                } else
+                {
+                    p.GetComponent<Rigidbody>().AddForce(pos.normalized * knockbackForce, ForceMode.Impulse);
+                }
+
             }
         }
     }

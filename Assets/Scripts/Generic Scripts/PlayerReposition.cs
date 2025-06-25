@@ -14,7 +14,10 @@ public class PlayerReposition : MonoBehaviour
         {
             var playerScript = other.GetComponent<MinigamePlayer>();
             playerScript.SetFlightState(true);
-            playerScript.TreasureInteraction.DropTreasureRandom();
+            if(!DifficultyManager.IsEasyMode())
+            {
+                playerScript.TreasureInteraction.DropTreasureRandom();
+            }
             playerScript.StunPlayer(stunDuration);
             AudioManager.PlaySound(ESoundType.Penguin, "Fall_In_Water", false, 1f, 0.3f);
 
