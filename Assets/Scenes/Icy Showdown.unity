@@ -2738,6 +2738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flightDuration: 1
   stunDuration: 1.2
+  waterEffectPrefab: {fileID: 1273287572857616798, guid: b8dd7d6f109916f498f602b82f6adf83, type: 3}
 --- !u!1 &384859358
 GameObject:
   m_ObjectHideFlags: 0
@@ -5016,6 +5017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flightDuration: 1
   stunDuration: 1.2
+  waterEffectPrefab: {fileID: 1273287572857616798, guid: b8dd7d6f109916f498f602b82f6adf83, type: 3}
 --- !u!1 &644292258
 GameObject:
   m_ObjectHideFlags: 0
