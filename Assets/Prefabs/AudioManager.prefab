@@ -75,7 +75,7 @@ MonoBehaviour:
     - name: Needle_Attack
       clip: {fileID: 8300000, guid: 9a4af729709a3f342b407a841921180f, type: 3}
     - name: Quad_Lasers
-      clip: {fileID: 8300000, guid: 337e9dce97d356f458529cca75a59336, type: 3}
+      clip: {fileID: 8300000, guid: 9083ed5ddad4daf4980858d2bd86453f, type: 3}
     - name: Bomb_Throw
       clip: {fileID: 8300000, guid: b6489da83c15a2949a72fb03071d9897, type: 3}
     - name: Bomb
