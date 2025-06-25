@@ -56,7 +56,7 @@ public class BobStompState : BobState
                 {
                     p.GetComponent<Rigidbody>().AddForce(pos.normalized * knockbackForce, ForceMode.Impulse);
                 }
-
+                AudioManager.PlaySound(ESoundType.Bob, "Stomp", false);
             }
         }
     }

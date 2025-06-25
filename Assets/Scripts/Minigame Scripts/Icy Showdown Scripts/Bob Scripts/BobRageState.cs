@@ -74,6 +74,7 @@ public class BobRageState : BobState
         {
             Raycast(direction);
             IcePlatformManager.Instance.ExecuteForEachPlatform(platform => FreezePlatformInArc(platform, direction));
+            AudioManager.PlaySound(ESoundType.Bob, "Quad_Lasers", false);
         }
     }
 

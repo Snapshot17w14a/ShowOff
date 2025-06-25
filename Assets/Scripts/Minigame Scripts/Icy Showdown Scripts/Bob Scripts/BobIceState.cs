@@ -67,7 +67,7 @@ public class BobIceState : BobState
         Camera.main.GetComponent<PlayerCenterFollow>().ShakeCamera(attackSeconds);
 
         instantiatedHitEffect = GameObject.Instantiate(hitEffect);
-
+        AudioManager.PlaySound(ESoundType.Bob, "Laser", false);
         Scheduler.Instance.Lerp(Fire, attackSeconds, () =>
         {
             isStateRunning = false;
