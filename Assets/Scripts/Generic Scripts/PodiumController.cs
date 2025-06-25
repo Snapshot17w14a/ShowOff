@@ -164,6 +164,7 @@ public class PodiumController : MonoBehaviour
 
             Scheduler.Instance.DelayExecution(() =>
             {
+                Services.Get<PlayerRegistry>().ExecuteForEachPlayer(player => player.GetPlayerAnimator.SetTrigger("EndDance"));
                 scoreState.SkipPodiumStage();
             }, timeBeforeStateChenge);
 
