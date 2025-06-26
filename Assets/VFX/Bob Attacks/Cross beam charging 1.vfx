@@ -651,7 +651,7 @@ MonoBehaviour:
   - {fileID: 8926484042661617450}
   - {fileID: 8926484042661617452}
   - {fileID: 8926484042661617454}
-  m_UIPosition: {x: 1610, y: 2040}
+  m_UIPosition: {x: 1600, y: 2094}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -13240,8 +13240,8 @@ MonoBehaviour:
   - {fileID: 8926484042661618303}
   - {fileID: 8926484042661618410}
   dataType: 1
-  capacity: 1536
-  stripCapacity: 12
+  capacity: 3200
+  stripCapacity: 25
   particlePerStripCount: 128
   needsComputeBounds: 0
   boundsMode: 0
@@ -14094,7 +14094,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 60
+      m_SerializableObject: 30
     m_Space: -1
   m_Property:
     name: Rate
@@ -18271,7 +18271,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 60
+      m_SerializableObject: 30
     m_Space: -1
   m_Property:
     name: Rate
@@ -20557,7 +20557,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 60
+      m_SerializableObject: 30
     m_Space: -1
   m_Property:
     name: Rate
@@ -22844,7 +22844,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 60
+      m_SerializableObject: 30
     m_Space: -1
   m_Property:
     name: Rate
@@ -23722,8 +23722,8 @@ MonoBehaviour:
   - {fileID: 8926484042661618709}
   - {fileID: 8926484042661618734}
   dataType: 1
-  capacity: 1536
-  stripCapacity: 12
+  capacity: 3200
+  stripCapacity: 25
   particlePerStripCount: 128
   needsComputeBounds: 0
   boundsMode: 0
@@ -24809,8 +24809,8 @@ MonoBehaviour:
   - {fileID: 8926484042661618746}
   - {fileID: 8926484042661618771}
   dataType: 1
-  capacity: 1536
-  stripCapacity: 12
+  capacity: 3200
+  stripCapacity: 25
   particlePerStripCount: 128
   needsComputeBounds: 0
   boundsMode: 0
@@ -25896,8 +25896,8 @@ MonoBehaviour:
   - {fileID: 8926484042661618783}
   - {fileID: 8926484042661618808}
   dataType: 1
-  capacity: 1536
-  stripCapacity: 12
+  capacity: 3200
+  stripCapacity: 25
   particlePerStripCount: 128
   needsComputeBounds: 0
   boundsMode: 0
