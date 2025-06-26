@@ -158,9 +158,9 @@ public class MinigamePlayer : MonoBehaviour
         }
     }
 
-    public void StunPlayer(float seconds)
+    public void StunPlayer(float seconds, bool isGemThrown = true)
     {
-        StartCoroutine(StunRoutine(seconds));
+        StartCoroutine(StunRoutine(seconds, isGemThrown));
     }
 
     public void SetFlightState(bool state) => isFlying = state;
@@ -192,10 +192,10 @@ public class MinigamePlayer : MonoBehaviour
         }
     }
 
-    private IEnumerator StunRoutine(float stunSeconds)
+    private IEnumerator StunRoutine(float stunSeconds, bool isGemThrown = true)
     {
         isStunned = true;
-        animator.SetBool("IsHolding", false);
+        animator.SetBool("IsHolding", !isGemThrown);
         animator.SetTrigger("Stun");
         stunEffect.Play();
         rigidbody.linearVelocity = Vector3.zero;
