@@ -131,9 +131,10 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 0.60922545, b: 0.35534585, a: 1}
-    - _Color: {r: 2.6181436, g: 0.8482799, b: 0, a: 1}
-    - _Color_Cristal: {r: 1.4745098, g: 0.68286556, b: 0, a: 1}
+    - _Color: {r: 4, g: 2.2924209, b: 1.0754716, a: 1}
+    - _Color_Cristal: {r: 2.9960785, g: 0.5145688, b: 0, a: 1}
     - _EmissionColor: {r: 1, g: 0.32777813, b: 0.10461649, a: 1}
+    - _GlowColo: {r: 8, g: 2.2383075, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
