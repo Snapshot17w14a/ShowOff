@@ -13,9 +13,14 @@ public class Bob : MonoBehaviour
 {
     private readonly Dictionary<Type, BobState> states = new();
 
+    public static Bob Instance { get; private set; }
+
+    public Animator Animator => animator;
+
     private WaitWhile waitForStateExecution;
     private Coroutine attackRoutine;
     private BobState currentState;
+    private Animator animator;
 
     [Header("Attack Pattern")]
     [SerializeField] private BobAttackPattern[] attackPatterns;
@@ -68,6 +73,10 @@ public class Bob : MonoBehaviour
 
     void Start()
     {
+        //Set the singleton nstance and get the animator component
+        Instance = this;
+        animator = GetComponentInChildren<Animator>();
+
         //Get all classes that inherit from BobState and store their Types
         var stateClasses = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsSubclassOf(typeof(BobState)) && !t.IsAbstract && t.IsClass);
 
@@ -116,15 +125,6 @@ public class Bob : MonoBehaviour
                     break;
             }
         }
-    }
-
-    //Load the state and invoke the onStateChange event
-    private void LoadState<T>(params object[] parameters) where T : BobState
-    {
-        currentState?.UnloadState();
-        currentState = states[typeof(T)];
-        currentState.LoadState(parameters);
-        onStateChange?.Invoke();
     }
 
     private void LoadState(Type type, params object[] parameters)
@@ -188,5 +188,6 @@ public class Bob : MonoBehaviour
     private void OnDestroy()
     {
         EventBus<SceneRestart>.OnEvent -= ResetAttackPatterns;
+        Instance = null;
     }
 }

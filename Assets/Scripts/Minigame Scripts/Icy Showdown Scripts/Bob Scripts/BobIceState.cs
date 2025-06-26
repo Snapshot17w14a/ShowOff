@@ -18,6 +18,7 @@ public class BobIceState : BobState
     private Quaternion targetRotation;
     private float turnMultiplier;
 
+    private Animator animator;
     private GameObject instantiatedHitEffect;
 
     public override void Initialize(params object[] parameters)
@@ -29,6 +30,8 @@ public class BobIceState : BobState
         beamEffect = (VisualEffect)parameters[2];
         hitEffect = (GameObject)parameters[3];
         layerMask = (int)parameters[4];
+
+        animator = Bob.Instance.Animator;
     }
 
     public override void LoadState(params object[] parameters)
@@ -38,6 +41,11 @@ public class BobIceState : BobState
         isStateRunning = true;
         chargeUpEffect.Play();
         AudioManager.PlaySound(ESoundType.Bob, "Laser", false);
+
+        animator.SetFloat("BigBeam", 0f);
+        animator.SetFloat("SpeedMult", 1 / chargeupTime);
+        animator.SetTrigger("BeamAttack");
+
         Scheduler.Instance.DelayExecution(ChargeUp, chargeupTime);
     }
 
@@ -67,6 +75,8 @@ public class BobIceState : BobState
         Camera.main.GetComponent<PlayerCenterFollow>().ShakeCamera(attackSeconds);
 
         instantiatedHitEffect = GameObject.Instantiate(hitEffect);
+        animator.SetFloat("SpeedMult", 1 / attackSeconds);
+        animator.SetTrigger("Advance");
         Scheduler.Instance.Lerp(Fire, attackSeconds, () =>
         {
             isStateRunning = false;

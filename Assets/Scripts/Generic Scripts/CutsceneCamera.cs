@@ -14,6 +14,7 @@ public class CutsceneCamera : MonoBehaviour
     [SerializeField] private Camera MainCamera;
     [SerializeField] private Camera cutsceneCamera;
     [SerializeField] private CutsceneAnimation penguinAnimScript;
+    [SerializeField] private Animator introBobAnimator;
 
     [SerializeField] private InputAction skipInput;
 
@@ -42,6 +43,7 @@ public class CutsceneCamera : MonoBehaviour
         if (cinemachineSplineDolly.CameraPosition >= (knots - 1) && !finishedCutscene)
         {
             finishedCutscene = true;
+            introBobAnimator.SetTrigger("StartIntro");
             Invoke(nameof(CutsceneFinished), delayCameraSwap);
         }
     }

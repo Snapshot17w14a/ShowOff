@@ -20,6 +20,8 @@ public class BobRageState : BobState
     private float initialAngle = 0f;
     private float targetAngle = 0f;
 
+    private Animator animator;
+
     public override void Initialize(params object[] parameters)
     {
         if (parameters.Length != 7) throw new Exception("Provided parameters array length was not 7");
@@ -32,6 +34,7 @@ public class BobRageState : BobState
         layerMask = (int)parameters[5];
         globalVolume = (Volume)parameters[6];
 
+        animator = Bob.Instance.Animator;
         mainCamera = Camera.main;
     }
 
@@ -47,6 +50,10 @@ public class BobRageState : BobState
         globalVolume.sharedProfile.TryGet(out chromatic);
 
         isStateRunning = true;
+
+        animator.SetFloat("BigBeam", 1f);
+        animator.SetFloat("SpeedMult", 1 / chargeUpTime);
+        animator.SetTrigger("BeamAttack");
 
         Scheduler.Instance.Lerp(t => chromatic.intensity.value = Mathf.Lerp(0, 0.5f, t), chargeUpTime, StartRagePhase);
     }
@@ -64,6 +71,8 @@ public class BobRageState : BobState
 
     private void StartRagePhase()
     {
+        animator.SetFloat("SpeedMult", 1 / duration);
+        animator.SetTrigger("Advance");
         Scheduler.Instance.Lerp(RagePhase, duration, EndAttack);
     }
 
