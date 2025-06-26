@@ -68,7 +68,7 @@ public class Minecart : MonoBehaviour
     private IEnumerator MoveCart()
     {
         isMoving = true;
-
+        AudioManager.PlaySound(ESoundType.Environment, "Minecart_Going_Away", false);
         while (Vector3.Distance(transform.position, endPosition) > 0.1f)
         {
 
@@ -82,6 +82,7 @@ public class Minecart : MonoBehaviour
         currentGemAmount = 0;
         isFull = false;
 
+        AudioManager.PlaySound(ESoundType.Environment, "Minecart_Coming_Back", false);
         while (Vector3.Distance(transform.position, startPosition) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, startPosition, speed * Time.deltaTime);
