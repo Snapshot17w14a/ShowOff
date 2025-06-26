@@ -67,13 +67,13 @@ MonoBehaviour:
     - name: Icy_Showdown
       clip: {fileID: 8300000, guid: 342c3864e23cb954bbaba8cd2189544b, type: 3}
     - name: Hub
-      clip: {fileID: 8300000, guid: cd46fe83cb38e6641a7340029cea409f, type: 3}
+      clip: {fileID: 8300000, guid: f781174b5d8209d49ad37c7fe7e3dd9a, type: 3}
   - soundType: 0
     audioClips:
     - name: Stomp
-      clip: {fileID: 8300000, guid: 42b22ed150bc8e945b759e3ebae6c8bc, type: 3}
+      clip: {fileID: 8300000, guid: 514140d916802444d835fedf8c3003e1, type: 3}
     - name: Needle_Attack
-      clip: {fileID: 8300000, guid: 9a4af729709a3f342b407a841921180f, type: 3}
+      clip: {fileID: 8300000, guid: 17e75078fbee4b244979559fef76c39a, type: 3}
     - name: Quad_Lasers
       clip: {fileID: 8300000, guid: 456afba314d038f4384d210f3326790c, type: 3}
     - name: Bomb_Throw

@@ -13761,11 +13761,11 @@ MonoBehaviour:
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
   m_ActionsAsset: {fileID: -944628639613478452, guid: 2b1428ed59ecb6447a63d6a59a4cf11e, type: 3}
-  m_PointAction: {fileID: 0}
+  m_PointAction: {fileID: 4197131173859920516, guid: 2b1428ed59ecb6447a63d6a59a4cf11e, type: 3}
   m_MoveAction: {fileID: 0}
   m_SubmitAction: {fileID: 0}
   m_CancelAction: {fileID: 0}
-  m_LeftClickAction: {fileID: 0}
+  m_LeftClickAction: {fileID: -7496416881313619862, guid: 2b1428ed59ecb6447a63d6a59a4cf11e, type: 3}
   m_MiddleClickAction: {fileID: 0}
   m_RightClickAction: {fileID: 0}
   m_ScrollWheelAction: {fileID: 0}
