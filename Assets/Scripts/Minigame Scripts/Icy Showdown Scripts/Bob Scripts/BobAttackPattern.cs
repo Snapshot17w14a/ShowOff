@@ -22,7 +22,9 @@ public class BobAttackPattern : ScriptableObject
 
     public BobAttackContainer NextState() => bobAttackContainers[++index % bobAttackContainers.Count];
 
-    private void OnValidate() => index = -1;
+    private void OnEnable() => index = -1;
+
+    public void Reset() => index = -1;
 }
 
 [System.Serializable]

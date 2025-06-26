@@ -21,3 +21,5 @@ public class PickupCollected : GlobalEvent
         pickup = pickupable;
     }
 }
+
+public class SceneRestart : GlobalEvent { }

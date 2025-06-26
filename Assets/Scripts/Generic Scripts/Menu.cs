@@ -1,5 +1,5 @@
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
@@ -7,11 +7,12 @@ public class Menu : MonoBehaviour
     {
         Services.Get<PauseManager>().Unpause();
     }
-
     public void Restart()
     {
         Services.Get<PauseManager>().Unpause();
         Scene scene = SceneManager.GetActiveScene();
+        EventBus<SceneRestart>.RaiseEvent(new());
+        Scheduler.Instance.StopAllRoutines();
         SceneManager.LoadScene(scene.name);
     }
 

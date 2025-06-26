@@ -80,6 +80,9 @@ public class Bob : MonoBehaviour
         //Initialize the states with their needed references and values
         InitializeStates();
 
+        //Subscribe to clean up when the game is restarted
+        EventBus<SceneRestart>.OnEvent += ResetAttackPatterns;
+
         //Start the attack routine
         StartAttack();
     }
@@ -176,4 +179,14 @@ public class Bob : MonoBehaviour
         BobStates.BobsRage => typeof(BobRageState),
         _ => null
     };
+
+    private void ResetAttackPatterns(SceneRestart restart)
+    {
+        foreach (var pattern in attackPatterns) pattern.Reset();
+    }
+
+    private void OnDestroy()
+    {
+        EventBus<SceneRestart>.OnEvent -= ResetAttackPatterns;
+    }
 }
