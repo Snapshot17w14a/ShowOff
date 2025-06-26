@@ -12,6 +12,7 @@ public class LoadingZoneMinigame : MonoBehaviour
     [SerializeField] private CinemachineSplineDolly cinemachineSplineDolly;
     [SerializeField] private Camera MainCamera;
     [SerializeField] private Camera cutsceneCamera;
+    [SerializeField] private GameObject skipIndicator;
 
     [SerializeField] private InputAction skipInput;
 
@@ -55,6 +56,7 @@ public class LoadingZoneMinigame : MonoBehaviour
                 MainCamera.enabled = false;
                 cutsceneCamera.enabled = true;
                 countDownTimerText.enabled = false;
+                skipIndicator.SetActive(true);
                 autodolly.Speed = 0.5f;
 
                 Services.Get<PlayerRegistry>().ExecuteForEachPlayer(player =>

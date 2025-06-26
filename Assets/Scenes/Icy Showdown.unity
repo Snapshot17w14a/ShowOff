@@ -1871,9 +1871,9 @@ MonoBehaviour:
         z: 0
       Rotation:
         value:
-          x: -0.21990824
-          y: 0
-          z: 0.19127591
+          x: -0.21990827
+          y: 0.000000001947183
+          z: 0.19127594
           w: 0.9565845
     m_MetaData:
     - Mode: 2
@@ -6523,7 +6523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPatterns:
-  - {fileID: 11400000, guid: e0fdb576846464c46b8a7be416292a10, type: 2}
+  - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
   - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
   - {fileID: 11400000, guid: 54ea6353847f64645874006ed2d3e964, type: 2}
   - {fileID: 11400000, guid: a376da87f271f9b44a37bf841d1e616c, type: 2}
@@ -6946,7 +6946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc083e4d56be1746b7fa17150615d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialMinigameState: {fileID: 4230930453622720980}
+  initialMinigameState: {fileID: 906880321}
   onStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -17759,10 +17759,10 @@ MonoBehaviour:
         z: 0.847824
       Rotation:
         value:
-          x: 0.1246035
-          y: -0.20442893
+          x: 0.124603495
+          y: -0.20442887
           z: 0.053355623
-          w: 0.9694514
+          w: 0.96945137
     - Position:
         x: -0.407
         y: -0.01700002
