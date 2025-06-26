@@ -37,7 +37,7 @@ public class LoadingZoneMinigame : MonoBehaviour
         readyPlayers = new(registry.MaxPlayers);
 
         CalcThreshold();
-        AudioManager.PlayMusic(ESoundType.Music, "Icy_Showdown", 0.3f);
+        AudioManager.PlayMusic(ESoundType.Music, "Hub", 0.3f);
 
         skipInput.performed += SkipCutscene;
         skipInput.Enable();
