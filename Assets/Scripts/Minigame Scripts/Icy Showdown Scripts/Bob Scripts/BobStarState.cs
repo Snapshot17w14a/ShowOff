@@ -29,6 +29,10 @@ public class BobStarState : BobState
         starEffect.Play();
         AudioManager.PlaySound(ESoundType.Bob, "Tail_Star_Shoot", false);
 
+        var bobAnimator = Bob.Instance.Animator;
+        bobAnimator.SetFloat("SpeedMult", 2.5f / timeTillSpawn);
+        bobAnimator.SetTrigger("Icicle");
+
         Scheduler.Instance.DelayExecution(() => SpawnIcicles(Random.Range(minCount, maxCount + 1)), timeTillSpawn);
     }
 

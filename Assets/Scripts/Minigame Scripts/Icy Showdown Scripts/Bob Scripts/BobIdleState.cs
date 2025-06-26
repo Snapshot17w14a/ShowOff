@@ -24,7 +24,18 @@ public class BobIdleState : BobState
 
         isStateRunning = true;
 
-        Scheduler.Instance.Lerp(t => bobTransform.rotation = Quaternion.Slerp(initialRotation, targetRotation, t), idleSeconds, () => isStateRunning = false);
+        float angleBetween = Quaternion.Angle(bobTransform.rotation, targetRotation);
+        var bobAnimator = Bob.Instance.Animator;
+        bobAnimator.SetFloat("Move", Mathf.Sign(angleBetween));
+        bobAnimator.SetTrigger("MoveTrigger");
+
+        Scheduler.Instance.Lerp(t => bobTransform.rotation = Quaternion.Slerp(initialRotation, targetRotation, t), 
+            idleSeconds, 
+            () =>
+            {
+                isStateRunning = false;
+                bobAnimator.SetFloat("Move", 0);
+            });
     }
 
     public override void TickState()

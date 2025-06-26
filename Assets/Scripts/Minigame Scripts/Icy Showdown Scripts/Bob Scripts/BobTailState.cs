@@ -33,6 +33,9 @@ public class BobTailState : BobState
 
         isStateRunning = true;
 
+        var bobAnimator = Bob.Instance.Animator;
+        bobAnimator.SetFloat("SpeedMult", 3 / attackTime);
+        bobAnimator.SetTrigger("Needle");
         Scheduler.Instance.Lerp(FireProjectile, attackTime, () => isStateRunning = false);
     }
 

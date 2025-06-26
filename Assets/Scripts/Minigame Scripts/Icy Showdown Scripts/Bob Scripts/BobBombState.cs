@@ -18,9 +18,14 @@ public class BobBombState : BobState
     {
         isStateRunning = true;
 
-        var bombCount = DifficultyManager.IsEasyMode() ? 1 : UnityEngine.Random.Range(1, 3);
-        var platforms = IcePlatformManager.Instance.SelectUniquePlatforms(bombCount);
-        for (int i = 0; i < bombCount; i++) if (platforms[i] != null) LaunchBomb(Vector3.up, platforms[i]);
+        Bob.Instance.Animator.SetTrigger("Bomb");
+
+        Scheduler.Instance.DelayExecution(() =>
+        {
+            var bombCount = DifficultyManager.IsEasyMode() ? 1 : UnityEngine.Random.Range(1, 3);
+            var platforms = IcePlatformManager.Instance.SelectUniquePlatforms(bombCount);
+            for (int i = 0; i < bombCount; i++) if (platforms[i] != null) LaunchBomb(Vector3.up, platforms[i]);
+        }, 1f);
     }
 
     public override void TickState()

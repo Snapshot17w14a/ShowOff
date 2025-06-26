@@ -20,13 +20,19 @@ public class BobStompState : BobState
     public override void LoadState(params object[] parameters)
     {
         isStateRunning = true;
-        KnockBackPlayers();
-        stompEffect.Play();
-        AudioManager.PlaySound(ESoundType.Bob, "Stomp", false);
-        IcePlatformManager.Instance.BreakBrittlePlatforms();
-        Camera.main.GetComponent<PlayerCenterFollow>().ShakeCamera(1f);
 
-        isStateRunning = false;
+        Bob.Instance.Animator.SetTrigger("Stomp");
+
+        Scheduler.Instance.DelayExecution(() =>
+        {
+            KnockBackPlayers();
+            stompEffect.Play();
+            AudioManager.PlaySound(ESoundType.Bob, "Stomp", false);
+            IcePlatformManager.Instance.BreakBrittlePlatforms();
+            Camera.main.GetComponent<PlayerCenterFollow>().ShakeCamera(1f);
+
+            isStateRunning = false;
+        }, 0.17f);
     }
 
     public override void TickState()
