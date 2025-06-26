@@ -8,7 +8,6 @@ public class LoadingZoneMinigame : MonoBehaviour
 {
     [SerializeField] private string minigameName;
     [SerializeField] private TextMeshProUGUI countDownTimerText;
-    [SerializeField] private GameObject skipButton;
 
     [SerializeField] private CinemachineSplineDolly cinemachineSplineDolly;
     [SerializeField] private Camera MainCamera;
@@ -57,7 +56,6 @@ public class LoadingZoneMinigame : MonoBehaviour
                 cutsceneCamera.enabled = true;
                 countDownTimerText.enabled = false;
                 autodolly.Speed = 0.5f;
-                skipButton.SetActive(true);
 
                 Services.Get<PlayerRegistry>().ExecuteForEachPlayer(player =>
                 {

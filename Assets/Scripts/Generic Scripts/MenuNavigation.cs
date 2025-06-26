@@ -79,8 +79,16 @@ public class MenuNavigation : MonoBehaviour
     {
         foreach(var inputAction in inputForAction.Values)
         {
-            if (state) inputAction.Enable();
-            else inputAction.Disable();
+            if (state)
+            {
+                inputAction.Enable();
+                eventSystem.SetSelectedGameObject(buttons[0]);
+            }
+            else
+            {
+                inputAction.Disable();
+                eventSystem.SetSelectedGameObject(null);
+            }
         }
     }
 

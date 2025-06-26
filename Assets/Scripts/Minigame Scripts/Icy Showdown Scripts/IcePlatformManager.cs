@@ -64,7 +64,7 @@ public class IcePlatformManager : MonoBehaviour
     /// Select a platform from the array of platforms using the predicate
     /// </summary>
     /// <param name="predicate">The predicate function to chose which platforms to select</param>
-    public IcePlatform[] SelectPlatforms(Func<IcePlatform, bool> predicate) => icePlatforms.Where(platform => predicate(platform)).ToArray();
+    public IcePlatform[] SelectPlatforms(Func<IcePlatform, bool> predicate) => icePlatforms.Where(predicate).ToArray();
 
     public IcePlatform[] SelectUniquePlatforms(int count)
     {
@@ -72,19 +72,27 @@ public class IcePlatformManager : MonoBehaviour
 
         if (count == 0 || count > platforms.Length) return null;
 
-        List<int> usedIndicies = new();
+        Span<int> usedIndicies = stackalloc int[count];
         IcePlatform[] selectedPlatforms = new IcePlatform[count];
 
         for (int i = 0; i < count; i++)
         {
             int index;
             do index = Random.Range(0, platforms.Length);
-            while (usedIndicies.Contains(index));
+            while (IsIndexUsed(usedIndicies, index));
 
             selectedPlatforms[i] = platforms[index];
-            usedIndicies.Add(index);
+            usedIndicies[i] = index;
         }
 
         return selectedPlatforms;
+    }
+
+    private bool IsIndexUsed(Span<int> indicies, int index)
+    {
+        foreach(var i in indicies)
+            if (i == index) return true;
+
+        return false;
     }
 }
