@@ -71,7 +71,7 @@ MonoBehaviour:
   - soundType: 0
     audioClips:
     - name: Stomp
-      clip: {fileID: 8300000, guid: 514140d916802444d835fedf8c3003e1, type: 3}
+      clip: {fileID: 8300000, guid: a365d28948ef25f4292baf332211320e, type: 3}
     - name: Needle_Attack
       clip: {fileID: 8300000, guid: 17e75078fbee4b244979559fef76c39a, type: 3}
     - name: Quad_Lasers
@@ -85,7 +85,7 @@ MonoBehaviour:
     - name: Tail_Star_Shoot
       clip: {fileID: 8300000, guid: 86504165fda3c644aa11bfe0a6936d50, type: 3}
     - name: Crystal_Crash
-      clip: {fileID: 8300000, guid: a8a1648f18d16cd41a5a1a2b4b683670, type: 3}
+      clip: {fileID: 8300000, guid: 6387d185cc16f1c4cb50f30f295644d3, type: 3}
   - soundType: 3
     audioClips:
     - name: Platform_Break

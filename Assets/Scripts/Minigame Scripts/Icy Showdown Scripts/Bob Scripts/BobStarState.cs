@@ -27,7 +27,7 @@ public class BobStarState : BobState
         isStateRunning = true;
         starEffect.Reinit();
         starEffect.Play();
-        AudioManager.PlaySound(ESoundType.Bob, "Tail_Star_Shoot", false);
+        AudioManager.PlaySound(ESoundType.Bob, "Tail_Star_Shoot", false, 1, 0.5f);
 
         var bobAnimator = Bob.Instance.Animator;
         bobAnimator.SetFloat("SpeedMult", 2.5f / timeTillSpawn);

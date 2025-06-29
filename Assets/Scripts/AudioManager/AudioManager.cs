@@ -91,7 +91,7 @@ public class AudioManager : MonoBehaviour
 
         if (randomizePitch)
         {
-            Instance.sfxSource.pitch = UnityEngine.Random.Range(1f, 3f);
+            Instance.sfxSource.pitch = UnityEngine.Random.Range(1f, 2f);
         }
         else
         {
