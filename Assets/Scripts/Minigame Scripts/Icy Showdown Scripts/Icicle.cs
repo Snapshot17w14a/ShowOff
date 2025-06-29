@@ -36,7 +36,7 @@ public class Icicle : MonoBehaviour
         {
             GetComponent<Collider>().isTrigger = false;
             rigidbody.isKinematic = true;
-            AudioManager.PlaySound(ESoundType.Bob, "Crystal_Crash", false);
+            AudioManager.PlaySound(ESoundType.Bob, "Crystal_Crash", true, 1, 0.7f);
             if (Camera.main.TryGetComponent<PlayerCenterFollow>(out var pcf)) pcf.ShakeCamera(0.39f);
 
             transform.parent = other.transform;

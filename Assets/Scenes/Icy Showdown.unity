@@ -2183,9 +2183,9 @@ MonoBehaviour:
         z: 0
       Rotation:
         value:
-          x: -0.21990824
-          y: 0
-          z: 0.19127591
+          x: -0.21990827
+          y: 0.000000001947183
+          z: 0.19127594
           w: 0.9565845
     m_MetaData:
     - Mode: 2
@@ -16492,6 +16492,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 1846885899532473322, guid: dd5b1ba3c75f7e142aff3b05a690539d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1964759395802779562, guid: dd5b1ba3c75f7e142aff3b05a690539d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2216642711063209235, guid: dd5b1ba3c75f7e142aff3b05a690539d, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
@@ -16552,6 +16560,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cross beam charging 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4714464295341044315, guid: dd5b1ba3c75f7e142aff3b05a690539d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929378014482856767, guid: dd5b1ba3c75f7e142aff3b05a690539d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7085726928255352970, guid: dd5b1ba3c75f7e142aff3b05a690539d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7700394818771688237, guid: dd5b1ba3c75f7e142aff3b05a690539d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -16590,6 +16610,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7700394818771688237, guid: dd5b1ba3c75f7e142aff3b05a690539d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8657116184224448791, guid: dd5b1ba3c75f7e142aff3b05a690539d, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -19943,9 +19967,9 @@ MonoBehaviour:
         z: 1.042098
       Rotation:
         value:
-          x: 0.018955955
-          y: -0.010716987
-          z: 0.0031866094
+          x: 0.018955966
+          y: -0.010716968
+          z: 0.0031855651
           w: 0.9997577
     - Position:
         x: 0.10499999
@@ -19961,9 +19985,9 @@ MonoBehaviour:
         z: 0.36651298
       Rotation:
         value:
-          x: -0.103708364
+          x: -0.10370837
           y: 0.5509591
-          z: 0.23034266
+          z: 0.23034267
           w: 0.79538095
     - Position:
         x: 1.576
@@ -19997,9 +20021,9 @@ MonoBehaviour:
         z: 0.8805896
       Rotation:
         value:
-          x: 0.12022607
+          x: 0.120226055
           y: -0.28691664
-          z: 0.04122697
+          z: 0.041226964
           w: 0.9494867
     - Position:
         x: -0.589

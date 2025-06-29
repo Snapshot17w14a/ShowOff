@@ -42,7 +42,7 @@ public class IcePlatform : MonoBehaviour
         {
             freezeEffect.Reinit();
             freezeEffect.Play();
-            AudioManager.PlaySound(ESoundType.Environment, "Ice_Regrowing", false);
+            AudioManager.PlaySound(ESoundType.Environment, "Ice_Regrowing", false, 1, 0.1f);
 
             if (currentRoutine != null) StopCoroutine(currentRoutine);
             currentRoutine = StartCoroutine(FreezeRoutine());
@@ -78,7 +78,7 @@ public class IcePlatform : MonoBehaviour
         {
             Destroy(transform.GetChild(i).gameObject);
         }
-        AudioManager.PlaySound(ESoundType.Environment, "Platform_Break", false);
+        AudioManager.PlaySound(ESoundType.Environment, "Platform_Break", false, 1, 0.5f);
         if (currentRoutine != null) StopCoroutine(currentRoutine);
         currentRoutine = StartCoroutine(SinkPlatform());
     }
