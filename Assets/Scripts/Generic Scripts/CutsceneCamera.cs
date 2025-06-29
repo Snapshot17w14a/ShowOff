@@ -2,6 +2,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using static Unity.Cinemachine.CinemachineTrackedDolly;
 
 public class CutsceneCamera : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class CutsceneCamera : MonoBehaviour
     [SerializeField] private InputAction skipInput;
 
     private bool finishedCutscene;
+    private bool startedSlowingDown;
     private Vector3 startPos;
     private Quaternion startRot;
     private int knots;
@@ -39,13 +41,26 @@ public class CutsceneCamera : MonoBehaviour
     private void Update()
     {
         PenguinWalking();
+       
+        if (cinemachineSplineDolly.CameraPosition >= (knots - 3) && !startedSlowingDown)
+        {
+            BobReveal();      
+        }
 
         if (cinemachineSplineDolly.CameraPosition >= (knots - 1) && !finishedCutscene)
         {
             finishedCutscene = true;
-            introBobAnimator.SetTrigger("StartIntro");
             Invoke(nameof(CutsceneFinished), delayCameraSwap);
         }
+
+    }
+
+    private void BobReveal()
+    {
+        startedSlowingDown = true;
+        introBobAnimator.SetTrigger("StartIntro");
+        var autodolly = cinemachineSplineDolly.AutomaticDolly.Method as SplineAutoDolly.FixedSpeed;
+        autodolly.Speed = 0.35f;
     }
 
     public void CutsceneFinished()
