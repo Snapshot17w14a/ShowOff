@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6639084979850727850}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.216, y: 0.366, z: 0}
+  m_LocalPosition: {x: -0.2, y: 0.35, z: 0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -42,8 +42,8 @@ VisualEffect:
   m_GameObject: {fileID: 6639084979850727850}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 25a5798417a97274496e8f018b7317ff, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 0
   m_AllowInstancing: 1
@@ -160,6 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e0a6060ed7d044389305d5cce1d165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookTarget: {fileID: 0}
+  lookAtTarget: 0
 --- !u!1001 &3609337200501273440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -216,6 +218,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2ebc6077ba9dbb845b619704c70b19ad, type: 2}
+    - target: {fileID: 5866666021909216657, guid: b2ba817cd842a284a956478c57a9a0aa, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e34be7a79dcb0874fbca03792b099caf, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
