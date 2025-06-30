@@ -6,7 +6,7 @@ public class WinnerEffectsManager : MonoBehaviour
 {
     public static WinnerEffectsManager Instance { get; private set; }
 
-    [SerializeField] private VisualEffect fireWorksEffect;
+    [SerializeField] private GameObject fireWorksObject;
 
     private TextMeshProUGUI winnerText;
     private void Awake()
@@ -23,21 +23,24 @@ public class WinnerEffectsManager : MonoBehaviour
     {
         winnerText = GetComponentInChildren<TextMeshProUGUI>();
         winnerText.alpha = 0f;
-        //fireWorksEffect.Stop();
     }
 
-    public void StartEffects(int playerID, Color color)
+    public void StartEffects(int playerID, Color color, Vector3 position)
     {
         winnerText.alpha = 1f;
         winnerText.text = $"Player {playerID + 1} has won the game!";
         SetWinnerTextMaterial(color);
-        //fireWorksEffect.Play();
+        GameObject vfx = Instantiate(fireWorksObject, position, Quaternion.identity);
+        var fireworkvfx = vfx.GetComponent<VisualEffect>();
+        if (fireworkvfx != null)
+        {
+            fireworkvfx.SetVector4("Color Fireworks", color);
+        }
     }
 
     public void StopEffects()
     {
         winnerText.alpha = 0f;
-        fireWorksEffect.Stop();
     }
 
     public Material GetWinnerTextMaterial()

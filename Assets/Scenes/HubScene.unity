@@ -5291,7 +5291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a150c31f20ce9448716daf3d0b4a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireWorksEffect: {fileID: 0}
+  fireWorksObject: {fileID: 707612931352015864, guid: 39a84bd50b21fa94da9c1110c67d17dd, type: 3}
 --- !u!1 &463016627
 GameObject:
   m_ObjectHideFlags: 0
@@ -21094,8 +21094,8 @@ MonoBehaviour:
         z: 1.8144974
       Rotation:
         value:
-          x: 0.09786127
-          y: 0.22699758
+          x: 0.097861275
+          y: 0.22699755
           z: 0.8929545
           w: -0.37620142
     - Position:
@@ -23991,9 +23991,9 @@ MonoBehaviour:
         z: 11.219002
       Rotation:
         value:
-          x: 0.15447676
+          x: 0.15447679
           y: 0.0005685128
-          z: 0.0001452388
+          z: 0.00014523878
           w: 0.9879963
     - Position:
         x: -0.0009325743
