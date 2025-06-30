@@ -67,7 +67,7 @@ public class EndingMinecart : MonoBehaviour
 
         Scheduler.Instance.Lerp(t => {
             player.transform.position = Vector3.Lerp(initialPlayerPos, jumpPoint.position, t);
-            player.transform.LookAt(jumpPoint);
+            player.transform.forward = GetForwardToMinecart(player.transform.position);
         }, 
         playerWalkTime, 
         () => {
@@ -101,5 +101,11 @@ public class EndingMinecart : MonoBehaviour
         Scheduler.Instance.Lerp(t => {
             transform.position = Vector3.Lerp(minecartPosition, exitPoint.position, t);
         }, minecartLerpTime, () => OnMinecartLeft?.Invoke());
+    }
+
+    private Vector3 GetForwardToMinecart(Vector3 playerPosition)
+    {
+        playerPosition.y = transform.position.y;
+        return transform.position - playerPosition;
     }
 }

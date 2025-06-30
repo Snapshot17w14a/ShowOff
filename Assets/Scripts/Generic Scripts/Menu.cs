@@ -18,8 +18,7 @@ public class Menu : MonoBehaviour
         EventBus<SceneRestart>.RaiseEvent(new());
 
         //Reset the chromatic abberation strength
-        FindFirstObjectByType<Volume>().sharedProfile.TryGet<ChromaticAberration>(out var chromatic);
-        chromatic.intensity.value = 0;
+        ResetChromaticAbberation();
 
         Scheduler.Instance.StopAllRoutines();
         SceneManager.LoadScene(scene.name);
@@ -27,7 +26,18 @@ public class Menu : MonoBehaviour
 
     public void GoToHub()
     {
+        //Reset the chromatic abberation strength
+        ResetChromaticAbberation();
+
+        PlayerPrefs.SetInt("DoPodium", 0);
+
         Services.Get<PauseManager>().Unpause();
         SceneManager.LoadScene("HubScene");
+    }
+
+    private void ResetChromaticAbberation()
+    {
+        FindFirstObjectByType<Volume>().sharedProfile.TryGet<ChromaticAberration>(out var chromatic);
+        chromatic.intensity.value = 0;
     }
 }

@@ -2,7 +2,6 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using static Unity.Cinemachine.CinemachineTrackedDolly;
 
 public class CutsceneCamera : MonoBehaviour
 {
@@ -52,7 +51,6 @@ public class CutsceneCamera : MonoBehaviour
             finishedCutscene = true;
             Invoke(nameof(CutsceneFinished), delayCameraSwap);
         }
-
     }
 
     private void BobReveal()
