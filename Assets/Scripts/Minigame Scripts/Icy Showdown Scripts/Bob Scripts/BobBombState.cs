@@ -25,7 +25,7 @@ public class BobBombState : BobState
             AudioManager.PlaySound(ESoundType.Bob, "Bomb_Throw", false, 1, 0.75f);
             var bombCount = DifficultyManager.IsEasyMode() ? 1 : UnityEngine.Random.Range(1, 3);
             var platforms = IcePlatformManager.Instance.SelectUniquePlatforms(bombCount);
-            for (int i = 0; i < bombCount; i++) if (platforms[i] != null) LaunchBomb(Vector3.up, platforms[i], callback: i == bombCount ? BombCallback : null);
+            for (int i = 0; i < bombCount; i++) if (platforms[i] != null) LaunchBomb(Vector3.up, platforms[i], callback: i == 0 ? BombCallback : null);
         }, 1f);
     }
 
