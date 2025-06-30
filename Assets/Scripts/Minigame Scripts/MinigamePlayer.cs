@@ -242,25 +242,22 @@ public class MinigamePlayer : MonoBehaviour
 
         if (otherPlayer.IsStunned) return;
 
-        otherPlayer.StunPlayer(dashStunDuration);
+        otherPlayer.StunPlayer(dashStunDuration, !DifficultyManager.IsEasyMode());
         AudioManager.PlaySound(ESoundType.Penguin, "Player_Hit", false, 1f, 0.5f);
         TreasureInteraction otherTreasure = otherPlayer.TreasureInteraction;
 
-        if (otherTreasure != null && otherTreasure.IsHoldingItem)
+        if (otherTreasure != null && otherTreasure.IsHoldingItem && !DifficultyManager.IsEasyMode())
         {
-            if(!DifficultyManager.IsEasyMode())
+            if (TreasureInteraction.IsHoldingItem)
             {
-                if (TreasureInteraction && TreasureInteraction.IsHoldingItem)
-                {
-                    otherTreasure.DropTreasureRandom();
-                }
-                else
-                {
-                    Pickupable pickUp = otherTreasure.CollectedPickupable;
-                    otherTreasure.CollectedPickupable.transform.SetParent(null, true);
-                    TreasureInteraction.CollectTreasureDirect(pickUp.PickupType, pickUp);
-                    otherTreasure.DropTreasureInstant();
-                }
+                otherTreasure.DropTreasureRandom();
+            }
+            else
+            {
+                Pickupable pickUp = otherTreasure.CollectedPickupable;
+                otherTreasure.CollectedPickupable.transform.SetParent(null, true);
+                TreasureInteraction.CollectTreasureDirect(pickUp.PickupType, pickUp);
+                otherTreasure.DropTreasureInstant();
             }
         }
     }

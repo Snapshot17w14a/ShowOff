@@ -2029,6 +2029,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4628812209762925344, guid: 134e6fa2e68f1fc42951aba10a307f9a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 14f83b96acd93004f859703d61a43c46, type: 2}
     - target: {fileID: 919132149155446097, guid: 134e6fa2e68f1fc42951aba10a307f9a, type: 3}
       propertyPath: m_Name
       value: BOB_FINAL_ANIM_FILE
@@ -19967,10 +19971,10 @@ MonoBehaviour:
         z: 1.042098
       Rotation:
         value:
-          x: 0.018955966
-          y: -0.010716968
-          z: 0.0031855651
-          w: 0.9997577
+          x: 0.018955978
+          y: -0.010716957
+          z: 0.0031848813
+          w: 0.99975777
     - Position:
         x: 0.10499999
         y: -0.051
