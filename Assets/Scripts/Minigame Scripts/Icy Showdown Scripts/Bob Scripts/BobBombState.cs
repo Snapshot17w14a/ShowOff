@@ -19,10 +19,10 @@ public class BobBombState : BobState
         isStateRunning = true;
 
         Bob.Instance.Animator.SetTrigger("Bomb");
-        AudioManager.PlaySound(ESoundType.Bob, "Bomb_Throw", false, 1, 0.75f);
 
         Scheduler.Instance.DelayExecution(() =>
         {
+            AudioManager.PlaySound(ESoundType.Bob, "Bomb_Throw", false, 1, 0.75f);
             var bombCount = DifficultyManager.IsEasyMode() ? 1 : UnityEngine.Random.Range(1, 3);
             var platforms = IcePlatformManager.Instance.SelectUniquePlatforms(bombCount);
             for (int i = 0; i < bombCount; i++) if (platforms[i] != null) LaunchBomb(Vector3.up, platforms[i], callback: i == bombCount ? BombCallback : null);
@@ -31,7 +31,7 @@ public class BobBombState : BobState
 
     public override void TickState()
     {
-        if (!isStateRunning) return;
+        
     }
 
     public override void UnloadState()
