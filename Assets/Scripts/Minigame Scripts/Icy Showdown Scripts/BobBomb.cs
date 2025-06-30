@@ -21,7 +21,7 @@ public class BobBomb : MonoBehaviour
 
     private void Start()
     {
-        bombExplosion.SetFloat("Lifetime", explosionCooldown + flightTime);
+        bombExplosion.SetFloat("Lifetime", 5);
     }
 
     // Update is called once per frame
@@ -52,7 +52,7 @@ public class BobBomb : MonoBehaviour
 
     private void Explode()
     {
-        onBombExplode();
+        onBombExplode?.Invoke();
         targetPlatform.BreakPlatform();
         transform.GetChild(0).transform.SetParent(transform.parent);
         AudioManager.PlaySound(ESoundType.Bob, "Bomb", false, 1, 0.5f);

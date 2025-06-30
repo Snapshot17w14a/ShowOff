@@ -25,7 +25,7 @@ public class BobBombState : BobState
         {
             var bombCount = DifficultyManager.IsEasyMode() ? 1 : UnityEngine.Random.Range(1, 3);
             var platforms = IcePlatformManager.Instance.SelectUniquePlatforms(bombCount);
-            for (int i = 0; i < bombCount; i++) if (platforms[i] != null) LaunchBomb(Vector3.up, platforms[i]);
+            for (int i = 0; i < bombCount; i++) if (platforms[i] != null) LaunchBomb(Vector3.up, platforms[i], callback: i == bombCount ? BombCallback : null);
         }, 1f);
     }
 
@@ -39,7 +39,7 @@ public class BobBombState : BobState
 
     }
 
-    public void LaunchBomb(Vector3 start, IcePlatform target, float timeToTarget = 2f)
+    public void LaunchBomb(Vector3 start, IcePlatform target, float timeToTarget = 2f, Action callback = null)
     {
         //Instantiate the bomb prefab with the parent transform
         var bomb = GameObject.Instantiate(bombPrefab, start, Quaternion.identity, bombParentTransform);
@@ -49,7 +49,7 @@ public class BobBombState : BobState
 
         //Get a reference to its BobBomb script, set the callback and the target platform
         var bombScript = bomb.GetComponent<BobBomb>();
-        bombScript.onBombExplode = BombCallback;
+        bombScript.onBombExplode = callback;
         bombScript.targetPlatform = target;
 
         //Calculate the reguired velocity reach the target in timeToTarget time
