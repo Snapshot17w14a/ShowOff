@@ -126,7 +126,7 @@ public class PodiumController : MonoBehaviour
         podium.transform.localPosition = pos;
         podium.transform.localScale = new Vector3(1, 0.1f, 1);
         podium.player = playerRegistry.InstantiatePlayerWithId(index);
-        scoreState.AddMaterial(podium.GetComponent<MeshRenderer>().material);
+        podium.AddRenderMaterialsToDissolve(scoreState);
 
         return podium;
     }

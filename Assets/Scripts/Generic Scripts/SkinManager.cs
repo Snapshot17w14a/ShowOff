@@ -24,8 +24,10 @@ public class SkinManager : MonoBehaviour
 
         if (data.isLastWinner)
         {
-            
-            WinnerEffectsManager.Instance.StartEffects(data.id, playerColor, transform.position);
+            var winnerEffectsManager = WinnerEffectsManager.Instance;
+            if (winnerEffectsManager != null)
+                winnerEffectsManager.StartEffects(data.id, playerColor, transform.position);
+
             SetPlayerColor(goldVisual, RegistryID);
             dashIndicator.GetComponent<MeshRenderer>().material = goldDashMaterial;
             GetComponent<MinigamePlayer>().SetDashIndicatorMaterial(dashIndicator.GetComponent<MeshRenderer>().material);

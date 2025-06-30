@@ -31,8 +31,7 @@ public class WinnerEffectsManager : MonoBehaviour
         winnerText.text = $"Player {playerID + 1} has won the game!";
         SetWinnerTextMaterial(color);
         GameObject vfx = Instantiate(fireWorksObject, position, Quaternion.identity);
-        var fireworkvfx = vfx.GetComponent<VisualEffect>();
-        if (fireworkvfx != null)
+        if (vfx.TryGetComponent<VisualEffect>(out var fireworkvfx))
         {
             fireworkvfx.SetVector4("Color Fireworks", color);
         }

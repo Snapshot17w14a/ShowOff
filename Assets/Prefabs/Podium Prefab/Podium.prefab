@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  podiumTopRenderer: {fileID: 4136266961339783021}
   maxHeight: 2
 --- !u!2083052967 &7609581014079695544
 VisualEffect:

@@ -2187,9 +2187,9 @@ MonoBehaviour:
         z: 0
       Rotation:
         value:
-          x: -0.21990824
-          y: 0
-          z: 0.19127591
+          x: -0.21990827
+          y: 0.000000001947183
+          z: 0.19127594
           w: 0.9565845
     m_MetaData:
     - Mode: 2
@@ -7133,7 +7133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayCameraSwap: 0.25
-  transitionDuration: 2
+  transitionDuration: 3
   cinemachineSplineDolly: {fileID: 1223235844}
   MainCamera: {fileID: 1116519834}
   cutsceneCamera: {fileID: 1139261529}
@@ -19991,9 +19991,9 @@ MonoBehaviour:
         z: 0.36651298
       Rotation:
         value:
-          x: -0.103708364
+          x: -0.10370837
           y: 0.5509591
-          z: 0.23034266
+          z: 0.23034267
           w: 0.79538095
     - Position:
         x: 1.576
@@ -20027,9 +20027,9 @@ MonoBehaviour:
         z: 0.8805896
       Rotation:
         value:
-          x: 0.12022607
+          x: 0.120226055
           y: -0.28691664
-          z: 0.04122697
+          z: 0.041226964
           w: 0.9494867
     - Position:
         x: -0.589

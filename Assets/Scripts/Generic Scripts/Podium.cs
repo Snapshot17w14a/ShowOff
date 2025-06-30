@@ -6,6 +6,7 @@ public class Podium : MonoBehaviour
 {
     [HideInInspector] public MinigamePlayer player;
 
+    [SerializeField] private MeshRenderer podiumTopRenderer;
     [SerializeField] private float maxHeight;
 
     public static int highestScore = 0;
@@ -29,7 +30,9 @@ public class Podium : MonoBehaviour
         player.transform.rotation = Quaternion.Euler(0, 180f, 0);
         SetPlayerInteraction(false);
 
-        GetComponent<MeshRenderer>().material.SetColor("_Base_color", player.GetComponent<SkinManager>().playerColor);
+        var playerColor = player.GetComponent<SkinManager>().playerColor;
+        GetComponent<MeshRenderer>().material.SetColor("_Base_color", playerColor);
+        podiumTopRenderer.material.SetColor("_Base_color", playerColor);
 
         scoreText = controller.CreateScoreText().GetComponent<TextMeshPro>();
 
@@ -67,5 +70,11 @@ public class Podium : MonoBehaviour
 
         if (state) input.ActivateInput();
         else input.DeactivateInput();
+    }
+
+    public void AddRenderMaterialsToDissolve(HubScoreState state)
+    {
+        state.AddMaterial(GetComponent<MeshRenderer>().material);
+        state.AddMaterial(podiumTopRenderer.material);
     }
 }
