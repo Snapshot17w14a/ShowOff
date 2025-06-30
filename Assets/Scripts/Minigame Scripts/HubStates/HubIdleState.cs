@@ -10,6 +10,7 @@ public class HubIdleState : MinigameState
     public override void LoadState()
     {
         base.LoadState();
+        Services.Get<PlayerRegistry>().ExecuteForEachPlayer(p => Destroy(p.gameObject));
         idleVideoPlayer.clip = clips[Random.Range(0, clips.Length)];
         idleVideoPlayer.Play();
     }

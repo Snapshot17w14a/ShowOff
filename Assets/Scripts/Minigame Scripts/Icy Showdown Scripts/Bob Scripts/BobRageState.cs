@@ -71,7 +71,7 @@ public class BobRageState : BobState
 
     private void StartRagePhase()
     {
-        animator.SetFloat("SpeedMult", 1 / duration);
+        animator.SetFloat("SpeedMult", 1 / duration * 4);
         animator.SetTrigger("Advance");
         Scheduler.Instance.Lerp(RagePhase, duration, EndAttack);
     }
@@ -89,6 +89,7 @@ public class BobRageState : BobState
 
     private void EndAttack()
     {
+        animator.SetTrigger("EndBeam");
         Scheduler.Instance.Lerp(
             t => {
                 mainCamera.fieldOfView = Mathf.Lerp(30f, 26.9f, t);

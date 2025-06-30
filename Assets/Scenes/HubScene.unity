@@ -20807,8 +20807,8 @@ MonoBehaviour:
         z: 1.8144974
       Rotation:
         value:
-          x: 0.097861275
-          y: 0.22699755
+          x: 0.09786127
+          y: 0.22699758
           z: 0.8929545
           w: -0.37620142
     - Position:
@@ -22467,7 +22467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0
-  duration: 6
+  duration: 3
   startTransform: {fileID: 1645914232}
   swap: {fileID: 1176737523}
 --- !u!1 &1787799721
@@ -23498,9 +23498,9 @@ MonoBehaviour:
         z: 11.219002
       Rotation:
         value:
-          x: 0.15447679
+          x: 0.15447676
           y: 0.0005685128
-          z: 0.00014523878
+          z: 0.0001452388
           w: 0.9879963
     - Position:
         x: -0.0009325743

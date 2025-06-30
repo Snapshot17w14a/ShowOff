@@ -43,7 +43,7 @@ Material:
     - _Dither_Range: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Strength: 1
+    - _Strength: -0.0074083805
     m_Colors:
     - _Base_color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

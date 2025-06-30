@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class IdleTimer : MonoBehaviour
 {
@@ -9,11 +11,18 @@ public class IdleTimer : MonoBehaviour
     private float idleTime;
     private bool isTransitioning = false;
 
+    private readonly List<InputDevice> inputDevices = new();
+
+    private void Start()
+    {
+        Services.Get<PlayerRegistry>().OnPlayerRegistered += ResetDeviceList;
+    }
+
     void Update()
     {
         idleTime += Time.deltaTime;
 
-        if (Input.anyKey) idleTime = 0;
+        if (Input.anyKey || AnyInput()) idleTime = 0;
 
         if (idleTime >= maxIdleTime && !isTransitioning)
         {
@@ -26,5 +35,23 @@ public class IdleTimer : MonoBehaviour
                 TransitionController.Instance.TransitionIn(1f);
             });
         }
+    }
+
+    private void ResetDeviceList(int id)
+    {
+        inputDevices.Clear();
+        inputDevices.AddRange(InputSystem.devices);
+    }
+    
+    private bool AnyInput()
+    {
+        foreach (var device in inputDevices)
+            if (device.IsPressed()) return true;
+        return false;
+    }
+
+    private void OnDisable()
+    {
+        Services.Get<PlayerRegistry>().OnPlayerRegistered -= ResetDeviceList;
     }
 }

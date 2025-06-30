@@ -1467,6 +1467,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: fc65b18f-b41e-4297-8508-3e46ae2139f2
     m_ActionName: 'UI/Confirm[/Keyboard/e,/Keyboard/numpad0]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f449726-889d-4b19-a862-d7801f6b35c7
+    m_ActionName: 'GlobalUI/Point[/Mouse/position]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dd90dfe1-7b32-4fdb-8517-b8afc4132bc5
+    m_ActionName: 'GlobalUI/LeftClick[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player
@@ -1517,7 +1525,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &1228121129382461837
