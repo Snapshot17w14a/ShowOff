@@ -26,7 +26,7 @@ public class Needle : MonoBehaviour
         {
             var player = other.GetComponent<MinigamePlayer>();
             player.StunPlayer(stunDuration);
-            //AudioManager.PlaySound(ESoundType.Penguin, "Player_Hit", false, 1f, 0.5f);
+            AudioManager.PlaySound(ESoundType.Penguin, "Player_Hit", false, 1f, 0.5f);
             player.TreasureInteraction.DropTreasureRandom();
         }
         else if (other.gameObject.CompareTag("IcePlatform"))
