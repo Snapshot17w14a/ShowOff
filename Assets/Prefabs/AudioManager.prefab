@@ -68,6 +68,8 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 342c3864e23cb954bbaba8cd2189544b, type: 3}
     - name: Hub
       clip: {fileID: 8300000, guid: f781174b5d8209d49ad37c7fe7e3dd9a, type: 3}
+    - name: Podium
+      clip: {fileID: 8300000, guid: def212152794ba64489f82e6d3425f97, type: 3}
   - soundType: 0
     audioClips:
     - name: Stomp
@@ -77,7 +79,7 @@ MonoBehaviour:
     - name: Quad_Lasers
       clip: {fileID: 8300000, guid: 456afba314d038f4384d210f3326790c, type: 3}
     - name: Bomb_Throw
-      clip: {fileID: 8300000, guid: b6489da83c15a2949a72fb03071d9897, type: 3}
+      clip: {fileID: 8300000, guid: 524debd8ddc5b314a83018700010811f, type: 3}
     - name: Bomb
       clip: {fileID: 8300000, guid: f7ee525539d028e4eae2a643f0daaa01, type: 3}
     - name: Laser

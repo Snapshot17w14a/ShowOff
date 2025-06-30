@@ -12,6 +12,7 @@ public class PodiumCinematic : MonoBehaviour
     private void Start()
     {
         cinemachineSplineDolly = GetComponent<CinemachineSplineDolly>();
+        AudioManager.PlayMusic(ESoundType.Music, "Podium", 0.8f);
     }
 
     private void Update()

@@ -19,6 +19,7 @@ public class BobBombState : BobState
         isStateRunning = true;
 
         Bob.Instance.Animator.SetTrigger("Bomb");
+        AudioManager.PlaySound(ESoundType.Bob, "Bomb_Throw", false, 1, 0.75f);
 
         Scheduler.Instance.DelayExecution(() =>
         {
