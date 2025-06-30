@@ -150,9 +150,15 @@ public class PodiumController : MonoBehaviour
 
         if (winnerID != -1)
         {
-            var effectObj = Instantiate(goldVFX, podiums[winnerID].player.transform.position, Quaternion.identity);
-            AudioManager.PlaySound(ESoundType.Penguin, "Golden_Penguin", false);
-            Destroy(effectObj, 4f);
+            var lolo = FindFirstObjectByType<Lolo>();
+            var winner = podiums[winnerID].player;
+            lolo.FlyAroundPlayer(winner, null);
+            Scheduler.Instance.DelayExecution(() =>
+            {
+                var effectObj = Instantiate(goldVFX, podiums[winnerID].player.transform.position, Quaternion.identity);
+                AudioManager.PlaySound(ESoundType.Penguin, "Golden_Penguin", false);
+                Destroy(effectObj, 4f);
+            }, 2f);
         }
 
         Scheduler.Instance.DelayExecution(() => {
