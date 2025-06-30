@@ -57,7 +57,7 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 1, y: 0, z: 0.06914902, w: 1}
+      - m_Value: {x: 0, y: 2.8499947, z: 16, w: 0}
         m_Name: Color Fireworks
         m_Overridden: 1
     m_Uint:
