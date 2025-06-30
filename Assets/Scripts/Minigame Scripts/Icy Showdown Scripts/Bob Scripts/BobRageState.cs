@@ -10,7 +10,7 @@ public class BobRageState : BobState
     private float chargeUpTime = 0;
     private float stunDuration = 0;
     private Transform bobTransform;
-    private VisualEffect beamsEffect;
+    private GameObject beamsEffect;
     private int layerMask;
     private Volume globalVolume;
     private ChromaticAberration chromatic;
@@ -28,7 +28,7 @@ public class BobRageState : BobState
 
         duration = (float)parameters[0];
         bobTransform = (Transform)parameters[1];
-        beamsEffect = (VisualEffect)parameters[2];
+        beamsEffect = (GameObject)parameters[2];
         chargeUpTime = (float)parameters[3];
         stunDuration = (float)parameters[4];
         layerMask = (int)parameters[5];
@@ -43,8 +43,7 @@ public class BobRageState : BobState
         initialAngle = bobTransform.eulerAngles.y;
         targetAngle = initialAngle + (Random.Range(0, 2) == 0 ? -360f : 360f);
 
-        beamsEffect.Reinit();
-        beamsEffect.Play();
+        GameObject.Destroy(GameObject.Instantiate(beamsEffect, new Vector3(0, 1.221f, 0), Quaternion.identity, bobTransform), chargeUpTime + duration);
         AudioManager.PlaySound(ESoundType.Bob, "Quad_Lasers", false);
 
         globalVolume.sharedProfile.TryGet(out chromatic);
@@ -65,7 +64,6 @@ public class BobRageState : BobState
 
     public override void UnloadState()
     {
-        beamsEffect.Stop();
         mainCamera.fieldOfView = 26.9f;
     }
 

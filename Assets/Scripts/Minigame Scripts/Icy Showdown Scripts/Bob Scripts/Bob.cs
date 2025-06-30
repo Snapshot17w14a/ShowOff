@@ -58,7 +58,7 @@ public class Bob : MonoBehaviour
     [SerializeField] private float crossDuration;
     [SerializeField] private float crossChargupTime;
     [SerializeField] private float rageStunTime;
-    [SerializeField] private VisualEffect crossEffect;
+    [SerializeField] private GameObject crossEffect;
     [SerializeField] private Volume globalVolume;
 
     [Header("Star state settings")]

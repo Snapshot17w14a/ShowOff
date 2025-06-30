@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690449441814144200}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7700394818771688237}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!2083052967 &2853303259895265453
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -51,10 +51,10 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 12
+      - m_Value: 11
         m_Name: Lifetime of the attack
         m_Overridden: 1
-      - m_Value: 4
+      - m_Value: 3
         m_Name: Chargin time
         m_Overridden: 1
       - m_Value: 4
@@ -152,13 +152,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3574213643080929113}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -0.4}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7700394818771688237}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!2083052967 &2206493421324666334
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -177,13 +177,13 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 12
+      - m_Value: 11
         m_Name: Lifetime of the attack
         m_Overridden: 1
       - m_Value: 4
         m_Name: Beam Particle Duration
         m_Overridden: 1
-      - m_Value: 4
+      - m_Value: 3
         m_Name: Chargin time
         m_Overridden: 1
     m_Vector2f:
@@ -278,13 +278,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3752157416986112628}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7700394818771688237}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!2083052967 &931980151831532217
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -303,10 +303,10 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 12
+      - m_Value: 11
         m_Name: Lifetime of the attack
         m_Overridden: 1
-      - m_Value: 4
+      - m_Value: 3
         m_Name: Chargin time
         m_Overridden: 1
       - m_Value: 4
@@ -433,10 +433,10 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 12
+      - m_Value: 11
         m_Name: Total Attack Time
         m_Overridden: 1
-      - m_Value: 4
+      - m_Value: 3
         m_Name: Chargin Time
         m_Overridden: 1
     m_Vector2f:
@@ -560,13 +560,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5410963504896607191}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7700394818771688237}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!2083052967 &6931923734983044482
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -585,10 +585,10 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 12
+      - m_Value: 11
         m_Name: Lifetime of the attack
         m_Overridden: 1
-      - m_Value: 4
+      - m_Value: 3
         m_Name: Chargin time
         m_Overridden: 1
       - m_Value: 4
