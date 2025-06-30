@@ -5940,6 +5940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99fa28789598664bb59b9a0c56120ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystals: {fileID: 0}
 --- !u!65 &581703881
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6523,6 +6524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99fa28789598664bb59b9a0c56120ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystals: {fileID: 0}
 --- !u!65 &674594772
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9313,6 +9315,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9040628218138926221, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9134930927273191880, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.5
@@ -9325,13 +9331,34 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 2164617396511208021, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9040628218138926221, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1075019785}
   m_SourcePrefab: {fileID: 100100000, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
 --- !u!4 &1075019783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5586890917710668968, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
   m_PrefabInstance: {fileID: 1075019782}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1075019784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9040628218138926221, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
+  m_PrefabInstance: {fileID: 1075019782}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1075019785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075019784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99fa28789598664bb59b9a0c56120ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crystals: {fileID: 1075019784}
 --- !u!1 &1083279448
 GameObject:
   m_ObjectHideFlags: 0
@@ -9381,6 +9408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99fa28789598664bb59b9a0c56120ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystals: {fileID: 0}
 --- !u!65 &1083279451
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11128,6 +11156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99fa28789598664bb59b9a0c56120ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystals: {fileID: 0}
 --- !u!65 &1207737474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11519,6 +11548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99fa28789598664bb59b9a0c56120ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystals: {fileID: 0}
 --- !u!65 &1235309142
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12043,6 +12073,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1769811404341905841, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3415298888954229509, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
       propertyPath: m_Name
       value: Icy Showdown Environment
@@ -12091,16 +12125,41 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9040628218138926221, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9040628218138926221, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1311519283}
   m_SourcePrefab: {fileID: 100100000, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
 --- !u!4 &1311519281 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5586890917710668968, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
   m_PrefabInstance: {fileID: 1311519280}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1311519282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9040628218138926221, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
+  m_PrefabInstance: {fileID: 1311519280}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1311519283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311519282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99fa28789598664bb59b9a0c56120ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crystals: {fileID: 1311519282}
 --- !u!1 &1324245769
 GameObject:
   m_ObjectHideFlags: 0
@@ -12181,6 +12240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99fa28789598664bb59b9a0c56120ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystals: {fileID: 0}
 --- !u!65 &1325612658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13124,6 +13184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99fa28789598664bb59b9a0c56120ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystals: {fileID: 0}
 --- !u!65 &1416684207
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16252,6 +16313,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1769811404341905841, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3415298888954229509, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
       propertyPath: m_Name
       value: Icy Showdown Environment
@@ -16304,6 +16369,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9040628218138926221, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9134930927273191880, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -16313,13 +16382,34 @@ PrefabInstance:
     - {fileID: 2164617396511208021, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
     - {fileID: 1322913843540802478, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9040628218138926221, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1712102228}
   m_SourcePrefab: {fileID: 100100000, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
 --- !u!4 &1712102226 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5586890917710668968, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
   m_PrefabInstance: {fileID: 1712102225}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1712102227 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9040628218138926221, guid: d56ca815b313be94e95f2b4367ca1fee, type: 3}
+  m_PrefabInstance: {fileID: 1712102225}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1712102228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712102227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99fa28789598664bb59b9a0c56120ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crystals: {fileID: 1712102227}
 --- !u!1001 &1732636486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16897,6 +16987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99fa28789598664bb59b9a0c56120ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystals: {fileID: 0}
 --- !u!65 &1780293759
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19065,6 +19156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99fa28789598664bb59b9a0c56120ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystals: {fileID: 0}
 --- !u!65 &1972670534
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20664,6 +20756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99fa28789598664bb59b9a0c56120ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crystals: {fileID: 0}
 --- !u!65 &2115230977
 BoxCollider:
   m_ObjectHideFlags: 0
