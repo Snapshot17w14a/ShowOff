@@ -61,7 +61,7 @@ public class BobTailState : BobState
         GameObject.Instantiate(needlePrefab, new Vector3(0, 1, 0), Quaternion.identity, needleParentTransform)
             .GetComponent<Rigidbody>()
             .AddForce(needleStrength * ((UnityEngine.Random.value * 0.5f) + 0.5f) * NeedleDirection(), ForceMode.Impulse);
-        AudioManager.PlaySound(ESoundType.Bob, "Needle_Attack", false);
+        AudioManager.PlaySound(ESoundType.Bob, "Needle_Attack", true, channel: 1);
         firedProjectileCount++;
     }
 

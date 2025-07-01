@@ -31,6 +31,8 @@ public class Menu : MonoBehaviour
 
         PlayerPrefs.SetInt("DoPodium", 0);
 
+        Scheduler.Instance.StopAllRoutines();
+
         Services.Get<PauseManager>().Unpause();
         SceneManager.LoadScene("HubScene");
     }
