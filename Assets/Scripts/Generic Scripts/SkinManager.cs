@@ -59,7 +59,7 @@ public class SkinManager : MonoBehaviour
 
     private void SetDualshockColor(PlayerVisualData data, int playerId)
     {
-        InputDevice inputDevie = GetComponent<PlayerInput>().devices[0];
+        InputDevice inputDevie = Services.Get<PlayerRegistry>().GetPlayerData(playerId).device;
 
         if (inputDevie is DualShockGamepad dualshock)
         {
