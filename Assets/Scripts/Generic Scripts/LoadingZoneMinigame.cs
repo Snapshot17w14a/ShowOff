@@ -129,7 +129,7 @@ public class LoadingZoneMinigame : MonoBehaviour
         countdownTimer = 3;
         countDownTimerText.enabled = false;
 
-        if (playerReadyThreshold == readyPlayers.Count)
+        if (readyPlayers.Count >= playerReadyThreshold)
         {
             playersReady = true;
             countDownTimerText.enabled = true;
