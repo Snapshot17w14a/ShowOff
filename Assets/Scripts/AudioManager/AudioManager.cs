@@ -33,7 +33,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private List<NameOfAudioClip> audioGroups;
 
     private Dictionary<string, AudioClip> sounds = new Dictionary<string, AudioClip>();
-    private AudioSource sfxSource;
+    private AudioSource[] sfxSource;
     private AudioSource musicSource;
 
     private void Awake()
@@ -47,8 +47,13 @@ public class AudioManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        sfxSource = gameObject.AddComponent<AudioSource>();
-        sfxSource.loop = false;
+        sfxSource = new AudioSource[4];
+
+        for (int i = 0; i < 4; i++)
+        {
+            sfxSource[i] = gameObject.AddComponent<AudioSource>();
+            sfxSource[i].loop = false;
+        }
 
         musicSource = gameObject.AddComponent<AudioSource>();
         musicSource.loop = true;
@@ -65,7 +70,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public static void PlaySound(ESoundType soundSourceType, string name, bool randomizePitch, float pitch = 1f, float volume = 1f)
+    public static void PlaySound(ESoundType soundSourceType, string name, bool randomizePitch, float pitch = 1f, float volume = 1f, int channel = 0)
     {
         if (Instance == null)
         {
@@ -91,15 +96,15 @@ public class AudioManager : MonoBehaviour
 
         if (randomizePitch)
         {
-            Instance.sfxSource.pitch = UnityEngine.Random.Range(1f, 2f);
+            Instance.sfxSource[channel].pitch = UnityEngine.Random.Range(1f, 2f);
         }
         else
         {
-            Instance.sfxSource.pitch = pitch;
+            Instance.sfxSource[channel].pitch = pitch;
         }
 
-        Instance.sfxSource.PlayOneShot(clip.clip, volume);
-        Instance.sfxSource.pitch = 1f;
+        Instance.sfxSource[channel].PlayOneShot(clip.clip, volume);
+        Instance.sfxSource[channel].pitch = 1f;
     }
 
     public static void PlayMusic(ESoundType soundSourceType, string name, float volume = 1f)
@@ -141,8 +146,8 @@ public class AudioManager : MonoBehaviour
         Instance.musicSource.Stop();
     }
 
-    public static void StopSound()
+    public static void StopSound(int channel = 0)
     {
-        Instance.sfxSource.Stop();
+        Instance.sfxSource[channel].Stop();
     }
 }
