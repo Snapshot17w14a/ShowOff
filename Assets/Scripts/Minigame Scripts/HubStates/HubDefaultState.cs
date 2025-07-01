@@ -16,8 +16,8 @@ public class HubDefaultState : MinigameState
     {
         base.LoadState();
         SetVignetteToZero();
-        Services.Get<PlayerAutoJoin>().AutoJoinPlayers = true;
         Services.Get<PlayerAutoJoin>().AllowJoining = true;
+        Services.Get<PlayerAutoJoin>().AutoJoinPlayers = true;
         if (PlayerPrefs.GetInt("DoPodium", 0) == 1) FindFirstObjectByType<MinigameHandler>().LoadState(scoreState);
         else if (!isAfterPodiums) distributor.InstantiatePlayersInCircle(1);
     }

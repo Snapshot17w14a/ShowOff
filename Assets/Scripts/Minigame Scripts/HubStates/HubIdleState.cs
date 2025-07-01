@@ -7,12 +7,15 @@ public class HubIdleState : MinigameState
     [SerializeField] private VideoClip[] clips;
     private bool isTransitioning = false;
 
+    private int currentIndex = -1;
+
     public override void LoadState()
     {
         base.LoadState();
         Services.Get<PlayerRegistry>().ExecuteForEachPlayer(p => Destroy(p.gameObject));
-        idleVideoPlayer.clip = clips[Random.Range(0, clips.Length)];
+        StartRandomClip(idleVideoPlayer);
         idleVideoPlayer.Play();
+        idleVideoPlayer.loopPointReached += StartRandomClip;
     }
 
     public override void TickState()
@@ -34,5 +37,15 @@ public class HubIdleState : MinigameState
     public override void UnloadState()
     {
         base.UnloadState();
+        idleVideoPlayer.loopPointReached -= StartRandomClip;
+    }
+
+    private void StartRandomClip(VideoPlayer source)
+    {
+        int i;
+        do { i = Random.Range(0, clips.Length); }
+        while (i == currentIndex);
+        source.clip = clips[i];
+        currentIndex = i;
     }
 }

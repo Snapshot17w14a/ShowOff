@@ -132,8 +132,9 @@ public class PlayerRegistry : Service
     /// </summary>
     public void ExecuteForEachPlayer(Action<MinigamePlayer> function)
     {
-        foreach (var player in registeredPlayers)
+        for (int i = registeredPlayers.Length - 1; i >= 0; i--)
         {
+            var player = registeredPlayers[i];
             if (RegisteredPlayer.IsNull(player)) continue;
             function(player.minigamePlayer);
         }
@@ -144,9 +145,9 @@ public class PlayerRegistry : Service
     /// </summary>
     public void ExecuteForEachPlayerData(Func<RegisteredPlayer, RegisteredPlayer> function)
     {
-        for (int i = 0; i < registeredPlayers.Length; i++)
+        for (int i = registeredPlayers.Length - 1; i >= 0; i--)
         {
-            //if (RegisteredPlayer.IsNull(registeredPlayers[i])) continue;
+            if (RegisteredPlayer.IsNull(registeredPlayers[i])) continue;
             registeredPlayers[i] = function(registeredPlayers[i]);
         }
     }
