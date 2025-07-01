@@ -99,6 +99,7 @@ public class AudioManager : MonoBehaviour
         }
 
         Instance.sfxSource.PlayOneShot(clip.clip, volume);
+        Instance.sfxSource.pitch = 1f;
     }
 
     public static void PlayMusic(ESoundType soundSourceType, string name, float volume = 1f)
