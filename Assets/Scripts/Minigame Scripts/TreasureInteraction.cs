@@ -21,6 +21,7 @@ public class TreasureInteraction : MonoBehaviour
     [SerializeField, Range(1, 5)] private float regularGemThrowPenalty = 1.5f;
     [SerializeField, Range(1, 10)] private float velocityThrowPenalty = 3f;
     [SerializeField, Range(1, 10)] private float dashVelocityPenalty = 6f;
+    [SerializeField, Range(0, 5)] private float baseThrowDistance = 1f;
 
 
     [Header("Other stuff")]
@@ -189,8 +190,9 @@ public class TreasureInteraction : MonoBehaviour
     {
         if (collectedPickupable != null)
         {
+            
             Vector3 position = transform.position;
-            Vector3 dropPosition = transform.forward / (collectedPickupable.Worth > 1f ? bigGemthrowPenalty : regularGemThrowPenalty);
+            Vector3 dropPosition = transform.forward / (collectedPickupable.Worth > 1f ? bigGemthrowPenalty : regularGemThrowPenalty) * baseThrowDistance;
 
             Vector3 spawnPosition = position + dropPosition;
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
