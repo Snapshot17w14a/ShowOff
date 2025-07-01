@@ -190,7 +190,7 @@ public class TreasureInteraction : MonoBehaviour
     {
         if (collectedPickupable != null)
         {
-            
+
             Vector3 position = transform.position;
             Vector3 dropPosition = transform.forward / (collectedPickupable.Worth > 1f ? bigGemthrowPenalty : regularGemThrowPenalty) * baseThrowDistance;
 
@@ -202,7 +202,7 @@ public class TreasureInteraction : MonoBehaviour
             collectedPickupable.transform.SetParent(null, true);
             collectedPickupable.SetKinematic(false);
             collectedPickupable.parentInteration = this;
-            collectedPickupable.CalculateVelocity(spawnPoint, spawnPosition + 
+            collectedPickupable.CalculateVelocity(spawnPoint, spawnPosition +
                 (rb.linearVelocity / (GetComponent<MinigamePlayer>().IsDashing ? dashVelocityPenalty : velocityThrowPenalty)), 0.3f);
             collectedPickupable.DespawnAfter(droppedTreasureDespawnTime);
             collectedPickupable = null;
@@ -326,8 +326,11 @@ public class TreasureInteraction : MonoBehaviour
     {
         if (!state)
         {
-            inputIndicator.gameObject.SetActive(false);
-            inputIndicatorCooldown.gameObject.SetActive(false);
+            if (inputIndicator != null && inputIndicatorCooldown != null)
+            {
+                inputIndicator.gameObject.SetActive(false);
+                inputIndicatorCooldown.gameObject.SetActive(false);
+            }
             return;
         }
 
