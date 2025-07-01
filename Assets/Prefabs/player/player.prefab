@@ -1577,9 +1577,10 @@ MonoBehaviour:
   spawnChance: 10
   movementSpeedPenalty: 45
   bigGemthrowPenalty: 2.5
-  regularGemThrowPenalty: 1.5
-  velocityThrowPenalty: 3
-  dashVelocityPenalty: 4
+  regularGemThrowPenalty: 2
+  velocityThrowPenalty: 1.6
+  dashVelocityPenalty: 1.5
+  baseThrowDistance: 1.4
   holdPoint: {fileID: 7137753459134923790}
   inputIndicator: {fileID: 7963251910506268503}
   inputIndicatorCooldown: {fileID: 3906026381504218933}
