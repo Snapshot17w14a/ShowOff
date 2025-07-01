@@ -7585,7 +7585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f96edbd675c1c34fada4c2a6e3e645d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.075
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f96edbd675c1c34fada4c2a6e3e645d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7593,7 +7593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f96edbd675c1c34fada4c2a6e3e645d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.033
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f96edbd675c1c34fada4c2a6e3e645d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -18521,7 +18521,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -21886,10 +21886,6 @@ PrefabInstance:
     - target: {fileID: 2729485839300203251, guid: eb208434426b9f74eb8264028def821d, type: 3}
       propertyPath: m_Name
       value: PauseMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 2729485839300203251, guid: eb208434426b9f74eb8264028def821d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4649990458930302842, guid: eb208434426b9f74eb8264028def821d, type: 3}
       propertyPath: m_Pivot.x
