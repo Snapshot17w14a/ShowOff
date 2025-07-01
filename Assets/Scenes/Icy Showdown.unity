@@ -585,6 +585,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -43.317226
       objectReference: {fileID: 0}
+    - target: {fileID: -4628812209762925344, guid: 134e6fa2e68f1fc42951aba10a307f9a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5f381fc008fbc6340833eaed45e2c76a, type: 2}
     - target: {fileID: -3831430285769191693, guid: 134e6fa2e68f1fc42951aba10a307f9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 11.889434
@@ -2032,7 +2036,7 @@ PrefabInstance:
     - target: {fileID: -4628812209762925344, guid: 134e6fa2e68f1fc42951aba10a307f9a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 14f83b96acd93004f859703d61a43c46, type: 2}
+      objectReference: {fileID: 2100000, guid: 5f381fc008fbc6340833eaed45e2c76a, type: 2}
     - target: {fileID: 919132149155446097, guid: 134e6fa2e68f1fc42951aba10a307f9a, type: 3}
       propertyPath: m_Name
       value: BOB_FINAL_ANIM_FILE
