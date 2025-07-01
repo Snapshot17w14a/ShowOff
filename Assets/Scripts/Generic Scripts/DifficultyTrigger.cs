@@ -1,28 +1,33 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class DifficultyTrigger : MonoBehaviour
 {
+    private new Renderer renderer;
+
+    private void Start()
+    {
+        renderer = GetComponentInChildren<Renderer>();
+        ChangeColor();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<MinigamePlayer>() != null)
+        if (other.TryGetComponent<MinigamePlayer>(out var player) && player.IsDashing)
         {
             DifficultyManager.SwitchDifficulty();
-            ColorChange();
+            ChangeColor();
         }
     }
 
-    private void ColorChange()
+    private void ChangeColor()
     {
-        MeshRenderer renderer = GetComponent<MeshRenderer>();
-
-        if (DifficultyManager.IsEasyMode())
-        {
-            renderer.material.color = Color.blue;
-        }
+        int mood = DifficultyManager.IsEasyMode() ? 0 : 1;
+        GetComponentInChildren<Animator>().SetFloat("Mood", mood);
+        renderer.material.SetFloat("_Blend", mood);
+        if(mood == 1)
+            GetComponentInChildren<VisualEffect>().Play();
         else
-        {
-            renderer.material.color = Color.red;
-
-        }
+            GetComponentInChildren<VisualEffect>().Stop();
     }
 }

@@ -123,6 +123,7 @@ public class LoadingZoneMinigame : MonoBehaviour
     private void RecheckThreshold()
     {
         Debug.Log("Current Player Threshold to start the game: " + playerReadyThreshold);
+        if (readyPlayers.Count == 0) return;
 
         playersReady = false;
         countdownTimer = 3;

@@ -38,6 +38,7 @@ public class Lolo : MonoBehaviour
             animator.SetTrigger("TurnGold");
             Scheduler.Instance.Lerp(t =>
             {
+                t = t * t * (3 - 2 * t);
                 Debug.Log(new Vector3(0, 0.5f * Mathf.Sin(Mathf.PI * (t * 4)), 0.5f));
                 transform.position = player.transform.position + (Quaternion.Euler(new(0, -360f * t, 0)) * new Vector3(0, 0.5f + 0.1f * Mathf.Sin(Mathf.PI * (t * 4)), 0.5f));
                 transform.LookAt(playerPos + new Vector3(0, 0.5f, 0));
