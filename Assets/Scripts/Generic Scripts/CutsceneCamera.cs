@@ -31,7 +31,7 @@ public class CutsceneCamera : MonoBehaviour
     {
         //Debug.Log(cinemachineSplineDolly.Spline.Splines[0].Count);
         knots = cinemachineSplineDolly.Spline.Splines[0].Count;
-        AudioManager.StopMusic();
+        AudioManager.PlayMusic(ESoundType.Music, "Icy_Showdown_Intro", 0.6f);
 
         skipInput.performed += SkipCutscene;
         skipInput.Enable();
@@ -71,6 +71,7 @@ public class CutsceneCamera : MonoBehaviour
         startRot = cutsceneCamera.transform.rotation;
 
         Scheduler.Instance.Lerp(LerpCamera, transitionDuration, GameReadyToStart);
+        AudioManager.PlayMusic(ESoundType.Music, "Icy_Showdown", 0.6f);
     }
 
     private void LerpCamera(float t)
@@ -87,7 +88,6 @@ public class CutsceneCamera : MonoBehaviour
         MainCamera.enabled = true;
 
         OnCameraReady?.Invoke();
-        AudioManager.PlayMusic(ESoundType.Music, "Icy_Showdown", 0.3f);
     }
 
     private void PenguinWalking()

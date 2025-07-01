@@ -65,11 +65,13 @@ MonoBehaviour:
   - soundType: 2
     audioClips:
     - name: Icy_Showdown
-      clip: {fileID: 8300000, guid: 342c3864e23cb954bbaba8cd2189544b, type: 3}
+      clip: {fileID: 8300000, guid: 16feac83e2893fc4baf1c256c19cb81f, type: 3}
     - name: Hub
       clip: {fileID: 8300000, guid: f781174b5d8209d49ad37c7fe7e3dd9a, type: 3}
     - name: Podium
       clip: {fileID: 8300000, guid: 6c9265b3cadd98e48944a081a7860ff0, type: 3}
+    - name: Icy_Showdown_Intro
+      clip: {fileID: 8300000, guid: 0ddc444b5354b3f43927cd00ec1da9eb, type: 3}
   - soundType: 0
     audioClips:
     - name: Stomp
