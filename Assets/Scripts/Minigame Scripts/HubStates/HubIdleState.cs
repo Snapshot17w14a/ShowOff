@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Video;
 
 public class HubIdleState : MinigameState
@@ -8,6 +10,13 @@ public class HubIdleState : MinigameState
     private bool isTransitioning = false;
 
     private int currentIndex = -1;
+
+    private readonly List<InputDevice> inputDevices = new();
+
+    private void Start()
+    {
+        Services.Get<PlayerRegistry>().OnPlayerRegistered += RepopulateDeviceList;
+    }
 
     public override void LoadState()
     {
@@ -21,14 +30,14 @@ public class HubIdleState : MinigameState
     public override void TickState()
     {
         base.TickState();
-        if (Input.anyKey && !isTransitioning)
+        if (AnyInput() && !isTransitioning)
         {
             isTransitioning = true;
             TransitionController.Instance.TransitionOut(1f, () =>
             {
                 isTransitioning = false;
                 idleVideoPlayer.Pause();
-                FindFirstObjectByType<MinigameHandler>().LoadState(nextMinigameState);
+                MinigameHandler.Instance.LoadState(nextMinigameState);
                 TransitionController.Instance.TransitionIn(1f);
             });
         }
@@ -47,5 +56,23 @@ public class HubIdleState : MinigameState
         while (i == currentIndex);
         source.clip = clips[i];
         currentIndex = i;
+    }
+
+    private void RepopulateDeviceList(int id)
+    {
+        inputDevices.Clear();
+        inputDevices.AddRange(InputSystem.devices);
+    }
+
+    private bool AnyInput()
+    {
+        foreach (var device in inputDevices)
+            if (device.IsPressed()) return true;
+        return Input.anyKey;
+    }
+
+    private void OnDisable()
+    {
+        Services.Get<PlayerRegistry>().OnPlayerRegistered -= RepopulateDeviceList;
     }
 }

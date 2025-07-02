@@ -15,14 +15,14 @@ public class IdleTimer : MonoBehaviour
 
     private void Start()
     {
-        Services.Get<PlayerRegistry>().OnPlayerRegistered += ResetDeviceList;
+        Services.Get<PlayerRegistry>().OnPlayerRegistered += RepopulateDeviceList;
     }
 
     void Update()
     {
         idleTime += Time.deltaTime;
 
-        if (Input.anyKey || AnyInput()) idleTime = 0;
+        if (AnyInput()) idleTime = 0;
 
         if (idleTime >= maxIdleTime && !isTransitioning)
         {
@@ -37,7 +37,7 @@ public class IdleTimer : MonoBehaviour
         }
     }
 
-    private void ResetDeviceList(int id)
+    private void RepopulateDeviceList(int id)
     {
         inputDevices.Clear();
         inputDevices.AddRange(InputSystem.devices);
@@ -47,11 +47,11 @@ public class IdleTimer : MonoBehaviour
     {
         foreach (var device in inputDevices)
             if (device.IsPressed()) return true;
-        return false;
+        return Input.anyKey;
     }
 
     private void OnDisable()
     {
-        Services.Get<PlayerRegistry>().OnPlayerRegistered -= ResetDeviceList;
+        Services.Get<PlayerRegistry>().OnPlayerRegistered -= RepopulateDeviceList;
     }
 }
