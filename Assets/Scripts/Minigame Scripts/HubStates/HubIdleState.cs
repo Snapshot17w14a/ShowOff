@@ -22,6 +22,7 @@ public class HubIdleState : MinigameState
     {
         base.LoadState();
         Services.Get<PlayerRegistry>().ExecuteForEachPlayer(p => Destroy(p.gameObject));
+        Services.Get<PlayerAutoJoin>().AutoJoinPlayers = false;
         StartRandomClip(idleVideoPlayer);
         idleVideoPlayer.Play();
         idleVideoPlayer.loopPointReached += StartRandomClip;
@@ -46,6 +47,7 @@ public class HubIdleState : MinigameState
     public override void UnloadState()
     {
         base.UnloadState();
+        Services.Get<PlayerAutoJoin>().AutoJoinPlayers = true;
         idleVideoPlayer.loopPointReached -= StartRandomClip;
     }
 

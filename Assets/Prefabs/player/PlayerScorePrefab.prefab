@@ -113,8 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imagesToRecolor:
-  - {fileID: 4409424838976621062}
-  - {fileID: 8513910360793194016}
+  - {fileID: 1134586928937793847}
+  - {fileID: 1270890081743707178}
   scoreText: {fileID: 8907183806950882427}
   goldenPenguinFrame: {fileID: 5283295765145474608}
   fireAnimation: {fileID: 6539885066140029662}

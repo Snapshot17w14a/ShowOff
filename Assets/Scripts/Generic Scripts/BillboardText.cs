@@ -11,6 +11,11 @@ public class BillboardText : MonoBehaviour
 
     private void Update()
     {
+        if (cameraTransform == null)
+        {
+            cameraTransform = Camera.main.transform;
+            return;
+        }
         transform.forward = cameraTransform.forward;
     }
 }
