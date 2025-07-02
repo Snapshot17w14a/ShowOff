@@ -5142,7 +5142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleState: {fileID: 857793416}
   handler: {fileID: 529830769}
-  maxIdleTime: 2
+  maxIdleTime: 30
 --- !u!4 &422959088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c628aaed9912ef94e9225131c562aede, type: 3}

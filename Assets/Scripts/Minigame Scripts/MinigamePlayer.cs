@@ -158,9 +158,9 @@ public class MinigamePlayer : MonoBehaviour
         }
     }
 
-    public void StunPlayer(float seconds, bool isGemThrown = true)
+    public void StunPlayer(float seconds)
     {
-        StartCoroutine(StunRoutine(seconds, isGemThrown));
+        StartCoroutine(StunRoutine(seconds));
     }
 
     public void SetFlightState(bool state) => isFlying = state;
@@ -192,10 +192,9 @@ public class MinigamePlayer : MonoBehaviour
         }
     }
 
-    private IEnumerator StunRoutine(float stunSeconds, bool isGemThrown = true)
+    private IEnumerator StunRoutine(float stunSeconds)
     {
         isStunned = true;
-        animator.SetBool("IsHolding", !isGemThrown);
         animator.SetTrigger("Stun");
         stunEffect.Play();
         rigidbody.linearVelocity = Vector3.zero;
@@ -242,7 +241,7 @@ public class MinigamePlayer : MonoBehaviour
 
         if (otherPlayer.IsStunned) return;
 
-        otherPlayer.StunPlayer(dashStunDuration, !DifficultyManager.IsEasyMode());
+        otherPlayer.StunPlayer(dashStunDuration);
         AudioManager.PlaySound(ESoundType.Penguin, "Player_Hit", false, 1f, 0.5f);
         TreasureInteraction otherTreasure = otherPlayer.TreasureInteraction;
 

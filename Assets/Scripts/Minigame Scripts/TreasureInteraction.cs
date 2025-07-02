@@ -160,6 +160,7 @@ public class TreasureInteraction : MonoBehaviour
             Vector3 position = transform.position;
             Vector3 randomDirection = new Vector3(Random.Range(-spawnRange, spawnRange), 0f, Random.Range(-spawnRange, spawnRange));
             Vector3 spawnPosition = position + randomDirection;
+            miniGamePlayer.GetPlayerAnimator.SetBool("IsHolding", false);
 
             if (NavMesh.SamplePosition(spawnPosition, out NavMeshHit hit, 5f, NavMesh.AllAreas))
             {
@@ -193,6 +194,7 @@ public class TreasureInteraction : MonoBehaviour
 
             Vector3 position = transform.position;
             Vector3 dropPosition = transform.forward / (collectedPickupable.Worth > 1f ? bigGemthrowPenalty : regularGemThrowPenalty) * baseThrowDistance;
+            miniGamePlayer.GetPlayerAnimator.SetBool("IsHolding", false);
 
             Vector3 spawnPosition = position + dropPosition;
             Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);

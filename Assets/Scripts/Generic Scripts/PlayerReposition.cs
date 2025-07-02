@@ -20,7 +20,7 @@ public class PlayerReposition : MonoBehaviour
             {
                 playerScript.TreasureInteraction.DropTreasureRandom();
             }
-            playerScript.StunPlayer(stunDuration, DifficultyManager.IsNormalMode());
+            playerScript.StunPlayer(stunDuration);
             AudioManager.PlaySound(ESoundType.Penguin, "Fall_In_Water", false, 1f, 0.3f);
             Destroy(Instantiate(waterEffectPrefab, other.transform.position, Quaternion.identity), 1f);
 
