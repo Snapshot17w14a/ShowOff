@@ -1921,10 +1921,10 @@ MonoBehaviour:
         z: 5.573621
       Rotation:
         value:
-          x: 0.18173222
+          x: 0.18173225
           y: -0.15358727
-          z: -0.029984608
-          w: 0.9708168
+          z: -0.029984603
+          w: 0.97081685
     - Position:
         x: 1.816141
         y: -18.382015
@@ -5142,7 +5142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleState: {fileID: 857793416}
   handler: {fileID: 529830769}
-  maxIdleTime: 30
+  maxIdleTime: 2
 --- !u!4 &422959088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c628aaed9912ef94e9225131c562aede, type: 3}
@@ -11245,10 +11245,9 @@ MonoBehaviour:
       m_Calls: []
   idleVideoPlayer: {fileID: 2078343944}
   clips:
-  - {fileID: 32900000, guid: a10eb6e28275d4748b8098491c7a6329, type: 3}
-  - {fileID: 32900000, guid: 400e7de78b80f5f4389e42fa19fb1242, type: 3}
-  - {fileID: 32900000, guid: d4e0cddc5326ad54a827d060ac85662c, type: 3}
-  - {fileID: 32900000, guid: 81ed0f16ce8d9ab47befa0d5935cd74d, type: 3}
+  - {fileID: 32900000, guid: c56d011ff9d123444a93c907b0a732f3, type: 3}
+  - {fileID: 32900000, guid: 3a59a2c6ca9b69244873702c4762f634, type: 3}
+  - {fileID: 32900000, guid: 73879af1fb9e08a4e89229c4e5889ba3, type: 3}
 --- !u!4 &857793417
 Transform:
   m_ObjectHideFlags: 0
@@ -16059,8 +16058,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176737523}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10976851, y: 0.0007288563, z: -0.0000804919, w: 0.9939569}
-  m_LocalPosition: {x: -1.1503861, y: 60.185135, z: -63.77203}
+  m_LocalRotation: {x: 0.5022367, y: 0.0013264613, z: -0.00077041204, w: 0.86472887}
+  m_LocalPosition: {x: -0.04054181, y: 11.727008, z: -6.915655}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23555,8 +23554,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1645914231}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10976851, y: 0.0007288563, z: -0.0000804919, w: 0.9939569}
-  m_LocalPosition: {x: -1.1503861, y: 34.195137, z: -63.77203}
+  m_LocalRotation: {x: 0.5022367, y: 0.0013264613, z: -0.00077041204, w: 0.86472887}
+  m_LocalPosition: {x: -0.04054181, y: -14.262992, z: -6.915655}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23821,8 +23820,8 @@ MonoBehaviour:
         z: 1.8144974
       Rotation:
         value:
-          x: 0.09786127
-          y: 0.22699758
+          x: 0.097861275
+          y: 0.22699755
           z: 0.8929545
           w: -0.37620142
     - Position:
@@ -27402,9 +27401,9 @@ MonoBehaviour:
         z: 11.219002
       Rotation:
         value:
-          x: 0.15447679
+          x: 0.15447676
           y: 0.0005685128
-          z: 0.00014523878
+          z: 0.0001452388
           w: 0.9879963
     - Position:
         x: -0.0009325743

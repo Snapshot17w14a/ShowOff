@@ -6,14 +6,16 @@ public class BillboardText : MonoBehaviour
 
     private void Start()
     {
-        cameraTransform = Camera.main.transform;
+        if (Camera.main != null)
+            cameraTransform = Camera.main.transform;
     }
 
     private void Update()
     {
         if (cameraTransform == null)
         {
-            cameraTransform = Camera.main.transform;
+            if (Camera.main != null)
+                cameraTransform = Camera.main.transform;
             return;
         }
         transform.forward = cameraTransform.forward;
