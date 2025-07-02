@@ -5555,6 +5555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed69b482a7c688047a64bf23910242dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashUIIndication: {fileID: 604934888}
 --- !u!65 &452393527
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7760,13 +7761,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604934888}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6903375, y: -0.1530822, z: 0.15308216, w: 0.6903375}
-  m_LocalPosition: {x: -3.013, y: -1.01, z: 0.837}
-  m_LocalScale: {x: 0.08353189, y: 0.08353189, z: 0.08353189}
+  m_LocalRotation: {x: 0.70368165, y: -0.069512665, z: 0.06951258, w: 0.7036819}
+  m_LocalPosition: {x: -2.54, y: -1.01, z: 0.79}
+  m_LocalScale: {x: 0.11234527, y: 0.11234527, z: 0.11234527}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 635174951}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 25.006}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 11.283}
 --- !u!212 &604934890
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine.VFX;
 public class DifficultyTrigger : MonoBehaviour
 {
     private new Renderer renderer;
+    [SerializeField] private GameObject dashUIIndication;
 
     private void Start()
     {
@@ -26,8 +27,22 @@ public class DifficultyTrigger : MonoBehaviour
         GetComponentInChildren<Animator>().SetFloat("Mood", mood);
         renderer.material.SetFloat("_Blend", mood);
         if(mood == 1)
+        {
             GetComponentInChildren<VisualEffect>().Play();
+            
+            if (dashUIIndication)
+            {
+                dashUIIndication.SetActive(true);
+            }
+        }
         else
+        {
             GetComponentInChildren<VisualEffect>().Stop();
+
+            if (dashUIIndication)
+            {
+                dashUIIndication.SetActive(false);
+            }
+        }
     }
 }
