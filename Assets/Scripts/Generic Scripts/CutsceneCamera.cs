@@ -111,6 +111,7 @@ public class CutsceneCamera : MonoBehaviour
             introBobAnimator.SetFloat("SpeedMult", 5f / transitionDuration);
             introBobAnimator.SetTrigger("StartIntro");
             cutsceneSkipped = true;
+            finishedCutscene = true;
             CutsceneFinished();
         }
     }
