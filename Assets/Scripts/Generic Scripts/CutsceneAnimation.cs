@@ -20,7 +20,7 @@ public class CutsceneAnimation : MonoBehaviour
     private bool isAnimationDone = false;
     private Vector3 initialPosition;
 
-    [HideInInspector] public UnityEvent<int> OnSegmentChange;
+    public UnityEvent<int> OnSegmentChange;
     public UnityEvent OnAnimationEnd;
 
     public bool IsAnimating => animate;
